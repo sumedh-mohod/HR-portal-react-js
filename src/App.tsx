@@ -1,12 +1,20 @@
 import React from "react";
-import "./App.css";
+import { Route, Routes } from "react-router-dom";
 
-function App() {
+//import sreens
+import Login from "./screens/Login";
+import Registration from "./screens/Registration";
+import Dashboard from "./screens/Dashboard";
+
+const App = () => {
   return (
-    <div className="App">
-      <h2>HRMS Portal</h2>
-    </div>
+    <Routes>
+      {/* Different routes */}
+      <Route path="/" element={<Login />} />
+      <Route path="/register" element={<Registration />} />
+      <Route path="/dashboard" element={<Dashboard />} />
+    </Routes>
   );
-}
+};
 
 export default App;
