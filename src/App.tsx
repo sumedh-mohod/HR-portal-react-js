@@ -7,7 +7,7 @@ import Registration from "./screens/Registration";
 import Dashboard from "./screens/Dashboard";
 import Header from "./components/Header";
 import { Box } from "@mui/material";
-
+import AddCompany from "./screens/AddCompany";
 const App = () => {
   return (
     <Box sx={{ display: "flex" }}>
@@ -19,6 +19,7 @@ const App = () => {
           <Route element={<Header />}>
             <Route path="/dashboard" element={<Dashboard />} />
           </Route>
+          <Route path="/addcompany" element={<AddCompany />} />
         </Routes>
       </Box>
     </Box>
