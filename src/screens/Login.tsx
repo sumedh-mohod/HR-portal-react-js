@@ -102,14 +102,13 @@ const Login = () => {
               <TextField
                 fullWidth
                 size="small"
-                id="password"
                 variant="filled"
                 type={"text"}
-                name="lastName"
+                name="username"
                 value={values.username}
                 onChange={handleChange}
                 onBlur={handleBlur}
-                error={touched.username && Boolean(errors.username)}
+                error={touched.username && errors.username ? true : false}
                 helperText={touched.username && errors.username}
                 sx={{
                   fontSize: "14px",
@@ -156,11 +155,11 @@ const Login = () => {
                 id="outlined-password"
                 variant="filled"
                 type={"password"}
-                name="lastName"
+                name="password"
                 value={values.password}
                 onChange={handleChange}
                 onBlur={handleBlur}
-                error={touched.password && Boolean(errors.password)}
+                error={touched.password && errors.password ? true : false}
                 helperText={touched.password && errors.password}
                 sx={{
                   fontSize: "14px",
