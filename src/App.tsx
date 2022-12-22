@@ -7,6 +7,7 @@ import Registration from "./screens/Registration";
 import Dashboard from "./screens/Dashboard";
 import Header from "./components/Header";
 import { Box } from "@mui/material";
+import CompanyList from "./screens/CompanyList";
 
 const App = () => {
   return (
@@ -19,6 +20,7 @@ const App = () => {
           <Route element={<Header />}>
             <Route path="/dashboard" element={<Dashboard />} />
           </Route>
+          <Route path="/company" element={<CompanyList />} />
         </Routes>
       </Box>
     </Box>
