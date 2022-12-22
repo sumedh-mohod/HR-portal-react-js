@@ -1,15 +1,13 @@
 import React from "react";
-import IconOrangebits from "../assets/images/IconOrangebits.svg";
 import { Button, Grid, Typography, Paper, Box, TextField } from "@mui/material";
 import AddIcon from "@mui/icons-material/Add";
-// import { SearchOutlined } from '@material-ui/icons';
 import SearchIcon from '@mui/icons-material/Search';
-import { InputAdornment } from '@mui/material';
-
+import OrangeBitsIcon from "../components/Icons/OrangeBitsIcon";
+import { Container } from "@mui/system";
 
 const CompanyList = () => {
     return (
-        <Box sx={{ marginTop: "0px" }}>
+        <Container>
             <Box
                 sx={{
                     display: "flex",
@@ -32,8 +30,8 @@ const CompanyList = () => {
                         <AddIcon /> Add Company
                     </Button>
                     <TextField
-                    sx={{ml:2}}
-                    size="small"
+                        sx={{ ml: 2 }}
+                        size="small"
                         id="standard-bare"
                         variant="outlined"
                         placeholder="Search..."
@@ -52,11 +50,11 @@ const CompanyList = () => {
                         sx={{
                             p: 3,
                             fontSize: "16px",
-                            minHeight: "206px",
-                            maxHeight: "206px",
+                            minHeight: "220px",
+                            maxHeight: "220px",
                         }}
                     >
-                        <img src={IconOrangebits} alt="logo" />
+                        <OrangeBitsIcon width={40} />
                         <Typography
                             variant="h5"
                             gutterBottom
@@ -90,11 +88,11 @@ const CompanyList = () => {
                         sx={{
                             p: 3,
                             fontSize: "16px",
-                            minHeight: "206px",
-                            maxHeight: "206px",
+                            minHeight: "220px",
+                            maxHeight: "220px",
                         }}
                     >
-                        <img src={IconOrangebits} alt="logo" />
+                        <OrangeBitsIcon width={40} />
                         <Typography
                             variant="h5"
                             gutterBottom
@@ -131,12 +129,12 @@ const CompanyList = () => {
                             display: "flex",
                             justifyContent: "center",
                             alignItems: "center",
-                            minHeight: "206px",
-                            maxHeight: "206px",
+                            minHeight: "220px",
+                            maxHeight: "220px",
                             outline: "2px dashed #9FA2B4",
                         }}
                     >
-                        <AddIcon sx={{ pr: 2 }} />
+                        <AddIcon fontSize="large" sx={{ pr: 2 }} />
                         <Typography
                             sx={{
                                 fontSize: "16px",
@@ -149,7 +147,7 @@ const CompanyList = () => {
                     </Paper>
                 </Grid>
             </Grid>
-        </Box>
+        </Container>
     );
 };
 
