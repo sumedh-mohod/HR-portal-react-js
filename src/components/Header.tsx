@@ -371,7 +371,9 @@ const Header = (props: any) => {
           ))}
         </List>
       </Drawer>
-      <Outlet />
+      <Box component="main" sx={{ flexGrow: 1, p: 3, marginTop: "50px" }}>
+        <Outlet />
+      </Box>
     </Box>
   );
 };
