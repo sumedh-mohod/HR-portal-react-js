@@ -104,6 +104,7 @@ const EditCompany = () => {
               name="dateOfEstablishment"
               variant="filled"
               size="small"
+              type="date"
             />
           </FormControl>
         </Grid>
