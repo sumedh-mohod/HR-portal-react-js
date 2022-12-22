@@ -1,7 +1,11 @@
 import React from "react";
 import IconOrangebits from "../assets/images/IconOrangebits.svg";
-import { Button, Grid, Typography, Paper, Box } from "@mui/material";
+import { Button, Grid, Typography, Paper, Box, TextField } from "@mui/material";
 import AddIcon from "@mui/icons-material/Add";
+// import { SearchOutlined } from '@material-ui/icons';
+import SearchIcon from '@mui/icons-material/Search';
+import { InputAdornment } from '@mui/material';
+
 
 const CompanyList = () => {
     return (
@@ -15,17 +19,31 @@ const CompanyList = () => {
                     mt: 2,
                 }}
             >
-                <Typography variant="h5">Company 1</Typography>
-                <Button
-                    variant="contained"
-                    sx={{
-                        backgroundColor: "#F58634",
-                        borderRadius: "5px",
-                        textTransform: "inherit",
-                    }}
-                >
-                    <AddIcon /> Add Company
-                </Button>
+                <Typography variant="h5">Company</Typography>
+                <Box>
+                    <Button
+                        variant="contained"
+                        sx={{
+                            backgroundColor: "#F58634",
+                            borderRadius: "5px",
+                            textTransform: "inherit",
+                        }}
+                    >
+                        <AddIcon /> Add Company
+                    </Button>
+                    <TextField
+                    sx={{ml:2}}
+                    size="small"
+                        id="standard-bare"
+                        variant="outlined"
+                        placeholder="Search..."
+                        InputProps={{
+                            startAdornment: (
+                                <SearchIcon />
+                            ),
+                        }}
+                    />
+                </Box>
             </Box>
             <Grid container spacing={2} sx={{ mt: 2 }}>
                 <Grid item xs={12} md={4} lg={4}>
