@@ -4,14 +4,14 @@ import {
   Container,
   Button,
   Grid,
-  Checkbox,
   FormControl,
-  FormControlLabel,
   FormLabel,
   TextField,
   Typography,
+  Select,
+  MenuItem,
 } from "@mui/material";
-
+import CreateIcon from "@mui/icons-material/Create";
 const EditCompany = () => {
   return (
     <Container sx={{ p: 3 }}>
@@ -32,8 +32,10 @@ const EditCompany = () => {
           sx={{
             backgroundColor: "#F58634",
             borderRadius: "5px",
+            textTransform: "inherit",
           }}
         >
+          <CreateIcon sx={{ pr: 1, fontSize: "medium" }} />
           Edit
         </Button>
       </Box>
@@ -45,19 +47,19 @@ const EditCompany = () => {
       >
         <Grid item xs={12} md={6} lg={3}>
           <FormControl fullWidth>
-            <FormLabel id="company">Company</FormLabel>
+            <FormLabel id="company">Company*</FormLabel>
             <TextField name="company" variant="filled" size="small" />
           </FormControl>
         </Grid>
         <Grid item xs={12} md={6} lg={3}>
           <FormControl fullWidth>
-            <FormLabel id="defaultLetterHead">Default Letter Head</FormLabel>
+            <FormLabel id="defaultLetterHead">Default Letter Head*</FormLabel>
             <TextField name="defaultLetterHead" variant="filled" size="small" />
           </FormControl>
         </Grid>
         <Grid item xs={12} md={6} lg={3}>
           <FormControl fullWidth>
-            <FormLabel id="abbr">Abbr</FormLabel>
+            <FormLabel id="abbr">Abbr*</FormLabel>
             <TextField name="abbr" variant="filled" size="small" />
           </FormControl>
         </Grid>
@@ -69,7 +71,7 @@ const EditCompany = () => {
         </Grid>
         <Grid item xs={12} md={6} lg={3}>
           <FormControl fullWidth>
-            <FormLabel id="defaultCurrency">Default Currency</FormLabel>
+            <FormLabel id="defaultCurrency">Default Currency*</FormLabel>
             <TextField name="defaultCurrency" variant="filled" size="small" />
           </FormControl>
         </Grid>
@@ -81,8 +83,16 @@ const EditCompany = () => {
         </Grid>
         <Grid item xs={12} md={6} lg={3}>
           <FormControl fullWidth>
-            <FormLabel id="country">Country</FormLabel>
-            <TextField name="country" variant="filled" size="small" />
+            <FormLabel id="country">Country*</FormLabel>
+            <Select
+              variant="filled"
+              size="small"
+              labelId="country"
+              id="country"
+              defaultValue="India"
+            >
+              <MenuItem value="India">India</MenuItem>
+            </Select>
           </FormControl>
         </Grid>
         <Grid item xs={12} md={6} lg={3}>
@@ -111,19 +121,19 @@ const EditCompany = () => {
       >
         <Grid item xs={12} md={6} lg={3}>
           <FormControl fullWidth>
-            <FormLabel id="company">Company</FormLabel>
+            <FormLabel id="company">Company*</FormLabel>
             <TextField name="company" variant="filled" size="small" />
           </FormControl>
         </Grid>
         <Grid item xs={12} md={6} lg={3}>
           <FormControl fullWidth>
-            <FormLabel id="defaultLetterHead">Default Letter Head</FormLabel>
+            <FormLabel id="defaultLetterHead">Default Letter Head*</FormLabel>
             <TextField name="defaultLetterHead" variant="filled" size="small" />
           </FormControl>
         </Grid>
         <Grid item xs={12} md={6} lg={3}>
           <FormControl fullWidth>
-            <FormLabel id="abbr">Abbr</FormLabel>
+            <FormLabel id="abbr">Abbr*</FormLabel>
             <TextField name="abbr" variant="filled" size="small" />
           </FormControl>
         </Grid>
@@ -147,19 +157,19 @@ const EditCompany = () => {
       >
         <Grid item xs={12} md={6} lg={3}>
           <FormControl fullWidth>
-            <FormLabel id="company">Company</FormLabel>
+            <FormLabel id="company">Company*</FormLabel>
             <TextField name="company" variant="filled" size="small" />
           </FormControl>
         </Grid>
         <Grid item xs={12} md={6} lg={3}>
           <FormControl fullWidth>
-            <FormLabel id="defaultLetterHead">Default Letter Head</FormLabel>
+            <FormLabel id="defaultLetterHead">Default Letter Head*</FormLabel>
             <TextField name="defaultLetterHead" variant="filled" size="small" />
           </FormControl>
         </Grid>
         <Grid item xs={12} md={6} lg={3}>
           <FormControl fullWidth>
-            <FormLabel id="abbr">Abbr</FormLabel>
+            <FormLabel id="abbr">Abbr*</FormLabel>
             <TextField name="abbr" variant="filled" size="small" />
           </FormControl>
         </Grid>
