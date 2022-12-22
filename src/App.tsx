@@ -12,7 +12,6 @@ import CompanyList from "./screens/CompanyList";
 const App = () => {
   return (
     <Box sx={{ display: "flex" }}>
-      <Box component="main" sx={{ flexGrow: 1, p: 3, marginTop: "50px" }}>
         <Routes>
           {/* Different routes */}
           <Route path="/" element={<Login />} />
@@ -22,7 +21,6 @@ const App = () => {
           </Route>
           <Route path="/company" element={<CompanyList />} />
         </Routes>
-      </Box>
     </Box>
   );
 };
