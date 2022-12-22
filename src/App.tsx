@@ -12,7 +12,6 @@ import EditCompany from "./screens/EditCompany";
 const App = () => {
   return (
     <Box sx={{ display: "flex" }}>
-      <Box component="main" sx={{ flexGrow: 1, p: 3, marginTop: "50px" }}>
         <Routes>
           {/* Different routes */}
           <Route path="/" element={<Login />} />
@@ -23,7 +22,6 @@ const App = () => {
           <Route path="/addcompany" element={<AddCompany/>} />
           <Route path="/editcompany" element={<EditCompany/>} />
         </Routes>
-      </Box>
     </Box>
   );
 };
