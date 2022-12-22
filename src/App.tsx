@@ -8,6 +8,7 @@ import Dashboard from "./screens/Dashboard";
 import Header from "./components/Header";
 import { Box } from "@mui/material";
 import AddCompany from "./screens/AddCompany";
+import EditCompany from "./screens/EditCompany";
 const App = () => {
   return (
     <Box sx={{ display: "flex" }}>
@@ -20,6 +21,7 @@ const App = () => {
             <Route path="/dashboard" element={<Dashboard />} />
           </Route>
           <Route path="/addcompany" element={<AddCompany/>} />
+          <Route path="/editcompany" element={<EditCompany/>} />
         </Routes>
       </Box>
     </Box>

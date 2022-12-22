@@ -1,20 +1,13 @@
 import React from "react";
-import Box from "@mui/material/Box";
-import Container from "@mui/material/Container";
-import Button from "@mui/material/Button";
-import Grid from "@mui/material/Grid";
-import {
-  Checkbox,
+import {Box,Container,Button,Grid, Checkbox,
   FormControl,
   FormControlLabel,
   FormLabel,
   TextField,
-  Typography,
-} from "@mui/material";
-
+  Typography,} from "@mui/material";
 const AddCompany = () => {
   return (
-    <Container sx={{ p: 5 }}>
+    <Container sx={{ p: 3}}>
       <Box
         sx={{
           display: "flex",
