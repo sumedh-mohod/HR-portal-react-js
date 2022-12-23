@@ -14,17 +14,17 @@ import CompanyList from "./screens/CompanyList";
 const App = () => {
   return (
     <Box sx={{ display: "flex" }}>
-        <Routes>
-          {/* Different routes */}
-          <Route path="/" element={<Login />} />
-          <Route path="/register" element={<Registration />} />
-          <Route element={<Header />}>
-            <Route path="/dashboard" element={<Dashboard />} />
-          </Route>
-          <Route path="/addcompany" element={<AddCompany/>} />
-          <Route path="/editcompany" element={<EditCompany/>} />
-          <Route path="/company" element={<CompanyList />} />
-        </Routes>
+      <Routes>
+        {/* Different routes */}
+        <Route path="/" element={<Login />} />
+        <Route path="/register" element={<Registration />} />
+        <Route element={<Header />}>
+          <Route path="/dashboard" element={<Dashboard />} />
+        </Route>
+        <Route path="/addcompany" element={<AddCompany />} />
+        <Route path="/editcompany" element={<EditCompany />} />
+        <Route path="/company" element={<CompanyList />} />
+      </Routes>
     </Box>
   );
 };
