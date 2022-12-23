@@ -20,9 +20,8 @@ export const editCompanyValidator = Yup.object().shape({
   dateOfEstablishment: Yup.date().required(
     "Please Select a valid date of establishment"
   ),
+  // selectDate:Yup.date().required("Please Select a valid date "),
 });
-
-// add company validation
 
 export const addCompanyValidator = Yup.object().shape({
   company: Yup.string().required("Please enter a valid company"),
