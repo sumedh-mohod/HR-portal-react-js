@@ -196,7 +196,7 @@ const AddCompany = () => {
                 <MenuItem value="India">India</MenuItem>
               </Select>
               {touched.country && (
-                <FormHelperText sx={{ color: "red" }}>
+                <FormHelperText sx={{ color: "#d32f2f" }}>
                   Please Select a valid country
                 </FormHelperText>
               )}
