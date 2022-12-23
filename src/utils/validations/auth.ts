@@ -14,4 +14,5 @@ export const editCompanyValidator = Yup.object().shape({
   defaultCurrency:Yup.string().required("Please enter a valid default currency"),
   country:Yup.string().required("Please Select a valid country"),
   dateOfEstablishment:Yup.date().required("Please Select a valid date of establishment"),
+  // selectDate:Yup.date().required("Please Select a valid date "),
 });
