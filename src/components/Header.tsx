@@ -12,14 +12,21 @@ import {
   ListItemIcon,
   ListItemText,
   List,
+  Avatar,
+  Badge,
+  Menu,
+  MenuItem,
 } from "@mui/material";
 import MuiDrawer from "@mui/material/Drawer";
 import DashboardIcon from "@mui/icons-material/Dashboard";
+import NotificationsIcon from "@mui/icons-material/Notifications";
 import MenuIcon from "@mui/icons-material/Menu";
 import { styled, useTheme, Theme, CSSObject } from "@mui/material/styles";
 import MuiAppBar, { AppBarProps as MuiAppBarProps } from "@mui/material/AppBar";
 
-import { ReactComponent as IconOrangebits } from "../assets/images/IconOrangebits.svg";
+import OrangeBitsIcon from "./Icons/OrangeBitsIcon";
+import Divider from "@mui/material/Divider";
+import Breadcrumb from "./BreadCrumb";
 
 const drawerWidth = 240;
 
@@ -70,7 +77,6 @@ const DrawerHeader = styled("div")(({ theme }) => ({
   alignItems: "center",
   justifyContent: "flex-end",
   padding: theme.spacing(0, 1),
-  // necessary for content to be below app bar
   ...theme.mixins.toolbar,
 }));
 
@@ -151,6 +157,7 @@ const Header = (props: any) => {
 
   const [open, setOpen] = React.useState(false);
   const [activeRoute, setActiveRoute] = React.useState("home");
+  const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
 
   const handleDrawerOpen = () => {
     setOpen(true);
@@ -163,6 +170,14 @@ const Header = (props: any) => {
   const handleDrawerNavigation = (item: any) => {
     setActiveRoute(item.route);
     navigate(`${item.route}`);
+  };
+
+  const handleMenu = (event: React.MouseEvent<HTMLElement>) => {
+    setAnchorEl(event.currentTarget);
+  };
+
+  const handleClose = () => {
+    setAnchorEl(null);
   };
 
   return (
@@ -191,17 +206,96 @@ const Header = (props: any) => {
           >
             <MenuIcon />
           </IconButton>
-
-          <Box>
-            <Typography
-              variant="h6"
+          <Box
+            sx={{
+              display: "flex",
+              alignItems: "center",
+              flexDirection: "row",
+              justifyContent: " space-between",
+              flex: 1,
+            }}
+          >
+            <Box>
+              {/* <Typography
+                variant="h6"
+                sx={{
+                  fontFamily: "Quicksand",
+                  fontWeight: "bold",
+                }}
+              >
+                E-zest Solutions
+              </Typography> */}
+              <Breadcrumb />
+            </Box>
+            <Box
               sx={{
-                fontFamily: "Quicksand",
-                fontWeight: "bold",
+                display: "flex",
+                alignItems: "center",
               }}
             >
-              E-zest Solutions
-            </Typography>
+              <IconButton
+                size="large"
+                aria-label="show 17 new notifications"
+                color="inherit"
+              >
+                <Badge badgeContent={17} color="error">
+                  <NotificationsIcon
+                    sx={{
+                      color: "grey",
+                    }}
+                  />
+                </Badge>
+              </IconButton>
+
+              <Divider
+                orientation="vertical"
+                flexItem
+                sx={{
+                  mr: 2,
+                  ml: 2,
+                  height: "50px",
+                  alignSelf: "center",
+                  display: "flex",
+                }}
+              />
+
+              <Typography
+                variant="subtitle1"
+                sx={{
+                  fontFamily: "Quicksand",
+                }}
+              >
+                Username
+              </Typography>
+              <IconButton
+                size="large"
+                aria-label="account of current user"
+                aria-controls="menu-appbar"
+                aria-haspopup="true"
+                onClick={handleMenu}
+                color="inherit"
+              >
+                <Avatar sx={{ bgcolor: "pink" }}>S</Avatar>
+              </IconButton>
+              <Menu
+                id="menu-appbar"
+                anchorEl={anchorEl}
+                anchorOrigin={{
+                  vertical: "top",
+                  horizontal: "right",
+                }}
+                keepMounted
+                transformOrigin={{
+                  vertical: "top",
+                  horizontal: "right",
+                }}
+                open={Boolean(anchorEl)}
+                onClose={handleClose}
+              >
+                <MenuItem onClick={handleClose}>Profile</MenuItem>
+                <MenuItem onClick={handleClose}>My account</MenuItem>
+              </Menu>
+            </Box>
           </Box>
         </Toolbar>
       </AppBar>
@@ -223,7 +317,7 @@ const Header = (props: any) => {
           }}
         >
           <IconButton onClick={handleDrawerClose}>
-            <IconOrangebits width={40} style={{ cursor: "pointer" }} />
+            <OrangeBitsIcon width={40} style={{ cursor: "pointer" }} />
 
             <Typography
               variant="h6"
@@ -277,7 +371,9 @@ const Header = (props: any) => {
           ))}
         </List>
       </Drawer>
-      <Outlet />
+      <Box component="main" sx={{ flexGrow: 1, p: 3, marginTop: "50px" }}>
+        <Outlet />
+      </Box>
     </Box>
   );
 };

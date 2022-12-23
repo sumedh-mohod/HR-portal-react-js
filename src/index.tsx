@@ -1,10 +1,14 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
+import { CssBaseline, ThemeProvider } from "@mui/material";
+
 import { BrowserRouter } from "react-router-dom";
-import App from "./App";
+import { Provider } from "react-redux";
+
 import reportWebVitals from "./reportWebVitals";
 import { store } from "./store/store";
-import { Provider } from "react-redux";
+import App from "./App";
+import AuthContextProvider from "./context/auth";
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
@@ -13,9 +17,12 @@ const root = ReactDOM.createRoot(
 root.render(
   <React.StrictMode>
     <Provider store={store}>
-      <BrowserRouter>
-        <App />
-      </BrowserRouter>
+      <AuthContextProvider>
+        <BrowserRouter>
+        <CssBaseline />
+          <App />
+        </BrowserRouter>
+      </AuthContextProvider>
     </Provider>
   </React.StrictMode>
 );
