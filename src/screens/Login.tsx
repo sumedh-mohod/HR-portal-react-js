@@ -1,6 +1,5 @@
 import React from "react";
 import { useFormik } from "formik";
-import background from "../assets/images/LoginBackground.svg";
 import {
   FormControl,
   Box,
@@ -15,6 +14,7 @@ import {
 import Visibility from "@mui/icons-material/Visibility";
 import OrangeBitsIcon from "../components/Icons/OrangeBitsIcon";
 import LoadingButton from "@mui/lab/LoadingButton";
+import { styles } from "../styles/screens/Login";
 import { loginValidator } from "../utils/validations/auth";
 
 const Login = () => {
@@ -39,32 +39,8 @@ const Login = () => {
   });
 
   return (
-    <Box
-      sx={{
-        backgroundImage: `url(${background})`,
-        backgroundPosition: "center",
-        backgroundSize: "cover",
-        width: "100vw",
-        height: "100vh",
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "center",
-        justifyContent: "center",
-      }}
-    >
-      <Box
-        sx={{
-          borderRadius: "8px",
-          background: "#FFFFFF",
-          padding: "20px",
-          marginBottom: "50px",
-          display: "flex",
-          flexDirection: "column",
-          alignItems: "center",
-          justifyContent: "center",
-          maxWidth: "360px",
-        }}
-      >
+    <Box {...styles.parentBox}>
+      <Box {...styles.boxCard}>
         <Grid
           container
           spacing={2}
@@ -213,31 +189,29 @@ const Login = () => {
         </Grid>
       </Box>
       <Grid container spacing={2}>
-        <Grid
-          item
-          xl={12}
-          lg={12}
-          md={10}
-          xs={10}
-          sm={10}
-          sx={{
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-            flexDirection: "row",
-          }}
-        >
-          <Typography
+        <Grid item xl={12} lg={12} md={12} xs={12} sm={12}>
+          <Box
             sx={{
-              fontWeight: "600",
-              fontSize: "18px",
-              color: "white",
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+              flexDirection: "row",
+              pl: "10px",
+              pr: "10px",
             }}
-            variant="h2"
-            gutterBottom
           >
-            Orangebits Software Technologies (India) Pvt Ltd
-          </Typography>
+            <Typography
+              sx={{
+                fontWeight: "600",
+                fontSize: "18px",
+                color: "white",
+              }}
+              variant="h2"
+              gutterBottom
+            >
+              Orangebits Software Technologies (India) Pvt Ltd
+            </Typography>
+          </Box>
         </Grid>
       </Grid>
     </Box>
