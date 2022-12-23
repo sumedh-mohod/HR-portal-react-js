@@ -16,6 +16,7 @@ import {
   MenuItem,
   FormHelperText,
 } from "@mui/material";
+import { styles } from "../styles/components/addCompany";
 
 const AddCompany = () => {
   const {
@@ -49,30 +50,15 @@ const AddCompany = () => {
   return (
     <Container sx={{ p: 3 }}>
       <form onSubmit={handleSubmit}>
-        <Box
-          sx={{
-            display: "flex",
-            justifyContent: "space-between",
-            padding: "10px 80px",
-            justifyItems: "center",
-            alignContent: "flex-start",
-          }}
-        >
+        <Box {...styles.parentBox}>
           <Typography variant="h5">New Company</Typography>
-          <Button
-            variant="contained"
-            sx={{
-              backgroundColor: "#F58634",
-              borderRadius: "5px",
-            }}
-            type="submit"
-          >
+          <Button {...styles.parentBoxButton} variant="contained" type="submit">
             Save
           </Button>
         </Box>
 
         {/* form fields started */}
-        <Grid container spacing={5} sx={{ padding: "10px 80px" }}>
+        <Grid container spacing={5} {...styles.parentGrid}>
           <Grid item xs={12} lg={6}>
             <FormControl fullWidth>
               <FormLabel id="company">Company*</FormLabel>
