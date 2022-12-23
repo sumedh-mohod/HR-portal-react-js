@@ -16,7 +16,7 @@ import {
 
 const AddCompany = () => {
   return (
-    <Container sx={{ p: 5 }}>
+    <Container sx={{ p: 3 }}>
       <Box
         sx={{
           display: "flex",
@@ -76,7 +76,7 @@ const AddCompany = () => {
             <TextField name="domain" variant="filled" size="small" />
           </FormControl>
         </Grid>
-        <Grid item  xs={12} lg={6}>
+        <Grid item xs={12} lg={6}>
           <FormControl fullWidth>
             <FormLabel id="country">Country*</FormLabel>
             <Select
