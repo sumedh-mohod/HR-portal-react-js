@@ -22,8 +22,8 @@ const AddCompany = () => {
           display: "flex",
           justifyContent: "space-between",
           padding: "10px 80px",
-          justifyItems: "center",
-          alignContent: "flex-start",
+          // justifyItems: "center",
+          alignItems: "center",
         }}
       >
         <Typography variant="h5">New Company</Typography>
