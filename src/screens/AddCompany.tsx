@@ -182,24 +182,20 @@ const AddCompany = () => {
           <Grid item xs={12} lg={6}>
             <FormControl fullWidth>
               <FormLabel id="country">Country*</FormLabel>
-              <Select
+              <TextField
+                select
+                name="country"
                 variant="filled"
                 size="small"
-                labelId="country"
                 id="country"
-                name="country"
                 value={values.country}
                 onChange={handleChange}
                 onBlur={handleBlur}
                 error={touched.country && errors.country ? true : false}
+                helperText={touched.country && errors.country}
               >
                 <MenuItem value="India">India</MenuItem>
-              </Select>
-              {touched.country && (
-                <FormHelperText sx={{ color: "#d32f2f" }}>
-                  Please Select a valid country
-                </FormHelperText>
-              )}
+              </TextField>
             </FormControl>
           </Grid>
           <Grid item xs={12} lg={6}>
