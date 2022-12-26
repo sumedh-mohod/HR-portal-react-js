@@ -86,7 +86,7 @@ const Menus = [
   {
     name: "Partners",
     icon: <DashboardIcon />,
-    route: "#4",
+    route: "/partners",
   },
   {
     name: "Project",
