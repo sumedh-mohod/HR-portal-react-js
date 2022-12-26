@@ -5,6 +5,7 @@ import SearchIcon from "@mui/icons-material/Search";
 import OrangeBitsIcon from "../components/Icons/OrangeBitsIcon";
 import { Container } from "@mui/system";
 import { useNavigate } from "react-router-dom";
+import { styles } from "../styles/screens/CompanyList";
 
 const companies = [
   {
@@ -33,13 +34,7 @@ const CompanyList = () => {
   return (
     <Container>
       <Box
-        sx={{
-          display: "flex",
-          justifyContent: "space-between",
-          justifyItems: "center",
-          alignContent: "flex-start",
-          mt: 2,
-        }}
+        {...styles.companyTitleBox}
       >
         <Typography variant="h5">Company</Typography>
         <Box>
@@ -61,33 +56,18 @@ const CompanyList = () => {
             <Paper
               elevation={3}
               onClick={handleCompanyEditClick}
-              sx={{
-                p: 3,
-                fontSize: "16px",
-                height: "auto",
-                cursor: "pointer",
-              }}
+              {...styles.companyCard}
             >
               <OrangeBitsIcon width={40} />
               <Typography
                 variant="h5"
                 gutterBottom
-                sx={{
-                  fontSize: "16px",
-                  fontWeight: "500",
-                  fontFamily: "Montserrat",
-                  mt: 2,
-                }}
+                {...styles.companyName}
               >
                 {company.name}
               </Typography>
               <Typography
-                sx={{
-                  fontSize: "12px",
-                  fontWeight: "normal",
-                  fontFamily: "Montserrat",
-                  color: "#9FA2B4",
-                }}
+                {...styles.companyDescription}
               >
                 {company.description}
               </Typography>
@@ -98,25 +78,11 @@ const CompanyList = () => {
           <Paper
             elevation={3}
             onClick={handleCompanyClick}
-            sx={{
-              p: 3,
-              fontSize: "16px",
-              display: "flex",
-              justifyContent: "center",
-              alignItems: "center",
-              minHeight: "210px",
-              maxHeight: "210px",
-              outline: "2px dashed #9FA2B4",
-              cursor: "pointer",
-            }}
+            {...styles.addCompanyCard}
           >
             <AddIcon fontSize="large" sx={{ pr: 2 }} />
             <Typography
-              sx={{
-                fontSize: "16px",
-                fontWeight: "500",
-                fontFamily: "Montserrat",
-              }}
+              {...styles.addCompanyIcon}
             >
               Add Company
             </Typography>

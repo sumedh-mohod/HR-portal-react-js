@@ -44,20 +44,12 @@ const Login = () => {
         <Grid
           container
           spacing={2}
-          sx={{
-            display: "flex",
-            flexDirection: "column",
-            alignItems: "center",
-          }}
+          {...styles.formGrid}
         >
           <OrangeBitsIcon width={40} style={{ margin: "30px auto" }} />
 
           <Typography
-            sx={{
-              fontWeight: "700",
-              fontSize: "18px",
-              color: "#252733",
-            }}
+            {...styles.formTitle}
             variant="h5"
             gutterBottom
           >
@@ -67,6 +59,7 @@ const Login = () => {
             <FormControl sx={{ p: 2, m: 2 }}>
               <FormLabel
                 id="outlined-password"
+                {...styles.formUsernameLable}
                 sx={{
                   fontWeight: "700",
                   fontSize: "12px",
@@ -86,39 +79,22 @@ const Login = () => {
                 onBlur={handleBlur}
                 error={touched.username && errors.username ? true : false}
                 helperText={touched.username && errors.username}
-                sx={{
-                  fontSize: "14px",
-                  // color: "#4B506D",
-                  // opacity: 0.4,
-                  width: "292px",
-                }}
+                {...styles.formUsernameTextfield}
               />
             </FormControl>
 
             <FormControl sx={{ p: 2, m: 2 }}>
               <Box
-                sx={{
-                  display: "flex",
-                  justifyContent: "space-between",
-                  width: "100%",
-                  alignItems: "baseline",
-                }}
+                {...styles.formPasswordBox}
               >
                 <FormLabel
                   id="outlined-password"
-                  sx={{
-                    fontWeight: "700",
-                    fontSize: "12px",
-                    color: "#9FA2B4",
-                  }}
+                  {...styles.formPasswordLable}
                 >
                   PASSWORD
                 </FormLabel>
                 <Typography
-                  sx={{
-                    fontSize: "10px",
-                    color: "#9FA2B4",
-                  }}
+                  {...styles.formPasswordForgot}
                   variant="h5"
                   gutterBottom
                 >
@@ -137,12 +113,7 @@ const Login = () => {
                 onBlur={handleBlur}
                 error={touched.password && errors.password ? true : false}
                 helperText={touched.password && errors.password}
-                sx={{
-                  fontSize: "14px",
-                  // color: "#4B506D",
-                  // opacity: 0.4,
-                  width: "292px",
-                }}
+                {...styles.formPasswordTextfield}
                 InputProps={{
                   endAdornment: (
                     <InputAdornment position="end">
@@ -158,11 +129,7 @@ const Login = () => {
               />
             </FormControl>
             <Box
-              sx={{
-                display: "flex",
-                pl: "10px",
-                pr: "10px",
-              }}
+              {...styles.formButtonBox}
             >
               <LoadingButton
                 loading={false}
@@ -170,17 +137,7 @@ const Login = () => {
                 fullWidth
                 variant="contained"
                 type="submit"
-                sx={{
-                  padding: "10px",
-                  margin: "auto",
-                  borderRadius: "8px",
-                  backgroundColor: "#F58634",
-                  color: "white",
-                  "&:hover": {
-                    backgroundColor: "#F58634",
-                    boxShadow: "0px 4px 12px rgba(55, 81, 255, 0.24)",
-                  },
-                }}
+                {...styles.formButton}
               >
                 Log In
               </LoadingButton>
@@ -191,21 +148,10 @@ const Login = () => {
       <Grid container spacing={2}>
         <Grid item xl={12} lg={12} md={12} xs={12} sm={12}>
           <Box
-            sx={{
-              display: "flex",
-              justifyContent: "center",
-              alignItems: "center",
-              flexDirection: "row",
-              pl: "10px",
-              pr: "10px",
-            }}
+            {...styles.footerTitleBox}
           >
             <Typography
-              sx={{
-                fontWeight: "600",
-                fontSize: "18px",
-                color: "white",
-              }}
+              {...styles.footerTitle}
               variant="h2"
               gutterBottom
             >
