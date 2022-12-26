@@ -7,16 +7,36 @@ import { Container } from "@mui/system";
 import { useNavigate } from "react-router-dom";
 import { styles } from "../styles/screens/CompanyList";
 
+// array of objects of companies
+
 const companies = [
   {
-    name: "E-zest Solutions",
+    name: "Orangebits Software Technologies(India) Pvt. Ltd",
     description:
-      " Lorem ipsum, dolor sit amet consectetur adipisicing elit. Animi,dolore expedita exercitationem, excepturi, eligendi ullam mollitia maiores deleniti nisi itaque dignissimos alias dicta id autem necessitatibus distinctio. Voluptatibus, inventore sed!",
+      [
+        { PAN: "PAN - AYAPN7894N" },
+        { TAN: "TAN - AYAPN7894N" },
+        { GST: "GST - AYAPN7894N" }
+      ]
+
   },
   {
-    name: "Orangebits Technologies",
+    name: "Orangebits Software Technologies(India) Pvt. Ltd",
     description:
-      " Lorem ipsum, dolor sit amet consectetur adipisicing elit. Animi,dolore expedita exercitationem, excepturi, eligendi ullam mollitia maiores deleniti nisi itaque dignissimos alias dicta id autem necessitatibus distinctio. Voluptatibus, inventore sed!",
+      [
+        { PAN: "PAN - AYAPN7894N" },
+        { TAN: "TAN - AYAPN7894N" },
+        { GST: "GST - AYAPN7894N" }
+      ]
+  },
+  {
+    name: "Orangebits Software Technologies(India) Pvt. Ltd",
+    description:
+      [
+        { PAN: "PAN - AYAPN7894N" },
+        { TAN: "TAN - AYAPN7894N" },
+        { GST: "GST - AYAPN7894N" }
+      ]
   },
 ];
 
@@ -33,6 +53,9 @@ const CompanyList = () => {
 
   return (
     <Container>
+
+      {/* box for search bar and company */}
+
       <Box
         {...styles.companyTitleBox}
       >
@@ -50,9 +73,16 @@ const CompanyList = () => {
           />
         </Box>
       </Box>
-      <Grid container spacing={2} sx={{ mt: 2 }}>
+
+      {/* Grid container for companies */}
+
+      <Grid container spacing={2} sx={{ mt: 1 }}>
+
         {companies.map((company) => (
-          <Grid item xs={12} md={4} lg={4}>
+          <Grid item xs={12} md={3} lg={3}>
+
+            {/* Card component for each company */}
+
             <Paper
               elevation={3}
               onClick={handleCompanyEditClick}
@@ -66,20 +96,44 @@ const CompanyList = () => {
               >
                 {company.name}
               </Typography>
-              <Typography
-                {...styles.companyDescription}
-              >
-                {company.description}
-              </Typography>
+
+              {/* Box for description with map */}
+
+              <Box {...styles.companyDescriptionBox}>
+                {company.description.map((des => (
+                  <>
+                    <Typography
+                      {...styles.companyDescription}
+                    >
+                      {des.PAN} </Typography>
+                    <Typography
+                      {...styles.companyDescription}
+                    >
+                      {des.TAN} </Typography>
+                    <Typography
+                      {...styles.companyDescription}
+                    >
+                      {des.GST} </Typography>
+                  </>
+                )))}
+              </Box>
             </Paper>
           </Grid>
         ))}
-        <Grid item xs={12} md={4} lg={4}>
+
+        {/* Grid for add company */}
+
+        <Grid item xs={12} md={3} lg={3}>
+
+          {/* Card for add company */}
+
           <Paper
             elevation={3}
             onClick={handleCompanyClick}
             {...styles.addCompanyCard}
           >
+            {/* Add icon */}
+
             <AddIcon fontSize="large" sx={{ pr: 2 }} />
             <Typography
               {...styles.addCompanyIcon}
