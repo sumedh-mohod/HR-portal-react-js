@@ -3,9 +3,7 @@ export const styles = {
     sx: {
       display: "flex",
       justifyContent: "space-between",
-      padding: "10px 80px",
-      justifyItems: "center",
-      alignContent: "flex-start",
+      mt:5
     },
   },
   parentBoxButton: {
@@ -13,8 +11,5 @@ export const styles = {
       backgroundColor: "#F58634",
       borderRadius: "5px",
     },
-  },
-  parentGrid: {
-    sx: { padding: "10px 80px" },
-  },
+  }
 };
