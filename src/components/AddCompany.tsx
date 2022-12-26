@@ -38,8 +38,7 @@ const AddCompany = () => {
       domain: "",
       country: "",
       dateOfEstablishment: "",
-      parentsCompany: "",
-      defaultHollidayList: "",
+      address: "",
     },
     validationSchema: addCompanyValidator,
     onSubmit: (values) => {
@@ -59,7 +58,7 @@ const AddCompany = () => {
 
         {/* form fields started */}
         <Grid container spacing={5} {...styles.parentGrid}>
-          <Grid item xs={12} lg={6}>
+          <Grid item xs={12} lg={3}>
             <FormControl fullWidth>
               <FormLabel id="company">Company*</FormLabel>
               <TextField
@@ -75,7 +74,7 @@ const AddCompany = () => {
               />
             </FormControl>
           </Grid>
-          <Grid item xs={12} lg={6}>
+          <Grid item xs={12} lg={3}>
             <FormControl fullWidth>
               <FormLabel id="defaultLetterHead">Default Letter Head*</FormLabel>
               <TextField
@@ -97,7 +96,7 @@ const AddCompany = () => {
               />
             </FormControl>
           </Grid>
-          <Grid item xs={12} lg={6}>
+          <Grid item xs={12} lg={3}>
             <FormControl fullWidth>
               <FormLabel id="abbr">Abbr*</FormLabel>
               <TextField
@@ -113,7 +112,7 @@ const AddCompany = () => {
               />
             </FormControl>
           </Grid>
-          <Grid item xs={12} lg={6}>
+          <Grid item xs={12} lg={3}>
             <FormControl fullWidth>
               <FormLabel id="taxID">Tax ID</FormLabel>
               <TextField
@@ -129,7 +128,7 @@ const AddCompany = () => {
               />
             </FormControl>
           </Grid>
-          <Grid item xs={12} lg={6}>
+          <Grid item xs={12} lg={3}>
             <FormControl fullWidth>
               <FormLabel id="defaultCurrency">Default Currency*</FormLabel>
               <TextField
@@ -149,7 +148,7 @@ const AddCompany = () => {
               />
             </FormControl>
           </Grid>
-          <Grid item xs={12} lg={6}>
+          <Grid item xs={12} lg={3}>
             <FormControl fullWidth>
               <FormLabel id="domain">Domain</FormLabel>
               <TextField
@@ -165,7 +164,7 @@ const AddCompany = () => {
               />
             </FormControl>
           </Grid>
-          <Grid item xs={12} lg={6}>
+          <Grid item xs={12} lg={3}>
             <FormControl fullWidth>
               <FormLabel id="country">Country*</FormLabel>
               <TextField
@@ -184,7 +183,7 @@ const AddCompany = () => {
               </TextField>
             </FormControl>
           </Grid>
-          <Grid item xs={12} lg={6}>
+          <Grid item xs={12} lg={3}>
             <FormControl fullWidth>
               <FormLabel id="dateOfEstablishment">
                 Date of Establishment
@@ -210,50 +209,24 @@ const AddCompany = () => {
           </Grid>
           <Grid item xs={12} lg={6}>
             <FormControl fullWidth>
-              <FormControlLabel
-                control={<Checkbox defaultChecked />}
-                label="Is Group"
-              />
-            </FormControl>
-          </Grid>
-          <Grid item xs={12} lg={6}>
-            <FormControl fullWidth>
-              <FormLabel id="parentsCompany">Parents Company</FormLabel>
-              <TextField
-                variant="filled"
-                size="small"
-                type={"text"}
-                name="parentsCompany"
-                value={values.parentsCompany}
-                onChange={handleChange}
-                onBlur={handleBlur}
-                error={
-                  touched.parentsCompany && errors.parentsCompany ? true : false
-                }
-                helperText={touched.parentsCompany && errors.parentsCompany}
-              />
-            </FormControl>
-          </Grid>
-          <Grid item xs={12} lg={6}>
-            <FormControl fullWidth>
-              <FormLabel id="defaultHollidayList">
-                Default Holliday List
+              <FormLabel id="address">
+                Address*
               </FormLabel>
               <TextField
                 variant="filled"
                 size="small"
                 type={"text"}
-                name="defaultHollidayList"
-                value={values.defaultHollidayList}
+                name="address"
+                value={values.address}
                 onChange={handleChange}
                 onBlur={handleBlur}
                 error={
-                  touched.defaultHollidayList && errors.defaultHollidayList
+                  touched.address && errors.address
                     ? true
                     : false
                 }
                 helperText={
-                  touched.defaultHollidayList && errors.defaultHollidayList
+                  touched.address && errors.address
                 }
               />
             </FormControl>
