@@ -27,6 +27,8 @@ import MuiAppBar, { AppBarProps as MuiAppBarProps } from "@mui/material/AppBar";
 import OrangeBitsIcon from "./Icons/OrangeBitsIcon";
 import Divider from "@mui/material/Divider";
 import Breadcrumb from "./BreadCrumb";
+import { styles } from "../styles/components/header";
+import { style } from "@mui/system";
 
 const drawerWidth = 240;
 
@@ -188,10 +190,7 @@ const Header = (props: any) => {
         position="fixed"
         open={open}
         color="inherit"
-        sx={{
-          py: "7.5px",
-          borderBottom: "1px solid rgb(177, 197, 178, .3)",
-        }}
+        {...styles.appBar}
       >
         <Toolbar sx={{ minHeight: { sm: 10, xs: 8 } }}>
           <IconButton
@@ -206,15 +205,7 @@ const Header = (props: any) => {
           >
             <MenuIcon />
           </IconButton>
-          <Box
-            sx={{
-              display: "flex",
-              alignItems: "center",
-              flexDirection: "row",
-              justifyContent: " space-between",
-              flex: 1,
-            }}
-          >
+          <Box {...styles.childBox}>
             <Box>
               {/* <Typography
                 variant="h6"
@@ -227,12 +218,7 @@ const Header = (props: any) => {
               </Typography> */}
               <Breadcrumb />
             </Box>
-            <Box
-              sx={{
-                display: "flex",
-                alignItems: "center",
-              }}
-            >
+            <Box {...styles.subChildBox}>
               <IconButton
                 size="large"
                 aria-label="show 17 new notifications"
@@ -247,17 +233,7 @@ const Header = (props: any) => {
                 </Badge>
               </IconButton>
 
-              <Divider
-                orientation="vertical"
-                flexItem
-                sx={{
-                  mr: 2,
-                  ml: 2,
-                  height: "50px",
-                  alignSelf: "center",
-                  display: "flex",
-                }}
-              />
+              <Divider orientation="vertical" flexItem {...styles.divider} />
 
               <Typography
                 variant="subtitle1"
@@ -309,25 +285,10 @@ const Header = (props: any) => {
           },
         }}
       >
-        <DrawerHeader
-          sx={{
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "flex-start",
-          }}
-        >
+        <DrawerHeader {...styles.drawerHeader}>
           <IconButton onClick={handleDrawerClose}>
             <OrangeBitsIcon width={40} style={{ cursor: "pointer" }} />
-
-            <Typography
-              variant="h6"
-              sx={{
-                fontFamily: "Quicksand",
-                fontWeight: "bold",
-                color: "white",
-                ml: 1,
-              }}
-            >
+            <Typography variant="h6" {...styles.drawerHeaderTypography}>
               Orangebits
             </Typography>
           </IconButton>

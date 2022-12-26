@@ -16,6 +16,8 @@ import SaveIcon from "@mui/icons-material/Save";
 import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
 import HighlightOffIcon from "@mui/icons-material/HighlightOff";
 import { editCompanyValidator } from "../utils/validations/auth";
+import { styles } from "../styles/components/editCompany";
+import { style } from "@mui/system";
 const EditCompany = () => {
   const {
     handleBlur,
@@ -35,7 +37,7 @@ const EditCompany = () => {
       defaultCurrency: "",
       domain: "",
       country: "",
-      dateOfEstablishment: ""
+      dateOfEstablishment: "",
     },
     validationSchema: editCompanyValidator,
     onSubmit: (values) => {
@@ -51,11 +53,7 @@ const EditCompany = () => {
           <Typography variant="h5">Company 1</Typography>
         </Box>
         {/* form fielsds started */}
-        <Grid
-          container
-          spacing={2}
-          sx={{ p: 5, mt: 5, border: "1px solid #DFDFDF" }}
-        >
+        <Grid container spacing={2} {...styles.parentGrid}>
           <Grid item xs={12} md={6} lg={3}>
             <FormControl fullWidth>
               <FormLabel id="company">Company*</FormLabel>
@@ -197,16 +195,9 @@ const EditCompany = () => {
             <Button
               variant="contained"
               type="submit"
-              sx={{
-                backgroundColor: "#9FA2B4",
-                borderRadius: "5px",
-                textTransform: "inherit",
-                width: "100%",
-                size: "large",
-                py: "12px",
-              }}
+              {...styles.companySaveButton}
             >
-              <SaveIcon sx={{ pr: 1, fontSize: "inheit" }} />
+              <SaveIcon {...styles.icon} />
               Save
             </Button>
           </Grid>
@@ -220,11 +211,7 @@ const EditCompany = () => {
         </Box>
         {/* holiday form field start */}
 
-        <Grid
-          container
-          spacing={2}
-          sx={{ p: 5, mt: 5, border: "1px solid #DFDFDF" }}
-        >
+        <Grid container spacing={2} {...styles.parentGrid}>
           <Grid item xs={12} md={6} lg={3}>
             <FormControl fullWidth>
               <FormLabel id="holidayname">Holiday Name</FormLabel>
@@ -253,39 +240,16 @@ const EditCompany = () => {
               />
             </FormControl>
           </Grid>
-          <Grid
-            item
-            xs={12}
-            md={6}
-            lg={6}
-            sx={{ display: "flex", justifyContent: "end", alignItems: "end" }}
-          >
+          <Grid item xs={12} md={6} lg={6} {...styles.gridItem}>
             <Button
               variant="contained"
               type="submit"
-              sx={{
-                mt: 3,
-                mx: 1,
-                backgroundColor: "#9FA2B4",
-                borderRadius: "70px",
-                textTransform: "inherit",
-                padding: "12px 25px",
-              }}
+              {...styles.gridItemSaveButton}
             >
-              <SaveIcon sx={{ pr: 1, fontSize: "inheit" }} />
+              <SaveIcon {...styles.icon} />
               Save
             </Button>
-            <Button
-              variant="contained"
-              sx={{
-                mt: 3,
-                mx: 1,
-                backgroundColor: "#D82A2A",
-                borderRadius: "70px",
-                textTransform: "inherit",
-                py: "12px",
-              }}
-            >
+            <Button variant="contained" {...styles.gridItemRemoveButton}>
               <HighlightOffIcon sx={{ pr: 1, fontSize: "inheit" }} />
               Remove
             </Button>
@@ -318,24 +282,11 @@ const EditCompany = () => {
               />
             </FormControl>
           </Grid>
-          <Grid
-            item
-            xs={12}
-            md={6}
-            lg={6}
-            sx={{ display: "flex", justifyContent: "end", alignItems: "end" }}
-          >
+          <Grid item xs={12} md={6} lg={6} {...styles.gridItem}>
             <Button
               variant="contained"
               type="submit"
-              sx={{
-                mt: 3,
-                mx: 1,
-                backgroundColor: "#0FBD35",
-                borderRadius: "70px",
-                textTransform: "inherit",
-                padding: "12px 25px",
-              }}
+              {...styles.gridItemSaveButton}
             >
               <SaveIcon sx={{ pr: 1, fontSize: "inheit" }} />
               Save
@@ -343,33 +294,15 @@ const EditCompany = () => {
             <Button
               variant="contained"
               type="submit"
-              sx={{
-                mt: 3,
-                mx: 1,
-                backgroundColor: "#D82A2A",
-                borderRadius: "70px",
-                textTransform: "inherit",
-                py: "12px",
-              }}
+              {...styles.gridItemRemoveButton}
             >
               <HighlightOffIcon sx={{ pr: 1, fontSize: "inheit" }} />
               Remove
             </Button>
           </Grid>
           <Grid item xs={12} md={6} lg={3}>
-            <Button
-              variant="contained"
-              type="submit"
-              sx={{
-                backgroundColor: "#F58634",
-                borderRadius: "5px",
-                textTransform: "inherit",
-                width: "100%",
-                size: "large",
-                py: "12px",
-              }}
-            >
-              <AddCircleOutlineIcon sx={{ pr: 1, fontSize: "inheit" }} />
+            <Button variant="contained" type="submit" {...styles.addButton}>
+              <AddCircleOutlineIcon {...styles.icon} />
               Add
             </Button>
           </Grid>
@@ -381,11 +314,7 @@ const EditCompany = () => {
           <Typography variant="h5">Designation</Typography>
         </Box>
         {/* Designation form field start */}
-        <Grid
-          container
-          spacing={2}
-          sx={{ p: 5, mt: 5, border: "1px solid #DFDFDF" }}
-        >
+        <Grid container spacing={2} {...styles.parentGrid}>
           <Grid item xs={12} md={6} lg={3}>
             <FormControl fullWidth>
               <FormLabel id="designationname">Designation Name</FormLabel>
@@ -410,56 +339,22 @@ const EditCompany = () => {
               />
             </FormControl>
           </Grid>
-          <Grid
-            item
-            xs={12}
-            md={6}
-            lg={6}
-            sx={{ display: "flex", justifyContent: "end", alignItems: "end" }}
-          >
+          <Grid item xs={12} md={6} lg={6} {...styles.gridItem}>
             <Button
               variant="contained"
               type="submit"
-              sx={{
-                mt: 3,
-                mx: 1,
-                backgroundColor: "#0FBD35",
-                borderRadius: "70px",
-                textTransform: "inherit",
-                padding: "12px 25px",
-              }}
+              {...styles.gridItemSaveButton}
             >
               <SaveIcon sx={{ pr: 1, fontSize: "inheit" }} />
               Save
             </Button>
-            <Button
-              variant="contained"
-              sx={{
-                mt: 3,
-                mx: 1,
-                backgroundColor: "#D82A2A",
-                borderRadius: "70px",
-                textTransform: "inherit",
-                py: "12px",
-              }}
-            >
+            <Button variant="contained" {...styles.gridItemRemoveButton}>
               <HighlightOffIcon sx={{ pr: 1, fontSize: "inheit" }} />
               Remove
             </Button>
           </Grid>
           <Grid item xs={12} md={6} lg={3}>
-            <Button
-              variant="contained"
-              type="submit"
-              sx={{
-                backgroundColor: "#F58634",
-                borderRadius: "5px",
-                textTransform: "inherit",
-                width: "100%",
-                size: "large",
-                py: "12px",
-              }}
-            >
+            <Button variant="contained" type="submit" {...styles.addButton}>
               <AddCircleOutlineIcon sx={{ pr: 1, fontSize: "inheit" }} />
               Add
             </Button>
