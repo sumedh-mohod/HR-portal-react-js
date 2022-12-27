@@ -6,7 +6,11 @@ import CompanyDetailsCard from "./CompanyDetailsCard";
 import CompanyEditCard from "./CompanyEditCard";
 import HolidayCard from "./HolidayCard";
 import { styles } from "../styles/components/editCompany";
+import { useParams } from "react-router-dom";
+import { parse } from "path";
+
 const EditCompany = () => {
+  let { params } = useParams();
   const [isEditing, setIsEditing] = useState(false);
   const [editBtn, setEditBtn] = useState(true);
   const EditHandle = () => {
@@ -30,7 +34,7 @@ const EditCompany = () => {
         )}
       </Box>
       {isEditing ? <CompanyEditCard /> : <CompanyDetailsCard />}
-      
+
       {/* holiday card start--------- */}
       <Box {...styles.box}>
         <Typography variant="h5">Holiday</Typography>
