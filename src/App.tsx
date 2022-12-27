@@ -10,6 +10,8 @@ import { Box } from "@mui/material";
 
 import CompanyList from "./screens/CompanyList";
 import CompanyAddEdit from "./screens/ComapnyAddEdit";
+import NotFound from "./screens/NotFound";
+import Partners from "./screens/Partners";
 
 const App = () => {
   return (
@@ -20,11 +22,12 @@ const App = () => {
         <Route path="/register" element={<Registration />} />
         <Route element={<Header />}>
           <Route path="/dashboard" element={<Dashboard />} />
-          {/* <Route path="/addcompany" element={<AddCompany />} /> */}
+          <Route path="/partners" element={<Partners />} />
           {/* <Route path="/editcompany" element={<EditCompany />} /> */}
           <Route path="/companies" element={<CompanyList />} />
           <Route path="/companies/:opration" element={<CompanyAddEdit />} />
         </Route>
+        <Route path="*" element={<NotFound />} />
       </Routes>
     </Box>
   );

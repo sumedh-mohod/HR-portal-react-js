@@ -6,12 +6,10 @@ import OrangeBitsIcon from "../components/Icons/OrangeBitsIcon";
 import { Container } from "@mui/system";
 import { useNavigate } from "react-router-dom";
 import { styles } from "../styles/screens/CompanyList";
-import { Interface } from "readline";
 
 interface Company {
   name: string;
   description: any;
-  company: string;
   defaultLetterHead: string;
   defaultCurrency: string;
   domain: string;
@@ -29,7 +27,6 @@ const companies: Company[] = [
       { TAN: "TAN - AYAPN7894N" },
       { GST: "GST - AYAPN7894N" },
     ],
-    company: "Company 1",
     defaultLetterHead: "ORNG123",
     defaultCurrency: "Rupees",
     domain: "orange.com",
@@ -45,7 +42,6 @@ const companies: Company[] = [
       { TAN: "TAN - AYAPN7894N" },
       { GST: "GST - AYAPN7894N" },
     ],
-    company: "Company 1",
     defaultLetterHead: "ORNG123",
     defaultCurrency: "Rupees",
     domain: "orange.com",
@@ -61,7 +57,6 @@ const companies: Company[] = [
       { TAN: "TAN - AYAPN7894N" },
       { GST: "GST - AYAPN7894N" },
     ],
-    company: "Company 1",
     defaultLetterHead: "ORNG123",
     defaultCurrency: "Rupees",
     domain: "orange.com",
@@ -85,6 +80,8 @@ const CompanyList = () => {
 
   return (
     <Container>
+      {/* box for search bar and company */}
+
       <Box {...styles.companyTitleBox}>
         <Typography variant="h5">Company</Typography>
         <Box>
@@ -131,6 +128,8 @@ const CompanyList = () => {
           </Grid>
         ))}
         <Grid item xs={12} md={3} lg={3}>
+          {/* Card for add company */}
+
           <Paper
             elevation={3}
             onClick={handleCompanyClick}
