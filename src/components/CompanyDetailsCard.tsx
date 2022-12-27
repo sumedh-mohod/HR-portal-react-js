@@ -5,7 +5,7 @@ import { styles } from "../styles/components/editCompany";
 const CompanyDetailsCard = () => {
   const CompanyDetails = [
     {
-      company: "Company 1",
+      company: "Orangebits Software Technologies(India) Pvt. Ltd",
       defaultLetterHead: "ORNG123",
       defaultCurrency: "Rupees",
       domain: "orange.com",
@@ -15,7 +15,7 @@ const CompanyDetailsCard = () => {
       dateofEstiblishment: "2 October, 2023",
     },
     {
-      company: "Company 1",
+      company: "Orangebits Software Technologies(India) Pvt. Ltd",
       defaultLetterHead: "ORNG123",
       defaultCurrency: "Rupees",
       domain: "orange.com",
@@ -25,7 +25,7 @@ const CompanyDetailsCard = () => {
       dateofEstiblishment: "2 October, 2023",
     },
     {
-      company: "Company 1",
+      company: "Orangebits Software Technologies(India) Pvt. Ltd",
       defaultLetterHead: "ORNG123",
       defaultCurrency: "Rupees",
       domain: "orange.com",
