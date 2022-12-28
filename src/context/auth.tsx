@@ -27,11 +27,11 @@ export const AuthContextProvider = ({ children }: AuthContextProps) => {
   useEffect(() => {
     async function authenticateUser() {
       let token = window.sessionStorage.getItem("access_token");
-      let user_details = window.sessionStorage.getItem("user_details");
+      let user_details: any = window.sessionStorage.getItem("user_details");
 
       if (token && isAuthenticated === false) {
         setAuthenticated(true);
-        setUserDetails(user_details);
+        setUserDetails(JSON.parse(user_details));
       } else {
         setAuthenticated(false);
         setUserDetails(null);
@@ -41,9 +41,18 @@ export const AuthContextProvider = ({ children }: AuthContextProps) => {
   }, []);
 
   const loginToContext = (params: any) => {
-    window.sessionStorage.setItem("access_token", params?.token);
-    window.sessionStorage.setItem("refresh_token", params?.refreshToken);
-    window.sessionStorage.setItem("user_details", params?.userDetails);
+    window.sessionStorage.setItem(
+      "access_token",
+      JSON.stringify(params?.token)
+    );
+    window.sessionStorage.setItem(
+      "refresh_token",
+      JSON.stringify(params?.refresh_token)
+    );
+    window.sessionStorage.setItem(
+      "user_details",
+      JSON.stringify(params?.userDetails)
+    );
     setUserDetails(params?.userDetails);
     setAuthenticated(true);
   };
