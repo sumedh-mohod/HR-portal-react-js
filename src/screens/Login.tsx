@@ -16,8 +16,23 @@ import OrangeBitsIcon from "../components/Icons/OrangeBitsIcon";
 import LoadingButton from "@mui/lab/LoadingButton";
 import { styles } from "../styles/screens/Login";
 import { loginValidator } from "../utils/validations/auth";
+import { useAppDispatch, useAppSelector } from "../store/hooks";
+import { login } from "../store/reducers/users/authentication";
+import { useAuth } from "../context/auth";
+import { useNavigate } from "react-router-dom";
 
 const Login = () => {
+  const dispatch = useAppDispatch();
+  const navigate = useNavigate();
+
+  const { loginToContext } = useAuth();
+
+  const loginStore = useAppSelector((state) => state.authentication);
+
+  const { isLoadingRequest, user } = loginStore;
+
+  console.log("user",user)
+
   const {
     handleBlur,
     handleChange,
@@ -35,24 +50,27 @@ const Login = () => {
     validationSchema: loginValidator,
     onSubmit: (values) => {
       console.log("values", values);
+      dispatch(login(values))
+        .unwrap()
+        .then((response: any) => {
+          loginToContext({
+            token: response.token,
+            refresh_token: "8u2uuiiwiwueujsjs",
+            userDetails: response?.user,
+          });
+          navigate("/companies");
+        })
+        .catch((error) => {});
     },
   });
 
   return (
     <Box {...styles.parentBox}>
       <Box {...styles.boxCard}>
-        <Grid
-          container
-          spacing={2}
-          {...styles.formGrid}
-        >
+        <Grid container spacing={2} {...styles.formGrid}>
           <OrangeBitsIcon width={40} style={{ margin: "30px auto" }} />
 
-          <Typography
-            {...styles.formTitle}
-            variant="h5"
-            gutterBottom
-          >
+          <Typography {...styles.formTitle} variant="h5" gutterBottom>
             Login to Orangebits Technologies
           </Typography>
           <form onSubmit={handleSubmit}>
@@ -84,13 +102,8 @@ const Login = () => {
             </FormControl>
 
             <FormControl sx={{ p: 2, m: 2 }}>
-              <Box
-                {...styles.formPasswordBox}
-              >
-                <FormLabel
-                  id="outlined-password"
-                  {...styles.formPasswordLable}
-                >
+              <Box {...styles.formPasswordBox}>
+                <FormLabel id="outlined-password" {...styles.formPasswordLable}>
                   PASSWORD
                 </FormLabel>
                 <Typography
@@ -128,11 +141,9 @@ const Login = () => {
                 }}
               />
             </FormControl>
-            <Box
-              {...styles.formButtonBox}
-            >
+            <Box {...styles.formButtonBox}>
               <LoadingButton
-                loading={false}
+                loading={isLoadingRequest}
                 loadingPosition="center"
                 fullWidth
                 variant="contained"
@@ -147,14 +158,8 @@ const Login = () => {
       </Box>
       <Grid container spacing={2}>
         <Grid item xl={12} lg={12} md={12} xs={12} sm={12}>
-          <Box
-            {...styles.footerTitleBox}
-          >
-            <Typography
-              {...styles.footerTitle}
-              variant="h2"
-              gutterBottom
-            >
+          <Box {...styles.footerTitleBox}>
+            <Typography {...styles.footerTitle} variant="h2" gutterBottom>
               Orangebits Software Technologies (India) Pvt Ltd
             </Typography>
           </Box>
