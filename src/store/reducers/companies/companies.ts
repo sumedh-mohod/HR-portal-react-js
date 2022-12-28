@@ -2,10 +2,20 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { actionTypes } from "../../actionTypes";
 
 //addcompany action
-export const addcompany = createAsyncThunk(actionTypes.ADD_COMPANY, async () => {
+export const addcompany = createAsyncThunk(actionTypes.ADD_COMPANY, async (params:any) => {
   //response of addcompany api
   const response = {
-    addcompany: true,
+    addcompany:{
+      company:params.company,
+      defaultLetterHead: params.defaultLetterHead,
+      abbr: params.abbr,
+      taxID:params.taxID,
+      defaultCurrency:params.defaultCurrency,
+      domain:params.domain,
+      country:params.domain,
+      dateOfEstablishment:params.dateOfEstablishment,
+      address:params.address,
+    }
   };
   //returned a response to reducer
   return response;
@@ -13,14 +23,14 @@ export const addcompany = createAsyncThunk(actionTypes.ADD_COMPANY, async () => 
 
 // inteface for redux state
 export interface StateI {
-  company?: any; // company with details
+  addcompany?: any; // company with details
   error: any; // any api error
   isLoadingRequest: boolean; //loading flag
 }
 
 //redux state
 const initialState: StateI = {
-  company: undefined, //company with details
+  addcompany: undefined, //company with details
   error: "", // any api error
   isLoadingRequest: false, //loading flag
 };
@@ -45,7 +55,7 @@ const addCompany = createSlice({
     // reducer when api call is fulfilled
     builder.addCase(addcompany.fulfilled, (state: StateI, action: any) => {
       //state updated in fulfilled state
-      state.company = action.payload.data;
+      state.addcompany = action.payload.data;
       state.isLoadingRequest = false;
     });
     // reducer when api call is rejected
