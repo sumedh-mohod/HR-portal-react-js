@@ -14,6 +14,20 @@ export const addcompany = createAsyncThunk(
   }
 );
 
+// edit company action
+
+export const editcompany = createAsyncThunk(
+  actionTypes.EDIT_COMPANY,
+  async (params: any) => {
+    //response of addcompany api
+    const response = {
+      editcompany: true,
+    };
+    //returned a response to reducer
+    return response;
+  }
+);
+
 export const companylist = createAsyncThunk(
   actionTypes.COMPANY_LIST,
   async () => {
@@ -103,13 +117,28 @@ const Companies = createSlice({
       state.isLoadingRequest = true;
     });
     // reducer when api call is fulfilled
-
     builder.addCase(addcompany.fulfilled, (state: StateI, action: any) => {
       //state updated in fulfilled state
       state.isLoadingRequest = false;
     });
     // reducer when api call is rejected
     builder.addCase(addcompany.rejected, (state: StateI) => {
+      //state updated in rejected state
+      state.isLoadingRequest = false;
+    });
+    // edit start
+    builder.addCase(editcompany.pending, (state: StateI) => {
+      //state updated in pending state
+      state.isLoadingRequest = true;
+    });
+    // reducer when api call is fulfilled
+    builder.addCase(editcompany.fulfilled, (state: StateI, action: any) => {
+      //state updated in fulfilled state
+      state.isLoadingRequest = false;
+      state.companies = action.payload;
+    });
+    // reducer when api call is rejected
+    builder.addCase(editcompany.rejected, (state: StateI) => {
       //state updated in rejected state
       state.isLoadingRequest = false;
     });
