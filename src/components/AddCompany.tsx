@@ -3,23 +3,24 @@ import { useFormik } from "formik";
 import { addCompanyValidator } from "../utils/validations/auth";
 import {
   Box,
-  Container,
   Button,
   Grid,
-  Checkbox,
   FormControl,
-  FormControlLabel,
   FormLabel,
   TextField,
   Typography,
-  Select,
   MenuItem,
-  FormHelperText,
   Card,
 } from "@mui/material";
 import { styles } from "../styles/components/addCompany";
+import { useAppDispatch} from "../store/hooks";
+import { addcompany } from "../store/reducers/companies/companies";
 
 const AddCompany = () => {
+  const dispatch = useAppDispatch();
+  // const companyStore = useAppSelector((state) => state.companies);
+  // const { addcompany } = companyStore;
+  // console.log("company", addcompany);
   const {
     handleBlur,
     handleChange,
@@ -44,6 +45,12 @@ const AddCompany = () => {
     validationSchema: addCompanyValidator,
     onSubmit: (values) => {
       console.log("values", values);
+       dispatch(addcompany(values))
+      .unwrap()
+      .then((response: any) => {
+       console.log("response from addCompany file",response)
+      })
+      .catch((error:any) => { });
     },
   });
 
