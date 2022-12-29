@@ -1,6 +1,9 @@
-import * as React from "react";
+import React,{useEffect} from "react";
 import { DataGrid, GridToolbar, GridColDef } from "@mui/x-data-grid";
 import { Grid, Box } from "@mui/material";
+import { useAppDispatch, useAppSelector } from "../store/hooks";
+import {getPartners} from "../store/reducers/partners/partners"
+import { useNavigate } from "react-router-dom";
 
 const columns: GridColDef[] = [
   { field: "company_name", headerName: "Company Name", minWidth: 150 },
@@ -105,6 +108,20 @@ const rows = [
 ];
 
 const Partners = () => {
+  const dispatch = useAppDispatch();
+  const partnersStore = useAppSelector((state) => state.partners);
+  const { isLoadingRequest, partners } = partnersStore;
+  console.log("partners data is", partners);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    dispatch(getPartners())
+      .unwrap()
+      .then((response: any) => {
+    
+      })
+      .catch((error:any) => {});
+  }, []);
   return (
     <Grid container spacing={0} direction="row" style={{ minHeight: "50vh" }}>
       <Grid item xs={12} xl={12} lg={12}>

@@ -18,9 +18,6 @@ import { addcompany } from "../store/reducers/companies/companies";
 
 const AddCompany = () => {
   const dispatch = useAppDispatch();
-  // const companyStore = useAppSelector((state) => state.companies);
-  // const { addcompany } = companyStore;
-  // console.log("company", addcompany);
   const {
     handleBlur,
     handleChange,
