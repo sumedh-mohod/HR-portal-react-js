@@ -7,12 +7,15 @@ import {
   FormLabel,
   TextField,
   MenuItem,
-  Card,Box
+  Card, Box
 } from "@mui/material";
 import SaveIcon from '@mui/icons-material/Save';
 import { styles } from "../styles/components/editCompany";
 import { editCompanyValidator } from "../utils/validations/auth";
+import { useAppDispatch, useAppSelector } from "../store/hooks";
+import { editcompany } from "../store/reducers/companies/companies";
 const CompanyDetailsCard = () => {
+  const dispatch = useAppDispatch();
   const {
     handleBlur,
     handleChange,
@@ -36,11 +39,17 @@ const CompanyDetailsCard = () => {
     validationSchema: editCompanyValidator,
     onSubmit: (values) => {
       console.log("values", values);
+      dispatch(editcompany(values))
+        .unwrap()
+        .then((response: any) => {
+          console.log("response from edit Company file", response)
+        })
+        .catch((error: any) => { });
     },
   });
   return (
     <Box>
-      <Card  sx={{ mt: 3, mb: 3, p: 5 }}>
+      <Card sx={{ mt: 3, mb: 3, p: 5 }}>
         <form onSubmit={handleSubmit}>
           <Grid container spacing={2} >
             <Grid item xs={12} md={6} lg={3}>
