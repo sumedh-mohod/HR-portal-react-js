@@ -133,9 +133,4 @@ const Companies = createSlice({
   },
 });
 
-//company list
-
-// inteface for redux state
-//slice or reducer
-
 export default Companies.reducer;

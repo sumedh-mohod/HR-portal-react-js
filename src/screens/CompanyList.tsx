@@ -60,7 +60,7 @@ const CompanyList = () => {
         </Box>
       </Box>
       <Grid container spacing={2} sx={{ mt: 1 }}>
-        {companies.map((company: any, index: any) => (
+        {companies?.map((company: any, index: any) => (
           <Grid item xs={12} md={3} lg={3}>
             <Paper
               elevation={3}
@@ -73,7 +73,7 @@ const CompanyList = () => {
                 {company.name}
               </Typography>
               <Box {...styles.companyDescriptionBox}>
-                {company.description.map((des: any) => (
+                {company?.description?.map((des: any) => (
                   <>
                     <Typography {...styles.companyDescription}>
                       {des.PAN}{" "}
