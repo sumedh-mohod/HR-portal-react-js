@@ -2,42 +2,92 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { actionTypes } from "../../actionTypes";
 
 //addcompany action
-export const addcompany = createAsyncThunk(actionTypes.ADD_COMPANY, async (params:any) => {
-  //response of addcompany api
-  const response = {
-    addcompany:{
-      company:params.company,
-      defaultLetterHead: params.defaultLetterHead,
-      abbr: params.abbr,
-      taxID:params.taxID,
-      defaultCurrency:params.defaultCurrency,
-      domain:params.domain,
-      country:params.domain,
-      dateOfEstablishment:params.dateOfEstablishment,
-      address:params.address,
-    }
-  };
-  //returned a response to reducer
-  return response;
-});
+export const addcompany = createAsyncThunk(
+  actionTypes.ADD_COMPANY,
+  async () => {
+    //response of addcompany api
+    const response = {
+      addcompany: true,
+    };
+    //returned a response to reducer
+    return response;
+  }
+);
+
+export const companylist = createAsyncThunk(
+  actionTypes.COMPANY_LIST,
+  async () => {
+    //response of company
+
+    const response = [
+      {
+        name: "Orangebits Software Technologies(India) Pvt. Ltd",
+        description: [
+          { PAN: "PAN - AYAPN7894N" },
+          { TAN: "TAN - AYAPN7894N" },
+          { GST: "GST - AYAPN7894N" },
+        ],
+        defaultLetterHead: "ORNG123",
+        defaultCurrency: "Rupees",
+        domain: "orange.com",
+        abbr: "ORNG123",
+        taxID: "TAX123",
+        country: "india",
+        dateofEstiblishment: "2 October, 2023",
+      },
+      {
+        name: "Orangebits Software Technologies(India) Pvt. Ltd",
+        description: [
+          { PAN: "PAN - AYAPN7894N" },
+          { TAN: "TAN - AYAPN7894N" },
+          { GST: "GST - AYAPN7894N" },
+        ],
+        defaultLetterHead: "ORNG123",
+        defaultCurrency: "Rupees",
+        domain: "orange.com",
+        abbr: "ORNG123",
+        taxID: "TAX123",
+        country: "india",
+        dateofEstiblishment: "2 October, 2023",
+      },
+      {
+        name: "Orangebits Software Technologies(India) Pvt. Ltd",
+        description: [
+          { PAN: "PAN - AYAPN7894N" },
+          { TAN: "TAN - AYAPN7894N" },
+          { GST: "GST - AYAPN7894N" },
+        ],
+        defaultLetterHead: "ORNG123",
+        defaultCurrency: "Rupees",
+        domain: "orange.com",
+        abbr: "ORNG123",
+        taxID: "TAX123",
+        country: "india",
+        dateofEstiblishment: "2 October, 2023",
+      },
+    ];
+    //returned a response to reducer
+    return response;
+  }
+);
 
 // inteface for redux state
 export interface StateI {
-  addcompany?: any; // company with details
+  companies?: any; // company with details
   error: any; // any api error
   isLoadingRequest: boolean; //loading flag
 }
 
 //redux state
 const initialState: StateI = {
-  addcompany: undefined, //company with details
+  companies: undefined, //company with details
   error: "", // any api error
   isLoadingRequest: false, //loading flag
 };
 
 //slice or reducer
-const addCompany = createSlice({
-  name: "addcompany",
+const Companies = createSlice({
+  name: "Companies",
   initialState,
   //normal reducers
   reducers: {
@@ -53,9 +103,9 @@ const addCompany = createSlice({
       state.isLoadingRequest = true;
     });
     // reducer when api call is fulfilled
+
     builder.addCase(addcompany.fulfilled, (state: StateI, action: any) => {
       //state updated in fulfilled state
-      state.addcompany = action.payload.data;
       state.isLoadingRequest = false;
     });
     // reducer when api call is rejected
@@ -63,7 +113,24 @@ const addCompany = createSlice({
       //state updated in rejected state
       state.isLoadingRequest = false;
     });
+    builder.addCase(companylist.pending, (state: StateI) => {
+      //state updated in pending state
+      state.isLoadingRequest = true;
+      state.companies = undefined;
+    });
+    // reducer when api call is fulfilled
+    builder.addCase(companylist.fulfilled, (state: StateI, action: any) => {
+      //state updated in fulfilled state
+      state.companies = action.payload;
+      state.isLoadingRequest = false;
+    });
+    // reducer when api call is rejected
+    builder.addCase(companylist.rejected, (state: StateI) => {
+      //state updated in rejected state
+      state.isLoadingRequest = false;
+      state.companies = undefined;
+    });
   },
 });
 
-export default addCompany.reducer;
+export default Companies.reducer;

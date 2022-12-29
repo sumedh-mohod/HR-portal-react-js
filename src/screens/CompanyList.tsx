@@ -6,77 +6,39 @@ import OrangeBitsIcon from "../components/Icons/OrangeBitsIcon";
 import { Container } from "@mui/system";
 import { useNavigate } from "react-router-dom";
 import { styles } from "../styles/screens/CompanyList";
+import { useAppDispatch, useAppSelector } from "../store/hooks";
+import { companylist } from "../store/reducers/companies/companies";
 
-interface Company {
-  name: string;
-  description: any;
-  defaultLetterHead: string;
-  defaultCurrency: string;
-  domain: string;
-  abbr: string;
-  taxID: string;
-  country: string;
-  dateofEstiblishment: string;
-}
 // array of objects of companies
-const companies: Company[] = [
-  {
-    name: "Orangebits Software Technologies(India) Pvt. Ltd",
-    description: [
-      { PAN: "PAN - AYAPN7894N" },
-      { TAN: "TAN - AYAPN7894N" },
-      { GST: "GST - AYAPN7894N" },
-    ],
-    defaultLetterHead: "ORNG123",
-    defaultCurrency: "Rupees",
-    domain: "orange.com",
-    abbr: "ORNG123",
-    taxID: "TAX123",
-    country: "india",
-    dateofEstiblishment: "2 October, 2023",
-  },
-  {
-    name: "Orangebits Software Technologies(India) Pvt. Ltd",
-    description: [
-      { PAN: "PAN - AYAPN7894N" },
-      { TAN: "TAN - AYAPN7894N" },
-      { GST: "GST - AYAPN7894N" },
-    ],
-    defaultLetterHead: "ORNG123",
-    defaultCurrency: "Rupees",
-    domain: "orange.com",
-    abbr: "ORNG123",
-    taxID: "TAX123",
-    country: "india",
-    dateofEstiblishment: "2 October, 2023",
-  },
-  {
-    name: "Orangebits Software Technologies(India) Pvt. Ltd",
-    description: [
-      { PAN: "PAN - AYAPN7894N" },
-      { TAN: "TAN - AYAPN7894N" },
-      { GST: "GST - AYAPN7894N" },
-    ],
-    defaultLetterHead: "ORNG123",
-    defaultCurrency: "Rupees",
-    domain: "orange.com",
-    abbr: "ORNG123",
-    taxID: "TAX123",
-    country: "india",
-    dateofEstiblishment: "2 October, 2023",
-  },
-];
 
 const CompanyList = () => {
+
+  const dispatch = useAppDispatch();
+  const companyStore = useAppSelector((state) => state.companies);
+  const { isLoadingRequest, companies } = companyStore;
+
+  console.log("company", companies)
+
   const navigate = useNavigate();
+
   const handleCompanyClick = () => {
     navigate("/companies/add");
   };
-  const handleCompanyEditClick = (company: Company) => {
+  const handleCompanyEditClick = (company: any) => {
     navigate("/companies/edit", {
       state: { company },
     });
   };
+
+  useEffect(() => {
+    dispatch(companylist())
+      .unwrap()
+      .then((response: any) => {
+        // navigate("/companies");
+      })
+      .catch((error) => { });
+  }, [])
+
 
   return (
     <Container>
@@ -98,19 +60,20 @@ const CompanyList = () => {
         </Box>
       </Box>
       <Grid container spacing={2} sx={{ mt: 1 }}>
-        {companies.map((company) => (
+        {companies?.map((company: any, index: any) => (
           <Grid item xs={12} md={3} lg={3}>
             <Paper
               elevation={3}
               onClick={() => handleCompanyEditClick(company)}
               {...styles.companyCard}
+              key={index}
             >
               <OrangeBitsIcon width={40} />
               <Typography variant="h5" gutterBottom {...styles.companyName}>
                 {company.name}
               </Typography>
               <Box {...styles.companyDescriptionBox}>
-                {company.description.map((des: any) => (
+                {company?.description?.map((des: any) => (
                   <>
                     <Typography {...styles.companyDescription}>
                       {des.PAN}{" "}
