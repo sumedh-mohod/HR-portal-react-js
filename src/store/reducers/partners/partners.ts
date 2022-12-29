@@ -2,7 +2,7 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { actionTypes } from "../../actionTypes";
 
 //patners action
-export const partner = createAsyncThunk(
+export const getPartners = createAsyncThunk(
   actionTypes.PARTNERS,
   async () => {
     //response of patners api
@@ -131,18 +131,18 @@ const Partners = createSlice({
   //async reducers
   extraReducers: (builder) => {
     // reducer when api call is in progress
-    builder.addCase(partner.pending, (state: StateI) => {
+    builder.addCase(getPartners.pending, (state: StateI) => {
       //state updated in pending state
       state.isLoadingRequest = true;
     });
     // reducer when api call is fulfilled
-    builder.addCase(partner.fulfilled, (state: StateI, action: any) => {
+    builder.addCase(getPartners.fulfilled, (state: StateI, action: any) => {
       //state updated in fulfilled state
       state.partners = action.payload;
       state.isLoadingRequest = false;
     });
     // reducer when api call is rejected
-    builder.addCase(partner.rejected, (state: StateI) => {
+    builder.addCase(getPartners.rejected, (state: StateI) => {
       //state updated in rejected state
       state.isLoadingRequest = false;
     });

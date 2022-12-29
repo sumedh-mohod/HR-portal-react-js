@@ -2,7 +2,7 @@ import React,{useEffect} from "react";
 import { DataGrid, GridToolbar, GridColDef } from "@mui/x-data-grid";
 import { Grid, Box } from "@mui/material";
 import { useAppDispatch, useAppSelector } from "../store/hooks";
-import {partner} from "../store/reducers/partners/partners"
+import {getPartners} from "../store/reducers/partners/partners"
 import { useNavigate } from "react-router-dom";
 
 const columns: GridColDef[] = [
@@ -109,13 +109,13 @@ const rows = [
 
 const Partners = () => {
   const dispatch = useAppDispatch();
-  const companyStore = useAppSelector((state) => state.partners);
-  const { isLoadingRequest, partners } = companyStore;
+  const partnersStore = useAppSelector((state) => state.partners);
+  const { isLoadingRequest, partners } = partnersStore;
   console.log("partners data is", partners);
   const navigate = useNavigate();
 
   useEffect(() => {
-    dispatch(partner())
+    dispatch(getPartners())
       .unwrap()
       .then((response: any) => {
     
