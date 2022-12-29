@@ -15,7 +15,6 @@ const context: AppContextInterface = {
 };
 
 export const AuthContext = createContext(context);
-
 interface AuthContextProps {
   children?: React.ReactNode;
 }
