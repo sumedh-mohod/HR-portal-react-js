@@ -2,12 +2,12 @@ import React, { useEffect } from "react";
 import { Grid, Typography, Paper, Box, TextField } from "@mui/material";
 import AddIcon from "@mui/icons-material/Add";
 import SearchIcon from "@mui/icons-material/Search";
-import OrangeBitsIcon from "../components/Icons/OrangeBitsIcon";
 import { Container } from "@mui/system";
 import { useNavigate } from "react-router-dom";
 import { styles } from "../styles/screens/CompanyList";
 import { useAppDispatch, useAppSelector } from "../store/hooks";
 import { companylist } from "../store/reducers/companies/companies";
+import CompanyListCard from "../components/CompanyListCard";
 
 // array of objects of companies
 
@@ -16,18 +16,10 @@ const CompanyList = () => {
   const dispatch = useAppDispatch();
   const companyStore = useAppSelector((state) => state.companies);
   const { isLoadingRequest, companies } = companyStore;
-
-  console.log("company", companies)
-
   const navigate = useNavigate();
 
   const handleCompanyClick = () => {
     navigate("/companies/add");
-  };
-  const handleCompanyEditClick = (company: any) => {
-    navigate("/companies/edit", {
-      state: { company },
-    });
   };
 
   useEffect(() => {
@@ -39,11 +31,9 @@ const CompanyList = () => {
       .catch((error) => { });
   }, [])
 
-
   return (
     <Container>
       {/* box for search bar and company */}
-
       <Box {...styles.companyTitleBox}>
         <Typography variant="h5">Company</Typography>
         <Box>
@@ -61,38 +51,10 @@ const CompanyList = () => {
       </Box>
       <Grid container spacing={2} sx={{ mt: 1 }}>
         {companies?.map((company: any, index: any) => (
-          <Grid item xs={12} md={3} lg={3}>
-            <Paper
-              elevation={3}
-              onClick={() => handleCompanyEditClick(company)}
-              {...styles.companyCard}
-              key={index}
-            >
-              <OrangeBitsIcon width={40} />
-              <Typography variant="h5" gutterBottom {...styles.companyName}>
-                {company.name}
-              </Typography>
-              <Box {...styles.companyDescriptionBox}>
-                {company?.description?.map((des: any) => (
-                  <>
-                    <Typography {...styles.companyDescription}>
-                      {des.PAN}{" "}
-                    </Typography>
-                    <Typography {...styles.companyDescription}>
-                      {des.TAN}{" "}
-                    </Typography>
-                    <Typography {...styles.companyDescription}>
-                      {des.GST}{" "}
-                    </Typography>
-                  </>
-                ))}
-              </Box>
-            </Paper>
-          </Grid>
+          <CompanyListCard company={company} index={index} />
         ))}
         <Grid item xs={12} md={3} lg={3}>
           {/* Card for add company */}
-
           <Paper
             elevation={3}
             onClick={handleCompanyClick}
