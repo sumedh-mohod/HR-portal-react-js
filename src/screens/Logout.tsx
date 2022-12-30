@@ -1,12 +1,17 @@
 import React,{useEffect}from 'react'
 import Backdrop from '@mui/material/Backdrop';
 import CircularProgress from '@mui/material/CircularProgress';
-import Button from '@mui/material/Button';
 import { useAuth } from "../context/auth";
+import { useNavigate } from 'react-router-dom';
 const Logout = () => {
     const { logoutFromContext } = useAuth();
-    useEffect(() => {
+    const navigate = useNavigate();
+    const  Logout =()=>{
         logoutFromContext();
+        navigate("/")
+    }
+    useEffect(() => {
+        setTimeout(Logout, 2000);
         console.log("logout done")
     }, []);
   
