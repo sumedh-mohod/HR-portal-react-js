@@ -1,5 +1,5 @@
 import React from "react";
-
+import { useNavigate } from "react-router-dom";
 import {
   Box,
   IconButton,
@@ -46,6 +46,8 @@ const AppBar = styled(MuiAppBar, {
 }));
 
 const TopBar = () => {
+  const navigate = useNavigate();
+
   const [open, setOpen] = React.useState(false);
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
 
@@ -61,6 +63,9 @@ const TopBar = () => {
     setAnchorEl(null);
   };
 
+  const handleLogout=()=>{
+    navigate("/logout")
+  }
   return (
     <>
       <AppBar
@@ -148,6 +153,7 @@ const TopBar = () => {
               >
                 <MenuItem onClick={handleClose}>Profile</MenuItem>
                 <MenuItem onClick={handleClose}>My account</MenuItem>
+                <MenuItem onClick={handleLogout}>Logout</MenuItem>
               </Menu>
             </Box>
           </Box>
