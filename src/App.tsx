@@ -12,6 +12,7 @@ import CompanyList from "./screens/CompanyList";
 import CompanyAddEdit from "./screens/ComapnyAddEdit";
 import NotFound from "./screens/NotFound";
 import Partners from "./screens/Partners";
+import Logout from "./screens/Logout";
 
 const App = () => {
   return (
@@ -27,6 +28,7 @@ const App = () => {
           <Route path="/companies" element={<CompanyList />} />
           <Route path="/companies/:opration" element={<CompanyAddEdit />} />
         </Route>
+        <Route path="/logout" element={<Logout />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </Box>
