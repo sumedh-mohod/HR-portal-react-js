@@ -4,14 +4,9 @@ import { Grid, Typography, Paper, Box } from "@mui/material";
 import OrangeBitsIcon from "../components/Icons/OrangeBitsIcon";
 import { styles } from "../styles/screens/CompanyList";
 
-const CompanyListCard = ({ company, index }: { company: any, index: any }) => {
+const CompanyListCard = ({ company, index, handleCompanyEditClick }: { company: any, index: any, handleCompanyEditClick:any }) => {
 
     const navigate = useNavigate();
-    const handleCompanyEditClick = (company: any) => {
-        navigate("/companies/edit", {
-            state: { company },
-        });
-    };
 
     return (
         <Grid item xs={12} md={3} lg={3}>

@@ -22,6 +22,12 @@ const CompanyList = () => {
     navigate("/companies/add");
   };
 
+  const handleCompanyEditClick = (company: any) => {
+    navigate("/companies/edit", {
+      state: { company },
+    });
+  };
+
   useEffect(() => {
     dispatch(companylist())
       .unwrap()
@@ -51,7 +57,7 @@ const CompanyList = () => {
       </Box>
       <Grid container spacing={2} sx={{ mt: 1 }}>
         {companies?.map((company: any, index: any) => (
-          <CompanyListCard company={company} index={index} />
+          <CompanyListCard company={company} index={index} handleCompanyEditClick={handleCompanyEditClick} />
         ))}
         <Grid item xs={12} md={3} lg={3}>
           {/* Card for add company */}
