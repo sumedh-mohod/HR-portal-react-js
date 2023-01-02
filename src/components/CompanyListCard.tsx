@@ -1,12 +1,9 @@
 import React from 'react'
-import { useNavigate } from 'react-router-dom';
 import { Grid, Typography, Paper, Box } from "@mui/material";
 import OrangeBitsIcon from "../components/Icons/OrangeBitsIcon";
 import { styles } from "../styles/screens/CompanyList";
 
-const CompanyListCard = ({ company, index, handleCompanyEditClick }: { company: any, index: any, handleCompanyEditClick:any }) => {
-
-    const navigate = useNavigate();
+const CompanyListCard = ({ company, index, handleCompanyEditClick }: { company: any, index: any, handleCompanyEditClick: any }) => {
 
     return (
         <Grid item xs={12} md={3} lg={3}>

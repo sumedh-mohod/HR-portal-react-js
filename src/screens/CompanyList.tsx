@@ -9,8 +9,6 @@ import { useAppDispatch, useAppSelector } from "../store/hooks";
 import { companylist } from "../store/reducers/companies/companies";
 import CompanyListCard from "../components/CompanyListCard";
 
-// array of objects of companies
-
 const CompanyList = () => {
 
   const dispatch = useAppDispatch();
