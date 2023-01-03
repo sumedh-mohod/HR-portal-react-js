@@ -5,7 +5,7 @@ import SearchIcon from "@mui/icons-material/Search";
 import { Container } from "@mui/system";
 import { useNavigate } from "react-router-dom";
 import { styles } from "../styles/screens/ProjectList";
-import ProjectListCard from "../components/ProjectListCard";
+import ProjectListCard from "../components/ListsView/ProjectListCard";
 
 const ProjectList = () => {
 
