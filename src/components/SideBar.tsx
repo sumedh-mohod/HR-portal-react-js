@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 
 import { useNavigate } from "react-router-dom";
 
@@ -13,8 +13,9 @@ import {
   Collapse,
 } from "@mui/material";
 import MuiDrawer from "@mui/material/Drawer";
-import DashboardIcon from "@mui/icons-material/Dashboard";
 import { styled, Theme, CSSObject } from "@mui/material/styles";
+import { Menus } from "../assets/constants/menus";
+import Icon from "@mui/material/Icon";
 
 import OrangeBitsIcon from "./Icons/OrangeBitsIcon";
 import { styles } from "../styles/components/header";
@@ -67,76 +68,27 @@ const DrawerHeader = styled("div")(({ theme }) => ({
   ...theme.mixins.toolbar,
 }));
 
-const Menus = [
-  {
-    name: "Comapny",
-    icon: <DashboardIcon />,
-    route: "#1",
-  },
-  {
-    name: "Accounting",
-    icon: <DashboardIcon />,
-    route: "#2",
-  },
-  {
-    name: "Assets",
-    icon: <DashboardIcon />,
-    route: "#3",
-  },
-  {
-    name: "Partners",
-    icon: <DashboardIcon />,
-    route: "/partners",
-  },
-  {
-    name: "Project",
-    icon: <DashboardIcon />,
-    route: "#5",
-  },
-  {
-    name: "Employee",
-    icon: <DashboardIcon />,
-    route: "#6",
-  },
-  {
-    name: "Settings",
-    icon: <DashboardIcon />,
-    route: "#7",
-  },
-  {
-    name: "Venders",
-    icon: <DashboardIcon />,
-    route: "#8",
-  },
-  {
-    name: "Recruitment",
-    icon: <DashboardIcon />,
-    route: "#9",
-  },
-  {
-    name: "Training",
-    icon: <DashboardIcon />,
-    route: "#10",
-  },
-];
-
 const SideBar = ({ open, setOpen }: any) => {
   const navigate = useNavigate();
 
-  const [subopen, setSubOpen] = React.useState(false);
-  const [activeRoute, setActiveRoute] = React.useState("home");
+  const [activeRoute, setActiveRoute] = useState("home");
+  const [sideBarMenus, setSideBarMenus] = useState(Menus);
 
   const handleDrawerClose = () => {
     setOpen(false);
   };
 
   const handleDrawerNavigation = (item: any) => {
-    if (item.name === "Comapny") {
-      setSubOpen(!subopen);
-    } else {
-      setActiveRoute(item.route);
-      navigate(`${item.route}`);
-    }
+    const filerted = Menus?.map((value: any) =>
+      item.id === value.id ? { ...value, active: !value.active } : value
+    );
+
+    setSideBarMenus([...filerted]);
+  };
+
+  const handleNavigation = (item: any) => {
+    setActiveRoute(item.route);
+    navigate(`${item.route}`);
   };
 
   return (
@@ -158,44 +110,51 @@ const SideBar = ({ open, setOpen }: any) => {
         </IconButton>
       </DrawerHeader>
       <List>
-        {Menus.map((text, index) => (
-          <>
-            <ListItem
-              key={text.name}
-              disablePadding
-              sx={{
-                display: "block",
-                color: activeRoute === text.route ? "white" : "#A4A6B3",
-              }}
-            >
-              <ListItemButton
+        {sideBarMenus.map((text: any, index: number) => {
+          const ICON = text.icon;
+          return (
+            <>
+              <ListItem
+                key={text.name}
+                disablePadding
                 sx={{
-                  minHeight: 48,
-                  justifyContent: open ? "initial" : "center",
-                  px: 2.5,
-                }}
-                onClick={() => {
-                  handleDrawerNavigation(text);
+                  display: "block",
+                  color: activeRoute === text.route ? "white" : "#A4A6B3",
                 }}
               >
-                <ListItemIcon
+                <ListItemButton
                   sx={{
-                    minWidth: 0,
-                    mr: open ? 3 : "auto",
-                    justifyContent: "center",
-                    color: activeRoute === text.route ? "white" : "#A4A6B3",
+                    minHeight: 48,
+                    justifyContent: open ? "initial" : "center",
+                    px: 2.5,
+                  }}
+                  onClick={() => {
+                    handleDrawerNavigation(text);
                   }}
                 >
-                  {text.icon}
-                </ListItemIcon>
-                <ListItemText
-                  primary={text.name}
-                  sx={{ opacity: open ? 1 : 0 }}
-                />
-              </ListItemButton>
-            </ListItem>
-            {text.name === "Comapny" ? (
-              <Collapse in={subopen} timeout="auto" unmountOnExit>
+                  <ListItemIcon
+                    sx={{
+                      minWidth: 0,
+                      mr: open ? 3 : "auto",
+                      justifyContent: "center",
+                      color: activeRoute === text.route ? "white" : "#A4A6B3",
+                    }}
+                  >
+                    <ICON />
+                  </ListItemIcon>
+                  <ListItemText
+                    primary={text.name}
+                    sx={{ opacity: open ? 1 : 0 }}
+                  />
+                </ListItemButton>
+              </ListItem>
+              <Collapse
+                in={
+                  sideBarMenus.find((item: any) => item.id === text.id).active
+                }
+                timeout="auto"
+                unmountOnExit
+              >
                 <List
                   component="div"
                   disablePadding
@@ -204,24 +163,31 @@ const SideBar = ({ open, setOpen }: any) => {
                     color: "white",
                   }}
                 >
-                  <ListItemButton sx={{ pl: 4 }}>
-                    <ListItemIcon
-                      sx={{
-                        minWidth: 0,
-                        mr: 3,
-                        justifyContent: "center",
-                        color: "white",
+                  {text.submenu.map((menu: any, index: number) => (
+                    <ListItemButton
+                      sx={{ pl: 4 }}
+                      onClick={() => {
+                        handleNavigation(menu);
                       }}
                     >
-                      <DashboardIcon />
-                    </ListItemIcon>
-                    <ListItemText primary="Master" sx={{ opacity: 1 }} />
-                  </ListItemButton>
+                      <ListItemIcon
+                        sx={{
+                          minWidth: 0,
+                          mr: 3,
+                          justifyContent: "center",
+                          color: "white",
+                        }}
+                      >
+                        {/* <Icon>{text.icon}</Icon> */}
+                      </ListItemIcon>
+                      <ListItemText primary={menu.name} sx={{ opacity: 1 }} />
+                    </ListItemButton>
+                  ))}
                 </List>
               </Collapse>
-            ) : null}
-          </>
-        ))}
+            </>
+          );
+        })}
       </List>
     </Drawer>
   );
