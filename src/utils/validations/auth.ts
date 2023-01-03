@@ -51,5 +51,11 @@ export const addPartnerValidator = Yup.object().shape({
 // add project validation
 export const addProjectValidator = Yup.object().shape({
   logo: Yup.mixed().required("Please upload a valid logo"),
-  name: Yup.string().required("Please enter a valid name")
+  name: Yup.string().required("Please enter a valid name"),
+});
+
+// add employee validation
+export const addEmployeeValidator = Yup.object().shape({
+  logo: Yup.string().required("Please upload a valid Logo"),
+  DisplayName: Yup.string().required("Please enter a valid Display name"),
 });
