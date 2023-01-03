@@ -10,7 +10,7 @@ export const styles = {
   },
   projectCard: {
     sx: {
-      p: 3,
+      p: 5,
       pt: 1,
       pb: 1,
       fontSize: "16px",
