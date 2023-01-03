@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useRef } from "react";
 import { useFormik } from "formik";
 import { addProjectValidator } from "../utils/validations/auth";
 import {
@@ -15,7 +15,7 @@ import {
 import { styles } from "../styles/components/addProject";
 // import { useAppDispatch} from "../store/hooks";
 
-const AddPartner = () => {
+const AddProject = () => {
   //   const dispatch = useAppDispatch();
   const {
     handleBlur,
@@ -41,6 +41,25 @@ const AddPartner = () => {
       console.log("values of add project", values);
     },
   });
+
+  const inputRef: any = useRef(null);
+  const handleClick = () => {
+    // open file input box on click of other element
+    inputRef.current.click();
+  };
+
+  const handleFileChange = (event: any) => {
+    const fileObj = event.target.files && event.target.files[0];
+    if (fileObj) {
+      setFieldValue("logo", fileObj.name);
+    }
+    //  reset file input
+    event.target.value = null;
+
+    //  can still access file object here
+    console.log(fileObj);
+    console.log(fileObj.name);
+  };
 
   return (
     <Box>
@@ -68,17 +87,35 @@ const AddPartner = () => {
             <Grid item xs={12} md={6} lg={3}>
               <FormControl fullWidth>
                 <FormLabel id="logo">Upload Logo*</FormLabel>
-                <TextField
+                <input
                   name="logo"
+                  style={{ display: "none" }}
+                  ref={inputRef}
+                  type="file"
+                  onChange={handleFileChange}
+                />
+                <TextField
                   variant="filled"
                   size="small"
-                  type={"file"}
                   value={values.logo}
-                  onChange={handleChange}
+                  onChange={handleFileChange}
                   onBlur={handleBlur}
                   error={touched.logo && errors.logo ? true : false}
                   helperText={touched.logo && errors.logo}
-                />
+                  {...styles.logoTextfield}
+                  InputProps={{
+                    sx: { color: "#515151" },
+                    endAdornment: (
+                      <Button
+                        onClick={handleClick}
+                        size="small"
+                        {...styles.selectFileButton}
+                      >
+                        Select File
+                      </Button>
+                    ),
+                  }}
+                ></TextField>
               </FormControl>
             </Grid>
             {/*  name */}
@@ -181,4 +218,4 @@ const AddPartner = () => {
   );
 };
 
-export default AddPartner;
+export default AddProject;
