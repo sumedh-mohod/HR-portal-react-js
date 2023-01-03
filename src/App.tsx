@@ -15,8 +15,10 @@ import CompanyAddEdit from "./screens/ComapnyAddEdit";
 import NotFound from "./screens/NotFound";
 import Partners from "./screens/Partners";
 import Logout from "./screens/Logout";
+import AddPartner from "./components/AddPartner";
 import EmployeeAddEdit from "./screens/EmployeeAddEdit";
 import ProjectAddEdit from "./screens/ProjectAddEdit";
+import PartnerAddEdit from "./screens/PartnerAddEdit";
 
 const App = () => {
   return (
@@ -28,6 +30,7 @@ const App = () => {
         <Route element={<Header />}>
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/partners" element={<Partners />} />
+          <Route path="/partners/:opration" element={<PartnerAddEdit/>} />
           {/* <Route path="/editcompany" element={<EditCompany />} /> */}
           <Route path="/companies" element={<CompanyList />} />
           <Route path="/companies/:opration" element={<CompanyAddEdit />} />
