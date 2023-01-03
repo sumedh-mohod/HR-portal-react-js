@@ -9,10 +9,14 @@ import Header from "./components/Header";
 import { Box } from "@mui/material";
 
 import CompanyList from "./screens/CompanyList";
+import EmployeeList from "./screens/EmployeeList";
+import ProjectsList from "./screens/ProjectsList";
 import CompanyAddEdit from "./screens/ComapnyAddEdit";
 import NotFound from "./screens/NotFound";
 import Partners from "./screens/Partners";
 import Logout from "./screens/Logout";
+import EmployeeAddEdit from "./screens/EmployeeAddEdit";
+import ProjectAddEdit from "./screens/ProjectAddEdit";
 
 const App = () => {
   return (
@@ -27,6 +31,10 @@ const App = () => {
           {/* <Route path="/editcompany" element={<EditCompany />} /> */}
           <Route path="/companies" element={<CompanyList />} />
           <Route path="/companies/:opration" element={<CompanyAddEdit />} />
+          <Route path="/employees" element={<EmployeeList />} />
+          <Route path="/employees/:opration" element={<EmployeeAddEdit />} />
+          <Route path="/projects" element={<ProjectsList />} />
+          <Route path="/projects/:opration" element={<ProjectAddEdit />} />
         </Route>
         <Route path="/logout" element={<Logout />} />
         <Route path="*" element={<NotFound />} />
