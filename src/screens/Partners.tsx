@@ -1,9 +1,23 @@
-import React,{useEffect} from "react";
+import React, { useEffect } from "react";
 import { DataGrid, GridToolbar, GridColDef } from "@mui/x-data-grid";
-import { Grid, Box } from "@mui/material";
+import {
+  Grid,
+  Box,
+  Typography,
+  Container,
+  IconButton,
+  TextField,
+} from "@mui/material";
 import { useAppDispatch, useAppSelector } from "../store/hooks";
-import {getPartners} from "../store/reducers/partners/partners"
+import { getPartners } from "../store/reducers/partners/partners";
 import { useNavigate } from "react-router-dom";
+
+import { styles } from "../styles/screens/Partners";
+
+import SearchIcon from "@mui/icons-material/Search";
+import GridViewOutlinedIcon from "@mui/icons-material/GridViewOutlined";
+import FormatListBulletedOutlinedIcon from "@mui/icons-material/FormatListBulletedOutlined";
+import ViewColumnOutlinedIcon from "@mui/icons-material/ViewColumnOutlined";
 
 const columns: GridColDef[] = [
   { field: "company_name", headerName: "Company Name", minWidth: 150 },
@@ -117,34 +131,109 @@ const Partners = () => {
   useEffect(() => {
     dispatch(getPartners())
       .unwrap()
-      .then((response: any) => {
-    
-      })
-      .catch((error:any) => {});
+      .then((response: any) => {})
+      .catch((error: any) => {});
   }, []);
+
   return (
-    <Grid container spacing={0} direction="row" style={{ minHeight: "50vh" }}>
-      <Grid item xs={12} xl={12} lg={12}>
+    <Container>
+      {/* box for search bar and company */}
+      <Box {...styles.companyTitleBox}>
+        <Typography variant="h5">Partners</Typography>
         <Box
           sx={{
-            minWidth: "90vw",
-            maxWidth: "90vw",
-            mt: "50px",
+            display: "flex",
           }}
         >
-          <DataGrid
-            getRowId={(row) => row.company_name}
-            autoHeight={true}
-            rows={rows}
-            columns={columns}
-            pageSize={5}
-            rowsPerPageOptions={[5]}
-            checkboxSelection
-            components={{ Toolbar: GridToolbar }}
+          <IconButton
+            sx={{
+              padding: "5px",
+              borderRadius: "5px",
+              border: "solid",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              borderColor: "grey",
+              borderWidth: "thin",
+              mr: "10px",
+              cursor: "pointer",
+            }}
+            // disabled
+            onClick={() => {}}
+          >
+            <GridViewOutlinedIcon />
+          </IconButton>
+          <IconButton
+            sx={{
+              padding: "5px",
+              borderRadius: "5px",
+              border: "solid",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              borderColor: "grey",
+              borderWidth: "thin",
+              mr: "10px",
+              cursor: "pointer",
+            }}
+            // disabled
+            onClick={() => {}}
+          >
+            <FormatListBulletedOutlinedIcon />
+          </IconButton>
+          <IconButton
+            sx={{
+              padding: "5px",
+              borderRadius: "5px",
+              border: "solid",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              borderColor: "grey",
+              borderWidth: "thin",
+              cursor: "pointer",
+            }}
+            // disabled
+            onClick={() => {}}
+          >
+            <ViewColumnOutlinedIcon />
+          </IconButton>
+          <TextField
+            sx={{ ml: 2 }}
+            size="small"
+            id="standard-bare"
+            variant="outlined"
+            placeholder="Search..."
+            InputProps={{
+              startAdornment: <SearchIcon />,
+            }}
           />
         </Box>
+      </Box>
+
+      <Grid container spacing={0} direction="row" style={{ minHeight: "50vh" }}>
+        <Grid item xs={12} xl={12} lg={12}>
+          <Box
+            sx={{
+              minWidth: "90vw",
+              maxWidth: "90vw",
+              mt: "50px",
+            }}
+          >
+            <DataGrid
+              getRowId={(row) => row.company_name}
+              autoHeight={true}
+              rows={rows}
+              columns={columns}
+              pageSize={5}
+              rowsPerPageOptions={[5]}
+              checkboxSelection
+              components={{ Toolbar: GridToolbar }}
+            />
+          </Box>
+        </Grid>
       </Grid>
-    </Grid>
+    </Container>
   );
 };
 
