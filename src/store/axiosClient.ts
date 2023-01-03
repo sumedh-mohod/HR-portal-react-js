@@ -12,7 +12,7 @@ enum StatusCode {
   InternalServerError = 500,
 }
 
-const headers: Readonly<Record<string, string | boolean>> = {
+const headers: any = {
   Accept: "application/json",
   "Content-Type": "application/json; charset=utf-8",
 };
