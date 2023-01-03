@@ -2,14 +2,24 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { actionTypes } from "../../actionTypes";
 
 //login action
-export const login = createAsyncThunk(actionTypes.ON_LOGIN, async () => {
-  //response of login api
-  const response = {
-    login: true,
-  };
-  //returned a response to reducer
-  return response;
-});
+export const login = createAsyncThunk(
+  actionTypes.ON_LOGIN,
+  async (params: any) => {
+    //response of login api
+    const response = {
+      token: "127883uwuu8888273uwu",
+      user: {
+        email: params.email,
+        first_name: "Orangebits",
+        last_name: "Tech",
+        mobile_number: "8898785764",
+        isAuthenticated: true,
+      },
+    };
+    //returned a response to reducer
+    return response;
+  }
+);
 
 // inteface for redux state
 export interface StateI {
@@ -45,7 +55,7 @@ const Authentication = createSlice({
     // reducer when api call is fulfilled
     builder.addCase(login.fulfilled, (state: StateI, action: any) => {
       //state updated in fulfilled state
-      state.user = action.payload.data;
+      state.user = action.payload;
       state.isLoadingRequest = false;
     });
     // reducer when api call is rejected

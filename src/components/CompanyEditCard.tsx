@@ -1,22 +1,20 @@
 import React from "react";
 import { useFormik } from "formik";
-import { addCompanyValidator } from "../utils/validations/auth";
 import {
-  Box,
   Button,
   Grid,
   FormControl,
   FormLabel,
   TextField,
-  Typography,
   MenuItem,
-  Card,
+  Card, Box
 } from "@mui/material";
-import { styles } from "../styles/components/addCompany";
-import { useAppDispatch} from "../store/hooks";
-import { addcompany } from "../store/reducers/companies/companies";
-
-const AddCompany = () => {
+import SaveIcon from '@mui/icons-material/Save';
+import { styles } from "../styles/components/editCompany";
+import { editCompanyValidator } from "../utils/validations/auth";
+import { useAppDispatch, useAppSelector } from "../store/hooks";
+import { editcompany } from "../store/reducers/companies/companies";
+const CompanyDetailsCard = () => {
   const dispatch = useAppDispatch();
   const {
     handleBlur,
@@ -37,33 +35,23 @@ const AddCompany = () => {
       domain: "",
       country: "",
       dateOfEstablishment: "",
-      address: "",
     },
-    validationSchema: addCompanyValidator,
+    validationSchema: editCompanyValidator,
     onSubmit: (values) => {
       console.log("values", values);
-       dispatch(addcompany(values))
-      .unwrap()
-      .then((response: any) => {
-       console.log("response from addCompany file",response)
-      })
-      .catch((error:any) => { });
+      dispatch(editcompany(values))
+        .unwrap()
+        .then((response: any) => {
+          console.log("response from edit Company file", response)
+        })
+        .catch((error: any) => { });
     },
   });
-
   return (
     <Box>
-      <form onSubmit={handleSubmit}>
-        <Box {...styles.parentBox}>
-          <Typography variant="h5">New Company</Typography>
-          <Button {...styles.parentBoxButton} variant="contained" type="submit">
-            Save
-          </Button>
-        </Box>
-
-        {/* form fields started */}
-        <Card sx={{ mt: 3, mb: 3, p: 5 }}>
-          <Grid container spacing={2}>
+      <Card sx={{ mt: 3, mb: 3, p: 5 }}>
+        <form onSubmit={handleSubmit}>
+          <Grid container spacing={2} >
             <Grid item xs={12} md={6} lg={3}>
               <FormControl fullWidth>
                 <FormLabel id="company">Company*</FormLabel>
@@ -71,7 +59,6 @@ const AddCompany = () => {
                   name="company"
                   variant="filled"
                   size="small"
-                  type={"text"}
                   value={values.company}
                   onChange={handleChange}
                   onBlur={handleBlur}
@@ -82,12 +69,13 @@ const AddCompany = () => {
             </Grid>
             <Grid item xs={12} md={6} lg={3}>
               <FormControl fullWidth>
-                <FormLabel id="defaultLetterHead">Default Letter Head*</FormLabel>
+                <FormLabel id="defaultLetterHead">
+                  Default Letter Head*
+                </FormLabel>
                 <TextField
+                  name="defaultLetterHead"
                   variant="filled"
                   size="small"
-                  type={"text"}
-                  name="defaultLetterHead"
                   value={values.defaultLetterHead}
                   onChange={handleChange}
                   onBlur={handleBlur}
@@ -106,10 +94,9 @@ const AddCompany = () => {
               <FormControl fullWidth>
                 <FormLabel id="abbr">Abbr*</FormLabel>
                 <TextField
+                  name="abbr"
                   variant="filled"
                   size="small"
-                  type={"text"}
-                  name="abbr"
                   value={values.abbr}
                   onChange={handleChange}
                   onBlur={handleBlur}
@@ -122,15 +109,11 @@ const AddCompany = () => {
               <FormControl fullWidth>
                 <FormLabel id="taxID">Tax ID</FormLabel>
                 <TextField
+                  name="taxID"
                   variant="filled"
                   size="small"
-                  type={"text"}
-                  name="taxID"
                   value={values.taxID}
                   onChange={handleChange}
-                  onBlur={handleBlur}
-                  error={touched.taxID && errors.taxID ? true : false}
-                  helperText={touched.taxID && errors.taxID}
                 />
               </FormControl>
             </Grid>
@@ -138,10 +121,9 @@ const AddCompany = () => {
               <FormControl fullWidth>
                 <FormLabel id="defaultCurrency">Default Currency*</FormLabel>
                 <TextField
+                  name="defaultCurrency"
                   variant="filled"
                   size="small"
-                  type={"text"}
-                  name="defaultCurrency"
                   value={values.defaultCurrency}
                   onChange={handleChange}
                   onBlur={handleBlur}
@@ -158,15 +140,11 @@ const AddCompany = () => {
               <FormControl fullWidth>
                 <FormLabel id="domain">Domain</FormLabel>
                 <TextField
+                  name="domain"
                   variant="filled"
                   size="small"
-                  type={"text"}
-                  name="domain"
                   value={values.domain}
                   onChange={handleChange}
-                  onBlur={handleBlur}
-                  error={touched.domain && errors.domain ? true : false}
-                  helperText={touched.domain && errors.domain}
                 />
               </FormControl>
             </Grid>
@@ -192,13 +170,13 @@ const AddCompany = () => {
             <Grid item xs={12} md={6} lg={3}>
               <FormControl fullWidth>
                 <FormLabel id="dateOfEstablishment">
-                  Date of Establishment
+                  Date of Establishment*
                 </FormLabel>
                 <TextField
+                  name="dateOfEstablishment"
                   variant="filled"
                   size="small"
                   type="date"
-                  name="dateOfEstablishment"
                   value={values.dateOfEstablishment}
                   onChange={handleChange}
                   onBlur={handleBlur}
@@ -213,35 +191,21 @@ const AddCompany = () => {
                 />
               </FormControl>
             </Grid>
-            <Grid item xs={12} md={6} lg={6}>
-              <FormControl fullWidth>
-                <FormLabel id="address">
-                  Address*
-                </FormLabel>
-                <TextField
-                  variant="filled"
-                  size="small"
-                  type={"text"}
-                  name="address"
-                  value={values.address}
-                  onChange={handleChange}
-                  onBlur={handleBlur}
-                  error={
-                    touched.address && errors.address
-                      ? true
-                      : false
-                  }
-                  helperText={
-                    touched.address && errors.address
-                  }
-                />
-              </FormControl>
+            <Grid item xs={12} md={6} lg={3}>
+              <Button
+                variant="contained"
+                type="submit"
+                {...styles.companySaveButton}
+              >
+                <SaveIcon {...styles.icon} />
+                Save
+              </Button>
             </Grid>
           </Grid>
-        </Card>
-      </form>
-    </Box >
+        </form>
+      </Card>
+    </Box>
   );
 };
 
-export default AddCompany;
+export default CompanyDetailsCard;

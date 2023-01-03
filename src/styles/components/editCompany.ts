@@ -1,7 +1,37 @@
 export const styles = {
-  parentGrid: {
-    sx: { p: 5, mt: 5, border: "1px solid #DFDFDF" },
+  // edit Company screen
+  box: { sx: { mt: 5, display: "flex", justifyContent: "space-between" } },
+  parentBoxButtonEdit: {
+    sx: {
+      backgroundColor: "#F58634",
+      borderRadius: "5px",
+    },
   },
+  parentBoxButtonSave: {
+    sx: {
+      backgroundColor: "#0FBD35",
+      borderRadius: "5px",
+    },
+  },
+  icon: {
+    sx: { pr: 1, fontSize: "inheit" },
+  },
+
+  // company details card
+  detailsParentBox: {
+    sx: { display: "flex" },
+  },
+
+  detailsParentSubBox: {
+    sx: { textAlign: "left", mx: 1 },
+  },
+  detailsTypography1: {
+    sx: { mt: 2, color: "#515151", fontSize: "14px" },
+  },
+  detailsTypography2: {
+    sx: { mt: 2, color: "# #515151;", fontSize: "14px" },
+  },
+  // edit company from card
   companySaveButton: {
     sx: {
       backgroundColor: "#9FA2B4",
@@ -12,9 +42,7 @@ export const styles = {
       py: "12px",
     },
   },
-  icon: {
-    sx: { pr: 1, fontSize: "inheit" },
-  },
+  // holidays card
   gridItem: {
     sx: { display: "flex", justifyContent: "end", alignItems: "end" },
   },
@@ -23,6 +51,16 @@ export const styles = {
       mt: 3,
       mx: 1,
       backgroundColor: "#9FA2B4",
+      borderRadius: "70px",
+      textTransform: "inherit",
+      padding: "12px 25px",
+    },
+  },
+  gridItemSaveButton1: {
+    sx: {
+      mt: 3,
+      mx: 1,
+      backgroundColor: "#0FBD35",
       borderRadius: "70px",
       textTransform: "inherit",
       padding: "12px 25px",

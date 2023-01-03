@@ -1,88 +1,43 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Grid, Typography, Paper, Box, TextField } from "@mui/material";
 import AddIcon from "@mui/icons-material/Add";
 import SearchIcon from "@mui/icons-material/Search";
-import OrangeBitsIcon from "../components/Icons/OrangeBitsIcon";
 import { Container } from "@mui/system";
 import { useNavigate } from "react-router-dom";
 import { styles } from "../styles/screens/CompanyList";
-
-// array of objects of companies
-
-interface Comapny {
-  name: string;
-  description: any;
-  defaultLetterHead: string;
-  defaultCurrency: string;
-  domain: string;
-  abbr: string;
-  taxID: string;
-  country: string;
-  dateofEstiblishment: string;
-}
-const companies: Comapny[] = [
-  {
-    name: "Orangebits Software Technologies(India) Pvt. Ltd",
-    description: [
-      { PAN: "PAN - AYAPN7894N" },
-      { TAN: "TAN - AYAPN7894N" },
-      { GST: "GST - AYAPN7894N" },
-    ],
-    defaultLetterHead: "ORNG123",
-    defaultCurrency: "Rupees",
-    domain: "orange.com",
-    abbr: "ORNG123",
-    taxID: "TAX123",
-    country: "india",
-    dateofEstiblishment: "2 October, 2023",
-  },
-  {
-    name: "Orangebits Software Technologies(India) Pvt. Ltd",
-    description: [
-      { PAN: "PAN - AYAPN7894N" },
-      { TAN: "TAN - AYAPN7894N" },
-      { GST: "GST - AYAPN7894N" },
-    ],
-    defaultLetterHead: "ORNG123",
-    defaultCurrency: "Rupees",
-    domain: "orange.com",
-    abbr: "ORNG123",
-    taxID: "TAX123",
-    country: "india",
-    dateofEstiblishment: "2 October, 2023",
-  },
-  {
-    name: "Orangebits Software Technologies(India) Pvt. Ltd",
-    description: [
-      { PAN: "PAN - AYAPN7894N" },
-      { TAN: "TAN - AYAPN7894N" },
-      { GST: "GST - AYAPN7894N" },
-    ],
-    defaultLetterHead: "ORNG123",
-    defaultCurrency: "Rupees",
-    domain: "orange.com",
-    abbr: "ORNG123",
-    taxID: "TAX123",
-    country: "india",
-    dateofEstiblishment: "2 October, 2023",
-  },
-];
+import { useAppDispatch, useAppSelector } from "../store/hooks";
+import { companylist } from "../store/reducers/companies/companies";
+import CompanyListCard from "../components/CompanyListCard";
 
 const CompanyList = () => {
+
+  const dispatch = useAppDispatch();
+  const companyStore = useAppSelector((state) => state.companies);
+  const { isLoadingRequest, companies } = companyStore;
   const navigate = useNavigate();
 
   const handleCompanyClick = () => {
     navigate("/companies/add");
   };
 
-  const handleCompanyEditClick = (company: Comapny) => {
-    navigate("/companies/edit");
+  const handleCompanyEditClick = (company: any) => {
+    navigate("/companies/edit", {
+      state: { company },
+    });
   };
+
+  useEffect(() => {
+    dispatch(companylist())
+      .unwrap()
+      .then((response: any) => {
+        // navigate("/companies");
+      })
+      .catch((error) => { });
+  }, [])
 
   return (
     <Container>
       {/* box for search bar and company */}
-
       <Box {...styles.companyTitleBox}>
         <Typography variant="h5">Company</Typography>
         <Box>
@@ -98,59 +53,17 @@ const CompanyList = () => {
           />
         </Box>
       </Box>
-
-      {/* Grid container for companies */}
-
       <Grid container spacing={2} sx={{ mt: 1 }}>
-        {companies.map((company) => (
-          <Grid item xs={12} md={3} lg={3}>
-            {/* Card component for each company */}
-
-            <Paper
-              elevation={3}
-              onClick={() => {
-                handleCompanyEditClick(company);
-              }}
-              {...styles.companyCard}
-            >
-              <OrangeBitsIcon width={40} />
-              <Typography variant="h5" gutterBottom {...styles.companyName}>
-                {company.name}
-              </Typography>
-
-              {/* Box for description with map */}
-
-              <Box {...styles.companyDescriptionBox}>
-                {company.description.map((des: any) => (
-                  <>
-                    <Typography {...styles.companyDescription}>
-                      {des.PAN}{" "}
-                    </Typography>
-                    <Typography {...styles.companyDescription}>
-                      {des.TAN}{" "}
-                    </Typography>
-                    <Typography {...styles.companyDescription}>
-                      {des.GST}{" "}
-                    </Typography>
-                  </>
-                ))}
-              </Box>
-            </Paper>
-          </Grid>
+        {companies?.map((company: any, index: any) => (
+          <CompanyListCard company={company} index={index} handleCompanyEditClick={handleCompanyEditClick} />
         ))}
-
-        {/* Grid for add company */}
-
         <Grid item xs={12} md={3} lg={3}>
           {/* Card for add company */}
-
           <Paper
             elevation={3}
             onClick={handleCompanyClick}
             {...styles.addCompanyCard}
           >
-            {/* Add icon */}
-
             <AddIcon fontSize="large" sx={{ pr: 2 }} />
             <Typography {...styles.addCompanyIcon}>Add Company</Typography>
           </Paper>

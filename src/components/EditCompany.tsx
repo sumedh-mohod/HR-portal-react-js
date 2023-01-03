@@ -1,366 +1,52 @@
-import React from "react";
-import { useFormik } from "formik";
-import {
-  Box,
-  Container,
-  Button,
-  Grid,
-  FormControl,
-  FormLabel,
-  TextField,
-  Typography,
-  Select,
-  MenuItem,
-} from "@mui/material";
+import React, { useState } from "react";
+import { Box, Container, Typography, Button } from "@mui/material";
+import EditIcon from "@mui/icons-material/Edit";
 import SaveIcon from "@mui/icons-material/Save";
-import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
-import HighlightOffIcon from "@mui/icons-material/HighlightOff";
-import { editCompanyValidator } from "../utils/validations/auth";
+import CompanyDetailsCard from "./CompanyDetailsCard";
+import CompanyEditCard from "./CompanyEditCard";
+import HolidayCard from "./HolidayCard";
 import { styles } from "../styles/components/editCompany";
-import { style } from "@mui/system";
-const EditCompany = () => {
-  const {
-    handleBlur,
-    handleChange,
-    setFieldValue,
-    handleSubmit,
-    values,
-    errors,
-    touched,
-  } = useFormik({
-    enableReinitialize: true,
-    initialValues: {
-      company: "",
-      defaultLetterHead: "",
-      abbr: "",
-      taxID: "",
-      defaultCurrency: "",
-      domain: "",
-      country: "",
-      dateOfEstablishment: "",
-    },
-    validationSchema: editCompanyValidator,
-    onSubmit: (values) => {
-      console.log("values", values);
-    },
-  });
+import { useParams } from "react-router-dom";
+import { parse } from "path";
 
+const EditCompany = () => {
+  let { params } = useParams();
+  const [isEditing, setIsEditing] = useState(false);
+  const [editBtn, setEditBtn] = useState(true);
+  const EditHandle = () => {
+    setIsEditing(true);
+    setEditBtn(false);
+  };
   return (
     <Container sx={{ p: 3 }}>
-      {/* ----------company1 start------------- */}
-      <form onSubmit={handleSubmit}>
-        <Box sx={{ mt: 2 }}>
-          <Typography variant="h5">Company 1</Typography>
-        </Box>
-        {/* form fielsds started */}
-        <Grid container spacing={2} {...styles.parentGrid}>
-          <Grid item xs={12} md={6} lg={3}>
-            <FormControl fullWidth>
-              <FormLabel id="company">Company*</FormLabel>
-              <TextField
-                name="company"
-                variant="filled"
-                size="small"
-                value={values.company}
-                onChange={handleChange}
-                onBlur={handleBlur}
-                error={touched.company && errors.company ? true : false}
-                helperText={touched.company && errors.company}
-              />
-            </FormControl>
-          </Grid>
-          <Grid item xs={12} md={6} lg={3}>
-            <FormControl fullWidth>
-              <FormLabel id="defaultLetterHead">Default Letter Head*</FormLabel>
-              <TextField
-                name="defaultLetterHead"
-                variant="filled"
-                size="small"
-                value={values.defaultLetterHead}
-                onChange={handleChange}
-                onBlur={handleBlur}
-                error={
-                  touched.defaultLetterHead && errors.defaultLetterHead
-                    ? true
-                    : false
-                }
-                helperText={
-                  touched.defaultLetterHead && errors.defaultLetterHead
-                }
-              />
-            </FormControl>
-          </Grid>
-          <Grid item xs={12} md={6} lg={3}>
-            <FormControl fullWidth>
-              <FormLabel id="abbr">Abbr*</FormLabel>
-              <TextField
-                name="abbr"
-                variant="filled"
-                size="small"
-                value={values.abbr}
-                onChange={handleChange}
-                onBlur={handleBlur}
-                error={touched.abbr && errors.abbr ? true : false}
-                helperText={touched.abbr && errors.abbr}
-              />
-            </FormControl>
-          </Grid>
-          <Grid item xs={12} md={6} lg={3}>
-            <FormControl fullWidth>
-              <FormLabel id="taxID">Tax ID</FormLabel>
-              <TextField
-                name="taxID"
-                variant="filled"
-                size="small"
-                value={values.taxID}
-                onChange={handleChange}
-              />
-            </FormControl>
-          </Grid>
-          <Grid item xs={12} md={6} lg={3}>
-            <FormControl fullWidth>
-              <FormLabel id="defaultCurrency">Default Currency*</FormLabel>
-              <TextField
-                name="defaultCurrency"
-                variant="filled"
-                size="small"
-                value={values.defaultCurrency}
-                onChange={handleChange}
-                onBlur={handleBlur}
-                error={
-                  touched.defaultCurrency && errors.defaultCurrency
-                    ? true
-                    : false
-                }
-                helperText={touched.defaultCurrency && errors.defaultCurrency}
-              />
-            </FormControl>
-          </Grid>
-          <Grid item xs={12} md={6} lg={3}>
-            <FormControl fullWidth>
-              <FormLabel id="domain">Domain</FormLabel>
-              <TextField
-                name="domain"
-                variant="filled"
-                size="small"
-                value={values.domain}
-                onChange={handleChange}
-              />
-            </FormControl>
-          </Grid>
-          <Grid item xs={12} md={6} lg={3}>
-            <FormControl fullWidth>
-              <FormLabel id="country">Country*</FormLabel>
-              <TextField
-                select
-                name="country"
-                variant="filled"
-                size="small"
-                id="country"
-                value={values.country}
-                onChange={handleChange}
-                onBlur={handleBlur}
-                error={touched.country && errors.country ? true : false}
-                helperText={touched.country && errors.country}
-              >
-                <MenuItem value="India">India</MenuItem>
-              </TextField>
-            </FormControl>
-          </Grid>
-          <Grid item xs={12} md={6} lg={3}>
-            <FormControl fullWidth>
-              <FormLabel id="dateOfEstablishment">
-                Date of Establishment*
-              </FormLabel>
-              <TextField
-                name="dateOfEstablishment"
-                variant="filled"
-                size="small"
-                type="date"
-                value={values.dateOfEstablishment}
-                onChange={handleChange}
-                onBlur={handleBlur}
-                error={
-                  touched.dateOfEstablishment && errors.dateOfEstablishment
-                    ? true
-                    : false
-                }
-                helperText={
-                  touched.dateOfEstablishment && errors.dateOfEstablishment
-                }
-              />
-            </FormControl>
-          </Grid>
-          <Grid item xs={12} md={6} lg={3}>
-            <Button
-              variant="contained"
-              type="submit"
-              {...styles.companySaveButton}
-            >
-              <SaveIcon {...styles.icon} />
-              Save
-            </Button>
-          </Grid>
-        </Grid>
-      </form>
+      {/* toggle card for details and edit form of company */}
+      <Box {...styles.box}>
+        <Typography variant="h5">Company 1</Typography>
+        {editBtn && (
+          <Button
+            {...styles.parentBoxButtonEdit}
+            variant="contained"
+            type="submit"
+            onClick={EditHandle}
+          >
+            <EditIcon {...styles.icon} /> Edit
+          </Button>
+        )}
+      </Box>
+      {isEditing ? <CompanyEditCard /> : <CompanyDetailsCard />}
 
-      {/* ------------Holiday start ------------------*/}
-      <form>
-        <Box sx={{ mt: 5 }}>
-          <Typography variant="h5">Holiday</Typography>
-        </Box>
-        {/* holiday form field start */}
-
-        <Grid container spacing={2} {...styles.parentGrid}>
-          <Grid item xs={12} md={6} lg={3}>
-            <FormControl fullWidth>
-              <FormLabel id="holidayname">Holiday Name</FormLabel>
-              <TextField
-                name="holidayname"
-                variant="filled"
-                size="small"
-                // value={values.holidayname}
-                // onChange={handleChange}
-              />
-            </FormControl>
-          </Grid>
-          <Grid item xs={12} md={6} lg={3}>
-            <FormControl fullWidth>
-              <FormLabel id="selectDate">Select Date*</FormLabel>
-              <TextField
-                type="date"
-                name="selectDate"
-                variant="filled"
-                size="small"
-                // value={values.selectDate}
-                // onChange={handleChange}
-                // onBlur={handleBlur}
-                // error={touched.selectDate && errors.selectDate ? true : false}
-                // helperText={touched.selectDate && errors.selectDate}
-              />
-            </FormControl>
-          </Grid>
-          <Grid item xs={12} md={6} lg={6} {...styles.gridItem}>
-            <Button
-              variant="contained"
-              type="submit"
-              {...styles.gridItemSaveButton}
-            >
-              <SaveIcon {...styles.icon} />
-              Save
-            </Button>
-            <Button variant="contained" {...styles.gridItemRemoveButton}>
-              <HighlightOffIcon sx={{ pr: 1, fontSize: "inheit" }} />
-              Remove
-            </Button>
-          </Grid>
-          <Grid item xs={12} md={6} lg={3}>
-            <FormControl fullWidth>
-              <FormLabel id="holidayname">Holiday Name</FormLabel>
-              <TextField
-                name="holidayname"
-                variant="filled"
-                size="small"
-                // value={values.holidayname}
-                // onChange={handleChange}
-              />
-            </FormControl>
-          </Grid>
-          <Grid item xs={12} md={6} lg={3}>
-            <FormControl fullWidth>
-              <FormLabel id="selectDate">Select Date*</FormLabel>
-              <TextField
-                type="date"
-                name="selectDate"
-                variant="filled"
-                size="small"
-                // value={values.selectDate}
-                // onChange={handleChange}
-                // onBlur={handleBlur}
-                // error={touched.selectDate && errors.selectDate ? true : false}
-                // helperText={touched.selectDate && errors.selectDate}
-              />
-            </FormControl>
-          </Grid>
-          <Grid item xs={12} md={6} lg={6} {...styles.gridItem}>
-            <Button
-              variant="contained"
-              type="submit"
-              {...styles.gridItemSaveButton}
-            >
-              <SaveIcon sx={{ pr: 1, fontSize: "inheit" }} />
-              Save
-            </Button>
-            <Button
-              variant="contained"
-              type="submit"
-              {...styles.gridItemRemoveButton}
-            >
-              <HighlightOffIcon sx={{ pr: 1, fontSize: "inheit" }} />
-              Remove
-            </Button>
-          </Grid>
-          <Grid item xs={12} md={6} lg={3}>
-            <Button variant="contained" type="submit" {...styles.addButton}>
-              <AddCircleOutlineIcon {...styles.icon} />
-              Add
-            </Button>
-          </Grid>
-        </Grid>
-      </form>
-      {/*-------------------- Designation start -----------*/}
-      <form>
-        <Box sx={{ mt: 5 }}>
-          <Typography variant="h5">Designation</Typography>
-        </Box>
-        {/* Designation form field start */}
-        <Grid container spacing={2} {...styles.parentGrid}>
-          <Grid item xs={12} md={6} lg={3}>
-            <FormControl fullWidth>
-              <FormLabel id="designationname">Designation Name</FormLabel>
-              <TextField
-                name="designationname"
-                variant="filled"
-                size="small"
-                // value={values.designationname}
-                // onChange={handleChange}
-              />
-            </FormControl>
-          </Grid>
-          <Grid item xs={12} md={6} lg={3}>
-            <FormControl fullWidth>
-              <FormLabel id="description">Description</FormLabel>
-              <TextField
-                name="description"
-                variant="filled"
-                size="small"
-                // value={values.description}
-                // onChange={handleChange}
-              />
-            </FormControl>
-          </Grid>
-          <Grid item xs={12} md={6} lg={6} {...styles.gridItem}>
-            <Button
-              variant="contained"
-              type="submit"
-              {...styles.gridItemSaveButton}
-            >
-              <SaveIcon sx={{ pr: 1, fontSize: "inheit" }} />
-              Save
-            </Button>
-            <Button variant="contained" {...styles.gridItemRemoveButton}>
-              <HighlightOffIcon sx={{ pr: 1, fontSize: "inheit" }} />
-              Remove
-            </Button>
-          </Grid>
-          <Grid item xs={12} md={6} lg={3}>
-            <Button variant="contained" type="submit" {...styles.addButton}>
-              <AddCircleOutlineIcon sx={{ pr: 1, fontSize: "inheit" }} />
-              Add
-            </Button>
-          </Grid>
-        </Grid>
-      </form>
+      {/* holiday card start--------- */}
+      <Box {...styles.box}>
+        <Typography variant="h5">Holiday</Typography>
+        <Button
+          {...styles.parentBoxButtonSave}
+          variant="contained"
+          type="submit"
+        >
+          <SaveIcon {...styles.icon} /> Save
+        </Button>
+      </Box>
+      <HolidayCard />
     </Container>
   );
 };
