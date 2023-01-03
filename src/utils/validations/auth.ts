@@ -38,3 +38,18 @@ export const addCompanyValidator = Yup.object().shape({
   ),
   address: Yup.string().required("Please enter a valid address"),
 });
+
+// add partner validation
+export const addPartnerValidator = Yup.object().shape({
+  logo: Yup.mixed().required("Please upload a valid logo"),
+  partnerName: Yup.string().required("Please enter a valid partner name"),
+  selectCity: Yup.string().required("Please Select a valid city"),
+  selectState: Yup.string().required("Please Select a valid state"),
+  country: Yup.string().required("Please Select a valid country"),
+});
+
+// add project validation
+export const addProjectValidator = Yup.object().shape({
+  logo: Yup.mixed().required("Please upload a valid logo"),
+  name: Yup.string().required("Please enter a valid name")
+});
