@@ -1,9 +1,14 @@
-import React from 'react'
+import React from "react";
+import AddProject from "../components/AddProject";
+
+import { useParams, useLocation } from "react-router-dom";
 
 const ProjectAddEdit = () => {
-  return (
-    <div>ProjectAddEdit</div>
-  )
-}
+  let params = useParams();
+  let location = useLocation();
 
-export default ProjectAddEdit
+  const { opration } = params;
+  return <>{opration === "add" ? <AddProject /> : ""}</>;
+};
+
+export default ProjectAddEdit;
