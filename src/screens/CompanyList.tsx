@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { Grid, Typography, Paper, Box, TextField } from "@mui/material";
+import { Grid, Typography, Paper, Box, TextField, Card } from "@mui/material";
 import AddIcon from "@mui/icons-material/Add";
 import SearchIcon from "@mui/icons-material/Search";
 import { Container } from "@mui/system";
@@ -12,6 +12,7 @@ import GridViewOutlinedIcon from "@mui/icons-material/GridViewOutlined";
 import FormatListBulletedOutlinedIcon from "@mui/icons-material/FormatListBulletedOutlined";
 import ViewColumnOutlinedIcon from "@mui/icons-material/ViewColumnOutlined";
 import IconButton from "@mui/material/IconButton";
+import { globalStyles } from "../styles/global";
 
 const CompanyList = () => {
   const dispatch = useAppDispatch();
@@ -42,7 +43,9 @@ const CompanyList = () => {
     <Container>
       {/* box for search bar and company */}
       <Box {...styles.companyTitleBox}>
-        <Typography variant="h5">Company</Typography>
+        <Typography variant="h5" {...globalStyles.moduleTitle}>
+          Company
+        </Typography>
         <Box
           sx={{
             display: "flex",
@@ -118,16 +121,16 @@ const CompanyList = () => {
           companies={companies}
           handleCompanyEditClick={handleCompanyEditClick}
         />
-        <Grid item xs={12} md={3} lg={3}>
+        <Grid item xs={12} sm={12} md={3} lg={3} xl={3}>
           {/* Card for add company */}
-          <Paper
+          <Card
             elevation={3}
             onClick={handleCompanyClick}
             {...styles.addCompanyCard}
           >
             <AddIcon fontSize="large" sx={{ pr: 2 }} />
             <Typography {...styles.addCompanyIcon}>Add Company</Typography>
-          </Paper>
+          </Card>
         </Grid>
       </Grid>
     </Container>
