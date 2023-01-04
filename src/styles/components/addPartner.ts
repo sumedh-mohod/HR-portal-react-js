@@ -29,4 +29,67 @@ export const styles = {
       p: 5,
     },
   },
-};
+  logoTextfield: {
+    sx: {
+      "& .MuiInputBase-input": {
+        overflow: "hidden",
+        textOverflow: "ellipsis",
+        width: "60%",
+        display: "inline-block",
+      },
+    },
+  },
+  selectFileButton: {
+    sx: {
+      background: "white",
+      color: "black",
+      textTransform: "inherit",
+      marginBottom: "-10px",
+      padding: "1px 5px",
+      fontSize: "12px",
+    },
+  },
+  checkIcon:{
+    sx:{
+      width: "30px",
+      height: "30px",
+      margin: "30px 20px",
+      color: "white",
+      background: "#0FBD35",
+      borderRadius: "5px",
+    }
+  },
+  closeIcon:{
+  
+    sx:{
+      width: "30px",
+      height: "30px",
+      margin: "30px 20px",
+      color: "white",
+      background: "#D82A2A;",
+      borderRadius: "5px",
+    }
+  },
+  addButton:{
+    sx:{
+      margin: "30px 20px",
+      // display: "flex",
+      justifyContent: "center",
+      alignItems: "center",
+      // minHeight: "200px",
+      // maxHeight: "218px",
+      border: "2px dashed #C0C0C0",
+      boxShadow: "none",
+      color: "#1C1B1F",
+      borderRadius: "5px",
+  }
+},
+addIcon:{
+  sx:{
+    fontSize: "16px",
+    fontWeight: "600",
+    fontFamily: "Montserrat",
+    marginRight: 1,
+  }
+}
+}
