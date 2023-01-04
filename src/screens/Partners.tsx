@@ -3,146 +3,79 @@ import { DataGrid, GridToolbar, GridColDef } from "@mui/x-data-grid";
 import {
   Grid,
   Box,
+  Card,
   Typography,
   Container,
   IconButton,
   TextField,
+  Paper,
 } from "@mui/material";
 import { useAppDispatch, useAppSelector } from "../store/hooks";
 import { getPartners } from "../store/reducers/partners/partners";
 import { useNavigate } from "react-router-dom";
-
 import { styles } from "../styles/screens/Partners";
-
+import AddIcon from "@mui/icons-material/Add";
 import SearchIcon from "@mui/icons-material/Search";
 import GridViewOutlinedIcon from "@mui/icons-material/GridViewOutlined";
 import FormatListBulletedOutlinedIcon from "@mui/icons-material/FormatListBulletedOutlined";
 import ViewColumnOutlinedIcon from "@mui/icons-material/ViewColumnOutlined";
 import PartnersListCard from "../components/ListsView/PartnersList";
-
+import { globalStyles } from "../styles/global";
 const columns: GridColDef[] = [
-  { field: "company_name", headerName: "Company Name", minWidth: 150 },
-  { field: "country", headerName: "Country", minWidth: 150 },
-  { field: "employee_count", headerName: "Number of Employees", minWidth: 200 },
-  { field: "project_count", headerName: "Number of Projects", minWidth: 150 },
-  { field: "defaultCurrency", headerName: "Default Currency", minWidth: 150 },
+  {
+    field: "id",
+    headerName: "#",
+    minWidth: 50,
+  },
+  {
+    field: "company_name",
+    headerName: "Name",
+    width: 200,
+    minWidth: 150,
+    maxWidth: 200,
+  },
+  {
+    field: "description",
+    headerName: "PAN/TAN/GST",
+    width: 400,
+    minWidth: 150,
+    maxWidth: 400,
+  },
+  // { field: "company_name", headerName: "Company Name", minWidth: 150 },
+  // { field: "country", headerName: "Country", minWidth: 150 },
+  // { field: "employee_count", headerName: "Number of Employees", minWidth: 200 },
+  // { field: "project_count", headerName: "Number of Projects", minWidth: 150 },
+  // { field: "defaultCurrency", headerName: "Default Currency", minWidth: 150 },
 ];
 
 const rows = [
   {
+    id: 1,
     company_name: "Google",
-    project_count: 3,
-    employee_count: 200,
-    defaultCurrency: "Rupees",
-    country: "India",
     description:
       "Plot No 10, Chintamani, Near Antarbharti Ashram, Dhangarpura, Khamla Rd, Nagpur, Maharashtra 440015",
   },
   {
-    company_name: "Microsoft",
-    project_count: 4,
-    employee_count: 220,
-    defaultCurrency: "Riyal",
-    country: "Saudi Arab",
+    id: 2,
+    company_name: "Google",
     description:
       "Plot No 10, Chintamani, Near Antarbharti Ashram, Dhangarpura, Khamla Rd, Nagpur, Maharashtra 440015",
   },
   {
-    company_name: "Tesla",
-    project_count: 2,
-    employee_count: 150,
-    defaultCurrency: "Dollar",
-    country: "UK",
+    id: 3,
+    company_name: "Google",
     description:
       "Plot No 10, Chintamani, Near Antarbharti Ashram, Dhangarpura, Khamla Rd, Nagpur, Maharashtra 440015",
   },
   {
-    company_name: "Twitter",
-    project_count: 1,
-    employee_count: 870,
-    defaultCurrency: "Rupees",
-    country: "India",
+    id: 4,
+    company_name: "Google",
     description:
       "Plot No 10, Chintamani, Near Antarbharti Ashram, Dhangarpura, Khamla Rd, Nagpur, Maharashtra 440015",
   },
   {
-    company_name: "Orangebits",
-    project_count: 3,
-    employee_count: 250,
-    defaultCurrency: "Rupees",
-    country: "India",
-    description:
-      "Plot No 10, Chintamani, Near Antarbharti Ashram, Dhangarpura, Khamla Rd, Nagpur, Maharashtra 440015",
-  },
-  {
-    company_name: "E-Zest",
-    project_count: 4,
-    employee_count: 100,
-    defaultCurrency: "Rupees",
-    country: "India",
-    description:
-      "Plot No 10, Chintamani, Near Antarbharti Ashram, Dhangarpura, Khamla Rd, Nagpur, Maharashtra 440015",
-  },
-  {
-    company_name: "TCS",
-    project_count: 2,
-    employee_count: 900,
-    defaultCurrency: "Rupees",
-    country: "India",
-    description:
-      "Plot No 10, Chintamani, Near Antarbharti Ashram, Dhangarpura, Khamla Rd, Nagpur, Maharashtra 440015",
-  },
-  {
-    company_name: "Infosys",
-    project_count: 3,
-    employee_count: 400,
-    defaultCurrency: "Rupees",
-    country: "India",
-    description:
-      "Plot No 10, Chintamani, Near Antarbharti Ashram, Dhangarpura, Khamla Rd, Nagpur, Maharashtra 440015",
-  },
-  {
-    company_name: "Wipro",
-    project_count: 5,
-    employee_count: 100,
-    defaultCurrency: "Rupees",
-    country: "India",
-    description:
-      "Plot No 10, Chintamani, Near Antarbharti Ashram, Dhangarpura, Khamla Rd, Nagpur, Maharashtra 440015",
-  },
-  {
-    company_name: "Accenture",
-    project_count: 3,
-    employee_count: 500,
-    defaultCurrency: "Rupees",
-    country: "India",
-    description:
-      "Plot No 10, Chintamani, Near Antarbharti Ashram, Dhangarpura, Khamla Rd, Nagpur, Maharashtra 440015",
-  },
-  {
-    company_name: "Winjit",
-    project_count: 5,
-    employee_count: 250,
-    defaultCurrency: "Rupees",
-    country: "India",
-    description:
-      "Plot No 10, Chintamani, Near Antarbharti Ashram, Dhangarpura, Khamla Rd, Nagpur, Maharashtra 440015",
-  },
-  {
-    company_name: "Persistent",
-    project_count: 3,
-    employee_count: 200,
-    defaultCurrency: "Rupees",
-    country: "India",
-    description:
-      "Plot No 10, Chintamani, Near Antarbharti Ashram, Dhangarpura, Khamla Rd, Nagpur, Maharashtra 440015",
-  },
-  {
-    company_name: "BMC",
-    project_count: 4,
-    employee_count: 100,
-    defaultCurrency: "Rupees",
-    country: "India",
+    id: 5,
+    company_name: "Google",
     description:
       "Plot No 10, Chintamani, Near Antarbharti Ashram, Dhangarpura, Khamla Rd, Nagpur, Maharashtra 440015",
   },
@@ -151,9 +84,7 @@ const rows = [
 const Partners = () => {
   const dispatch = useAppDispatch();
   const partnersStore = useAppSelector((state) => state.partners);
-
   const [designView, setDesignView] = useState("list");
-
   const { isLoadingRequest, partners } = partnersStore;
   console.log("partners data is", partners);
   const navigate = useNavigate();
@@ -166,14 +97,18 @@ const Partners = () => {
   }, []);
 
   const handlePartnerEditClick = () => {
+    navigate("/partners/edit");
+  };
+  const handlePartnerAddClick = () => {
     navigate("/partners/add");
   };
-
   return (
     <Container>
       {/* box for search bar and company */}
       <Box {...styles.companyTitleBox}>
-        <Typography variant="h5">Partners</Typography>
+        <Typography variant="h5" {...globalStyles.moduleTitle}>
+          Partners
+        </Typography>
         <Box
           sx={{
             display: "flex",
@@ -251,30 +186,57 @@ const Partners = () => {
 
       <Grid container spacing={0} direction="row" style={{ minHeight: "50vh" }}>
         {designView === "list" ? (
-          <Grid item xs={12} xl={12} lg={12}>
-            <Box
-              sx={{
-                minWidth: "90vw",
-                maxWidth: "90vw",
-                mt: "50px",
-              }}
-            >
-              <DataGrid
-                getRowId={(row) => row.company_name}
-                autoHeight={true}
-                rows={rows}
-                columns={columns}
-                pageSize={5}
-                rowsPerPageOptions={[5]}
-                checkboxSelection
-                components={{ Toolbar: GridToolbar }}
-              />
-            </Box>
-          </Grid>
+          <Card sx={{ marginTop: "35px", p: 0 }}>
+            <Grid item xs={12} xl={12} lg={12}>
+              <Box
+                sx={{
+                  minWidth: "90vw",
+                  maxWidth: "90vw",
+                  // mt: "50px",
+                  margin: 0,
+                }}
+              >
+                <DataGrid
+                  sx={{
+                    borderRadius: "0",
+                    ".MuiDataGrid-columnSeparator": {
+                      display: "none",
+                    },
+                    "& .MuiDataGrid-columnHeaders": {
+                      backgroundColor: " #F4F5F6",
+                    },
+                  }}
+                  getRowId={(row) => row.company_name}
+                  autoHeight={true}
+                  rows={rows}
+                  columns={columns}
+                  hideFooterPagination={true}
+                  hideFooter={true}
+                  // pageSize={5}
+                  // rowsPerPageOptions={[5]}
+                  // checkboxSelection
+                  // components={{ Toolbar: GridToolbar }}
+                />
+                <Grid item xs={12} md={12} lg={12}>
+                  <Paper
+                    elevation={3}
+                    onClick={handlePartnerAddClick}
+                    {...styles.addPartnerCard}
+                  >
+                    <AddIcon fontSize="large" sx={{ pr: 2 }} />
+                    <Typography {...styles.addPartnerIcon}>
+                      Add Partner
+                    </Typography>
+                  </Paper>
+                </Grid>
+              </Box>
+            </Grid>
+          </Card>
         ) : (
           <PartnersListCard
             partners={rows}
             handlePartnerEditClick={handlePartnerEditClick}
+            handlePartnerAddClick={handlePartnerAddClick}
           />
         )}
       </Grid>
