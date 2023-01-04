@@ -33,6 +33,7 @@ const columns: GridColDef[] = [
     field: "id",
     headerName: "Sr",
     minWidth: 50,
+    hide: false,
   },
   {
     field: "company_name",
@@ -40,6 +41,7 @@ const columns: GridColDef[] = [
     width: 200,
     minWidth: 150,
     maxWidth: 200,
+    hide: false,
   },
   {
     field: "description",
@@ -47,6 +49,7 @@ const columns: GridColDef[] = [
     width: 400,
     minWidth: 150,
     maxWidth: 400,
+    hide: false,
   },
   // { field: "company_name", headerName: "Company Name", minWidth: 150 },
   // { field: "country", headerName: "Country", minWidth: 150 },
@@ -94,6 +97,7 @@ const Partners = () => {
   const [designView, setDesignView] = useState("list");
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
   const openDropDown = Boolean(anchorEl);
+  const [showColumns, setShowColumns] = useState(columns);
 
   const { isLoadingRequest, partners } = partnersStore;
   console.log("partners data is", partners);
@@ -118,6 +122,22 @@ const Partners = () => {
   };
   const handleCloseDropDown = () => {
     setAnchorEl(null);
+  };
+
+  const handleAddColumn = (item: any) => {
+    setShowColumns((prevEl) => {
+      let ind = prevEl.findIndex((value) => value.field === item.field);
+      showColumns[ind].hide = false;
+      return [...prevEl];
+    });
+  };
+
+  const handleRemoveColumn = (item: any) => {
+    setShowColumns((prevEl) => {
+      let ind = prevEl.findIndex((value) => value.field === item.field);
+      showColumns[ind].hide = true;
+      return [...prevEl];
+    });
   };
 
   return (
@@ -197,6 +217,7 @@ const Partners = () => {
             id="basic-menu"
             anchorEl={anchorEl}
             open={openDropDown}
+
             onClose={handleCloseDropDown}
             MenuListProps={{
               "aria-labelledby": "basic-button",
@@ -208,32 +229,54 @@ const Partners = () => {
               },
             }}
           >
-            <MenuItem
-              onClick={handleCloseDropDown}
-              sx={{
-                "&:hover": {
-                  cursor: "default",
-                },
-              }}
-              selected={true}
-            >
-              <ListItemIcon>
-                <DragIndicatorIcon />
-              </ListItemIcon>
-              <ListItemText
+            {showColumns.map((item) => (
+              <MenuItem
                 sx={{
-                  textAlign: "start",
+                  "&:hover": {
+                    cursor: "default",
+                  },
+                  padding: "5px",
+                  border: "solid",
+                  borderWidth: 1,
+                  borderRadius: "5px",
+                  marginTop: "15px",
+                  borderColor: "#DFDFDF",
+                  backgroundColor: !item.hide ? "#EDEDED" : "white",
                 }}
               >
-                Profile
-              </ListItemText>
-              <ListItemIcon>
-                <AddIcon />
-                {/* <CloseIcon/> */}
-              </ListItemIcon>
-            </MenuItem>
-            <MenuItem onClick={handleCloseDropDown}>My account</MenuItem>
-            <MenuItem onClick={handleCloseDropDown}>Logout</MenuItem>
+                <ListItemIcon>
+                  <DragIndicatorIcon />
+                </ListItemIcon>
+                <ListItemText
+                  sx={{
+                    textAlign: "start",
+                  }}
+                >
+                  {item.headerName}
+                </ListItemText>
+                <ListItemIcon
+                  sx={{
+                    "&:hover": {
+                      cursor: "pointer",
+                    },
+                  }}
+                >
+                  {item.hide ? (
+                    <AddIcon
+                      onClick={() => {
+                        handleAddColumn(item);
+                      }}
+                    />
+                  ) : (
+                    <CloseIcon
+                      onClick={() => {
+                        handleRemoveColumn(item);
+                      }}
+                    />
+                  )}
+                </ListItemIcon>
+              </MenuItem>
+            ))}
           </Menu>
           <TextField
             sx={{ ml: 2 }}
@@ -273,7 +316,7 @@ const Partners = () => {
                   getRowId={(row) => row.id}
                   autoHeight={true}
                   rows={rows}
-                  columns={columns}
+                  columns={showColumns}
                   hideFooterPagination={true}
                   hideFooter={true}
                   // pageSize={5}
