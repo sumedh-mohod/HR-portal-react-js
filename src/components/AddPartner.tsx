@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useRef } from "react";
 import { useFormik } from "formik";
 import { addPartnerValidator } from "../utils/validations/auth";
 import {
@@ -11,13 +11,20 @@ import {
   Typography,
   MenuItem,
   Card,
+  IconButton,
 } from "@mui/material";
 import { styles } from "../styles/components/addPartner";
+import { useNavigate } from "react-router-dom";
+import { globalStyles } from "../styles/global";
 // import { useAppDispatch} from "../store/hooks";
 // import { addcompany } from "../store/reducers/companies/companies";
-
+import CheckIcon from "@mui/icons-material/Check";
+import CloseIcon from "@mui/icons-material/Close";
+import AddIcon from "@mui/icons-material/Add";
+import DisabledByDefaultIcon from "@mui/icons-material/DisabledByDefault";
 const AddPartner = () => {
   //   const dispatch = useAppDispatch();
+  const navigate = useNavigate();
   const {
     handleBlur,
     handleChange,
@@ -38,26 +45,53 @@ const AddPartner = () => {
       country: "",
       postalCode: "",
       partnerOnBoardDate: "",
-      pointofContactOrangebits: "",
-      pointofContactPartrner1: "",
-      pointofContactPartrner2: "",
-      pointofContactPartrner3: "",
-      taxID: "",
+      // pointofContactOrangebits: "",
+      // pointofContactPartrner1: "",
+      // pointofContactPartrner2: "",
+      // pointofContactPartrner3: "",
+      id: "",
     },
     validationSchema: addPartnerValidator,
     onSubmit: (values) => {
       console.log("values of add partner", values);
     },
   });
+  const inputRef: any = useRef(null);
+  const handleClick = () => {
+    // open file input box on click of other element
+    inputRef.current.click();
+  };
 
+  const handleFileChange = (event: any) => {
+    const fileObj = event.target.files && event.target.files[0];
+    if (fileObj) {
+      setFieldValue("logo", fileObj.name);
+    }
+    //  reset file input
+    event.target.value = null;
+
+    //  can still access file object here
+    console.log(fileObj);
+    console.log(fileObj.name);
+  };
+  // cancle butn click
+  const handleCancle = () => {
+    navigate(-1);
+  };
   return (
     <Box>
       <form onSubmit={handleSubmit}>
         {/* header Box */}
         <Box {...styles.parentBox}>
-          <Typography variant="h5">Add Partner</Typography>
+          <Typography {...globalStyles.moduleTitle} variant="h5">
+            Add Partner
+          </Typography>
           <Box>
-            <Button {...styles.parentBoxCancleButton} variant="contained">
+            <Button
+              {...styles.parentBoxCancleButton}
+              variant="contained"
+              onClick={handleCancle}
+            >
               Cancle
             </Button>
             <Button
@@ -71,22 +105,40 @@ const AddPartner = () => {
         </Box>
         {/* form fields started */}
         <Card {...styles.card}>
-          <Grid container spacing={2}>
+          <Grid container columnSpacing={3} rowGap={1}>
             {/* uplaod Logo */}
             <Grid item xs={12} md={6} lg={3}>
               <FormControl fullWidth>
                 <FormLabel id="logo">Upload Logo*</FormLabel>
-                <TextField
+                <input
                   name="logo"
+                  style={{ display: "none" }}
+                  ref={inputRef}
+                  type="file"
+                  onChange={handleFileChange}
+                />
+                <TextField
                   variant="filled"
                   size="small"
-                  type={"file"}
                   value={values.logo}
-                  onChange={handleChange}
+                  onChange={handleFileChange}
                   onBlur={handleBlur}
                   error={touched.logo && errors.logo ? true : false}
                   helperText={touched.logo && errors.logo}
-                />
+                  {...styles.logoTextfield}
+                  InputProps={{
+                    sx: { color: "#515151" },
+                    endAdornment: (
+                      <Button
+                        onClick={handleClick}
+                        size="small"
+                        {...styles.selectFileButton}
+                      >
+                        Select File
+                      </Button>
+                    ),
+                  }}
+                ></TextField>
               </FormControl>
             </Grid>
             {/* partner name */}
@@ -164,6 +216,7 @@ const AddPartner = () => {
                 </TextField>
               </FormControl>
             </Grid>
+            {/* select state */}
             <Grid item xs={12} md={6} lg={3}>
               <FormControl fullWidth>
                 <FormLabel id="selectState">Select state*</FormLabel>
@@ -222,7 +275,8 @@ const AddPartner = () => {
                 />
               </FormControl>
             </Grid>
-            <Grid item xs={12} md={6} lg={3}>
+            {/*  Partner OnBoard Date  */}
+            {/* <Grid item xs={12} md={6} lg={3}>
               <FormControl fullWidth>
                 <FormLabel id="partnerOnBoardDate">
                   Partner OnBoard Date
@@ -245,9 +299,9 @@ const AddPartner = () => {
                   }
                 />
               </FormControl>
-            </Grid>
+            </Grid> */}
             {/* Point of Contact Orangebits */}
-            <Grid item xs={12} md={6} lg={3}>
+            {/* <Grid item xs={12} md={6} lg={3}>
               <FormControl fullWidth>
                 <FormLabel id="pointofContactOrangebits">
                   Point of Contact Orangebits
@@ -272,9 +326,9 @@ const AddPartner = () => {
                   }
                 />
               </FormControl>
-            </Grid>
+            </Grid> */}
             {/* Point of Contact Partrner 1  */}
-            <Grid item xs={12} md={6} lg={3}>
+            {/* <Grid item xs={12} md={6} lg={3}>
               <FormControl fullWidth>
                 <FormLabel id="pointofContactPartrner1">
                   Point of Contact Partrner 1
@@ -291,9 +345,9 @@ const AddPartner = () => {
                   //   helperText={touched.abbr && errors.abbr}
                 />
               </FormControl>
-            </Grid>
+            </Grid> */}
             {/* Point of Contact Partrner 2 */}
-            <Grid item xs={12} md={6} lg={3}>
+            {/* <Grid item xs={12} md={6} lg={3}>
               <FormControl fullWidth>
                 <FormLabel id="pointofContactPartrner2">
                   Point of Contact Partrner 2
@@ -310,9 +364,9 @@ const AddPartner = () => {
                   //   helperText={touched.abbr && errors.abbr}
                 />
               </FormControl>
-            </Grid>
+            </Grid> */}
             {/* Point of Contact Partrner 3 */}
-            <Grid item xs={12} md={6} lg={3}>
+            {/* <Grid item xs={12} md={6} lg={3}>
               <FormControl fullWidth>
                 <FormLabel id="pointofContactPartrner3">
                   Point of Contact Partrner 3
@@ -329,26 +383,268 @@ const AddPartner = () => {
                   //   helperText={touched.abbr && errors.abbr}
                 />
               </FormControl>
-            </Grid>
+            </Grid> */}
+            {/* id */}
             <Grid item xs={12} md={6} lg={3}>
               <FormControl fullWidth>
-                <FormLabel id="taxID">Tax ID</FormLabel>
+                <FormLabel id="id">id</FormLabel>
                 <TextField
                   variant="filled"
                   size="small"
                   type={"text"}
-                  name="taxID"
-                  value={values.taxID}
+                  name="id"
+                  value={values.id}
                   onChange={handleChange}
-                  onBlur={handleBlur}
-                  error={touched.taxID && errors.taxID ? true : false}
-                  helperText={touched.taxID && errors.taxID}
+                  // onBlur={handleBlur}
+                  // error={touched.taxID && errors.taxID ? true : false}
+                  // helperText={touched.taxID && errors.taxID}
                 />
               </FormControl>
             </Grid>
           </Grid>
         </Card>
       </form>
+
+      {/* =================taxId is sesion strt========================== */}
+      <Box {...styles.parentBox}>
+        <Typography {...globalStyles.moduleTitle} variant="h5">
+          Tax
+        </Typography>
+      </Box>
+      <Card {...styles.card}>
+        <Grid container columnSpacing={3} rowGap={1}>
+          {/* name */}
+          <Grid item xs={12} md={6} lg={3}>
+            <FormControl fullWidth>
+              <FormLabel id="name">Name</FormLabel>
+              <TextField
+                variant="filled"
+                size="small"
+                type={"text"}
+                name="name"
+                // value={values.name}
+                // onChange={name}
+                //   onBlur={handleBlur}
+                //   error={touched.addressLine1 && errors.addressLine1 ? true : false}
+                //   helperText={touched.addressLine1 && errors.addressLine1}
+              />
+            </FormControl>
+          </Grid>
+          {/* value */}
+          <Grid item xs={12} md={6} lg={3}>
+            <FormControl fullWidth>
+              <FormLabel id="value">value</FormLabel>
+              <TextField
+                variant="filled"
+                size="small"
+                type={"text"}
+                name="value"
+                // value={values.value}
+                // onChange={name}
+                //   onBlur={handleBlur}
+                //   error={touched.addressLine1 && errors.addressLine1 ? true : false}
+                //   helperText={touched.addressLine1 && errors.addressLine1}
+              />
+            </FormControl>
+          </Grid>
+          {/* buttons add or remove */}
+          <Grid item xs={12} md={12} lg={6}>
+            <CheckIcon {...styles.checkIcon} />
+            <CloseIcon {...styles.closeIcon} />
+          </Grid>
+
+          {/* name */}
+          <Grid item xs={12} md={6} lg={3}>
+            <FormControl fullWidth>
+              <FormLabel id="name">Name</FormLabel>
+              <TextField
+                variant="filled"
+                size="small"
+                type={"text"}
+                name="name"
+                // value={values.name}
+                // onChange={name}
+                //   onBlur={handleBlur}
+                //   error={touched.addressLine1 && errors.addressLine1 ? true : false}
+                //   helperText={touched.addressLine1 && errors.addressLine1}
+              />
+            </FormControl>
+          </Grid>
+          {/* value */}
+          <Grid item xs={12} md={6} lg={3}>
+            <FormControl fullWidth>
+              <FormLabel id="value">value</FormLabel>
+              <TextField
+                variant="filled"
+                size="small"
+                type={"text"}
+                name="value"
+                // value={values.value}
+                // onChange={name}
+                //   onBlur={handleBlur}
+                //   error={touched.addressLine1 && errors.addressLine1 ? true : false}
+                //   helperText={touched.addressLine1 && errors.addressLine1}
+              />
+            </FormControl>
+          </Grid>
+          <Grid item xs={12} md={12} lg={6}>
+            <Box sx={{ display: "flex", justifyContent: "baseline" }}>
+              <CheckIcon {...styles.checkIcon} />
+              <CloseIcon {...styles.closeIcon} />
+              <Button {...styles.addButton}>
+                <AddIcon fontSize="small" {...styles.addIcon} />
+                <Typography sx={{ fontSize: "small" }}>Add</Typography>
+              </Button>
+            </Box>
+          </Grid>
+        </Grid>
+      </Card>
+
+      {/* points of contact orangebits */}
+      <Box {...styles.parentBox}>
+        <Typography {...globalStyles.moduleTitle} variant="h5">
+          Points of contact orangebits{" "}
+        </Typography>
+      </Box>
+      <Card {...styles.card}>
+        <Grid container columnSpacing={3} rowGap={1}>
+          {/* name */}
+          <Grid item xs={12} md={6} lg={3}>
+            <FormControl fullWidth>
+              <FormLabel id="name">Name</FormLabel>
+              <TextField
+                variant="filled"
+                size="small"
+                type={"text"}
+                name="name"
+                // value={values.name}
+                // onChange={name}
+                //   onBlur={handleBlur}
+                //   error={touched.addressLine1 && errors.addressLine1 ? true : false}
+                //   helperText={touched.addressLine1 && errors.addressLine1}
+              />
+            </FormControl>
+          </Grid>
+          {/* email id */}
+          <Grid item xs={12} md={6} lg={3}>
+            <FormControl fullWidth>
+              <FormLabel id="email_id">Email id</FormLabel>
+              <TextField
+                variant="filled"
+                size="small"
+                type={"email"}
+                name="email_id"
+                // value={values.value}
+                // onChange={name}
+                //   onBlur={handleBlur}
+                //   error={touched.addressLine1 && errors.addressLine1 ? true : false}
+                //   helperText={touched.addressLine1 && errors.addressLine1}
+              />
+            </FormControl>
+          </Grid>
+          {/* contact no */}
+          <Grid item xs={12} md={6} lg={3}>
+            <FormControl fullWidth>
+              <FormLabel id="contact">Contact</FormLabel>
+              <TextField
+                variant="filled"
+                size="small"
+                type={"phone"}
+                name="contact"
+                // value={values.value}
+                // onChange={name}
+                //   onBlur={handleBlur}
+                //   error={touched.addressLine1 && errors.addressLine1 ? true : false}
+                //   helperText={touched.addressLine1 && errors.addressLine1}
+              />
+            </FormControl>
+          </Grid>
+          {/* buttons add or remove */}
+          <Grid item xs={12} md={6} lg={3}>
+            <Box sx={{ display: "flex", justifyContent: "baseline" }}>
+              <CheckIcon {...styles.checkIcon} />
+              <CloseIcon {...styles.closeIcon} />
+              <Button {...styles.addButton}>
+                <AddIcon fontSize="small" {...styles.addIcon} />
+                <Typography sx={{ fontSize: "small" }}>Add</Typography>
+              </Button>
+            </Box>
+          </Grid>
+        </Grid>
+      </Card>
+
+      {/* point of contact partner */}
+      <Box {...styles.parentBox}>
+        <Typography {...globalStyles.moduleTitle} variant="h5">
+          Points of contact partner{" "}
+        </Typography>
+      </Box>
+      <Card {...styles.card}>
+        <Grid container columnSpacing={3} rowGap={1}>
+          {/* name */}
+          <Grid item xs={12} md={6} lg={3}>
+            <FormControl fullWidth>
+              <FormLabel id="name">Name</FormLabel>
+              <TextField
+                variant="filled"
+                size="small"
+                type={"text"}
+                name="name"
+                // value={values.name}
+                // onChange={name}
+                //   onBlur={handleBlur}
+                //   error={touched.addressLine1 && errors.addressLine1 ? true : false}
+                //   helperText={touched.addressLine1 && errors.addressLine1}
+              />
+            </FormControl>
+          </Grid>
+          {/* email id */}
+          <Grid item xs={12} md={6} lg={3}>
+            <FormControl fullWidth>
+              <FormLabel id="email_id">Email id</FormLabel>
+              <TextField
+                variant="filled"
+                size="small"
+                type={"email"}
+                name="email_id"
+                // value={values.value}
+                // onChange={name}
+                //   onBlur={handleBlur}
+                //   error={touched.addressLine1 && errors.addressLine1 ? true : false}
+                //   helperText={touched.addressLine1 && errors.addressLine1}
+              />
+            </FormControl>
+          </Grid>
+          {/* contact no */}
+          <Grid item xs={12} md={6} lg={3}>
+            <FormControl fullWidth>
+              <FormLabel id="contact">Contact</FormLabel>
+              <TextField
+                variant="filled"
+                size="small"
+                type={"phone"}
+                name="contact"
+                // value={values.value}
+                // onChange={name}
+                //   onBlur={handleBlur}
+                //   error={touched.addressLine1 && errors.addressLine1 ? true : false}
+                //   helperText={touched.addressLine1 && errors.addressLine1}
+              />
+            </FormControl>
+          </Grid>
+          {/* buttons add or remove */}
+          <Grid item xs={12} md={6} lg={3}>
+            <Box sx={{ display: "flex", justifyContent: "baseline" }}>
+              <CheckIcon {...styles.checkIcon} />
+              <CloseIcon {...styles.closeIcon} />
+              <Button {...styles.addButton}>
+                <AddIcon fontSize="small" {...styles.addIcon} />
+                <Typography sx={{ fontSize: "small" }}>Add</Typography>
+              </Button>
+            </Box>
+          </Grid>
+        </Grid>
+      </Card>
     </Box>
   );
 };
