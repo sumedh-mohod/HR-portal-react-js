@@ -7,6 +7,10 @@ import {
   Container,
   IconButton,
   TextField,
+  Menu,
+  MenuItem,
+  ListItemIcon,
+  ListItemText,
 } from "@mui/material";
 import { useAppDispatch, useAppSelector } from "../store/hooks";
 import { getPartners } from "../store/reducers/partners/partners";
@@ -19,6 +23,9 @@ import GridViewOutlinedIcon from "@mui/icons-material/GridViewOutlined";
 import FormatListBulletedOutlinedIcon from "@mui/icons-material/FormatListBulletedOutlined";
 import ViewColumnOutlinedIcon from "@mui/icons-material/ViewColumnOutlined";
 import PartnersListCard from "../components/ListsView/PartnersList";
+import DragIndicatorIcon from "@mui/icons-material/DragIndicator";
+import AddIcon from "@mui/icons-material/Add";
+import CloseIcon from "@mui/icons-material/Close";
 
 const columns: GridColDef[] = [
   { field: "company_name", headerName: "Company Name", minWidth: 150 },
@@ -153,6 +160,10 @@ const Partners = () => {
   const partnersStore = useAppSelector((state) => state.partners);
 
   const [designView, setDesignView] = useState("list");
+  const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
+  const openDropDown = Boolean(anchorEl);
+
+  // const [openDropDown, setOpenDropDown] = React.useState<boolean>(false);
 
   const { isLoadingRequest, partners } = partnersStore;
   console.log("partners data is", partners);
@@ -167,6 +178,13 @@ const Partners = () => {
 
   const handlePartnerEditClick = () => {
     navigate("/partners/add");
+  };
+
+  const handleClickDropDown = (event: React.MouseEvent<HTMLButtonElement>) => {
+    setAnchorEl(event.currentTarget);
+  };
+  const handleCloseDropDown = () => {
+    setAnchorEl(null);
   };
 
   return (
@@ -231,11 +249,57 @@ const Partners = () => {
               borderWidth: "thin",
               cursor: "pointer",
             }}
+            id="basic-button"
+            aria-controls={openDropDown ? "basic-menu" : undefined}
+            aria-haspopup="true"
+            aria-expanded={openDropDown ? "true" : undefined}
+            onClick={handleClickDropDown}
             disabled={designView === "grid" ? true : false}
-            onClick={() => {}}
           >
             <ViewColumnOutlinedIcon />
           </IconButton>
+          <Menu
+            id="basic-menu"
+            anchorEl={anchorEl}
+            open={openDropDown}
+            onClose={handleCloseDropDown}
+            MenuListProps={{
+              "aria-labelledby": "basic-button",
+            }}
+            sx={{
+              "& 	.MuiMenu-paper": {
+                width: "22vw",
+                padding: "10px",
+              },
+            }}
+          >
+            <MenuItem
+              onClick={handleCloseDropDown}
+              sx={{
+                "&:hover": {
+                  cursor: "default",
+                },
+              }}
+              selected={true}
+            >
+              <ListItemIcon>
+                <DragIndicatorIcon />
+              </ListItemIcon>
+              <ListItemText
+                sx={{
+                  textAlign: "start",
+                }}
+              >
+                Profile
+              </ListItemText>
+              <ListItemIcon>
+                <AddIcon />
+                {/* <CloseIcon/> */}
+              </ListItemIcon>
+            </MenuItem>
+            <MenuItem onClick={handleCloseDropDown}>My account</MenuItem>
+            <MenuItem onClick={handleCloseDropDown}>Logout</MenuItem>
+          </Menu>
           <TextField
             sx={{ ml: 2 }}
             size="small"
