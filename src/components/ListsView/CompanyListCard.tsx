@@ -1,5 +1,5 @@
 import React from "react";
-import { Grid, Typography, Paper, Box } from "@mui/material";
+import { Grid, Typography, Paper, Box, Card } from "@mui/material";
 import OrangeBitsIcon from "../Icons/OrangeBitsIcon";
 import { styles } from "../../styles/screens/CompanyList";
 
@@ -13,8 +13,8 @@ const CompanyListCard = ({
   return (
     <>
       {companies?.map((company: any, index: number) => (
-        <Grid item xs={12} md={3} lg={3}>
-          <Paper
+        <Grid item xs={12} sm={12} md={3} lg={3} xl={3}>
+          <Card
             elevation={3}
             onClick={() => handleCompanyEditClick(company)}
             {...styles.companyCard}
@@ -39,7 +39,7 @@ const CompanyListCard = ({
                 </>
               ))}
             </Box>
-          </Paper>
+          </Card>
         </Grid>
       ))}
     </>

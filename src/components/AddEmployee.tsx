@@ -1,6 +1,6 @@
 import React, { useRef } from "react";
 import { useFormik } from "formik";
-import { addEmployeeValidator } from "../utils/validations/auth";
+// import { addEmployeeValidator } from "../utils/validations/auth";
 import {
     Box,
     Button,
@@ -35,7 +35,7 @@ const AddEmployee = () => {
             designation: "",
             emailId: "",
         },
-        validationSchema: addEmployeeValidator,
+        // validationSchema: addEmployeeValidator,
         onSubmit: (values) => {
             console.log("values of add project", values);
         },
