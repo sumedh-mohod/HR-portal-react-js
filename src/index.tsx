@@ -9,6 +9,7 @@ import reportWebVitals from "./reportWebVitals";
 import { store } from "./store/store";
 import App from "./App";
 import AuthContextProvider from "./context/auth";
+import theme from "./theme";
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
@@ -19,8 +20,10 @@ root.render(
     <Provider store={store}>
       <AuthContextProvider>
         <BrowserRouter>
-        <CssBaseline />
-          <App />
+          {/* <ThemeProvider theme={theme}> */}
+            <CssBaseline />
+            <App />
+          {/* </ThemeProvider> */}
         </BrowserRouter>
       </AuthContextProvider>
     </Provider>
