@@ -24,7 +24,7 @@ import { globalStyles } from "../styles/global";
 const columns: GridColDef[] = [
   {
     field: "id",
-    headerName: "#",
+    headerName: "Sr",
     minWidth: 50,
   },
   {
@@ -206,7 +206,7 @@ const Partners = () => {
                       backgroundColor: " #F4F5F6",
                     },
                   }}
-                  getRowId={(row) => row.company_name}
+                  getRowId={(row) => row.id}
                   autoHeight={true}
                   rows={rows}
                   columns={columns}
