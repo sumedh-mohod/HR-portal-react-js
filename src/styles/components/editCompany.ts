@@ -13,13 +13,21 @@ export const styles = {
       borderRadius: "5px",
     },
   },
+  parentBoxCancelButton: {
+    sx: {
+      backgroundColor: "#FFFFFF",
+      color: "black",
+      borderRadius: "5px",
+      marginRight: "10px",
+    },
+  },
   icon: {
     sx: { pr: 1, fontSize: "inheit" },
   },
 
   // company details card
   detailsParentBox: {
-    sx: { display: "flex" },
+    sx: { display: "flex", width: "65%" },
   },
 
   detailsParentSubBox: {

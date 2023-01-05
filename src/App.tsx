@@ -8,7 +8,7 @@ import Dashboard from "./screens/Dashboard";
 import Header from "./components/Header";
 import { Box } from "@mui/material";
 
-import CompanyList from "./screens/CompanyList";
+import CompanyList from "./screens/Companies";
 import Employee from "./screens/Employee";
 import ProjectsList from "./screens/ProjectsList";
 import CompanyAddEdit from "./screens/ComapnyAddEdit";
