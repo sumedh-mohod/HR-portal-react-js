@@ -13,7 +13,7 @@ import {
   Card,
 } from "@mui/material";
 import { styles } from "../styles/components/addCompany";
-import { useAppDispatch} from "../store/hooks";
+import { useAppDispatch } from "../store/hooks";
 import { addcompany } from "../store/reducers/companies/companies";
 
 const AddCompany = () => {
@@ -42,12 +42,12 @@ const AddCompany = () => {
     validationSchema: addCompanyValidator,
     onSubmit: (values) => {
       console.log("values", values);
-       dispatch(addcompany(values))
-      .unwrap()
-      .then((response: any) => {
-       console.log("response from addCompany file",response)
-      })
-      .catch((error:any) => { });
+      dispatch(addcompany(values))
+        .unwrap()
+        .then((response: any) => {
+          console.log("response from addCompany file", response);
+        })
+        .catch((error: any) => {});
     },
   });
 
@@ -55,18 +55,42 @@ const AddCompany = () => {
     <Box>
       <form onSubmit={handleSubmit}>
         <Box {...styles.parentBox}>
-          <Typography variant="h5">New Company</Typography>
-          <Button {...styles.parentBoxButton} variant="contained" type="submit">
-            Save
-          </Button>
+          <Typography
+            variant="h5"
+            sx={{
+              fontFamily: "Montserrat",
+              fontStyle: "normal",
+              fontWeight: "600",
+              fontSize: "22px",
+              lineHeight: "27px",
+              letterSpacing: "0.3px",
+              color: "#252733",
+            }}
+          >
+            Add Company
+          </Typography>
+          <Box>
+            <Button {...styles.parentBoxCancelButton} variant="outlined">
+              Cancel
+            </Button>
+            <Button
+              {...styles.parentBoxSaveButton}
+              variant="contained"
+              type="submit"
+            >
+              Save
+            </Button>
+          </Box>
         </Box>
 
         {/* form fields started */}
         <Card sx={{ mt: 3, mb: 3, p: 5 }}>
-          <Grid container spacing={2}>
+          <Grid container spacing={2} rowGap={3}>
             <Grid item xs={12} md={6} lg={3}>
               <FormControl fullWidth>
-                <FormLabel id="company">Company*</FormLabel>
+                <FormLabel id="company" {...styles.textFieldLabel}>
+                  Company*
+                </FormLabel>
                 <TextField
                   name="company"
                   variant="filled"
@@ -77,12 +101,17 @@ const AddCompany = () => {
                   onBlur={handleBlur}
                   error={touched.company && errors.company ? true : false}
                   helperText={touched.company && errors.company}
+                  InputProps={{
+                    disableUnderline: true,
+                  }}
                 />
               </FormControl>
             </Grid>
             <Grid item xs={12} md={6} lg={3}>
               <FormControl fullWidth>
-                <FormLabel id="defaultLetterHead">Default Letter Head*</FormLabel>
+                <FormLabel id="defaultLetterHead" {...styles.textFieldLabel}>
+                  Default Letter Head*
+                </FormLabel>
                 <TextField
                   variant="filled"
                   size="small"
@@ -91,6 +120,9 @@ const AddCompany = () => {
                   value={values.defaultLetterHead}
                   onChange={handleChange}
                   onBlur={handleBlur}
+                  InputProps={{
+                    disableUnderline: true,
+                  }}
                   error={
                     touched.defaultLetterHead && errors.defaultLetterHead
                       ? true
@@ -104,7 +136,9 @@ const AddCompany = () => {
             </Grid>
             <Grid item xs={12} md={6} lg={3}>
               <FormControl fullWidth>
-                <FormLabel id="abbr">Abbr*</FormLabel>
+                <FormLabel id="abbr" {...styles.textFieldLabel}>
+                  Abbr*
+                </FormLabel>
                 <TextField
                   variant="filled"
                   size="small"
@@ -113,6 +147,9 @@ const AddCompany = () => {
                   value={values.abbr}
                   onChange={handleChange}
                   onBlur={handleBlur}
+                  InputProps={{
+                    disableUnderline: true,
+                  }}
                   error={touched.abbr && errors.abbr ? true : false}
                   helperText={touched.abbr && errors.abbr}
                 />
@@ -120,7 +157,9 @@ const AddCompany = () => {
             </Grid>
             <Grid item xs={12} md={6} lg={3}>
               <FormControl fullWidth>
-                <FormLabel id="taxID">Tax ID</FormLabel>
+                <FormLabel id="taxID" {...styles.textFieldLabel}>
+                  Tax ID
+                </FormLabel>
                 <TextField
                   variant="filled"
                   size="small"
@@ -129,6 +168,9 @@ const AddCompany = () => {
                   value={values.taxID}
                   onChange={handleChange}
                   onBlur={handleBlur}
+                  InputProps={{
+                    disableUnderline: true,
+                  }}
                   error={touched.taxID && errors.taxID ? true : false}
                   helperText={touched.taxID && errors.taxID}
                 />
@@ -136,7 +178,9 @@ const AddCompany = () => {
             </Grid>
             <Grid item xs={12} md={6} lg={3}>
               <FormControl fullWidth>
-                <FormLabel id="defaultCurrency">Default Currency*</FormLabel>
+                <FormLabel id="defaultCurrency" {...styles.textFieldLabel}>
+                  Default Currency*
+                </FormLabel>
                 <TextField
                   variant="filled"
                   size="small"
@@ -145,6 +189,9 @@ const AddCompany = () => {
                   value={values.defaultCurrency}
                   onChange={handleChange}
                   onBlur={handleBlur}
+                  InputProps={{
+                    disableUnderline: true,
+                  }}
                   error={
                     touched.defaultCurrency && errors.defaultCurrency
                       ? true
@@ -156,7 +203,9 @@ const AddCompany = () => {
             </Grid>
             <Grid item xs={12} md={6} lg={3}>
               <FormControl fullWidth>
-                <FormLabel id="domain">Domain</FormLabel>
+                <FormLabel id="domain" {...styles.textFieldLabel}>
+                  Domain
+                </FormLabel>
                 <TextField
                   variant="filled"
                   size="small"
@@ -165,6 +214,9 @@ const AddCompany = () => {
                   value={values.domain}
                   onChange={handleChange}
                   onBlur={handleBlur}
+                  InputProps={{
+                    disableUnderline: true,
+                  }}
                   error={touched.domain && errors.domain ? true : false}
                   helperText={touched.domain && errors.domain}
                 />
@@ -172,7 +224,9 @@ const AddCompany = () => {
             </Grid>
             <Grid item xs={12} md={6} lg={3}>
               <FormControl fullWidth>
-                <FormLabel id="country">Country*</FormLabel>
+                <FormLabel id="country" {...styles.textFieldLabel}>
+                  Country*
+                </FormLabel>
                 <TextField
                   select
                   name="country"
@@ -182,6 +236,9 @@ const AddCompany = () => {
                   value={values.country}
                   onChange={handleChange}
                   onBlur={handleBlur}
+                  InputProps={{
+                    disableUnderline: true,
+                  }}
                   error={touched.country && errors.country ? true : false}
                   helperText={touched.country && errors.country}
                 >
@@ -191,7 +248,7 @@ const AddCompany = () => {
             </Grid>
             <Grid item xs={12} md={6} lg={3}>
               <FormControl fullWidth>
-                <FormLabel id="dateOfEstablishment">
+                <FormLabel id="dateOfEstablishment" {...styles.textFieldLabel}>
                   Date of Establishment
                 </FormLabel>
                 <TextField
@@ -202,6 +259,9 @@ const AddCompany = () => {
                   value={values.dateOfEstablishment}
                   onChange={handleChange}
                   onBlur={handleBlur}
+                  InputProps={{
+                    disableUnderline: true,
+                  }}
                   error={
                     touched.dateOfEstablishment && errors.dateOfEstablishment
                       ? true
@@ -215,7 +275,7 @@ const AddCompany = () => {
             </Grid>
             <Grid item xs={12} md={6} lg={6}>
               <FormControl fullWidth>
-                <FormLabel id="address">
+                <FormLabel id="address" {...styles.textFieldLabel}>
                   Address*
                 </FormLabel>
                 <TextField
@@ -226,21 +286,18 @@ const AddCompany = () => {
                   value={values.address}
                   onChange={handleChange}
                   onBlur={handleBlur}
-                  error={
-                    touched.address && errors.address
-                      ? true
-                      : false
-                  }
-                  helperText={
-                    touched.address && errors.address
-                  }
+                  InputProps={{
+                    disableUnderline: true,
+                  }}
+                  error={touched.address && errors.address ? true : false}
+                  helperText={touched.address && errors.address}
                 />
               </FormControl>
             </Grid>
           </Grid>
         </Card>
       </form>
-    </Box >
+    </Box>
   );
 };
 
