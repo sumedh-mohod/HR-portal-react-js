@@ -14,6 +14,8 @@ export const styles = {
   },
   parentBoxCancelButton: {
     sx: {
+      backgroundColor: "#FFFFFF",
+      color: "black",
       borderRadius: "5px",
       marginRight: "10px",
     },

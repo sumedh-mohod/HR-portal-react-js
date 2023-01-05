@@ -79,6 +79,21 @@ export const companylist = createAsyncThunk(
         country: "india",
         dateofEstiblishment: "2 October, 2023",
       },
+      {
+        name: "Orangebits Software Technologies(India) Pvt. Ltd",
+        description: [
+          { PAN: "PAN - AYAPN7894N" },
+          { TAN: "TAN - AYAPN7894N" },
+          { GST: "GST - AYAPN7894N" },
+        ],
+        defaultLetterHead: "ORNG123",
+        defaultCurrency: "Rupees",
+        domain: "orange.com",
+        abbr: "ORNG123",
+        taxID: "TAX123",
+        country: "india",
+        dateofEstiblishment: "2 October, 2023",
+      },
     ];
     //returned a response to reducer
     return response;

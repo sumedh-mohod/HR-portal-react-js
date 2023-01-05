@@ -15,9 +15,11 @@ import {
 import { styles } from "../styles/components/addCompany";
 import { useAppDispatch } from "../store/hooks";
 import { addcompany } from "../store/reducers/companies/companies";
+import { useNavigate } from "react-router-dom";
 
 const AddCompany = () => {
   const dispatch = useAppDispatch();
+  const navigate = useNavigate();
   const {
     handleBlur,
     handleChange,
@@ -47,9 +49,14 @@ const AddCompany = () => {
         .then((response: any) => {
           console.log("response from addCompany file", response);
         })
-        .catch((error: any) => {});
+        .catch((error: any) => { });
     },
   });
+
+  // cancle butn click
+  const handleCancle = () => {
+    navigate(-1);
+  };
 
   return (
     <Box>
@@ -70,8 +77,12 @@ const AddCompany = () => {
             Add Company
           </Typography>
           <Box>
-            <Button {...styles.parentBoxCancelButton} variant="outlined">
-              Cancel
+            <Button
+              {...styles.parentBoxCancelButton}
+              variant="contained"
+              onClick={handleCancle}
+            >
+              Cancle
             </Button>
             <Button
               {...styles.parentBoxSaveButton}

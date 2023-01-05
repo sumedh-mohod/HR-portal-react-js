@@ -26,8 +26,8 @@ const HolidayCard = () => {
                   name="holidayname"
                   variant="filled"
                   size="small"
-                  // value={values.holidayname}
-                  // onChange={handleChange}
+                // value={values.holidayname}
+                // onChange={handleChange}
                 />
               </FormControl>
             </Grid>
@@ -39,11 +39,11 @@ const HolidayCard = () => {
                   name="selectDate"
                   variant="filled"
                   size="small"
-                  // value={values.selectDate}
-                  // onChange={handleChange}
-                  // onBlur={handleBlur}
-                  // error={touched.selectDate && errors.selectDate ? true : false}
-                  // helperText={touched.selectDate && errors.selectDate}
+                // value={values.selectDate}
+                // onChange={handleChange}
+                // onBlur={handleBlur}
+                // error={touched.selectDate && errors.selectDate ? true : false}
+                // helperText={touched.selectDate && errors.selectDate}
                 />
               </FormControl>
             </Grid>
@@ -68,8 +68,8 @@ const HolidayCard = () => {
                   name="holidayname"
                   variant="filled"
                   size="small"
-                  // value={values.holidayname}
-                  // onChange={handleChange}
+                // value={values.holidayname}
+                // onChange={handleChange}
                 />
               </FormControl>
             </Grid>
@@ -81,11 +81,11 @@ const HolidayCard = () => {
                   name="selectDate"
                   variant="filled"
                   size="small"
-                  // value={values.selectDate}
-                  // onChange={handleChange}
-                  // onBlur={handleBlur}
-                  // error={touched.selectDate && errors.selectDate ? true : false}
-                  // helperText={touched.selectDate && errors.selectDate}
+                // value={values.selectDate}
+                // onChange={handleChange}
+                // onBlur={handleBlur}
+                // error={touched.selectDate && errors.selectDate ? true : false}
+                // helperText={touched.selectDate && errors.selectDate}
                 />
               </FormControl>
             </Grid>
