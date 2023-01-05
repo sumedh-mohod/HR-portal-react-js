@@ -22,7 +22,7 @@ import SearchIcon from "@mui/icons-material/Search";
 import GridViewOutlinedIcon from "@mui/icons-material/GridViewOutlined";
 import FormatListBulletedOutlinedIcon from "@mui/icons-material/FormatListBulletedOutlined";
 import ViewColumnOutlinedIcon from "@mui/icons-material/ViewColumnOutlined";
-import PartnersListCard from "../components/ListView/PartnersList";
+import PartnersListCard from "../components/GridView/PartnersCard";
 import DragIndicatorIcon from "@mui/icons-material/DragIndicator";
 import AddIcon from "@mui/icons-material/Add";
 import CloseIcon from "@mui/icons-material/Close";
@@ -147,6 +147,7 @@ const Partners = () => {
         <Typography variant="h5" {...globalStyles.moduleTitle}>
           Partners
         </Typography>
+        
         <Box
           sx={{
             display: "flex",
@@ -288,6 +289,7 @@ const Partners = () => {
             }}
           />
         </Box>
+
       </Box>
 
       <Grid container spacing={0} direction="row" style={{ minHeight: "50vh" }}>
