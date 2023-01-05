@@ -4,7 +4,7 @@ import { actionTypes } from "../../actionTypes";
 //addcompany action
 export const addcompany = createAsyncThunk(
   actionTypes.ADD_COMPANY,
-  async (params:any) => {
+  async (params: any) => {
     //response of addcompany api
     const response = {
       addcompany: true,
@@ -121,7 +121,6 @@ const Companies = createSlice({
       //state updated in fulfilled state
       state.companies = action.payload;
       state.isLoadingRequest = false;
-      
     });
     // reducer when api call is rejected
     builder.addCase(addcompany.rejected, (state: StateI) => {

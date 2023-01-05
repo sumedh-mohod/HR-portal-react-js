@@ -19,7 +19,7 @@ root.render(
     <Provider store={store}>
       <AuthContextProvider>
         <BrowserRouter>
-        <CssBaseline />
+          <CssBaseline />
           <App />
         </BrowserRouter>
       </AuthContextProvider>
