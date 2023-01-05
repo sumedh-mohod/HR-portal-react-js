@@ -13,9 +13,11 @@ import {
   Card,
 } from "@mui/material";
 import { styles } from "../styles/components/addProject";
+import { useNavigate } from "react-router-dom";
 // import { useAppDispatch} from "../store/hooks";
 
 const AddProject = () => {
+  const navigate = useNavigate();
   //   const dispatch = useAppDispatch();
   const {
     handleBlur,
@@ -60,6 +62,10 @@ const AddProject = () => {
     console.log(fileObj);
     console.log(fileObj.name);
   };
+    // cancle butn click
+    const handleCancle = () => {
+      navigate(-1);
+    };
 
   return (
     <Box>
@@ -68,7 +74,7 @@ const AddProject = () => {
         <Box {...styles.parentBox}>
           <Typography variant="h5">Add Project</Typography>
           <Box>
-            <Button {...styles.parentBoxCancleButton} variant="contained">
+            <Button {...styles.parentBoxCancleButton} variant="contained"   onClick={handleCancle}>
               Cancle
             </Button>
             <Button
@@ -82,7 +88,7 @@ const AddProject = () => {
         </Box>
         {/* form fields started */}
         <Card {...styles.card}>
-          <Grid container spacing={2}>
+          <Grid container columnSpacing={3} rowGap={1}>
             {/* uplaod Logo */}
             <Grid item xs={12} md={6} lg={3}>
               <FormControl fullWidth>
