@@ -5,7 +5,7 @@ import SearchIcon from "@mui/icons-material/Search";
 import { Container } from "@mui/system";
 import { useNavigate } from "react-router-dom";
 import { styles } from "../styles/screens/EmployeeList";
-import EmployeeListCard from "../components/ListsView/EmployeeListCard";
+import EmployeeListCard from "../components/ListView/EmployeeListCard";
 
 const EmployeeList = () => {
 

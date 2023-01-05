@@ -22,7 +22,7 @@ import SearchIcon from "@mui/icons-material/Search";
 import GridViewOutlinedIcon from "@mui/icons-material/GridViewOutlined";
 import FormatListBulletedOutlinedIcon from "@mui/icons-material/FormatListBulletedOutlined";
 import ViewColumnOutlinedIcon from "@mui/icons-material/ViewColumnOutlined";
-import PartnersListCard from "../components/ListsView/PartnersList";
+import PartnersListCard from "../components/ListView/PartnersList";
 import DragIndicatorIcon from "@mui/icons-material/DragIndicator";
 import AddIcon from "@mui/icons-material/Add";
 import CloseIcon from "@mui/icons-material/Close";
@@ -217,7 +217,6 @@ const Partners = () => {
             id="basic-menu"
             anchorEl={anchorEl}
             open={openDropDown}
-
             onClose={handleCloseDropDown}
             MenuListProps={{
               "aria-labelledby": "basic-button",
@@ -293,6 +292,7 @@ const Partners = () => {
 
       <Grid container spacing={0} direction="row" style={{ minHeight: "50vh" }}>
         {designView === "list" ? (
+          
           <Card sx={{ marginTop: "35px", p: 0 }}>
             <Grid item xs={12} xl={12} lg={12}>
               <Box
@@ -319,10 +319,6 @@ const Partners = () => {
                   columns={showColumns}
                   hideFooterPagination={true}
                   hideFooter={true}
-                  // pageSize={5}
-                  // rowsPerPageOptions={[5]}
-                  // checkboxSelection
-                  // components={{ Toolbar: GridToolbar }}
                 />
                 <Grid item xs={12} md={12} lg={12}>
                   <Paper
@@ -339,6 +335,7 @@ const Partners = () => {
               </Box>
             </Grid>
           </Card>
+
         ) : (
           <PartnersListCard
             partners={rows}

@@ -7,7 +7,7 @@ import { useNavigate } from "react-router-dom";
 import { styles } from "../styles/screens/CompanyList";
 import { useAppDispatch, useAppSelector } from "../store/hooks";
 import { companylist } from "../store/reducers/companies/companies";
-import CompanyListCard from "../components/ListsView/CompanyListCard";
+import CompanyListCard from "../components/ListView/CompanyListCard";
 import GridViewOutlinedIcon from "@mui/icons-material/GridViewOutlined";
 import FormatListBulletedOutlinedIcon from "@mui/icons-material/FormatListBulletedOutlined";
 import ViewColumnOutlinedIcon from "@mui/icons-material/ViewColumnOutlined";
@@ -33,9 +33,7 @@ const CompanyList = () => {
   useEffect(() => {
     dispatch(companylist())
       .unwrap()
-      .then((response: any) => {
-        // navigate("/companies");
-      })
+      .then((response: any) => {})
       .catch((error) => {});
   }, []);
 
