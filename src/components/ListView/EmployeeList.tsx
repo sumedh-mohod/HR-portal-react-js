@@ -41,7 +41,7 @@ const EmployeeList = ({
             hideFooterPagination={true}
             hideFooter={true}
           />
-          <Grid item xs={12} md={12} lg={12}>
+          {/* <Grid item xs={12} md={12} lg={12}>
             <Paper
               elevation={3}
               onClick={handleEmployeeAddClick}
@@ -50,7 +50,7 @@ const EmployeeList = ({
               <AddIcon fontSize="large" sx={{ pr: 2 }} />
               <Typography {...styles.addEmployeeIcon}>Add Employee</Typography>
             </Paper>
-          </Grid>
+          </Grid> */}
         </Box>
       </Grid>
     </Card>

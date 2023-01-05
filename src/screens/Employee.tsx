@@ -13,6 +13,7 @@ import {
   ListItemIcon,
   ListItemText,
   Paper,
+  Button,
 } from "@mui/material";
 import { useAppDispatch, useAppSelector } from "../store/hooks";
 // import { getEmployee} from "../store/reducers/employee/employee";
@@ -94,6 +95,69 @@ const rows = [
     Designation: "Senior Consultant",
     Technology: "IOS Developer, Swift",
   },
+  {
+    id: 4,
+    name: "Nikhil Thaware",
+    EmployeeId: "ORNG123456",
+    Designation: "Senior Consultant",
+    Technology: "IOS Developer, Swift",
+  },
+  {
+    id: 1,
+    name: "Nikhil Thaware",
+    EmployeeId: "ORNG123456",
+    Designation: "Senior Consultant",
+    Technology: "IOS Developer, Swift",
+  },
+  {
+    id: 2,
+    name: "Nikhil Thaware",
+    EmployeeId: "ORNG123456",
+    Designation: "Senior Consultant",
+    Technology: "IOS Developer, Swift",
+  },
+  {
+    id: 3,
+    name: "Nikhil Thaware",
+    EmployeeId: "ORNG123456",
+    Designation: "Senior Consultant",
+    Technology: "IOS Developer, Swift",
+  },
+  {
+    id: 4,
+    name: "Nikhil Thaware",
+    EmployeeId: "ORNG123456",
+    Designation: "Senior Consultant",
+    Technology: "IOS Developer, Swift",
+  },
+  {
+    id: 1,
+    name: "Nikhil Thaware",
+    EmployeeId: "ORNG123456",
+    Designation: "Senior Consultant",
+    Technology: "IOS Developer, Swift",
+  },
+  {
+    id: 2,
+    name: "Nikhil Thaware",
+    EmployeeId: "ORNG123456",
+    Designation: "Senior Consultant",
+    Technology: "IOS Developer, Swift",
+  },
+  {
+    id: 3,
+    name: "Nikhil Thaware",
+    EmployeeId: "ORNG123456",
+    Designation: "Senior Consultant",
+    Technology: "IOS Developer, Swift",
+  },
+  {
+    id: 4,
+    name: "Nikhil Thaware",
+    EmployeeId: "ORNG123456",
+    Designation: "Senior Consultant",
+    Technology: "IOS Developer, Swift",
+  },
 ];
 
 const Employee = () => {
@@ -115,10 +179,10 @@ const Employee = () => {
 
   // add and edit functions
   const handleEmployeeEditClick = () => {
-    navigate("/employee/edit");
+    navigate("/employees/edit");
   };
   const handleEmployeeAddClick = () => {
-    navigate("/employee/add");
+    navigate("/employees/add");
   };
 
   const handleClickDropDown = (event: React.MouseEvent<HTMLButtonElement>) => {
@@ -157,6 +221,23 @@ const Employee = () => {
             display: "flex",
           }}
         >
+          <Button
+            variant="contained"
+            onClick={handleEmployeeAddClick}
+            startIcon={<AddIcon />}
+            sx={{
+              background: "#F58634",
+              borderRadius: "5px",
+              mr: "10px",
+              cursor: "pointer",
+              fontSize: "14px",
+              textTransform: "inherit",
+            }}
+          >
+            {" "}
+            Add
+          </Button>
+
           <CustomizationButtons
             setDesignView={setDesignView}
             handleClickDropDown={handleClickDropDown}
@@ -180,7 +261,7 @@ const Employee = () => {
           />
         </Box>
       </Box>
-      <Grid container spacing={0} direction="row" style={{ minHeight: "50vh" }}>
+      <Box>
         {designView === "list" ? (
           <EmployeeList
             handleEmployeeAddClick={handleEmployeeAddClick}
@@ -195,7 +276,7 @@ const Employee = () => {
             index={undefined}
           />
         )}
-      </Grid>
+      </Box>
     </Container>
   );
 };

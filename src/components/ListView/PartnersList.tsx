@@ -20,7 +20,7 @@ const PartnersList = ({
         <Box
           sx={{
             minWidth: "90vw",
-            maxWidth: "90vw",
+            maxWidth: "",
             margin: 0,
           }}
         >

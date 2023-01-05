@@ -14,6 +14,7 @@ import {
 } from "@mui/material";
 import { styles } from "../styles/components/addEmployee";
 import { useNavigate } from "react-router-dom";
+import { globalStyles } from "../styles/global";
 // import { useAppDispatch} from "../store/hooks";
 const AddEmployee = () => {
   const navigate = useNavigate();
@@ -67,7 +68,7 @@ const AddEmployee = () => {
       <form onSubmit={handleSubmit}>
         {/* header Box */}
         <Box {...styles.parentBox}>
-          <Typography variant="h5">Add Employee</Typography>
+          <Typography variant="h5" {...globalStyles.moduleTitle}>Add Employee</Typography>
           <Box>
             <Button {...styles.parentBoxCancleButton} variant="contained">
               Cancle
@@ -82,12 +83,12 @@ const AddEmployee = () => {
           </Box>
         </Box>
         {/* form fields started */}
-        <Card {...styles.card}>
-          <Grid container columnSpacing={3} rowGap={1}>
+        <Card sx={{ mt: 3, mb: 3, p: 5 }}>
+          <Grid container columnSpacing={3} rowGap={3}>
             {/* uplaod Logo */}
             <Grid item xs={12} md={6} lg={3}>
               <FormControl fullWidth>
-                <FormLabel id="logo">Upload Logo*</FormLabel>
+                <FormLabel id="logo" {...styles.textFieldLabel}>Upload Logo*</FormLabel>
                 <input
                   name="logo"
                   style={{ display: "none" }}
@@ -117,6 +118,7 @@ const AddEmployee = () => {
                         Select File
                       </Button>
                     ),
+                    disableUnderline: true,
                   }}
                 ></TextField>
               </FormControl>
@@ -124,7 +126,7 @@ const AddEmployee = () => {
             {/* Display name */}
             <Grid item xs={12} md={6} lg={3}>
               <FormControl fullWidth>
-                <FormLabel id="displayName">Display Name*</FormLabel>
+                <FormLabel id="displayName"  {...styles.textFieldLabel}>Display Name*</FormLabel>
                 <TextField
                   type={"text"}
                   variant="filled"
@@ -137,13 +139,16 @@ const AddEmployee = () => {
                     touched.DisplayName && errors.DisplayName ? true : false
                   }
                   helperText={touched.DisplayName && errors.DisplayName}
+                  InputProps={{
+                    disableUnderline: true,
+                  }}
                 />
               </FormControl>
             </Grid>
             {/* First name */}
             <Grid item xs={12} md={6} lg={3}>
               <FormControl fullWidth>
-                <FormLabel id="firstName">First Name</FormLabel>
+                <FormLabel id="firstName"  {...styles.textFieldLabel}>First Name</FormLabel>
                 <TextField
                   type={"text"}
                   variant="filled"
@@ -151,13 +156,16 @@ const AddEmployee = () => {
                   name="firstName"
                   value={values.firstName}
                   onChange={handleChange}
+                  InputProps={{
+                    disableUnderline: true,
+                  }}
                 />
               </FormControl>
             </Grid>
             {/* last name*/}
             <Grid item xs={12} md={6} lg={3}>
               <FormControl fullWidth>
-                <FormLabel id="lastName">Last Name</FormLabel>
+                <FormLabel id="lastName"  {...styles.textFieldLabel}>Last Name</FormLabel>
                 <TextField
                   type={"text"}
                   variant="filled"
@@ -165,13 +173,16 @@ const AddEmployee = () => {
                   name="lastName"
                   value={values.lastName}
                   onChange={handleChange}
+                  InputProps={{
+                    disableUnderline: true,
+                  }}
                 />
               </FormControl>
             </Grid>
             {/* employee id  */}
             <Grid item xs={12} md={6} lg={3}>
               <FormControl fullWidth>
-                <FormLabel id="employeeId">Employee Id</FormLabel>
+                <FormLabel id="employeeId"  {...styles.textFieldLabel}>Employee Id</FormLabel>
                 <TextField
                   type={"text"}
                   variant="filled"
@@ -179,13 +190,16 @@ const AddEmployee = () => {
                   name="employeeId"
                   value={values.employeeId}
                   onChange={handleChange}
+                  InputProps={{
+                    disableUnderline: true,
+                  }}
                 />
               </FormControl>
             </Grid>
             {/* designation */}
             <Grid item xs={12} md={6} lg={3}>
               <FormControl fullWidth>
-                <FormLabel id="designation">Designation</FormLabel>
+                <FormLabel id="designation"  {...styles.textFieldLabel}>Designation</FormLabel>
                 <TextField
                   type={"text"}
                   variant="filled"
@@ -193,13 +207,16 @@ const AddEmployee = () => {
                   name="designation"
                   value={values.designation}
                   onChange={handleChange}
+                  InputProps={{
+                    disableUnderline: true,
+                  }}
                 />
               </FormControl>
             </Grid>
             {/* email id */}
             <Grid item xs={12} md={6} lg={3}>
               <FormControl fullWidth>
-                <FormLabel id="emailId">Email id</FormLabel>
+                <FormLabel id="emailId"  {...styles.textFieldLabel}>Email id</FormLabel>
                 <TextField
                   type={"text"}
                   variant="filled"
@@ -207,6 +224,9 @@ const AddEmployee = () => {
                   name="emailId"
                   value={values.emailId}
                   onChange={handleChange}
+                  InputProps={{
+                    disableUnderline: true,
+                  }}
                 />
               </FormControl>
             </Grid>
