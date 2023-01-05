@@ -27,6 +27,7 @@ import DragIndicatorIcon from "@mui/icons-material/DragIndicator";
 import AddIcon from "@mui/icons-material/Add";
 import CloseIcon from "@mui/icons-material/Close";
 import { globalStyles } from "../styles/global";
+import PartnersList from "../components/ListView/PartnersList";
 
 const columns: GridColDef[] = [
   {
@@ -147,7 +148,7 @@ const Partners = () => {
         <Typography variant="h5" {...globalStyles.moduleTitle}>
           Partners
         </Typography>
-        
+
         <Box
           sx={{
             display: "flex",
@@ -289,55 +290,15 @@ const Partners = () => {
             }}
           />
         </Box>
-
       </Box>
 
       <Grid container spacing={0} direction="row" style={{ minHeight: "50vh" }}>
         {designView === "list" ? (
-          
-          <Card sx={{ marginTop: "35px", p: 0 }}>
-            <Grid item xs={12} xl={12} lg={12}>
-              <Box
-                sx={{
-                  minWidth: "90vw",
-                  maxWidth: "90vw",
-                  // mt: "50px",
-                  margin: 0,
-                }}
-              >
-                <DataGrid
-                  sx={{
-                    borderRadius: "0",
-                    ".MuiDataGrid-columnSeparator": {
-                      display: "none",
-                    },
-                    "& .MuiDataGrid-columnHeaders": {
-                      backgroundColor: " #F4F5F6",
-                    },
-                  }}
-                  getRowId={(row) => row.id}
-                  autoHeight={true}
-                  rows={rows}
-                  columns={showColumns}
-                  hideFooterPagination={true}
-                  hideFooter={true}
-                />
-                <Grid item xs={12} md={12} lg={12}>
-                  <Paper
-                    elevation={3}
-                    onClick={handlePartnerAddClick}
-                    {...styles.addPartnerCard}
-                  >
-                    <AddIcon fontSize="large" sx={{ pr: 2 }} />
-                    <Typography {...styles.addPartnerIcon}>
-                      Add Partner
-                    </Typography>
-                  </Paper>
-                </Grid>
-              </Box>
-            </Grid>
-          </Card>
-
+          <PartnersList
+            handlePartnerAddClick={handlePartnerAddClick}
+            showColumns={showColumns}
+            rows={rows}
+          />
         ) : (
           <PartnersListCard
             partners={rows}
