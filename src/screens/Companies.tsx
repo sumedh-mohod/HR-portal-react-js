@@ -16,7 +16,7 @@ import DragIndicatorIcon from "@mui/icons-material/DragIndicator";
 import AddIcon from "@mui/icons-material/Add";
 import CloseIcon from "@mui/icons-material/Close";
 import { globalStyles } from "../styles/global";
-import CompaniesList from "../components/ListView/CompaniesList";
+import CompaniesList from "../components/ListView/CompanyList";
 
 const columns: GridColDef[] = [
   {

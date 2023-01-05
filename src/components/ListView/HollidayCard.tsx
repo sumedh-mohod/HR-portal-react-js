@@ -3,7 +3,7 @@ import { Card, Grid, Typography } from '@mui/material'
 import { Box } from '@mui/system'
 import { styles } from '../../styles/components/hollidayDetailsCard'
 
-const HollidayDetailsCard = () => {
+const HollidayCard = () => {
     return (
         <Box>
             <Card sx={{ mt: 3, mb: 3, p: 5, width: "80vw" }}>
@@ -26,4 +26,4 @@ const HollidayDetailsCard = () => {
     )
 }
 
-export default HollidayDetailsCard
+export default HollidayCard
