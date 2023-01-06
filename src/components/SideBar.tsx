@@ -79,7 +79,7 @@ const SideBar = ({ open, setOpen }: any) => {
   };
 
   const handleDrawerNavigation = (item: any) => {
-    const filerted = Menus?.map((value: any) =>
+    const filerted = sideBarMenus?.map((value: any) =>
       item.id === value.id ? { ...value, active: !value.active } : value
     );
 
@@ -112,6 +112,7 @@ const SideBar = ({ open, setOpen }: any) => {
       <List>
         {sideBarMenus.map((text: any, index: number) => {
           const ICON = text.icon;
+          
           return (
             <>
               <ListItem
@@ -128,9 +129,6 @@ const SideBar = ({ open, setOpen }: any) => {
                     justifyContent: open ? "initial" : "center",
                     px: 2.5,
                   }}
-                  onClick={() => {
-                    handleDrawerNavigation(text);
-                  }}
                 >
                   <ListItemIcon
                     sx={{
@@ -143,6 +141,9 @@ const SideBar = ({ open, setOpen }: any) => {
                     <ICON />
                   </ListItemIcon>
                   <ListItemText
+                    onClick={() => {
+                      handleDrawerNavigation(text);
+                    }}
                     primary={text.name}
                     sx={{ opacity: open ? 1 : 0 }}
                   />
