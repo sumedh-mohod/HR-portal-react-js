@@ -1,6 +1,9 @@
-import React from "react";
-import { Grid, Typography, Paper, Box, Card } from "@mui/material";
-import Pagination from "@mui/material/Pagination";
+import { Pagination, Box, PaginationItem } from "@mui/material";
+
+import KeyboardDoubleArrowRightIcon from "@mui/icons-material/KeyboardDoubleArrowRight";
+import KeyboardDoubleArrowLeftIcon from "@mui/icons-material/KeyboardDoubleArrowLeft";
+import KeyboardArrowLeftIcon from "@mui/icons-material/KeyboardArrowLeft";
+import KeyboardArrowRightIcon from "@mui/icons-material/KeyboardArrowRight";
 
 const Paginations = (props: any) => {
   const { handlePageChange } = props;
@@ -20,11 +23,22 @@ const Paginations = (props: any) => {
         variant="outlined"
         shape="rounded"
         onChange={handlePageChange}
+        renderItem={(item) => (
+          <PaginationItem
+            slots={{
+              previous: KeyboardArrowLeftIcon,
+              next: KeyboardArrowRightIcon,
+              first: KeyboardDoubleArrowLeftIcon,
+              last: KeyboardDoubleArrowRightIcon,
+            }}
+            {...item}
+          />
+        )}
         sx={{
-          //   "& .MuiPaginationItem": {
-          //     color: "#1C1B1F",
-          // background: "#D9D9D9",
-          //   },
+          "& .MuiPaginationItem": {
+            color: "#1C1B1F",
+            background: "#D9D9D9",
+          },
           "& .Mui-selected": {
             background: "#F58634",
             color: "#FFFFFF",
