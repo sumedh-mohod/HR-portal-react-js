@@ -14,10 +14,10 @@ const CompanyCard = ({
   handleCompanyAddClick: any;
 }) => {
   return (
-    <>
+    <Box>
       <Grid container spacing={2} sx={{ mt: 1 }}>
         {companies?.map((company: any, index: number) => (
-          <Grid item xs={12} sm={12} md={3} lg={3} xl={3}>
+          <Grid item xs={12} sm={12} md={6} lg={3} xl={3}>
             <Card
               elevation={3}
               onClick={() => handleCompanyEditClick(company)}
@@ -44,20 +44,8 @@ const CompanyCard = ({
             </Card>
           </Grid>
         ))}
-        {/* <Grid item xs={12} md={3} lg={3}>
-        <Paper
-          elevation={3}
-          onClick={handleCompanyAddClick}
-          {...styles.addCompanyCard}
-        >
-          <AddIcon fontSize="large" sx={{ pr: 2 }} />
-          <Typography {...globalStyles.moduleTitle} {...styles.addCompanyIcon}>
-            Add Company
-          </Typography>
-        </Paper>
-      </Grid> */}
       </Grid>
-    </>
+    </Box>
   );
 };
 

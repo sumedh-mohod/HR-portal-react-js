@@ -25,14 +25,15 @@ const columns: GridColDef[] = [
     field: "id",
     headerName: "Sr",
     minWidth: 50,
+    width: 100,
     hide: false,
   },
   {
     field: "name",
     headerName: "Company Name",
-    width: 200,
-    minWidth: 150,
-    maxWidth: 200,
+    width: 300,
+    minWidth: 200,
+    maxWidth: 400,
     hide: false,
   },
   {
@@ -130,8 +131,8 @@ const CompanyList = () => {
   useEffect(() => {
     dispatch(companylist())
       .unwrap()
-      .then((response: any) => {})
-      .catch((error) => {});
+      .then((response: any) => { })
+      .catch((error) => { });
   }, []);
 
   const handleCompanyAddClick = () => {
@@ -175,7 +176,7 @@ const CompanyList = () => {
   };
 
   return (
-    <Container>
+    <Box sx={{ display: "flex", flexDirection: "column" }}>
       {/* box for search bar and company */}
       <Box {...styles.companyTitleBox}>
         <Typography variant="h5" {...globalStyles.moduleTitle}>
@@ -227,7 +228,7 @@ const CompanyList = () => {
         </Box>
       </Box>
 
-      <Grid container spacing={0} direction="row" style={{ minHeight: "50vh" }}>
+      <Box sx={{ flexGrow: 1 }}>
         {designView === "list" ? (
           <CompaniesList showColumns={showColumns} rows={currentTableData} />
         ) : (
@@ -237,9 +238,9 @@ const CompanyList = () => {
             handleCompanyAddClick={handleCompanyAddClick}
           />
         )}
-      </Grid>
+      </Box>
       <Paginations handlePageChange={handlePageChange} />
-    </Container>
+    </Box >
   );
 };
 

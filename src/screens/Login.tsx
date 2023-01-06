@@ -12,6 +12,7 @@ import {
   IconButton,
 } from "@mui/material";
 import Visibility from "@mui/icons-material/Visibility";
+import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import OrangeBitsIcon from "../components/Icons/OrangeBitsIcon";
 import LoadingButton from "@mui/lab/LoadingButton";
 import { styles } from "../styles/screens/Login";
@@ -26,12 +27,16 @@ const Login = () => {
   const navigate = useNavigate();
 
   const { loginToContext } = useAuth();
-
   const loginStore = useAppSelector((state) => state.authentication);
-
   const { isLoadingRequest, user } = loginStore;
 
-  console.log("user",user)
+  const [showPassword, setShowPassword] = React.useState(false);
+  const handleClickShowPassword = () => setShowPassword((show) => !show);
+  const handleMouseDownPassword = (event: React.MouseEvent<HTMLButtonElement>) => {
+    event.preventDefault();
+  };
+
+  console.log("user", user)
 
   const {
     handleBlur,
@@ -60,100 +65,99 @@ const Login = () => {
           });
           navigate("/companies");
         })
-        .catch((error) => {});
+        .catch((error) => { });
     },
   });
 
   return (
     <Box {...styles.parentBox}>
       <Box {...styles.boxCard}>
-        <Grid container spacing={2} {...styles.formGrid}>
-          <OrangeBitsIcon width={40} style={{ margin: "30px auto" }} />
-
-          <Typography {...styles.formTitle} variant="h5" gutterBottom>
-            Login to Orangebits Technologies
-          </Typography>
-          <form onSubmit={handleSubmit}>
-            <FormControl sx={{ p: 2, m: 2 }}>
-              <FormLabel
-                id="outlined-password"
-                {...styles.formUsernameLable}
-                sx={{
-                  fontWeight: "700",
-                  fontSize: "12px",
-                  color: "#9FA2B4",
-                }}
-              >
-                USERNAME
-              </FormLabel>
-              <TextField
-                fullWidth
-                size="small"
-                variant="filled"
-                type={"text"}
-                name="username"
-                value={values.username}
-                onChange={handleChange}
-                onBlur={handleBlur}
-                error={touched.username && errors.username ? true : false}
-                helperText={touched.username && errors.username}
-                {...styles.formUsernameTextfield}
-              />
-            </FormControl>
-
-            <FormControl sx={{ p: 2, m: 2 }}>
-              <Box {...styles.formPasswordBox}>
-                <FormLabel id="outlined-password" {...styles.formPasswordLable}>
-                  PASSWORD
-                </FormLabel>
-                <Typography
-                  {...styles.formPasswordForgot}
-                  variant="h5"
-                  gutterBottom
+        <Grid container sx={{ p: 4 }}>
+          <Grid xs={12} sm={12} md={12} lg={12}>
+            <Box sx={{ display: "flex", justifyContent: "center" }}>
+              <OrangeBitsIcon width={40} style={{ margin: "10px auto" }} />
+            </Box>
+          </Grid>
+          <Grid md={12} lg={12}>
+            <Typography {...styles.formTitle} variant="h5" gutterBottom>
+              Login to Orangebits Technologies
+            </Typography>
+          </Grid>
+          <Grid md={12} lg={12}>
+            <form onSubmit={handleSubmit}>
+              <FormControl sx={{ mt: 5 }} fullWidth>
+                <FormLabel
+                  id="outlined-password"
+                  {...styles.textfieldLable}
                 >
-                  Forgot Password ?
-                </Typography>
-              </Box>
-              <TextField
-                fullWidth
-                size="small"
-                id="outlined-password"
-                variant="filled"
-                type={"password"}
-                name="password"
-                value={values.password}
-                onChange={handleChange}
-                onBlur={handleBlur}
-                error={touched.password && errors.password ? true : false}
-                helperText={touched.password && errors.password}
-                {...styles.formPasswordTextfield}
-                InputProps={{
-                  endAdornment: (
-                    <InputAdornment position="end">
+                  Username
+                </FormLabel>
+                <TextField
+                  fullWidth
+                  size="small"
+                  variant="filled"
+                  type={"text"}
+                  name="username"
+                  value={values.username}
+                  onChange={handleChange}
+                  onBlur={handleBlur}
+                  placeholder="Username"
+                  error={touched.username && errors.username ? true : false}
+                  helperText={touched.username && errors.username}
+                  {...styles.formTextfield}
+                  InputProps={{
+                    disableUnderline: true,
+                  }}
+                />
+              </FormControl>
+
+              <FormControl sx={{ mt: 5 }} fullWidth>
+                <FormLabel id="outlined-password" {...styles.textfieldLable}>
+                  Password
+                </FormLabel>
+                <TextField
+                  fullWidth
+                  size="small"
+                  id="outlined-password"
+                  variant="filled"
+                  type={showPassword ? 'text' : 'password'}
+                  name="password"
+                  placeholder="Password"
+                  value={values.password}
+                  onChange={handleChange}
+                  onBlur={handleBlur}
+                  error={touched.password && errors.password ? true : false}
+                  helperText={touched.password && errors.password}
+                  {...styles.formTextfield}
+                  InputProps={{
+                    disableUnderline: true,
+                    endAdornment: (
                       <IconButton
                         aria-label="toggle password visibility"
                         edge="end"
+                        onClick={handleClickShowPassword}
+                        onMouseDown={handleMouseDownPassword}
                       >
-                        <Visibility />
+                        {showPassword ? <VisibilityOff /> : <Visibility />}
                       </IconButton>
-                    </InputAdornment>
-                  ),
-                }}
-              />
-            </FormControl>
-            <Box {...styles.formButtonBox}>
-              <LoadingButton
-                loading={isLoadingRequest}
-                loadingPosition="center"
-                fullWidth
-                variant="contained"
-                type="submit"
-                {...styles.formButton}
-              >
-                Log In
-              </LoadingButton>
-            </Box>
-          </form>
+                    ),
+                  }}
+                />
+              </FormControl>
+              <Box {...styles.formButtonBox}>
+                <LoadingButton
+                  loading={isLoadingRequest}
+                  loadingPosition="center"
+                  fullWidth
+                  variant="contained"
+                  type="submit"
+                  {...styles.formButton}
+                >
+                  Log In
+                </LoadingButton>
+              </Box>
+            </form>
+          </Grid>
         </Grid>
       </Box>
       <Grid container spacing={2}>
@@ -165,7 +169,7 @@ const Login = () => {
           </Box>
         </Grid>
       </Grid>
-    </Box>
+    </Box >
   );
 };
 
