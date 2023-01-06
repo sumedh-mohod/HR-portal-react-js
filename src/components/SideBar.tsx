@@ -15,7 +15,6 @@ import {
 import MuiDrawer from "@mui/material/Drawer";
 import { styled, Theme, CSSObject } from "@mui/material/styles";
 import { Menus } from "../assets/constants/menus";
-import Icon from "@mui/material/Icon";
 
 import OrangeBitsIcon from "./Icons/OrangeBitsIcon";
 import { styles } from "../styles/components/header";
