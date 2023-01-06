@@ -3,7 +3,7 @@ export const styles = {
     sx: {
       display: "flex",
       justifyContent: "space-between",
-      mt: 5,
+      mt: 2,
     },
   },
   parentBoxCancleButton: {
@@ -12,14 +12,18 @@ export const styles = {
       color: "black",
       borderRadius: "5px",
       marginRight: "10px",
+      fontfamily: "Montserrat",
+      fontStyle: "normal",
     },
   },
 
   parentBoxSaveButton: {
     sx: {
+      fontfamily: "Montserrat",
       backgroundColor: "#F58634",
       borderRadius: "5px",
       marginLeft: "10px",
+      fontStyle: "normal",
     },
   },
 
@@ -43,45 +47,25 @@ export const styles = {
 
   selectFileButton: {
     sx: {
+      marginTop:"14px",
       background: "white",
       color: "black",
-      width:"max-contain",
+      width: "max-contain",
       textTransform: "inherit",
-      marginBottom: "-10px",
       padding: "2px",
-      fontSize: "12px",
+      fontSize: "11px",
     },
   },
 
-    // parentBox: {
-    //   sx: {
-    //     display: "flex",
-    //     justifyContent: "space-between",
-    //     mt: 5,
-    //   },
-    // },
-    // parentBoxSaveButton: {
-    //   sx: {
-    //     backgroundColor: "#F58634",
-    //     borderRadius: "5px",
-    //   },
-    // },
-    parentBoxCancelButton: {
-      sx: {
-        borderRadius: "5px",
-        marginRight: "10px",
-      },
+  textFieldLabel: {
+    sx: {
+      fontFamily: "Montserrat",
+      fontStyle: "normal",
+      fontWeight: "500",
+      fontSize: "14px",
+      lineHeight: "17px",
+      letterSpacing: "0.3px",
+      marginBottom: "10px",
     },
-    textFieldLabel: {
-      sx: {
-        fontFamily: "Montserrat",
-        fontStyle: "normal",
-        fontWeight: "500",
-        fontSize: "14px",
-        lineHeight: "17px",
-        letterSpacing: "0.3px",
-        marginBottom: "10px",
-      },
-    },
-  };
-  
+  },
+};

@@ -11,4 +11,8 @@ export const globalStyles = {
       lineHeight: "27px",
     },
   },
+  textField: {
+    height: "48px",
+    paddingBottom: "16px",
+  },
 };

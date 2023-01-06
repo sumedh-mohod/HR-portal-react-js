@@ -18,41 +18,43 @@ const columns: GridColDef[] = [
     field: "id",
     headerName: "Sr.",
     minWidth: 50,
+    width:100,
     hide: false,
   },
   {
     field: "name",
     headerName: "Name",
-    width: 100,
-    minWidth: 150,
-    maxWidth: 200,
+    width: 300,
+    minWidth: 200,
+    maxWidth: 400,
     hide: false,
   },
 
   {
     field: "EmployeeId",
     headerName: "Employee Id",
-    width: 200,
-    minWidth: 150,
+    width: 300,
+    minWidth: 200,
     maxWidth: 400,
     hide: false,
   },
   {
     field: "Designation",
     headerName: "Designation",
-    width: 200,
-    minWidth: 150,
+    width: 300,
+    minWidth: 200,
     maxWidth: 400,
     hide: false,
   },
   {
     field: "Technology",
     headerName: "Technology",
-    width: 200,
-    minWidth: 150,
+    width: 300,
+    minWidth: 200,
     maxWidth: 400,
     hide: false,
   },
+  
 ];
 
 // row data
@@ -198,13 +200,12 @@ const Employee = () => {
   };
 
   return (
-    <Container>
+    <Box sx={{display:"flex" ,flexDirection:"column"}}>
       {/* box for search bar and company */}
       <Box {...styles.employeeTitleBox}>
         <Typography variant="h5" {...globalStyles.moduleTitle}>
           Employee
         </Typography>
-
         <Box
           sx={{
             display: "flex",
@@ -250,8 +251,7 @@ const Employee = () => {
           />
         </Box>
       </Box>
-      
-      <Box>
+      <Box sx={{ flexGrow: 1}}>
         {designView === "list" ? (
           <EmployeeList columns={showColumns} rows={currentTableData} />
         ) : (
@@ -264,7 +264,7 @@ const Employee = () => {
         )}
       </Box>
       <Paginations handlePageChange={handlePageChange} />
-    </Container>
+    </Box>   
   );
 };
 

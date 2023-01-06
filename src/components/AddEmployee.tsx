@@ -64,13 +64,13 @@ const AddEmployee = () => {
     navigate(-1);
   };
   return (
-    <Box>
+    <Box >
       <form onSubmit={handleSubmit}>
         {/* header Box */}
         <Box {...styles.parentBox}>
           <Typography variant="h5" {...globalStyles.moduleTitle}>Add Employee</Typography>
           <Box>
-            <Button {...styles.parentBoxCancleButton} variant="contained">
+            <Button {...styles.parentBoxCancleButton} variant="contained" onClick={handleCancle}>
               Cancle
             </Button>
             <Button
@@ -83,7 +83,7 @@ const AddEmployee = () => {
           </Box>
         </Box>
         {/* form fields started */}
-        <Card sx={{ mt: 3, mb: 3, p: 5 }}>
+        <Card sx={{ mt: 3, mb: 3, p: 5}}>
           <Grid container columnSpacing={3} rowGap={3}>
             {/* uplaod Logo */}
             <Grid item xs={12} md={6} lg={3}>
@@ -104,10 +104,9 @@ const AddEmployee = () => {
                   onBlur={handleBlur}
                   error={touched.logo && errors.logo ? true : false}
                   helperText={touched.logo && errors.logo}
-                  // inputProps={{ maxLength: 12 }}
-                  // sx={{"textOverflow":"ellipsis"}}
                   {...styles.logoTextfield}
                   InputProps={{
+                    style: {...globalStyles.textField},
                     endAdornment: (
                       <Button
                         onClick={handleClick}
@@ -125,7 +124,7 @@ const AddEmployee = () => {
             </Grid>
             {/* Display name */}
             <Grid item xs={12} md={6} lg={3}>
-              <FormControl fullWidth>
+              <FormControl fullWidth >
                 <FormLabel id="displayName"  {...styles.textFieldLabel}>Display Name*</FormLabel>
                 <TextField
                   type={"text"}
@@ -141,7 +140,13 @@ const AddEmployee = () => {
                   helperText={touched.DisplayName && errors.DisplayName}
                   InputProps={{
                     disableUnderline: true,
+                    style: {...globalStyles.textField}
                   }}
+                  sx={{"&.MuiInputBase-input":{
+                    paddingTop:"7px",
+                    border:"1px solid red",
+                  }}}
+                 
                 />
               </FormControl>
             </Grid>
@@ -158,6 +163,7 @@ const AddEmployee = () => {
                   onChange={handleChange}
                   InputProps={{
                     disableUnderline: true,
+                    style: {...globalStyles.textField}
                   }}
                 />
               </FormControl>
@@ -175,6 +181,7 @@ const AddEmployee = () => {
                   onChange={handleChange}
                   InputProps={{
                     disableUnderline: true,
+                    style: {...globalStyles.textField}
                   }}
                 />
               </FormControl>
@@ -192,6 +199,7 @@ const AddEmployee = () => {
                   onChange={handleChange}
                   InputProps={{
                     disableUnderline: true,
+                    style: {...globalStyles.textField}
                   }}
                 />
               </FormControl>
@@ -209,6 +217,7 @@ const AddEmployee = () => {
                   onChange={handleChange}
                   InputProps={{
                     disableUnderline: true,
+                    style: {...globalStyles.textField}
                   }}
                 />
               </FormControl>
@@ -226,6 +235,7 @@ const AddEmployee = () => {
                   onChange={handleChange}
                   InputProps={{
                     disableUnderline: true,
+                    style: {...globalStyles.textField}
                   }}
                 />
               </FormControl>

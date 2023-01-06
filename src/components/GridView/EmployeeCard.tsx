@@ -19,16 +19,10 @@ const EmployeeCard = ({
   handleEmployeeAddClick: any;
 }) => {
   return (
-    <Box
-      sx={{
-        minWidth: "70vw",
-        maxWidth: "70vw",
-        margin: 0,
-      }}
-    >
+    <Box>
       <Grid container spacing={2} sx={{ mt: 1 }}>
         {employee?.map((employee: any, index: number) => (
-          <Grid item xs={12} md={3} lg={3}>
+          <Grid item xs={12} md={6} lg={3} xl={3}>
             <Card
               elevation={3}
               onClick={() => handleEmployeeEditClick(employee)}
@@ -54,7 +48,6 @@ const EmployeeCard = ({
           </Grid>
         ))}
       </Grid>
-
       {/* pagination */}
     </Box>
   );
