@@ -29,19 +29,17 @@ const CompanyCard = ({
                 {company.name}
               </Typography>
               <Box {...styles.companyDescriptionBox}>
-                {company?.description?.map((des: any) => (
-                  <>
-                    <Typography {...styles.companyDescription}>
-                      {des.PAN}{" "}
-                    </Typography>
-                    <Typography {...styles.companyDescription}>
-                      {des.TAN}{" "}
-                    </Typography>
-                    <Typography {...styles.companyDescription}>
-                      {des.GST}{" "}
-                    </Typography>
-                  </>
-                ))}
+                <>
+                  <Typography {...styles.companyDescription}>
+                    PAN - {company.PAN}{" "}
+                  </Typography>
+                  <Typography {...styles.companyDescription}>
+                    TAN - {company.TAN}{" "}
+                  </Typography>
+                  <Typography {...styles.companyDescription}>
+                    GST - {company.GST}{" "}
+                  </Typography>
+                </>
               </Box>
             </Card>
           </Grid>

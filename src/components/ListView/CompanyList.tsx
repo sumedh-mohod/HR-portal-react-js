@@ -3,13 +3,11 @@ import { DataGrid, GridToolbar, GridColDef } from "@mui/x-data-grid";
 import { Grid, Box, Card, Typography, Paper } from "@mui/material";
 
 const CompaniesList = ({
-    showColumns,
-    rows,
-    handleCompanyAddClick,
+  showColumns,
+  rows,
 }: {
-    showColumns: any;
-    rows: any;
-    handleCompanyAddClick: any;
+  showColumns: any;
+  rows: any;
 }) => {
     return (
         <Card sx={{ marginTop: "35px", p: 0, }}>
