@@ -147,6 +147,7 @@ const Partners = () => {
             anchorEl={anchorEl}
             showColumns={showColumns}
           />
+          
           <TextField
             sx={{ ml: 2 }}
             size="small"
