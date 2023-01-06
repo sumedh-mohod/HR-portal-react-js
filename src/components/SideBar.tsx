@@ -112,7 +112,7 @@ const SideBar = ({ open, setOpen }: any) => {
       <List>
         {sideBarMenus.map((text: any, index: number) => {
           const ICON = text.icon;
-          
+
           return (
             <>
               <ListItem
@@ -164,26 +164,29 @@ const SideBar = ({ open, setOpen }: any) => {
                     color: "white",
                   }}
                 >
-                  {text.submenu.map((menu: any, index: number) => (
-                    <ListItemButton
-                      sx={{ pl: 4 }}
-                      onClick={() => {
-                        handleNavigation(menu);
-                      }}
-                    >
-                      <ListItemIcon
-                        sx={{
-                          minWidth: 0,
-                          mr: 3,
-                          justifyContent: "center",
-                          color: "white",
+                  {text.submenu.map((menu: any, index: number) => {
+                    // const SubIcon = menu.icon
+                    return (
+                      <ListItemButton
+                        sx={{ pl: 4 }}
+                        onClick={() => {
+                          handleNavigation(menu);
                         }}
                       >
-                        {/* <Icon>{text.icon}</Icon> */}
-                      </ListItemIcon>
-                      <ListItemText primary={menu.name} sx={{ opacity: 1 }} />
-                    </ListItemButton>
-                  ))}
+                        <ListItemIcon
+                          sx={{
+                            minWidth: 0,
+                            mr: 3,
+                            justifyContent: "center",
+                            color: "white",
+                          }}
+                        >
+                          {/* <Icon>{text.icon}</Icon> */}
+                        </ListItemIcon>
+                        <ListItemText primary={menu.name} sx={{ opacity: 1 }} />
+                      </ListItemButton>
+                    );
+                  })}
                 </List>
               </Collapse>
             </>
