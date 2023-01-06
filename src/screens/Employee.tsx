@@ -71,6 +71,7 @@ const columns: GridColDef[] = [
     maxWidth: 400,
     hide: false,
   },
+  
 ];
 // row data
 const rows = [
@@ -209,13 +210,12 @@ const Employee = () => {
   };
 
   return (
-    <Container>
+    <Box sx={{display:"flex" ,flexDirection:"column"}}>
       {/* box for search bar and company */}
       <Box {...styles.employeeTitleBox}>
         <Typography variant="h5" {...globalStyles.moduleTitle}>
           Employee
         </Typography>
-
         <Box
           sx={{
             display: "flex",
@@ -261,7 +261,7 @@ const Employee = () => {
           />
         </Box>
       </Box>
-      <Box>
+      <Box sx={{ flexGrow: 1}}>
         {designView === "list" ? (
           <EmployeeList
             handleEmployeeAddClick={handleEmployeeAddClick}
@@ -277,7 +277,7 @@ const Employee = () => {
           />
         )}
       </Box>
-    </Container>
+    </Box>
   );
 };
 
