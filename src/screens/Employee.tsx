@@ -1,8 +1,7 @@
-import React, { useState } from "react";
+import React, { useState, useMemo } from "react";
+
 import { GridColDef } from "@mui/x-data-grid";
 import { Box, Typography, Container, TextField, Button } from "@mui/material";
-import { useAppDispatch } from "../store/hooks";
-// import { getEmployee} from "../store/reducers/employee/employee";
 import { useNavigate } from "react-router-dom";
 import { styles } from "../styles/screens/Employee";
 import SearchIcon from "@mui/icons-material/Search";
@@ -11,7 +10,7 @@ import { globalStyles } from "../styles/global";
 import EmployeeCard from "../components/GridView/EmployeeCard";
 import EmployeeList from "../components/ListView/EmployeeList";
 import CustomizationButtons from "../components/CustomizationButtons";
-import Paginations from "../components/ListView/Paginations";
+import Paginations from "../components/Paginations";
 
 // colums data
 const columns: GridColDef[] = [
@@ -55,6 +54,7 @@ const columns: GridColDef[] = [
     hide: false,
   },
 ];
+
 // row data
 const rows = [
   {
@@ -143,26 +143,21 @@ const rows = [
   },
 ];
 
+let PageSize = 5;
 const Employee = () => {
   const navigate = useNavigate();
-  const dispatch = useAppDispatch();
-  const calculate = rows.length / 5;
-  const numberOfPages = Math.ceil(calculate);
-  console.log("numberOfPages", numberOfPages);
-  //   const partnersStore = useAppSelector((state) => state.partners);
-  //   const { isLoadingRequest, partners } = partnersStore;
-  //   console.log("partners data is", partners);
+
   const [designView, setDesignView] = useState("list");
   const [currentPage, setCurrentPage] = useState(1);
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
   const openDropDown = Boolean(anchorEl);
   const [showColumns, setShowColumns] = useState(columns);
-  //   useEffect(() => {
-  //     dispatch(getPartners())
-  //       .unwrap()
-  //       .then((response: any) => {})
-  //       .catch((error: any) => {});
-  //   }, []);
+
+  const currentTableData = useMemo(() => {
+    const firstPageIndex = (currentPage - 1) * PageSize;
+    const lastPageIndex = firstPageIndex + PageSize;
+    return rows?.slice(firstPageIndex, lastPageIndex);
+  }, [currentPage]);
 
   // add and edit functions
   const handleEmployeeEditClick = () => {
@@ -255,23 +250,20 @@ const Employee = () => {
           />
         </Box>
       </Box>
+      
       <Box>
         {designView === "list" ? (
-          <EmployeeList columns={showColumns} rows={rows} />
+          <EmployeeList columns={showColumns} rows={currentTableData} />
         ) : (
           <EmployeeCard
-            employee={rows}
+            employee={currentTableData}
             handleEmployeeEditClick={handleEmployeeEditClick}
             handleEmployeeAddClick={handleEmployeeAddClick}
             index={undefined}
           />
         )}
       </Box>
-      {/* <Paginations
-        numberOfPages={numberOfPages}
-        handlePageChange={handlePageChange}
-        currentPage={currentPage}
-      /> */}
+      <Paginations handlePageChange={handlePageChange} />
     </Container>
   );
 };

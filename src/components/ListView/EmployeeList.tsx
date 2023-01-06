@@ -1,27 +1,33 @@
 import { DataGrid } from "@mui/x-data-grid";
 import { Grid, Box, Card } from "@mui/material";
-import Paginations from "./Paginations";
 
 const EmployeeList = ({ columns, rows }: { columns: any; rows: any }) => {
   return (
-    <Card sx={{ marginTop: "35px", p: 0, width: "85vw" }}>
-      <Grid item sm={12} xs={12} md={12} xl={12} lg={12}>
+    <Card sx={{ marginTop: "35px", p: 0 }}>
+      <Grid item xs={12} xl={12} lg={12}>
         <Box
           sx={{
+            minWidth: "90vw",
+            maxWidth: "90vw",
             margin: 0,
-            height: 400,
           }}
         >
           <DataGrid
-            pageSize={5}
-            rowsPerPageOptions={[5]}
-            components={{
-              Pagination: Paginations,
+            sx={{
+              borderRadius: "0",
+              ".MuiDataGrid-columnSeparator": {
+                display: "none",
+              },
+              "& .MuiDataGrid-columnHeaders": {
+                backgroundColor: " #F4F5F6",
+              },
             }}
+            getRowId={(row) => row.id}
+            autoHeight={true}
             rows={rows}
             columns={columns}
-            checkboxSelection
-            disableSelectionOnClick
+            hideFooterPagination={true}
+            hideFooter={true}
           />
         </Box>
       </Grid>
