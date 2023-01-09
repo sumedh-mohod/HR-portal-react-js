@@ -2,23 +2,23 @@ import React from "react";
 import { Route, Routes } from "react-router-dom";
 
 //import sreens
-import Login from "./screens/Login";
-import Registration from "./screens/Registration";
-import Dashboard from "./screens/Dashboard";
-import Header from "./components/Header";
+import Login from "./screens/Authentication/Login";
+import Registration from "./screens/Authentication/Registration";
+import Dashboard from "./screens/Authentication/Dashboard";
+import Header from "./components/HigherOrder/Header";
 import { Box } from "@mui/material";
 
-import CompanyList from "./screens/Companies";
-import Employee from "./screens/Employee";
-import ProjectsList from "./screens/Projects";
-import CompanyAddEdit from "./screens/ComapnyAddEdit";
-import NotFound from "./screens/NotFound";
-import Partners from "./screens/Partners";
-import Logout from "./screens/Logout";
-import AddPartner from "./components/AddPartner";
-import EmployeeAddEdit from "./screens/EmployeeAddEdit";
-import ProjectAddEdit from "./screens/ProjectAddEdit";
-import PartnerAddEdit from "./screens/PartnerAddEdit";
+import CompanyList from "./screens/Company/Companies";
+import Employee from "./screens/Employee/Employee";
+import ProjectsList from "./screens/Project/Projects";
+import CompanyAddEdit from "./screens/Company/ComapnyAddEdit";
+import NotFound from "./screens/Authentication/NotFound";
+import Partners from "./screens/Partner/Partners";
+import Logout from "./screens/Authentication/Logout";
+import AddPartner from "./components/Partner/AddPartner";
+import EmployeeAddEdit from "./screens/Employee/EmployeeAddEdit";
+import ProjectAddEdit from "./screens/Project/ProjectAddEdit";
+import PartnerAddEdit from "./screens/Partner/PartnerAddEdit";
 
 const App = () => {
   return (

@@ -9,16 +9,16 @@ import AddIcon from "@mui/icons-material/Add";
 import { GridColDef } from "@mui/x-data-grid";
 import { Container } from "@mui/system";
 
-import { styles } from "../styles/screens/CompanyList";
-import { globalStyles } from "../styles/global";
+import { styles } from "../../styles/screens/CompanyList";
+import { globalStyles } from "../../styles/global";
 
-import { useAppDispatch, useAppSelector } from "../store/hooks";
-import { companylist } from "../store/reducers/companies/companies";
+import { useAppDispatch, useAppSelector } from "../../store/hooks";
+import { companylist } from "../../store/reducers/companies/companies";
 
-import CompanyCard from "../components/GridView/CompanyCard";
-import CompaniesList from "../components/ListView/CompanyList";
-import Paginations from "../components/Paginations";
-import CustomizationButtons from "../components/CustomizationButtons";
+import CompanyCard from "../../components/Company/CompanyCard";
+import CompaniesList from "../../components/Company/CompanyList";
+import Paginations from "../../components/HigherOrder/Paginations";
+import CustomizationButtons from "../../components/HigherOrder/CustomizationButtons";
 
 const columns: GridColDef[] = [
   {

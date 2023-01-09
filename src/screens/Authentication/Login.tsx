@@ -13,15 +13,15 @@ import {
 } from "@mui/material";
 import Visibility from "@mui/icons-material/Visibility";
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
-import OrangeBitsIcon from "../components/Icons/OrangeBitsIcon";
+import OrangeBitsIcon from "../../components/Icons/OrangeBitsIcon";
 import LoadingButton from "@mui/lab/LoadingButton";
-import { styles } from "../styles/screens/Login";
-import { loginValidator } from "../utils/validations/auth";
-import { useAppDispatch, useAppSelector } from "../store/hooks";
-import { login } from "../store/reducers/users/authentication";
-import { useAuth } from "../context/auth";
+import { styles } from "../../styles/screens/Login";
+import { loginValidator } from "../../utils/validations/auth";
+import { useAppDispatch, useAppSelector } from "../../store/hooks";
+import { login } from "../../store/reducers/users/authentication";
+import { useAuth } from "../../context/auth";
 import { useNavigate } from "react-router-dom";
-import { globalStyles } from "../styles/global";
+import { globalStyles } from "../../styles/global";
 
 const Login = () => {
   const dispatch = useAppDispatch();

@@ -12,7 +12,7 @@ import {
 import SaveIcon from "@mui/icons-material/Save";
 import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
 import HighlightOffIcon from "@mui/icons-material/HighlightOff";
-import { styles } from "../styles/components/editCompany";
+import { styles } from "../../styles/components/editCompany";
 const HolidayCard = () => {
   return (
     <Box>

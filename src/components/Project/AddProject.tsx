@@ -1,6 +1,6 @@
 import React, { useRef } from "react";
 import { useFormik } from "formik";
-// import { addEmployeeValidator } from "../utils/validations/auth";
+import { addProjectValidator } from "../../utils/validations/auth";
 import {
   Box,
   Button,
@@ -12,11 +12,12 @@ import {
   MenuItem,
   Card,
 } from "@mui/material";
-import { styles } from "../styles/components/addEmployee";
+import { styles } from "../../styles/components/addProject";
 import { useNavigate } from "react-router-dom";
-import { globalStyles } from "../styles/global";
+import { globalStyles } from "../../styles/global";
 // import { useAppDispatch} from "../store/hooks";
-const AddEmployee = () => {
+
+const AddProject = () => {
   const navigate = useNavigate();
   //   const dispatch = useAppDispatch();
   const {
@@ -31,23 +32,25 @@ const AddEmployee = () => {
     enableReinitialize: true,
     initialValues: {
       logo: "",
-      DisplayName: "",
-      firstName: "",
-      lastName: "",
-      employeeId: "",
-      designation: "",
-      emailId: "",
+      name: "",
+      startDate: "",
+      endDate: "",
+      pointofContactPartrner1: "",
+      pointofContactPartrner2: "",
+      pointofContactPartrner3: "",
     },
-    // validationSchema: addEmployeeValidator,
+    validationSchema: addProjectValidator,
     onSubmit: (values) => {
       console.log("values of add project", values);
     },
   });
+
   const inputRef: any = useRef(null);
   const handleClick = () => {
     // open file input box on click of other element
     inputRef.current.click();
   };
+
   const handleFileChange = (event: any) => {
     const fileObj = event.target.files && event.target.files[0];
     if (fileObj) {
@@ -55,6 +58,7 @@ const AddEmployee = () => {
     }
     //  reset file input
     event.target.value = null;
+
     //  can still access file object here
     console.log(fileObj);
     console.log(fileObj.name);
@@ -63,12 +67,13 @@ const AddEmployee = () => {
   const handleCancle = () => {
     navigate(-1);
   };
+
   return (
-    <Box >
+    <Box>
       <form onSubmit={handleSubmit}>
         {/* header Box */}
         <Box {...styles.parentBox}>
-          <Typography variant="h5" {...globalStyles.moduleTitle}>Add Employee</Typography>
+          <Typography variant="h5">Add Project</Typography>
           <Box>
             <Button {...styles.parentBoxCancleButton} variant="contained" onClick={handleCancle}>
               Cancle
@@ -83,12 +88,12 @@ const AddEmployee = () => {
           </Box>
         </Box>
         {/* form fields started */}
-        <Card sx={{ mt: 3, mb: 3, p: 5}}>
+        <Card {...styles.card}>
           <Grid container columnSpacing={3} rowGap={3}>
             {/* uplaod Logo */}
             <Grid item xs={12} md={6} lg={3}>
               <FormControl fullWidth>
-                <FormLabel id="logo" {...styles.textFieldLabel}>Upload Logo*</FormLabel>
+                <FormLabel id="logo">Upload Logo*</FormLabel>
                 <input
                   name="logo"
                   style={{ display: "none" }}
@@ -106,136 +111,135 @@ const AddEmployee = () => {
                   helperText={touched.logo && errors.logo}
                   {...styles.logoTextfield}
                   InputProps={{
-                    style: {...globalStyles.textField},
+                    sx: { color: "#515151" },
+                    disableUnderline: true,
+                    style: { ...globalStyles.textField },
                     endAdornment: (
                       <Button
                         onClick={handleClick}
                         size="small"
                         {...styles.selectFileButton}
                       >
-                        {" "}
                         Select File
                       </Button>
                     ),
-                    disableUnderline: true,
                   }}
                 ></TextField>
               </FormControl>
             </Grid>
-            {/* Display name */}
+            {/*  name */}
             <Grid item xs={12} md={6} lg={3}>
-              <FormControl fullWidth >
-                <FormLabel id="displayName"  {...styles.textFieldLabel}>Display Name*</FormLabel>
+              <FormControl fullWidth>
+                <FormLabel id="name">Name*</FormLabel>
                 <TextField
                   type={"text"}
                   variant="filled"
                   size="small"
-                  name="DisplayName"
-                  value={values.DisplayName}
+                  name="name"
+                  value={values.name}
                   onChange={handleChange}
                   onBlur={handleBlur}
-                  error={
-                    touched.DisplayName && errors.DisplayName ? true : false
-                  }
-                  helperText={touched.DisplayName && errors.DisplayName}
+                  error={touched.name && errors.name ? true : false}
+                  helperText={touched.name && errors.name}
                   InputProps={{
                     disableUnderline: true,
-                    style: {...globalStyles.textField}
-                  }}
-                  sx={{"&.MuiInputBase-input":{
-                    paddingTop:"7px",
-                    border:"1px solid red",
-                  }}}
-                 
-                />
-              </FormControl>
-            </Grid>
-            {/* First name */}
-            <Grid item xs={12} md={6} lg={3}>
-              <FormControl fullWidth>
-                <FormLabel id="firstName"  {...styles.textFieldLabel}>First Name</FormLabel>
-                <TextField
-                  type={"text"}
-                  variant="filled"
-                  size="small"
-                  name="firstName"
-                  value={values.firstName}
-                  onChange={handleChange}
-                  InputProps={{
-                    disableUnderline: true,
-                    style: {...globalStyles.textField}
+                    style: { ...globalStyles.textField }
                   }}
                 />
               </FormControl>
             </Grid>
-            {/* last name*/}
+            {/* start date */}
             <Grid item xs={12} md={6} lg={3}>
               <FormControl fullWidth>
-                <FormLabel id="lastName"  {...styles.textFieldLabel}>Last Name</FormLabel>
+                <FormLabel id="startDate">Start Date</FormLabel>
                 <TextField
-                  type={"text"}
                   variant="filled"
                   size="small"
-                  name="lastName"
-                  value={values.lastName}
+                  type="date"
+                  name="startDate"
+                  value={values.startDate}
                   onChange={handleChange}
                   InputProps={{
                     disableUnderline: true,
-                    style: {...globalStyles.textField}
+                    style: { ...globalStyles.textField }
                   }}
                 />
               </FormControl>
             </Grid>
-            {/* employee id  */}
+            {/* end date*/}
             <Grid item xs={12} md={6} lg={3}>
               <FormControl fullWidth>
-                <FormLabel id="employeeId"  {...styles.textFieldLabel}>Employee Id</FormLabel>
+                <FormLabel id="endDate">End Date</FormLabel>
                 <TextField
-                  type={"text"}
                   variant="filled"
                   size="small"
-                  name="employeeId"
-                  value={values.employeeId}
+                  type="date"
+                  name="endDate"
+                  value={values.endDate}
                   onChange={handleChange}
                   InputProps={{
                     disableUnderline: true,
-                    style: {...globalStyles.textField}
+                    style: { ...globalStyles.textField }
                   }}
                 />
               </FormControl>
             </Grid>
-            {/* designation */}
+            {/* Point of Contact Partrner 1  */}
             <Grid item xs={12} md={6} lg={3}>
               <FormControl fullWidth>
-                <FormLabel id="designation"  {...styles.textFieldLabel}>Designation</FormLabel>
+                <FormLabel id="pointofContactPartrner1">
+                  Point of Contact Partrner 1
+                </FormLabel>
                 <TextField
-                  type={"text"}
                   variant="filled"
                   size="small"
-                  name="designation"
-                  value={values.designation}
+                  type={"text"}
+                  name="pointofContactPartrner1"
+                  value={values.pointofContactPartrner1}
                   onChange={handleChange}
                   InputProps={{
                     disableUnderline: true,
-                    style: {...globalStyles.textField}
+                    style: { ...globalStyles.textField }
                   }}
                 />
               </FormControl>
             </Grid>
-            {/* email id */}
+            {/* Point of Contact Partrner 2 */}
             <Grid item xs={12} md={6} lg={3}>
               <FormControl fullWidth>
-                <FormLabel id="emailId"  {...styles.textFieldLabel}>Email id</FormLabel>
+                <FormLabel id="pointofContactPartrner2">
+                  Point of Contact Partrner 2
+                </FormLabel>
                 <TextField
-                  type={"text"}
                   variant="filled"
                   size="small"
-                  name="emailId"
-                  value={values.emailId}
+                  type={"text"}
+                  name="pointofContactPartrner2"
+                  value={values.pointofContactPartrner2}
                   onChange={handleChange}
                   InputProps={{
                     disableUnderline: true,
-                    style: {...globalStyles.textField}
+                    style: { ...globalStyles.textField }
+                  }}
+                />
+              </FormControl>
+            </Grid>
+            {/* Point of Contact Partrner 3 */}
+            <Grid item xs={12} md={6} lg={3}>
+              <FormControl fullWidth>
+                <FormLabel id="pointofContactPartrner3">
+                  Point of Contact Partrner 3
+                </FormLabel>
+                <TextField
+                  variant="filled"
+                  size="small"
+                  type={"text"}
+                  name="pointofContactPartrner3"
+                  value={values.pointofContactPartrner3}
+                  onChange={handleChange}
+                  InputProps={{
+                    disableUnderline: true,
+                    style: { ...globalStyles.textField }
                   }}
                 />
               </FormControl>
@@ -247,4 +251,4 @@ const AddEmployee = () => {
   );
 };
 
-export default AddEmployee;
+export default AddProject;

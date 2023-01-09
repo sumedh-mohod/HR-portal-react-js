@@ -38,7 +38,7 @@ export const Menus: any = [
     submenu: [
       {
         name: "Master",
-        route: "accountings",
+        route: "#",
       },
     ],
   },
@@ -50,7 +50,7 @@ export const Menus: any = [
     submenu: [
       {
         name: "Master",
-        route: "assets",
+        route: "#",
       },
     ],
   },
@@ -98,7 +98,7 @@ export const Menus: any = [
     submenu: [
       {
         name: "Master",
-        route: "settings",
+        route: "#",
       },
     ],
   },
@@ -110,7 +110,7 @@ export const Menus: any = [
     submenu: [
       {
         name: "Master",
-        route: "venders",
+        route: "#",
       },
     ],
   },
@@ -122,7 +122,7 @@ export const Menus: any = [
     submenu: [
       {
         name: "Master",
-        route: "recruitments",
+        route: "#",
       },
     ],
   },
@@ -134,7 +134,7 @@ export const Menus: any = [
     submenu: [
       {
         name: "Master",
-        route: "training",
+        route: "#",
       },
     ],
   },

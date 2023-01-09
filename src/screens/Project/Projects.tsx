@@ -5,13 +5,13 @@ import AddIcon from "@mui/icons-material/Add";
 import SearchIcon from "@mui/icons-material/Search";
 import { Container } from "@mui/system";
 import { useNavigate } from "react-router-dom";
-import { styles } from "../styles/screens/ProjectList";
-import ProjectCard from "../components/GridView/ProjectCard";
+import { styles } from "../../styles/screens/ProjectList";
+import ProjectCard from "../../components/Project/ProjectCard";
 import Button from "@mui/material/Button";
-import { globalStyles } from "../styles/global";
-import CustomizationButtons from "../components/CustomizationButtons";
-import Paginations from "../components/Paginations";
-import ProjectList from "../components/ListView/ProjectList";
+import { globalStyles } from "../../styles/global";
+import CustomizationButtons from "../../components/HigherOrder/CustomizationButtons";
+import Paginations from "../../components/HigherOrder/Paginations";
+import ProjectList from "../../components/Project/ProjectList";
 
 const columns: GridColDef[] = [
     {

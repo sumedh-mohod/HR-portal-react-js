@@ -1,7 +1,7 @@
 import React from "react";
 import { Box, Grid, Typography } from "@mui/material";
 import Card from "@mui/material/Card";
-import { styles } from "../styles/components/editCompany";
+import { styles } from "../../styles/components/editCompany";
 const CompanyDetailsCard = () => {
   const CompanyDetails = [
     {

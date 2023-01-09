@@ -1,6 +1,6 @@
 import React, { useRef } from "react";
 import { useFormik } from "formik";
-import { addPartnerValidator } from "../utils/validations/auth";
+import { addPartnerValidator } from "../../utils/validations/auth";
 import {
   Box,
   Button,
@@ -13,9 +13,9 @@ import {
   Card,
   IconButton,
 } from "@mui/material";
-import { styles } from "../styles/components/addPartner";
+import { styles } from "../../styles/components/addPartner";
 import { useNavigate } from "react-router-dom";
-import { globalStyles } from "../styles/global";
+import { globalStyles } from "../../styles/global";
 // import { useAppDispatch} from "../store/hooks";
 // import { addcompany } from "../store/reducers/companies/companies";
 import CheckIcon from "@mui/icons-material/Check";
