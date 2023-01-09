@@ -173,9 +173,9 @@ const AddPartner = () => {
                   name="addressLine1"
                   value={values.addressLine1}
                   onChange={handleChange}
-                  //   onBlur={handleBlur}
-                  //   error={touched.addressLine1 && errors.addressLine1 ? true : false}
-                  //   helperText={touched.addressLine1 && errors.addressLine1}
+                //   onBlur={handleBlur}
+                //   error={touched.addressLine1 && errors.addressLine1 ? true : false}
+                //   helperText={touched.addressLine1 && errors.addressLine1}
                 />
               </FormControl>
             </Grid>
@@ -190,9 +190,9 @@ const AddPartner = () => {
                   name="addressLine2"
                   value={values.addressLine2}
                   onChange={handleChange}
-                  //   onBlur={handleBlur}
-                  //   error={touched.addressLine2 && errors.addressLine2 ? true : false}
-                  //   helperText={touched.addressLine2 && errors.addressLine2}
+                //   onBlur={handleBlur}
+                //   error={touched.addressLine2 && errors.addressLine2 ? true : false}
+                //   helperText={touched.addressLine2 && errors.addressLine2}
                 />
               </FormControl>
             </Grid>
@@ -269,9 +269,9 @@ const AddPartner = () => {
                   name="postalCode"
                   value={values.postalCode}
                   onChange={handleChange}
-                  //   onBlur={handleBlur}
-                  //   error={touched.postalCode && errors.postalCode ? true : false}
-                  //   helperText={touched.postalCode && errors.postalCode}
+                //   onBlur={handleBlur}
+                //   error={touched.postalCode && errors.postalCode ? true : false}
+                //   helperText={touched.postalCode && errors.postalCode}
                 />
               </FormControl>
             </Grid>
@@ -395,9 +395,9 @@ const AddPartner = () => {
                   name="id"
                   value={values.id}
                   onChange={handleChange}
-                  // onBlur={handleBlur}
-                  // error={touched.taxID && errors.taxID ? true : false}
-                  // helperText={touched.taxID && errors.taxID}
+                // onBlur={handleBlur}
+                // error={touched.taxID && errors.taxID ? true : false}
+                // helperText={touched.taxID && errors.taxID}
                 />
               </FormControl>
             </Grid>
@@ -422,11 +422,11 @@ const AddPartner = () => {
                 size="small"
                 type={"text"}
                 name="name"
-                // value={values.name}
-                // onChange={name}
-                //   onBlur={handleBlur}
-                //   error={touched.addressLine1 && errors.addressLine1 ? true : false}
-                //   helperText={touched.addressLine1 && errors.addressLine1}
+              // value={values.name}
+              // onChange={name}
+              //   onBlur={handleBlur}
+              //   error={touched.addressLine1 && errors.addressLine1 ? true : false}
+              //   helperText={touched.addressLine1 && errors.addressLine1}
               />
             </FormControl>
           </Grid>
@@ -439,11 +439,11 @@ const AddPartner = () => {
                 size="small"
                 type={"text"}
                 name="value"
-                // value={values.value}
-                // onChange={name}
-                //   onBlur={handleBlur}
-                //   error={touched.addressLine1 && errors.addressLine1 ? true : false}
-                //   helperText={touched.addressLine1 && errors.addressLine1}
+              // value={values.value}
+              // onChange={name}
+              //   onBlur={handleBlur}
+              //   error={touched.addressLine1 && errors.addressLine1 ? true : false}
+              //   helperText={touched.addressLine1 && errors.addressLine1}
               />
             </FormControl>
           </Grid>
@@ -462,11 +462,11 @@ const AddPartner = () => {
                 size="small"
                 type={"text"}
                 name="name"
-                // value={values.name}
-                // onChange={name}
-                //   onBlur={handleBlur}
-                //   error={touched.addressLine1 && errors.addressLine1 ? true : false}
-                //   helperText={touched.addressLine1 && errors.addressLine1}
+              // value={values.name}
+              // onChange={name}
+              //   onBlur={handleBlur}
+              //   error={touched.addressLine1 && errors.addressLine1 ? true : false}
+              //   helperText={touched.addressLine1 && errors.addressLine1}
               />
             </FormControl>
           </Grid>
@@ -479,11 +479,11 @@ const AddPartner = () => {
                 size="small"
                 type={"text"}
                 name="value"
-                // value={values.value}
-                // onChange={name}
-                //   onBlur={handleBlur}
-                //   error={touched.addressLine1 && errors.addressLine1 ? true : false}
-                //   helperText={touched.addressLine1 && errors.addressLine1}
+              // value={values.value}
+              // onChange={name}
+              //   onBlur={handleBlur}
+              //   error={touched.addressLine1 && errors.addressLine1 ? true : false}
+              //   helperText={touched.addressLine1 && errors.addressLine1}
               />
             </FormControl>
           </Grid>
@@ -517,11 +517,11 @@ const AddPartner = () => {
                 size="small"
                 type={"text"}
                 name="name"
-                // value={values.name}
-                // onChange={name}
-                //   onBlur={handleBlur}
-                //   error={touched.addressLine1 && errors.addressLine1 ? true : false}
-                //   helperText={touched.addressLine1 && errors.addressLine1}
+              // value={values.name}
+              // onChange={name}
+              //   onBlur={handleBlur}
+              //   error={touched.addressLine1 && errors.addressLine1 ? true : false}
+              //   helperText={touched.addressLine1 && errors.addressLine1}
               />
             </FormControl>
           </Grid>
@@ -534,11 +534,11 @@ const AddPartner = () => {
                 size="small"
                 type={"email"}
                 name="email_id"
-                // value={values.value}
-                // onChange={name}
-                //   onBlur={handleBlur}
-                //   error={touched.addressLine1 && errors.addressLine1 ? true : false}
-                //   helperText={touched.addressLine1 && errors.addressLine1}
+              // value={values.value}
+              // onChange={name}
+              //   onBlur={handleBlur}
+              //   error={touched.addressLine1 && errors.addressLine1 ? true : false}
+              //   helperText={touched.addressLine1 && errors.addressLine1}
               />
             </FormControl>
           </Grid>
@@ -551,11 +551,11 @@ const AddPartner = () => {
                 size="small"
                 type={"phone"}
                 name="contact"
-                // value={values.value}
-                // onChange={name}
-                //   onBlur={handleBlur}
-                //   error={touched.addressLine1 && errors.addressLine1 ? true : false}
-                //   helperText={touched.addressLine1 && errors.addressLine1}
+              // value={values.value}
+              // onChange={name}
+              //   onBlur={handleBlur}
+              //   error={touched.addressLine1 && errors.addressLine1 ? true : false}
+              //   helperText={touched.addressLine1 && errors.addressLine1}
               />
             </FormControl>
           </Grid>
@@ -590,11 +590,11 @@ const AddPartner = () => {
                 size="small"
                 type={"text"}
                 name="name"
-                // value={values.name}
-                // onChange={name}
-                //   onBlur={handleBlur}
-                //   error={touched.addressLine1 && errors.addressLine1 ? true : false}
-                //   helperText={touched.addressLine1 && errors.addressLine1}
+              // value={values.name}
+              // onChange={name}
+              //   onBlur={handleBlur}
+              //   error={touched.addressLine1 && errors.addressLine1 ? true : false}
+              //   helperText={touched.addressLine1 && errors.addressLine1}
               />
             </FormControl>
           </Grid>
@@ -607,11 +607,11 @@ const AddPartner = () => {
                 size="small"
                 type={"email"}
                 name="email_id"
-                // value={values.value}
-                // onChange={name}
-                //   onBlur={handleBlur}
-                //   error={touched.addressLine1 && errors.addressLine1 ? true : false}
-                //   helperText={touched.addressLine1 && errors.addressLine1}
+              // value={values.value}
+              // onChange={name}
+              //   onBlur={handleBlur}
+              //   error={touched.addressLine1 && errors.addressLine1 ? true : false}
+              //   helperText={touched.addressLine1 && errors.addressLine1}
               />
             </FormControl>
           </Grid>
@@ -624,11 +624,11 @@ const AddPartner = () => {
                 size="small"
                 type={"phone"}
                 name="contact"
-                // value={values.value}
-                // onChange={name}
-                //   onBlur={handleBlur}
-                //   error={touched.addressLine1 && errors.addressLine1 ? true : false}
-                //   helperText={touched.addressLine1 && errors.addressLine1}
+              // value={values.value}
+              // onChange={name}
+              //   onBlur={handleBlur}
+              //   error={touched.addressLine1 && errors.addressLine1 ? true : false}
+              //   helperText={touched.addressLine1 && errors.addressLine1}
               />
             </FormControl>
           </Grid>
