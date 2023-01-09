@@ -1,14 +1,14 @@
 import React from "react";
-import AddPartner from "../components/AddPartner";
+import AddProject from "../../components/Project/AddProject";
 
 import { useParams, useLocation } from "react-router-dom";
 
-const PartnerAddEdit = () => {
+const ProjectAddEdit = () => {
   let params = useParams();
   let location = useLocation();
 
   const { opration } = params;
-  return <>{opration === "add" ? <AddPartner /> : ""}</>;
+  return <>{opration === "add" ? <AddProject /> : ""}</>;
 };
 
-export default PartnerAddEdit;
+export default ProjectAddEdit;

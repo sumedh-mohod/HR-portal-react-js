@@ -46,23 +46,7 @@ export const styles = {
       color: "#252733",
     },
   },
-  addEmployeeCard: {
-    sx: {
-      p: 3,
-      pt: 1,
-      pb: 1,
-      m: 1,
-      fontSize: "16px",
-      height: "90%",
-      cursor: "pointer",
-      fontWeight: "600",
-      display: "flex",
-      justifyContent: "center",
-      alignItems: "center",
-      outline: "2px dashed #C0C0C0",
-      boxShadow: "none",
-    },
-  },
+ 
   addEmployeeIcon: {
     sx: {
       fontSize: "16px",

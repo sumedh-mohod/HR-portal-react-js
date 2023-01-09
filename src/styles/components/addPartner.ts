@@ -3,7 +3,7 @@ export const styles = {
     sx: {
       display: "flex",
       justifyContent: "space-between",
-      mt: 5,
+      mt: 2,
     },
   },
   parentBoxCancleButton: {
@@ -29,26 +29,7 @@ export const styles = {
       p: 5,
     },
   },
-  logoTextfield: {
-    sx: {
-      "& .MuiInputBase-input": {
-        overflow: "hidden",
-        textOverflow: "ellipsis",
-        width: "60%",
-        display: "inline-block",
-      },
-    },
-  },
-  selectFileButton: {
-    sx: {
-      background: "white",
-      color: "black",
-      textTransform: "inherit",
-      marginBottom: "-10px",
-      padding: "1px 5px",
-      fontSize: "12px",
-    },
-  },
+  
   checkIcon:{
     sx:{
       width: "30px",
@@ -91,5 +72,27 @@ addIcon:{
     fontFamily: "Montserrat",
     marginRight: 1,
   }
+},
+logoTextfield: {
+  sx: {
+    "& .MuiInputBase-input": {
+      overflow: "hidden",
+      textOverflow: "ellipsis",
+      // width: "60%",
+      display: "inline-block",
+    },
+  },
+},
+
+selectFileButton: {
+  sx: {
+    marginTop:"14px",
+    background: "white",
+    color: "black",
+    width: "max-contain",
+    textTransform: "inherit",
+    padding: "2px",
+    fontSize: "11px",
+  },
 }
 }

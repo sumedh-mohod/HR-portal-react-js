@@ -1,15 +1,17 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState,useMemo } from "react";
 import { GridColDef } from "@mui/x-data-grid";
-import { Grid, Box, Typography, Container, TextField } from "@mui/material";
-import { useAppDispatch, useAppSelector } from "../store/hooks";
-import { getPartners } from "../store/reducers/partners/partners";
+import { Grid, Box, Typography, Container, TextField, Button } from "@mui/material";
+import { useAppDispatch, useAppSelector } from "../../store/hooks";
+import { getPartners } from "../../store/reducers/partners/partners";
 import { useNavigate } from "react-router-dom";
-import { styles } from "../styles/screens/Partners";
+import { styles } from "../../styles/screens/Partners";
 import SearchIcon from "@mui/icons-material/Search";
-import PartnersCard from "../components/GridView/PartnersCard";
-import { globalStyles } from "../styles/global";
-import PartnersList from "../components/ListView/PartnersList";
-import CustomizationButtons from "../components/CustomizationButtons";
+import PartnersCard from "../../components/Partner/PartnersCard";
+import { globalStyles } from "../../styles/global";
+import PartnersList from "../../components/Partner/PartnersList";
+import CustomizationButtons from "../../components/HigherOrder/CustomizationButtons";
+import AddIcon from "@mui/icons-material/Add";
+import Paginations from "../../components/HigherOrder/Paginations";
 
 const columns: GridColDef[] = [
   {
@@ -34,11 +36,6 @@ const columns: GridColDef[] = [
     maxWidth: 400,
     hide: false,
   },
-  // { field: "company_name", headerName: "Company Name", minWidth: 150 },
-  // { field: "country", headerName: "Country", minWidth: 150 },
-  // { field: "employee_count", headerName: "Number of Employees", minWidth: 200 },
-  // { field: "project_count", headerName: "Number of Projects", minWidth: 150 },
-  // { field: "defaultCurrency", headerName: "Default Currency", minWidth: 150 },
 ];
 
 const rows = [
@@ -72,26 +69,63 @@ const rows = [
     description:
       "Plot No 10, Chintamani, Near Antarbharti Ashram, Dhangarpura, Khamla Rd, Nagpur, Maharashtra 440015",
   },
+  {
+    id: 6,
+    company_name: "Google",
+    description:
+      "Plot No 10, Chintamani, Near Antarbharti Ashram, Dhangarpura, Khamla Rd, Nagpur, Maharashtra 440015",
+  },
+  {
+    id: 7,
+    company_name: "Google",
+    description:
+      "Plot No 10, Chintamani, Near Antarbharti Ashram, Dhangarpura, Khamla Rd, Nagpur, Maharashtra 440015",
+  },
+  {
+    id: 8,
+    company_name: "Google",
+    description:
+      "Plot No 10, Chintamani, Near Antarbharti Ashram, Dhangarpura, Khamla Rd, Nagpur, Maharashtra 440015",
+  },
+  {
+    id: 9,
+    company_name: "Google",
+    description:
+      "Plot No 10, Chintamani, Near Antarbharti Ashram, Dhangarpura, Khamla Rd, Nagpur, Maharashtra 440015",
+  },
+  {
+    id: 10,
+    company_name: "Google",
+    description:
+      "Plot No 10, Chintamani, Near Antarbharti Ashram, Dhangarpura, Khamla Rd, Nagpur, Maharashtra 440015",
+  },
 ];
-
+let PageSize = 5;
 const Partners = () => {
-  const dispatch = useAppDispatch();
-  const partnersStore = useAppSelector((state) => state.partners);
+  // const dispatch = useAppDispatch();
+  // const partnersStore = useAppSelector((state) => state.partners);
   const [designView, setDesignView] = useState("list");
+  const [currentPage, setCurrentPage] = useState(1);
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
   const openDropDown = Boolean(anchorEl);
   const [showColumns, setShowColumns] = useState(columns);
 
-  const { isLoadingRequest, partners } = partnersStore;
-  console.log("partners data is", partners);
+  const currentTableData = useMemo(() => {
+    const firstPageIndex = (currentPage - 1) * PageSize;
+    const lastPageIndex = firstPageIndex + PageSize;
+    return rows?.slice(firstPageIndex, lastPageIndex);
+  }, [currentPage]);
+
+  // const { isLoadingRequest, partners } = partnersStore;
+  // console.log("partners data is", partners);
   const navigate = useNavigate();
 
-  useEffect(() => {
-    dispatch(getPartners())
-      .unwrap()
-      .then((response: any) => {})
-      .catch((error: any) => {});
-  }, []);
+  // useEffect(() => {
+  //   dispatch(getPartners())
+  //     .unwrap()
+  //     .then((response: any) => {})
+  //     .catch((error: any) => {});
+  // }, []);
 
   const handlePartnerEditClick = () => {
     navigate("/partners/edit");
@@ -123,8 +157,15 @@ const Partners = () => {
     });
   };
 
+  const handlePageChange = (
+    event: React.ChangeEvent<unknown>,
+    value: number
+  ) => {
+    setCurrentPage(value);
+  };
+
   return (
-    <Container>
+    <Box sx={{display:"flex" ,flexDirection:"column"}}>
       {/* box for search bar and company */}
       <Box {...styles.companyTitleBox}>
         <Typography variant="h5" {...globalStyles.moduleTitle}>
@@ -136,6 +177,22 @@ const Partners = () => {
             display: "flex",
           }}
         >
+           <Button
+            variant="contained"
+            onClick={handlePartnerAddClick}
+            startIcon={<AddIcon />}
+            sx={{
+              background: "#F58634",
+              borderRadius: "5px",
+              mr: "10px",
+              cursor: "pointer",
+              fontSize: "14px",
+              textTransform: "inherit",
+            }}
+          >
+            {" "}
+            Add
+          </Button>
           <CustomizationButtons
             setDesignView={setDesignView}
             handleClickDropDown={handleClickDropDown}
@@ -160,23 +217,23 @@ const Partners = () => {
           />
         </Box>
       </Box>
-
-      <Grid container spacing={0} direction="row" style={{ minHeight: "50vh" }}>
+      <Box sx={{ flexGrow: 1}}>
         {designView === "list" ? (
           <PartnersList
             handlePartnerAddClick={handlePartnerAddClick}
             showColumns={showColumns}
-            rows={rows}
+            rows={currentTableData}
           />
         ) : (
           <PartnersCard
-            partners={rows}
+            partners={currentTableData}
             handlePartnerEditClick={handlePartnerEditClick}
             handlePartnerAddClick={handlePartnerAddClick}
           />
         )}
-      </Grid>
-    </Container>
+      </Box>
+      <Paginations handlePageChange={handlePageChange} />
+    </Box>
   );
 };
 

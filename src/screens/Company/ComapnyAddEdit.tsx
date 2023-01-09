@@ -1,6 +1,6 @@
 import React from "react";
-import AddCompany from "../components/AddCompany";
-import EditCompany from "../components/EditCompany";
+import AddCompany from "../../components/Company/AddCompany";
+import EditCompany from "../../components/Company/EditCompany";
 
 import { useParams, useLocation } from "react-router-dom";
 

@@ -12,14 +12,10 @@ export const styles = {
     sx: {
       p: 2,
       pt: 1,
-      pb: 0,
+      pb: 1,
       fontSize: "16px",
-      height: {
-        xl: "35vh",
-        lg: "35vh",
-      },
       cursor: "pointer",
-      // boxShadow: "0px 4px 4px rgba(0, 0, 0, 0.25)",
+      boxShadow: "0px 4px 4px rgba(0, 0, 0, 0.25)",
     },
   },
   partnerName: {
@@ -41,34 +37,16 @@ export const styles = {
   partnerDescription: {
     sx: {
       fontSize: "14px",
-      //   fontWeight: "600",
+      fontWeight: "lighter",
       fontFamily: "Montserrat",
       color: "#252733",
     },
   },
-  addPartnerCard: {
+  addPartnerIcon: {
     sx: {
-      p: 3,
-      pt: 1,
-      pb: 1,
-      fontSize: "14px",
+      fontSize: "16px",
       fontWeight: "600",
-      display: "flex",
-      justifyContent: "center",
-      alignItems: "center",
-      height: {
-        xl: "35vh",
-        lg: "35vh",
-      },
-      outline: "2px dashed #C0C0C0",
-      boxShadow: "none",
-      cursor: "pointer",
-    }},
-    addPartnerIcon: {
-      sx: {
-        fontSize: "16px",
-        fontWeight: "600",
-        fontFamily: "Montserrat",
-      },
+      fontFamily: "Montserrat",
     },
+  },
 };

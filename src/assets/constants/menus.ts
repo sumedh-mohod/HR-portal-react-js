@@ -1,4 +1,3 @@
-import DashboardIcon from "@mui/icons-material/Dashboard";
 import Company from "../../components/Icons/Company";
 import Accounting from "../../components/Icons/Accounting";
 import Training from "../../components/Icons/Training";
@@ -39,7 +38,7 @@ export const Menus: any = [
     submenu: [
       {
         name: "Master",
-        route: "accountings",
+        route: "#",
       },
     ],
   },
@@ -51,7 +50,7 @@ export const Menus: any = [
     submenu: [
       {
         name: "Master",
-        route: "assets",
+        route: "#",
       },
     ],
   },
@@ -99,7 +98,7 @@ export const Menus: any = [
     submenu: [
       {
         name: "Master",
-        route: "settings",
+        route: "#",
       },
     ],
   },
@@ -111,7 +110,7 @@ export const Menus: any = [
     submenu: [
       {
         name: "Master",
-        route: "venders",
+        route: "#",
       },
     ],
   },
@@ -123,7 +122,7 @@ export const Menus: any = [
     submenu: [
       {
         name: "Master",
-        route: "recruitments",
+        route: "#",
       },
     ],
   },
@@ -135,7 +134,7 @@ export const Menus: any = [
     submenu: [
       {
         name: "Master",
-        route: "training",
+        route: "#",
       },
     ],
   },

@@ -14,9 +14,9 @@ const Breadcrumb = () => {
 
   return (
     <Breadcrumbs aria-label="Breadcrumb" separator="›">
-      <Link color="inherit" component={RouterLink} to="/">
+      {/* <Link color="inherit" component={RouterLink} to="/">
         Home
-      </Link>
+      </Link> */}
       {pathnames.map((value, index) => {
         const last = index === pathnames.length - 1;
         const to = `/${pathnames.slice(0, index + 1).join(">")}`;
@@ -26,7 +26,7 @@ const Breadcrumb = () => {
             {toTitleCase(value)}
           </Typography>
         ) : (
-          <Link color="inherit" component={RouterLink} to="/" key={to}>
+          <Link color="inherit" component={RouterLink} to={to} key={to}>
             {toTitleCase(value)}
           </Link>
         );

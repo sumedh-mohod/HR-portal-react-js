@@ -1,7 +1,7 @@
 import React,{useEffect}from 'react'
 import Backdrop from '@mui/material/Backdrop';
 import CircularProgress from '@mui/material/CircularProgress';
-import { useAuth } from "../context/auth";
+import { useAuth } from "../../context/auth";
 import { useNavigate } from 'react-router-dom';
 const Logout = () => {
     const { logoutFromContext } = useAuth();

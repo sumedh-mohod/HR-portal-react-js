@@ -5,10 +5,10 @@ import SaveIcon from "@mui/icons-material/Save";
 import CompanyDetailsCard from "./CompanyDetailsCard";
 import CompanyEditCard from "./CompanyEditCard";
 import HolidayCard from "./HolidayCard";
-import { styles } from "../styles/components/editCompany";
+import { styles } from "../../styles/components/editCompany";
 import { useNavigate, useParams } from "react-router-dom";
 import { parse } from "path";
-import HollidayDetailsCard from "./ListView/HollidayCard";
+import HollidayDetailsCard from "../Partner/HollidayCard";
 
 const EditCompany = () => {
   let { params } = useParams();

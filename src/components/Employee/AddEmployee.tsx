@@ -12,9 +12,9 @@ import {
   MenuItem,
   Card,
 } from "@mui/material";
-import { styles } from "../styles/components/addEmployee";
+import { styles } from "../../styles/components/addEmployee";
 import { useNavigate } from "react-router-dom";
-import { globalStyles } from "../styles/global";
+import { globalStyles } from "../../styles/global";
 // import { useAppDispatch} from "../store/hooks";
 const AddEmployee = () => {
   const navigate = useNavigate();

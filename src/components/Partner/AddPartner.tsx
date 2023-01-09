@@ -1,6 +1,6 @@
 import React, { useRef } from "react";
 import { useFormik } from "formik";
-import { addPartnerValidator } from "../utils/validations/auth";
+import { addPartnerValidator } from "../../utils/validations/auth";
 import {
   Box,
   Button,
@@ -13,9 +13,9 @@ import {
   Card,
   IconButton,
 } from "@mui/material";
-import { styles } from "../styles/components/addPartner";
+import { styles } from "../../styles/components/addPartner";
 import { useNavigate } from "react-router-dom";
-import { globalStyles } from "../styles/global";
+import { globalStyles } from "../../styles/global";
 // import { useAppDispatch} from "../store/hooks";
 // import { addcompany } from "../store/reducers/companies/companies";
 import CheckIcon from "@mui/icons-material/Check";
@@ -104,12 +104,14 @@ const AddPartner = () => {
           </Box>
         </Box>
         {/* form fields started */}
-        <Card {...styles.card}>
-          <Grid container columnSpacing={3} rowGap={1}>
+        <Card sx={{ mt: 3, mb: 3, p: 5 }}>
+          <Grid container columnSpacing={3} rowGap={3}>
             {/* uplaod Logo */}
             <Grid item xs={12} md={6} lg={3}>
               <FormControl fullWidth>
-                <FormLabel id="logo">Upload Logo*</FormLabel>
+                <FormLabel id="logo" {...globalStyles.textFieldLabel}>
+                  Upload Logo*
+                </FormLabel>
                 <input
                   name="logo"
                   style={{ display: "none" }}
@@ -127,7 +129,8 @@ const AddPartner = () => {
                   helperText={touched.logo && errors.logo}
                   {...styles.logoTextfield}
                   InputProps={{
-                    sx: { color: "#515151" },
+                    disableUnderline: true,
+                    style: { ...globalStyles.textField },
                     endAdornment: (
                       <Button
                         onClick={handleClick}
@@ -144,7 +147,9 @@ const AddPartner = () => {
             {/* partner name */}
             <Grid item xs={12} md={6} lg={3}>
               <FormControl fullWidth>
-                <FormLabel id="partnerName">Partner Name*</FormLabel>
+                <FormLabel id="partnerName" {...globalStyles.textFieldLabel}>
+                  Partner Name*
+                </FormLabel>
                 <TextField
                   select
                   variant="filled"
@@ -157,6 +162,10 @@ const AddPartner = () => {
                     touched.partnerName && errors.partnerName ? true : false
                   }
                   helperText={touched.partnerName && errors.partnerName}
+                  InputProps={{
+                    disableUnderline: true,
+                    style: { ...globalStyles.textField },
+                  }}
                 >
                   <MenuItem value="orangebits india">orangebits india</MenuItem>
                 </TextField>
@@ -165,7 +174,9 @@ const AddPartner = () => {
             {/* address line 1 */}
             <Grid item xs={12} md={6} lg={3}>
               <FormControl fullWidth>
-                <FormLabel id="addressLine1">Address Line 1</FormLabel>
+                <FormLabel id="addressLine1" {...globalStyles.textFieldLabel}>
+                  Address Line 1
+                </FormLabel>
                 <TextField
                   variant="filled"
                   size="small"
@@ -173,6 +184,10 @@ const AddPartner = () => {
                   name="addressLine1"
                   value={values.addressLine1}
                   onChange={handleChange}
+                  InputProps={{
+                    disableUnderline: true,
+                    style: { ...globalStyles.textField },
+                  }}
                   //   onBlur={handleBlur}
                   //   error={touched.addressLine1 && errors.addressLine1 ? true : false}
                   //   helperText={touched.addressLine1 && errors.addressLine1}
@@ -182,7 +197,9 @@ const AddPartner = () => {
             {/* address line 2 */}
             <Grid item xs={12} md={6} lg={3}>
               <FormControl fullWidth>
-                <FormLabel id="addressLine2">Address Line 2</FormLabel>
+                <FormLabel id="addressLine2" {...globalStyles.textFieldLabel}>
+                  Address Line 2
+                </FormLabel>
                 <TextField
                   variant="filled"
                   size="small"
@@ -190,6 +207,10 @@ const AddPartner = () => {
                   name="addressLine2"
                   value={values.addressLine2}
                   onChange={handleChange}
+                  InputProps={{
+                    disableUnderline: true,
+                    style: { ...globalStyles.textField },
+                  }}
                   //   onBlur={handleBlur}
                   //   error={touched.addressLine2 && errors.addressLine2 ? true : false}
                   //   helperText={touched.addressLine2 && errors.addressLine2}
@@ -199,7 +220,9 @@ const AddPartner = () => {
             {/* select city */}
             <Grid item xs={12} md={6} lg={3}>
               <FormControl fullWidth>
-                <FormLabel id="selectCity">Select City*</FormLabel>
+                <FormLabel id="selectCity" {...globalStyles.textFieldLabel}>
+                  Select City*
+                </FormLabel>
                 <TextField
                   select
                   name="selectCity"
@@ -211,6 +234,10 @@ const AddPartner = () => {
                   onBlur={handleBlur}
                   error={touched.selectCity && errors.selectCity ? true : false}
                   helperText={touched.selectCity && errors.selectCity}
+                  InputProps={{
+                    disableUnderline: true,
+                    style: { ...globalStyles.textField },
+                  }}
                 >
                   <MenuItem value="Nagpur">Nagpur</MenuItem>
                 </TextField>
@@ -219,7 +246,9 @@ const AddPartner = () => {
             {/* select state */}
             <Grid item xs={12} md={6} lg={3}>
               <FormControl fullWidth>
-                <FormLabel id="selectState">Select state*</FormLabel>
+                <FormLabel id="selectState" {...globalStyles.textFieldLabel}>
+                  Select state*
+                </FormLabel>
                 <TextField
                   select
                   name="selectState"
@@ -233,6 +262,10 @@ const AddPartner = () => {
                     touched.selectState && errors.selectState ? true : false
                   }
                   helperText={touched.selectState && errors.selectState}
+                  InputProps={{
+                    disableUnderline: true,
+                    style: { ...globalStyles.textField },
+                  }}
                 >
                   <MenuItem value="Maharastra">Maharastra</MenuItem>
                 </TextField>
@@ -241,7 +274,9 @@ const AddPartner = () => {
             {/* Country */}
             <Grid item xs={12} md={6} lg={3}>
               <FormControl fullWidth>
-                <FormLabel id="country">Country*</FormLabel>
+                <FormLabel id="country" {...globalStyles.textFieldLabel}>
+                  Country*
+                </FormLabel>
                 <TextField
                   select
                   name="country"
@@ -253,6 +288,10 @@ const AddPartner = () => {
                   onBlur={handleBlur}
                   error={touched.country && errors.country ? true : false}
                   helperText={touched.country && errors.country}
+                  InputProps={{
+                    disableUnderline: true,
+                    style: { ...globalStyles.textField },
+                  }}
                 >
                   <MenuItem value="India">India</MenuItem>
                 </TextField>
@@ -261,7 +300,9 @@ const AddPartner = () => {
             {/* postal code */}
             <Grid item xs={12} md={6} lg={3}>
               <FormControl fullWidth>
-                <FormLabel id="postalCode">Postal code</FormLabel>
+                <FormLabel id="postalCode" {...globalStyles.textFieldLabel}>
+                  Postal code
+                </FormLabel>
                 <TextField
                   variant="filled"
                   size="small"
@@ -269,125 +310,23 @@ const AddPartner = () => {
                   name="postalCode"
                   value={values.postalCode}
                   onChange={handleChange}
+                  InputProps={{
+                    disableUnderline: true,
+                    style: { ...globalStyles.textField },
+                  }}
                   //   onBlur={handleBlur}
                   //   error={touched.postalCode && errors.postalCode ? true : false}
                   //   helperText={touched.postalCode && errors.postalCode}
                 />
               </FormControl>
             </Grid>
-            {/*  Partner OnBoard Date  */}
-            {/* <Grid item xs={12} md={6} lg={3}>
-              <FormControl fullWidth>
-                <FormLabel id="partnerOnBoardDate">
-                  Partner OnBoard Date
-                </FormLabel>
-                <TextField
-                  variant="filled"
-                  size="small"
-                  type="date"
-                  name="partnerOnBoardDate"
-                  value={values.partnerOnBoardDate}
-                  onChange={handleChange}
-                  onBlur={handleBlur}
-                  error={
-                    touched.partnerOnBoardDate && errors.partnerOnBoardDate
-                      ? true
-                      : false
-                  }
-                  helperText={
-                    touched.partnerOnBoardDate && errors.partnerOnBoardDate
-                  }
-                />
-              </FormControl>
-            </Grid> */}
-            {/* Point of Contact Orangebits */}
-            {/* <Grid item xs={12} md={6} lg={3}>
-              <FormControl fullWidth>
-                <FormLabel id="pointofContactOrangebits">
-                  Point of Contact Orangebits
-                </FormLabel>
-                <TextField
-                  variant="filled"
-                  size="small"
-                  type={"text"}
-                  name="pointofContactOrangebits"
-                  value={values.pointofContactOrangebits}
-                  onChange={handleChange}
-                  onBlur={handleBlur}
-                  error={
-                    touched.pointofContactOrangebits &&
-                    errors.pointofContactOrangebits
-                      ? true
-                      : false
-                  }
-                  helperText={
-                    touched.pointofContactOrangebits &&
-                    errors.pointofContactOrangebits
-                  }
-                />
-              </FormControl>
-            </Grid> */}
-            {/* Point of Contact Partrner 1  */}
-            {/* <Grid item xs={12} md={6} lg={3}>
-              <FormControl fullWidth>
-                <FormLabel id="pointofContactPartrner1">
-                  Point of Contact Partrner 1
-                </FormLabel>
-                <TextField
-                  variant="filled"
-                  size="small"
-                  type={"text"}
-                  name="pointofContactPartrner1"
-                  value={values.pointofContactPartrner1}
-                  onChange={handleChange}
-                  onBlur={handleBlur}
-                  //   error={touched.abbr && errors.abbr ? true : false}
-                  //   helperText={touched.abbr && errors.abbr}
-                />
-              </FormControl>
-            </Grid> */}
-            {/* Point of Contact Partrner 2 */}
-            {/* <Grid item xs={12} md={6} lg={3}>
-              <FormControl fullWidth>
-                <FormLabel id="pointofContactPartrner2">
-                  Point of Contact Partrner 2
-                </FormLabel>
-                <TextField
-                  variant="filled"
-                  size="small"
-                  type={"text"}
-                  name="pointofContactPartrner2"
-                  value={values.pointofContactPartrner2}
-                  onChange={handleChange}
-                  onBlur={handleBlur}
-                  //   error={touched.abbr && errors.abbr ? true : false}
-                  //   helperText={touched.abbr && errors.abbr}
-                />
-              </FormControl>
-            </Grid> */}
-            {/* Point of Contact Partrner 3 */}
-            {/* <Grid item xs={12} md={6} lg={3}>
-              <FormControl fullWidth>
-                <FormLabel id="pointofContactPartrner3">
-                  Point of Contact Partrner 3
-                </FormLabel>
-                <TextField
-                  variant="filled"
-                  size="small"
-                  type={"text"}
-                  name="pointofContactPartrner3"
-                  value={values.pointofContactPartrner3}
-                  onChange={handleChange}
-                  onBlur={handleBlur}
-                  //   error={touched.abbr && errors.abbr ? true : false}
-                  //   helperText={touched.abbr && errors.abbr}
-                />
-              </FormControl>
-            </Grid> */}
+
             {/* id */}
             <Grid item xs={12} md={6} lg={3}>
               <FormControl fullWidth>
-                <FormLabel id="id">id</FormLabel>
+                <FormLabel id="id" {...globalStyles.textFieldLabel}>
+                  id
+                </FormLabel>
                 <TextField
                   variant="filled"
                   size="small"
@@ -395,6 +334,10 @@ const AddPartner = () => {
                   name="id"
                   value={values.id}
                   onChange={handleChange}
+                  InputProps={{
+                    disableUnderline: true,
+                    style: { ...globalStyles.textField },
+                  }}
                   // onBlur={handleBlur}
                   // error={touched.taxID && errors.taxID ? true : false}
                   // helperText={touched.taxID && errors.taxID}
@@ -412,16 +355,22 @@ const AddPartner = () => {
         </Typography>
       </Box>
       <Card {...styles.card}>
-        <Grid container columnSpacing={3} rowGap={1}>
+        <Grid container columnSpacing={3} rowGap={3}>
           {/* name */}
           <Grid item xs={12} md={6} lg={3}>
             <FormControl fullWidth>
-              <FormLabel id="name">Name</FormLabel>
+              <FormLabel id="name" {...globalStyles.textFieldLabel}>
+                Name
+              </FormLabel>
               <TextField
                 variant="filled"
                 size="small"
                 type={"text"}
                 name="name"
+                InputProps={{
+                  disableUnderline: true,
+                  style: { ...globalStyles.textField },
+                }}
                 // value={values.name}
                 // onChange={name}
                 //   onBlur={handleBlur}
@@ -433,12 +382,18 @@ const AddPartner = () => {
           {/* value */}
           <Grid item xs={12} md={6} lg={3}>
             <FormControl fullWidth>
-              <FormLabel id="value">value</FormLabel>
+              <FormLabel id="value" {...globalStyles.textFieldLabel}>
+                value
+              </FormLabel>
               <TextField
                 variant="filled"
                 size="small"
                 type={"text"}
                 name="value"
+                InputProps={{
+                  disableUnderline: true,
+                  style: { ...globalStyles.textField },
+                }}
                 // value={values.value}
                 // onChange={name}
                 //   onBlur={handleBlur}
@@ -456,12 +411,18 @@ const AddPartner = () => {
           {/* name */}
           <Grid item xs={12} md={6} lg={3}>
             <FormControl fullWidth>
-              <FormLabel id="name">Name</FormLabel>
+              <FormLabel id="name" {...globalStyles.textFieldLabel}>
+                Name
+              </FormLabel>
               <TextField
                 variant="filled"
                 size="small"
                 type={"text"}
                 name="name"
+                InputProps={{
+                  disableUnderline: true,
+                  style: { ...globalStyles.textField },
+                }}
                 // value={values.name}
                 // onChange={name}
                 //   onBlur={handleBlur}
@@ -473,12 +434,18 @@ const AddPartner = () => {
           {/* value */}
           <Grid item xs={12} md={6} lg={3}>
             <FormControl fullWidth>
-              <FormLabel id="value">value</FormLabel>
+              <FormLabel id="value" {...globalStyles.textFieldLabel}>
+                value
+              </FormLabel>
               <TextField
                 variant="filled"
                 size="small"
                 type={"text"}
                 name="value"
+                InputProps={{
+                  disableUnderline: true,
+                  style: { ...globalStyles.textField },
+                }}
                 // value={values.value}
                 // onChange={name}
                 //   onBlur={handleBlur}
@@ -507,16 +474,22 @@ const AddPartner = () => {
         </Typography>
       </Box>
       <Card {...styles.card}>
-        <Grid container columnSpacing={3} rowGap={1}>
+        <Grid container columnSpacing={3} rowGap={3}>
           {/* name */}
           <Grid item xs={12} md={6} lg={3}>
             <FormControl fullWidth>
-              <FormLabel id="name">Name</FormLabel>
+              <FormLabel id="name" {...globalStyles.textFieldLabel}>
+                Name
+              </FormLabel>
               <TextField
                 variant="filled"
                 size="small"
                 type={"text"}
                 name="name"
+                InputProps={{
+                  disableUnderline: true,
+                  style: { ...globalStyles.textField },
+                }}
                 // value={values.name}
                 // onChange={name}
                 //   onBlur={handleBlur}
@@ -528,12 +501,18 @@ const AddPartner = () => {
           {/* email id */}
           <Grid item xs={12} md={6} lg={3}>
             <FormControl fullWidth>
-              <FormLabel id="email_id">Email id</FormLabel>
+              <FormLabel id="email_id" {...globalStyles.textFieldLabel}>
+                Email id
+              </FormLabel>
               <TextField
                 variant="filled"
                 size="small"
                 type={"email"}
                 name="email_id"
+                InputProps={{
+                  disableUnderline: true,
+                  style: { ...globalStyles.textField },
+                }}
                 // value={values.value}
                 // onChange={name}
                 //   onBlur={handleBlur}
@@ -545,12 +524,18 @@ const AddPartner = () => {
           {/* contact no */}
           <Grid item xs={12} md={6} lg={3}>
             <FormControl fullWidth>
-              <FormLabel id="contact">Contact</FormLabel>
+              <FormLabel id="contact" {...globalStyles.textFieldLabel}>
+                Contact
+              </FormLabel>
               <TextField
                 variant="filled"
                 size="small"
                 type={"phone"}
                 name="contact"
+                InputProps={{
+                  disableUnderline: true,
+                  style: { ...globalStyles.textField },
+                }}
                 // value={values.value}
                 // onChange={name}
                 //   onBlur={handleBlur}
@@ -580,16 +565,22 @@ const AddPartner = () => {
         </Typography>
       </Box>
       <Card {...styles.card}>
-        <Grid container columnSpacing={3} rowGap={1}>
+        <Grid container columnSpacing={3} rowGap={3}>
           {/* name */}
           <Grid item xs={12} md={6} lg={3}>
             <FormControl fullWidth>
-              <FormLabel id="name">Name</FormLabel>
+              <FormLabel id="name" {...globalStyles.textFieldLabel}>
+                Name
+              </FormLabel>
               <TextField
                 variant="filled"
                 size="small"
                 type={"text"}
                 name="name"
+                InputProps={{
+                  disableUnderline: true,
+                  style: { ...globalStyles.textField },
+                }}
                 // value={values.name}
                 // onChange={name}
                 //   onBlur={handleBlur}
@@ -601,12 +592,18 @@ const AddPartner = () => {
           {/* email id */}
           <Grid item xs={12} md={6} lg={3}>
             <FormControl fullWidth>
-              <FormLabel id="email_id">Email id</FormLabel>
+              <FormLabel id="email_id" {...globalStyles.textFieldLabel}>
+                Email id
+              </FormLabel>
               <TextField
                 variant="filled"
                 size="small"
                 type={"email"}
                 name="email_id"
+                InputProps={{
+                  disableUnderline: true,
+                  style: { ...globalStyles.textField },
+                }}
                 // value={values.value}
                 // onChange={name}
                 //   onBlur={handleBlur}
@@ -618,12 +615,18 @@ const AddPartner = () => {
           {/* contact no */}
           <Grid item xs={12} md={6} lg={3}>
             <FormControl fullWidth>
-              <FormLabel id="contact">Contact</FormLabel>
+              <FormLabel id="contact" {...globalStyles.textFieldLabel}>
+                Contact
+              </FormLabel>
               <TextField
                 variant="filled"
                 size="small"
                 type={"phone"}
                 name="contact"
+                InputProps={{
+                  disableUnderline: true,
+                  style: { ...globalStyles.textField },
+                }}
                 // value={values.value}
                 // onChange={name}
                 //   onBlur={handleBlur}
