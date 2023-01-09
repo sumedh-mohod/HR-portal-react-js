@@ -6,12 +6,12 @@ import { getPartners } from "../../store/reducers/partners/partners";
 import { useNavigate } from "react-router-dom";
 import { styles } from "../../styles/screens/Partners";
 import SearchIcon from "@mui/icons-material/Search";
-import PartnersCard from "../../components/Partner/PartnersCard";
+import PartnersCard from "../../components/partner/PartnersCard";
 import { globalStyles } from "../../styles/global";
-import PartnersList from "../../components/Partner/PartnersList";
-import CustomizationButtons from "../../components/HigherOrder/CustomizationButtons";
+import PartnersList from "../../components/partner/PartnersList";
+import CustomizationButtons from "../../components/higherorder/CustomizationButtons";
 import AddIcon from "@mui/icons-material/Add";
-import Paginations from "../../components/HigherOrder/Paginations";
+import Paginations from "../../components/higherorder/Paginations";
 
 const columns: GridColDef[] = [
   {

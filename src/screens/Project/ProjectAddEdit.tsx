@@ -1,5 +1,5 @@
 import React from "react";
-import AddProject from "../../components/Project/AddProject";
+import AddProject from "../../components/project/AddProject";
 
 import { useParams, useLocation } from "react-router-dom";
 
