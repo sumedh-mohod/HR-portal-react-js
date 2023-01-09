@@ -14,43 +14,30 @@ const PartnersListCard = ({
   handlePartnerAddClick: any;
 }) => {
   return (
-    <><Grid container spacing={2} sx={{ mt: 1 }}>
-      {partners?.map((partner: any, index: number) => (
-         
-        <Grid item xs={12} md={3} lg={3}>
-          <Card
-            elevation={3}
-            onClick={() => handlePartnerEditClick(partner)}
-            {...styles.partnerCard}
-            key={index}
-          >
-            <OrangeBitsIcon width={40} />
-            <Typography variant="h5" gutterBottom {...styles.partnerName}>
-              {partner.company_name}
-            </Typography>
-            <Box {...styles.partnerDescriptionBox}>
-              <Typography {...styles.partnerDescription}>
-                {partner.description}
+    <Box>
+      <Grid container spacing={2} sx={{ mt: 1 }}>
+        {partners?.map((partner: any, index: number) => (
+          <Grid item xs={12} md={3} lg={3}>
+            <Card
+              elevation={3}
+              onClick={() => handlePartnerEditClick(partner)}
+              {...styles.partnerCard}
+              key={index}
+            >
+              <OrangeBitsIcon width={40} />
+              <Typography variant="h5" gutterBottom {...styles.partnerName}>
+                {partner.company_name}
               </Typography>
-            </Box>
-          </Card>
-        </Grid>
-      ))}
-     
-      <Grid item xs={12} md={3} lg={3}>
-        <Paper
-          elevation={3}
-          onClick={handlePartnerAddClick}
-          {...styles.addPartnerCard}
-        >
-          <AddIcon fontSize="large" sx={{ pr: 2 }} />
-          <Typography {...globalStyles.moduleTitle} {...styles.addPartnerIcon}>
-            Add Partner
-          </Typography>
-        </Paper>
+              <Box {...styles.partnerDescriptionBox}>
+                <Typography {...styles.partnerDescription}>
+                  {partner.description}
+                </Typography>
+              </Box>
+            </Card>
+          </Grid>
+        ))}
       </Grid>
-      </Grid>
-    </>
+    </Box>
   );
 };
 
