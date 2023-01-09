@@ -21,6 +21,7 @@ import { useAppDispatch, useAppSelector } from "../store/hooks";
 import { login } from "../store/reducers/users/authentication";
 import { useAuth } from "../context/auth";
 import { useNavigate } from "react-router-dom";
+import { globalStyles } from "../styles/global";
 
 const Login = () => {
   const dispatch = useAppDispatch();
@@ -107,6 +108,7 @@ const Login = () => {
                   {...styles.formTextfield}
                   InputProps={{
                     disableUnderline: true,
+                    style: { ...globalStyles.textField }
                   }}
                 />
               </FormControl>
@@ -131,12 +133,14 @@ const Login = () => {
                   {...styles.formTextfield}
                   InputProps={{
                     disableUnderline: true,
+                    style: { ...globalStyles.textField },
                     endAdornment: (
                       <IconButton
                         aria-label="toggle password visibility"
                         edge="end"
                         onClick={handleClickShowPassword}
                         onMouseDown={handleMouseDownPassword}
+                        sx={{ mt: 2 }}
                       >
                         {showPassword ? <VisibilityOff /> : <Visibility />}
                       </IconButton>
