@@ -1,9 +1,6 @@
 import React from "react";
 import { DataGrid, GridToolbar, GridColDef } from "@mui/x-data-grid";
 import { Grid, Box, Card, Typography, Paper } from "@mui/material";
-import AddIcon from "@mui/icons-material/Add";
-
-import { styles } from "../../styles/screens/Partners";
 
 const PartnersList = ({
   showColumns,
@@ -16,14 +13,8 @@ const PartnersList = ({
 }) => {
   return (
     <Card sx={{ marginTop: "35px", p: 0 }}>
+      <Grid container width="1">
       <Grid item xs={12} xl={12} lg={12}>
-        <Box
-          sx={{
-            minWidth: "90vw",
-            maxWidth: "",
-            margin: 0,
-          }}
-        >
           <DataGrid
             sx={{
               borderRadius: "0",
@@ -41,17 +32,8 @@ const PartnersList = ({
             hideFooterPagination={true}
             hideFooter={true}
           />
-          <Grid item xs={12} md={12} lg={12}>
-            <Paper
-              elevation={3}
-              onClick={handlePartnerAddClick}
-              {...styles.addPartnerCard}
-            >
-              <AddIcon fontSize="large" sx={{ pr: 2 }} />
-              <Typography {...styles.addPartnerIcon}>Add Partner</Typography>
-            </Paper>
-          </Grid>
-        </Box>
+      
+        </Grid>
       </Grid>
     </Card>
   );
