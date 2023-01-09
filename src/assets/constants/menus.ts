@@ -1,12 +1,20 @@
 import DashboardIcon from "@mui/icons-material/Dashboard";
-import Apartment from "../../components/Icons/Apartment";
+import Apartment from "../../components/Icons/Company";
+import Accounting from "../../components/Icons/Accounting";
+import Training from "../../components/Icons/Training";
+import Assets from "../../components/Icons/Assets";
+import Partners from "../../components/Icons/Partners";
+import Project from "../../components/Icons/Project";
+import Employee from "../../components/Icons/Employee";
+import Settings from "../../components/Icons/Settings";
+import Vendors from "../../components/Icons/Vendors";
+import Recruitment from "../../components/Icons/Recruitment";
 
 export const Menus: any = [
   {
     name: "Comapny",
     icon: Apartment,
     id: 1,
-    route: "#1",
     active: false,
     submenu: [
       {
@@ -26,8 +34,7 @@ export const Menus: any = [
   {
     id: 2,
     name: "Accounting",
-    icon: DashboardIcon,
-    route: "#2",
+    icon: Accounting,
     active: false,
     submenu: [
       {
@@ -39,8 +46,7 @@ export const Menus: any = [
   {
     id: 3,
     name: "Assets",
-    icon: DashboardIcon,
-    route: "#3",
+    icon: Assets,
     active: false,
     submenu: [
       {
@@ -52,8 +58,7 @@ export const Menus: any = [
   {
     id: 4,
     name: "Partners",
-    icon: DashboardIcon,
-    route: "#",
+    icon: Partners,
     active: false,
     submenu: [
       {
@@ -65,8 +70,7 @@ export const Menus: any = [
   {
     id: 5,
     name: "Project",
-    icon: DashboardIcon,
-    route: "#5",
+    icon: Project,
     active: false,
     submenu: [
       {
@@ -78,8 +82,7 @@ export const Menus: any = [
   {
     id: 6,
     name: "Employee",
-    icon: DashboardIcon,
-    route: "#6",
+    icon: Employee,
     active: false,
     submenu: [
       {
@@ -91,8 +94,7 @@ export const Menus: any = [
   {
     id: 7,
     name: "Settings",
-    icon: DashboardIcon,
-    route: "#7",
+    icon: Settings,
     active: false,
     submenu: [
       {
@@ -104,8 +106,7 @@ export const Menus: any = [
   {
     id: 8,
     name: "Venders",
-    icon: DashboardIcon,
-    route: "#8",
+    icon: Vendors,
     active: false,
     submenu: [
       {
@@ -117,8 +118,7 @@ export const Menus: any = [
   {
     id: 9,
     name: "Recruitment",
-    icon: DashboardIcon,
-    route: "#9",
+    icon: Recruitment,
     active: false,
     submenu: [
       {
@@ -130,8 +130,7 @@ export const Menus: any = [
   {
     id: 10,
     name: "Training",
-    icon: DashboardIcon,
-    route: "#10",
+    icon: Training,
     active: false,
     submenu: [
       {

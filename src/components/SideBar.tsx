@@ -70,7 +70,7 @@ const DrawerHeader = styled("div")(({ theme }) => ({
 const SideBar = ({ open, setOpen }: any) => {
   const navigate = useNavigate();
 
-  const [activeRoute, setActiveRoute] = useState("home");
+  const [activeRoute, setActiveRoute] = useState(1);
   const [sideBarMenus, setSideBarMenus] = useState(Menus);
 
   const handleDrawerClose = () => {
@@ -78,15 +78,18 @@ const SideBar = ({ open, setOpen }: any) => {
   };
 
   const handleDrawerNavigation = (item: any) => {
+    setActiveRoute(item.id);
     const filerted = sideBarMenus?.map((value: any) =>
-      item.id === value.id ? { ...value, active: !value.active } : value
+      item.id === value.id
+        ? { ...value, active: !value.active }
+        : { ...value, active: false }
     );
 
     setSideBarMenus([...filerted]);
   };
 
   const handleNavigation = (item: any) => {
-    setActiveRoute(item.route);
+    // setActiveRoute(item.id);
     navigate(`${item.route}`);
   };
 
@@ -119,7 +122,11 @@ const SideBar = ({ open, setOpen }: any) => {
                 disablePadding
                 sx={{
                   display: "block",
-                  color: activeRoute === text.route ? "white" : "#A4A6B3",
+                  color: activeRoute === text.id ? "#F58634" : "#A4A6B3",
+                  borderLeftWidth: activeRoute === text.id ? 3 : 0,
+                  borderLeftColor:
+                    activeRoute === text.id ? "#F58634" : "#A4A6B3",
+                  borderLeftStyle: activeRoute === text.id ? "solid" : "none",
                 }}
               >
                 <ListItemButton
@@ -134,10 +141,11 @@ const SideBar = ({ open, setOpen }: any) => {
                       minWidth: 0,
                       mr: open ? 3 : "auto",
                       justifyContent: "center",
-                      color: activeRoute === text.route ? "white" : "#A4A6B3",
                     }}
                   >
-                    <ICON />
+                    <ICON
+                      fill={activeRoute === text.id ? "#F58634" : "#A4A6B3"}
+                    />
                   </ListItemIcon>
                   <ListItemText
                     onClick={() => {
