@@ -8,7 +8,7 @@ import HolidayCard from "./HolidayCard";
 import { styles } from "../../styles/components/editCompany";
 import { useNavigate, useParams } from "react-router-dom";
 import { parse } from "path";
-import HollidayDetailsCard from "../Partner/HollidayCard";
+import HollidayDetailsCard from "../partner/HollidayCard";
 
 const EditCompany = () => {
   let { params } = useParams();

@@ -63,9 +63,9 @@ const TopBar = () => {
     setAnchorEl(null);
   };
 
-  const handleLogout=()=>{
-    navigate("/logout")
-  }
+  const handleLogout = () => {
+    navigate("/logout");
+  };
   return (
     <>
       <AppBar

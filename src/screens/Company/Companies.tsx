@@ -15,10 +15,10 @@ import { globalStyles } from "../../styles/global";
 import { useAppDispatch, useAppSelector } from "../../store/hooks";
 import { companylist } from "../../store/reducers/companies/companies";
 
-import CompanyCard from "../../components/Company/CompanyCard";
-import CompaniesList from "../../components/Company/CompanyList";
-import Paginations from "../../components/HigherOrder/Paginations";
-import CustomizationButtons from "../../components/HigherOrder/CustomizationButtons";
+import CompanyCard from "../../components/company/CompanyCard";
+import CompaniesList from "../../components/company/CompanyList";
+import Paginations from "../../components/higherorder/Paginations";
+import CustomizationButtons from "../../components/higherorder/CustomizationButtons";
 
 const columns: GridColDef[] = [
   {
