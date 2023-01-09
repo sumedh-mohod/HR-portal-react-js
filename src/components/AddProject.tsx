@@ -14,6 +14,7 @@ import {
 } from "@mui/material";
 import { styles } from "../styles/components/addProject";
 import { useNavigate } from "react-router-dom";
+import { globalStyles } from "../styles/global";
 // import { useAppDispatch} from "../store/hooks";
 
 const AddProject = () => {
@@ -62,10 +63,10 @@ const AddProject = () => {
     console.log(fileObj);
     console.log(fileObj.name);
   };
-    // cancle butn click
-    const handleCancle = () => {
-      navigate(-1);
-    };
+  // cancle butn click
+  const handleCancle = () => {
+    navigate(-1);
+  };
 
   return (
     <Box>
@@ -74,7 +75,7 @@ const AddProject = () => {
         <Box {...styles.parentBox}>
           <Typography variant="h5">Add Project</Typography>
           <Box>
-            <Button {...styles.parentBoxCancleButton} variant="contained"   onClick={handleCancle}>
+            <Button {...styles.parentBoxCancleButton} variant="contained" onClick={handleCancle}>
               Cancle
             </Button>
             <Button
@@ -88,7 +89,7 @@ const AddProject = () => {
         </Box>
         {/* form fields started */}
         <Card {...styles.card}>
-          <Grid container columnSpacing={3} rowGap={1}>
+          <Grid container columnSpacing={3} rowGap={3}>
             {/* uplaod Logo */}
             <Grid item xs={12} md={6} lg={3}>
               <FormControl fullWidth>
@@ -111,6 +112,8 @@ const AddProject = () => {
                   {...styles.logoTextfield}
                   InputProps={{
                     sx: { color: "#515151" },
+                    disableUnderline: true,
+                    style: { ...globalStyles.textField },
                     endAdornment: (
                       <Button
                         onClick={handleClick}
@@ -138,6 +141,10 @@ const AddProject = () => {
                   onBlur={handleBlur}
                   error={touched.name && errors.name ? true : false}
                   helperText={touched.name && errors.name}
+                  InputProps={{
+                    disableUnderline: true,
+                    style: { ...globalStyles.textField }
+                  }}
                 />
               </FormControl>
             </Grid>
@@ -152,6 +159,10 @@ const AddProject = () => {
                   name="startDate"
                   value={values.startDate}
                   onChange={handleChange}
+                  InputProps={{
+                    disableUnderline: true,
+                    style: { ...globalStyles.textField }
+                  }}
                 />
               </FormControl>
             </Grid>
@@ -166,6 +177,10 @@ const AddProject = () => {
                   name="endDate"
                   value={values.endDate}
                   onChange={handleChange}
+                  InputProps={{
+                    disableUnderline: true,
+                    style: { ...globalStyles.textField }
+                  }}
                 />
               </FormControl>
             </Grid>
@@ -182,6 +197,10 @@ const AddProject = () => {
                   name="pointofContactPartrner1"
                   value={values.pointofContactPartrner1}
                   onChange={handleChange}
+                  InputProps={{
+                    disableUnderline: true,
+                    style: { ...globalStyles.textField }
+                  }}
                 />
               </FormControl>
             </Grid>
@@ -198,6 +217,10 @@ const AddProject = () => {
                   name="pointofContactPartrner2"
                   value={values.pointofContactPartrner2}
                   onChange={handleChange}
+                  InputProps={{
+                    disableUnderline: true,
+                    style: { ...globalStyles.textField }
+                  }}
                 />
               </FormControl>
             </Grid>
@@ -214,6 +237,10 @@ const AddProject = () => {
                   name="pointofContactPartrner3"
                   value={values.pointofContactPartrner3}
                   onChange={handleChange}
+                  InputProps={{
+                    disableUnderline: true,
+                    style: { ...globalStyles.textField }
+                  }}
                 />
               </FormControl>
             </Grid>
