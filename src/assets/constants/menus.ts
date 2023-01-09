@@ -1,4 +1,3 @@
-import DashboardIcon from "@mui/icons-material/Dashboard";
 import Company from "../../components/Icons/Company";
 import Accounting from "../../components/Icons/Accounting";
 import Training from "../../components/Icons/Training";

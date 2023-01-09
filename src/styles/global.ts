@@ -15,4 +15,16 @@ export const globalStyles = {
     height: "48px",
     paddingBottom: "16px",
   },
+   textFieldLabel: {
+      sx: {
+        fontFamily: "Montserrat",
+        fontStyle: "normal",
+        fontWeight: "500",
+        fontSize: "14px",
+        lineHeight: "17px",
+        letterSpacing: "0.3px",
+        marginBottom: "10px",
+      },
+    },
+  
 };
