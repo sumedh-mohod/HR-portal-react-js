@@ -10,7 +10,7 @@ import { Box } from "@mui/material";
 
 import CompanyList from "./screens/Companies";
 import Employee from "./screens/Employee";
-import ProjectsList from "./screens/ProjectsList";
+import ProjectsList from "./screens/Projects";
 import CompanyAddEdit from "./screens/ComapnyAddEdit";
 import NotFound from "./screens/NotFound";
 import Partners from "./screens/Partners";
