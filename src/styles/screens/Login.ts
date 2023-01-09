@@ -18,13 +18,9 @@ export const styles = {
     sx: {
       borderRadius: "8px",
       background: "#FFFFFF",
-      padding: "20px",
       marginBottom: "50px",
-      display: "flex",
-      flexDirection: "column",
-      alignItems: "center",
-      justifyContent: "center",
-      maxWidth: "360px",
+      maxWidth: "400px",
+      width: "max-content",
     },
   },
   formGrid: {
@@ -36,24 +32,31 @@ export const styles = {
   },
   formTitle: {
     sx: {
-      fontWeight: "700",
+      fontWeight: "600",
       fontSize: "18px",
       color: "#252733",
+      fontFamily: "Montserrat",
+      letterSpacing: "0.6px",
+      mt: 3,
     },
   },
-  formUsernameLable: {
+  textfieldLable: {
     sx: {
-      fontWeight: "700",
-      fontSize: "12px",
+      fontFamily: "Montserrat",
+      fontStyle: "normal",
+      fontWeight: "500",
+      fontSize: "14px",
+      lineHeight: "17px",
+      letterSpacing: "0.3px",
+      marginBottom: "15px",
       color: "#9FA2B4",
     },
   },
-  formUsernameTextfield: {
+  formTextfield: {
     sx: {
       fontSize: "14px",
-      // color: "#4B506D",
+      color: "#4B506D",
       // opacity: 0.4,
-      width: "292px",
     },
   },
   formPasswordBox: {
@@ -64,32 +67,11 @@ export const styles = {
       alignItems: "baseline",
     },
   },
-  formPasswordLable: {
-    sx: {
-      fontWeight: "700",
-      fontSize: "12px",
-      color: "#9FA2B4",
-    },
-  },
-  formPasswordForgot: {
-    sx: {
-      fontSize: "10px",
-      color: "#9FA2B4",
-    },
-  },
-  formPasswordTextfield: {
-    sx: {
-      fontSize: "14px",
-      // color: "#4B506D",
-      // opacity: 0.4,
-      width: "292px",
-    },
-  },
+
   formButtonBox: {
     sx: {
       display: "flex",
-      pl: "10px",
-      pr: "10px",
+      mt: 5,
     },
   },
   formButton: {

@@ -3,10 +3,11 @@ export const styles = {
     sx: {
       display: "flex",
       justifyContent: "space-between",
-      width:"100%",
+      width: "fullwidth",
       justifyItems: "center",
       alignContent: "flex-start",
       mt: 2,
+      flexGrow: 1,
     },
   },
   employeeCard: {
@@ -18,7 +19,7 @@ export const styles = {
       fontSize: "16px",
       height: "auto",
       cursor: "pointer",
-        boxShadow: "0px 4px 4px rgba(0, 0, 0, 0.25)",
+      boxShadow: "0px 4px 4px rgba(0, 0, 0, 0.25)",
     },
   },
   employeeName: {
@@ -39,8 +40,8 @@ export const styles = {
   },
   employeeDescription: {
     sx: {
-      fontSize: "14px",
-        fontWeight: "600",
+      fontSize: "12px",
+      fontWeight: "lighter",
       fontFamily: "Montserrat",
       color: "#252733",
     },

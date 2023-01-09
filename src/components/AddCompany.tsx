@@ -16,6 +16,7 @@ import { styles } from "../styles/components/addCompany";
 import { useAppDispatch } from "../store/hooks";
 import { addcompany } from "../store/reducers/companies/companies";
 import { useNavigate } from "react-router-dom";
+import { padding } from "@mui/system";
 
 const AddCompany = () => {
   const dispatch = useAppDispatch();
@@ -93,7 +94,6 @@ const AddCompany = () => {
             </Button>
           </Box>
         </Box>
-
         {/* form fields started */}
         <Card sx={{ mt: 3, mb: 3, p: 5 }}>
           <Grid container spacing={2} rowGap={3}>

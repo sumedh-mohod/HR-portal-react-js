@@ -4,8 +4,9 @@ import OrangeBitsIcon from "../Icons/OrangeBitsIcon";
 import { styles } from "../../styles/screens/Employee";
 import { globalStyles } from "../../styles/global";
 import AddIcon from "@mui/icons-material/Add";
-import Pagination from "@mui/material/Pagination/Pagination";
-import Paginations from "../Paginations";
+// import Pagination from "@mui/material/Pagination/Pagination";
+// import Paginations from "../Paginations";
+
 const EmployeeCard = ({
   employee,
   index,
@@ -18,16 +19,10 @@ const EmployeeCard = ({
   handleEmployeeAddClick: any;
 }) => {
   return (
-    <Box
-      sx={{
-        minWidth: "70vw",
-        maxWidth: "70vw",
-        margin: 0,
-      }}
-    >
+    <Box>
       <Grid container spacing={2} sx={{ mt: 1 }}>
         {employee?.map((employee: any, index: number) => (
-          <Grid item xs={12} md={3} lg={3}>
+          <Grid item xs={12} md={6} lg={3} xl={3}>
             <Card
               elevation={3}
               onClick={() => handleEmployeeEditClick(employee)}
@@ -53,9 +48,7 @@ const EmployeeCard = ({
           </Grid>
         ))}
       </Grid>
-
       {/* pagination */}
-      <Paginations/>
     </Box>
   );
 };

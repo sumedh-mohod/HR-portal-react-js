@@ -3,13 +3,7 @@ export const styles = {
     sx: {
       display: "flex",
       justifyContent: "space-between",
-      mt: 5,
-    },
-  },
-  parentBoxSaveButton: {
-    sx: {
-      backgroundColor: "#F58634",
-      borderRadius: "5px",
+      mt: 2,
     },
   },
   parentBoxCancelButton: {
@@ -18,8 +12,17 @@ export const styles = {
       color: "black",
       borderRadius: "5px",
       marginRight: "10px",
+      fontFamily: "Montserrat",
+      fontStyle: "normal",
     },
   },
+  parentBoxSaveButton: {
+    sx: {
+      backgroundColor: "#F58634",
+      borderRadius: "5px",
+    },
+  },
+
   textFieldLabel: {
     sx: {
       fontFamily: "Montserrat",

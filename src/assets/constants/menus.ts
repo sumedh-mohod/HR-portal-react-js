@@ -1,9 +1,10 @@
 import DashboardIcon from "@mui/icons-material/Dashboard";
+import Apartment from "../../components/Icons/Apartment";
 
 export const Menus: any = [
   {
     name: "Comapny",
-    icon: DashboardIcon,
+    icon: Apartment,
     id: 1,
     route: "#1",
     active: false,

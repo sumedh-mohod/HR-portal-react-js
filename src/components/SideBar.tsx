@@ -15,7 +15,6 @@ import {
 import MuiDrawer from "@mui/material/Drawer";
 import { styled, Theme, CSSObject } from "@mui/material/styles";
 import { Menus } from "../assets/constants/menus";
-import Icon from "@mui/material/Icon";
 
 import OrangeBitsIcon from "./Icons/OrangeBitsIcon";
 import { styles } from "../styles/components/header";
@@ -79,7 +78,7 @@ const SideBar = ({ open, setOpen }: any) => {
   };
 
   const handleDrawerNavigation = (item: any) => {
-    const filerted = Menus?.map((value: any) =>
+    const filerted = sideBarMenus?.map((value: any) =>
       item.id === value.id ? { ...value, active: !value.active } : value
     );
 
@@ -112,6 +111,7 @@ const SideBar = ({ open, setOpen }: any) => {
       <List>
         {sideBarMenus.map((text: any, index: number) => {
           const ICON = text.icon;
+
           return (
             <>
               <ListItem
@@ -128,9 +128,6 @@ const SideBar = ({ open, setOpen }: any) => {
                     justifyContent: open ? "initial" : "center",
                     px: 2.5,
                   }}
-                  onClick={() => {
-                    handleDrawerNavigation(text);
-                  }}
                 >
                   <ListItemIcon
                     sx={{
@@ -143,6 +140,9 @@ const SideBar = ({ open, setOpen }: any) => {
                     <ICON />
                   </ListItemIcon>
                   <ListItemText
+                    onClick={() => {
+                      handleDrawerNavigation(text);
+                    }}
                     primary={text.name}
                     sx={{ opacity: open ? 1 : 0 }}
                   />
@@ -163,26 +163,29 @@ const SideBar = ({ open, setOpen }: any) => {
                     color: "white",
                   }}
                 >
-                  {text.submenu.map((menu: any, index: number) => (
-                    <ListItemButton
-                      sx={{ pl: 4 }}
-                      onClick={() => {
-                        handleNavigation(menu);
-                      }}
-                    >
-                      <ListItemIcon
-                        sx={{
-                          minWidth: 0,
-                          mr: 3,
-                          justifyContent: "center",
-                          color: "white",
+                  {text.submenu.map((menu: any, index: number) => {
+                    // const SubIcon = menu.icon
+                    return (
+                      <ListItemButton
+                        sx={{ pl: 4 }}
+                        onClick={() => {
+                          handleNavigation(menu);
                         }}
                       >
-                        {/* <Icon>{text.icon}</Icon> */}
-                      </ListItemIcon>
-                      <ListItemText primary={menu.name} sx={{ opacity: 1 }} />
-                    </ListItemButton>
-                  ))}
+                        <ListItemIcon
+                          sx={{
+                            minWidth: 0,
+                            mr: 3,
+                            justifyContent: "center",
+                            color: "white",
+                          }}
+                        >
+                          {/* <Icon>{text.icon}</Icon> */}
+                        </ListItemIcon>
+                        <ListItemText primary={menu.name} sx={{ opacity: 1 }} />
+                      </ListItemButton>
+                    );
+                  })}
                 </List>
               </Collapse>
             </>

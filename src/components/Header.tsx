@@ -6,9 +6,9 @@ import TopBar from "./TopBar";
 
 const Header = (props: any) => {
   return (
-    <Box sx={{ display: "flex" }}>
+    <Box sx={{ display: "flex" ,width:"100%"}}>
       <TopBar />
-      <Box component="main" sx={{ flexGrow: 1, p: 3, marginTop: "50px" }}>
+      <Box component="main" sx={{ flexGrow: 1, p: 3, marginTop: "65px"}}>
         <Outlet />
       </Box>
     </Box>
