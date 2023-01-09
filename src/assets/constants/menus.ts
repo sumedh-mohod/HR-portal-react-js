@@ -1,5 +1,5 @@
 import DashboardIcon from "@mui/icons-material/Dashboard";
-import Apartment from "../../components/Icons/Company";
+import Company from "../../components/Icons/Company";
 import Accounting from "../../components/Icons/Accounting";
 import Training from "../../components/Icons/Training";
 import Assets from "../../components/Icons/Assets";
@@ -13,7 +13,7 @@ import Recruitment from "../../components/Icons/Recruitment";
 export const Menus: any = [
   {
     name: "Comapny",
-    icon: Apartment,
+    icon: Company,
     id: 1,
     active: false,
     submenu: [
