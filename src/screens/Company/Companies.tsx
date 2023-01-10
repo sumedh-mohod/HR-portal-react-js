@@ -19,6 +19,7 @@ import CompanyCard from "../../components/Company/CompanyCard";
 import CompaniesList from "../../components/Company/CompanyList";
 import Paginations from "../../components/HigherOrder/Paginations";
 import CustomizationButtons from "../../components/HigherOrder/CustomizationButtons";
+import Loader from "../../components/HigherOrder/Loader";
 
 const columns: GridColDef[] = [
   {
@@ -121,11 +122,13 @@ const CompanyList = () => {
 
   const companyStore = useAppSelector((state) => state.companies);
   const { isLoadingRequest, companies } = companyStore;
-
+  console.log("companies data",companies);
+  console.log("companies data content",companies?.content)
+  // console.log("companies data",companies.content);
   const currentTableData = useMemo(() => {
     const firstPageIndex = (currentPage - 1) * PageSize;
     const lastPageIndex = firstPageIndex + PageSize;
-    return companies?.slice(firstPageIndex, lastPageIndex);
+    return companies?.content?.slice(firstPageIndex, lastPageIndex);
   }, [currentPage, isLoadingRequest]);
 
   useEffect(() => {
@@ -176,7 +179,9 @@ const CompanyList = () => {
   };
 
   return (
+
     <Box sx={{ display: "flex", flexDirection: "column" }}>
+      <Loader isLoading={isLoadingRequest}/>
       {/* box for search bar and company */}
       <Box {...styles.companyTitleBox}>
         <Typography variant="h5" {...globalStyles.moduleTitle}>
