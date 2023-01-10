@@ -1,5 +1,5 @@
 import React from 'react'
-import AddEmployee from '../../components/employee/AddEmployee';
+import AddEmployee from '../../components/Employee/AddEmployee';
 import { useParams, useLocation } from "react-router-dom";
 
 const EmployeeAddEdit = () => {
