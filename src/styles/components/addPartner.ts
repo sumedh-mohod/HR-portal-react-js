@@ -29,30 +29,31 @@ export const styles = {
       p: 5,
     },
   },
-  
-  checkIcon:{
-    sx:{
+
+  checkIcon: {
+    sx: {
       width: "30px",
       height: "30px",
       margin: "30px 20px",
       color: "white",
       background: "#0FBD35",
       borderRadius: "5px",
-    }
+      cursor: "pointer",
+    },
   },
-  closeIcon:{
-  
-    sx:{
+  closeIcon: {
+    sx: {
       width: "30px",
       height: "30px",
       margin: "30px 20px",
       color: "white",
       background: "#D82A2A;",
       borderRadius: "5px",
-    }
+      cursor: "pointer",
+    },
   },
-  addButton:{
-    sx:{
+  addButton: {
+    sx: {
       margin: "30px 20px",
       // display: "flex",
       justifyContent: "center",
@@ -63,36 +64,36 @@ export const styles = {
       boxShadow: "none",
       color: "#1C1B1F",
       borderRadius: "5px",
-  }
-},
-addIcon:{
-  sx:{
-    fontSize: "16px",
-    fontWeight: "600",
-    fontFamily: "Montserrat",
-    marginRight: 1,
-  }
-},
-logoTextfield: {
-  sx: {
-    "& .MuiInputBase-input": {
-      overflow: "hidden",
-      textOverflow: "ellipsis",
-      // width: "60%",
-      display: "inline-block",
     },
   },
-},
-
-selectFileButton: {
-  sx: {
-    marginTop:"14px",
-    background: "white",
-    color: "black",
-    width: "max-contain",
-    textTransform: "inherit",
-    padding: "2px",
-    fontSize: "11px",
+  addIcon: {
+    sx: {
+      fontSize: "16px",
+      fontWeight: "600",
+      fontFamily: "Montserrat",
+      marginRight: 1,
+    },
   },
-}
-}
+  logoTextfield: {
+    sx: {
+      "& .MuiInputBase-input": {
+        overflow: "hidden",
+        textOverflow: "ellipsis",
+        // width: "60%",
+        display: "inline-block",
+      },
+    },
+  },
+
+  selectFileButton: {
+    sx: {
+      marginTop: "14px",
+      background: "white",
+      color: "black",
+      width: "max-contain",
+      textTransform: "inherit",
+      padding: "2px",
+      fontSize: "11px",
+    },
+  },
+};

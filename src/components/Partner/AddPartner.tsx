@@ -45,10 +45,12 @@ const AddPartner = () => {
       country: "",
       postalCode: "",
       partnerOnBoardDate: "",
-      // pointofContactOrangebits: "",
-      // pointofContactPartrner1: "",
-      // pointofContactPartrner2: "",
-      // pointofContactPartrner3: "",
+      taxes: [
+        {
+          name: "",
+          value: "",
+        },
+      ],
       id: "",
     },
     validationSchema: addPartnerValidator,
@@ -78,6 +80,34 @@ const AddPartner = () => {
   const handleCancle = () => {
     navigate(-1);
   };
+
+  const handleAddTaxes = () => {
+    const newTaxes = [
+      ...values.taxes,
+      {
+        name: "",
+        value: "",
+      },
+    ];
+    setFieldValue("taxes", newTaxes);
+  };
+
+  const handleRemoveTaxes = (index: number) => {
+    const newTaxes = [...values.taxes];
+    newTaxes.splice(index, 1);
+    setFieldValue("taxes", newTaxes);
+  };
+
+  const handleChangeTaxName = (event: any, index: number) => {
+    setFieldValue(`taxes.${index}.name`, event.target.value);
+  };
+
+  const handleChangeTaxValue = (event: any, index: number) => {
+    setFieldValue(`taxes.${index}.value`, event.target.value);
+  };
+
+  const handleSubmitTaxes = (index: number) => {};
+
   return (
     <Box>
       <form onSubmit={handleSubmit}>
@@ -356,114 +386,79 @@ const AddPartner = () => {
       </Box>
       <Card {...styles.card}>
         <Grid container columnSpacing={3} rowGap={3}>
-          {/* name */}
-          <Grid item xs={12} md={6} lg={3}>
-            <FormControl fullWidth>
-              <FormLabel id="name" {...globalStyles.textFieldLabel}>
-                Name
-              </FormLabel>
-              <TextField
-                variant="filled"
-                size="small"
-                type={"text"}
-                name="name"
-                InputProps={{
-                  disableUnderline: true,
-                  style: { ...globalStyles.textField },
-                }}
-                // value={values.name}
-                // onChange={name}
-                //   onBlur={handleBlur}
-                //   error={touched.addressLine1 && errors.addressLine1 ? true : false}
-                //   helperText={touched.addressLine1 && errors.addressLine1}
-              />
-            </FormControl>
-          </Grid>
-          {/* value */}
-          <Grid item xs={12} md={6} lg={3}>
-            <FormControl fullWidth>
-              <FormLabel id="value" {...globalStyles.textFieldLabel}>
-                value
-              </FormLabel>
-              <TextField
-                variant="filled"
-                size="small"
-                type={"text"}
-                name="value"
-                InputProps={{
-                  disableUnderline: true,
-                  style: { ...globalStyles.textField },
-                }}
-                // value={values.value}
-                // onChange={name}
-                //   onBlur={handleBlur}
-                //   error={touched.addressLine1 && errors.addressLine1 ? true : false}
-                //   helperText={touched.addressLine1 && errors.addressLine1}
-              />
-            </FormControl>
-          </Grid>
-          {/* buttons add or remove */}
-          <Grid item xs={12} md={12} lg={6}>
-            <CheckIcon {...styles.checkIcon} />
-            <CloseIcon {...styles.closeIcon} />
-          </Grid>
-
-          {/* name */}
-          <Grid item xs={12} md={6} lg={3}>
-            <FormControl fullWidth>
-              <FormLabel id="name" {...globalStyles.textFieldLabel}>
-                Name
-              </FormLabel>
-              <TextField
-                variant="filled"
-                size="small"
-                type={"text"}
-                name="name"
-                InputProps={{
-                  disableUnderline: true,
-                  style: { ...globalStyles.textField },
-                }}
-                // value={values.name}
-                // onChange={name}
-                //   onBlur={handleBlur}
-                //   error={touched.addressLine1 && errors.addressLine1 ? true : false}
-                //   helperText={touched.addressLine1 && errors.addressLine1}
-              />
-            </FormControl>
-          </Grid>
-          {/* value */}
-          <Grid item xs={12} md={6} lg={3}>
-            <FormControl fullWidth>
-              <FormLabel id="value" {...globalStyles.textFieldLabel}>
-                value
-              </FormLabel>
-              <TextField
-                variant="filled"
-                size="small"
-                type={"text"}
-                name="value"
-                InputProps={{
-                  disableUnderline: true,
-                  style: { ...globalStyles.textField },
-                }}
-                // value={values.value}
-                // onChange={name}
-                //   onBlur={handleBlur}
-                //   error={touched.addressLine1 && errors.addressLine1 ? true : false}
-                //   helperText={touched.addressLine1 && errors.addressLine1}
-              />
-            </FormControl>
-          </Grid>
-          <Grid item xs={12} md={12} lg={6}>
-            <Box sx={{ display: "flex", justifyContent: "baseline" }}>
-              <CheckIcon {...styles.checkIcon} />
-              <CloseIcon {...styles.closeIcon} />
-              <Button {...styles.addButton}>
-                <AddIcon fontSize="small" {...styles.addIcon} />
-                <Typography sx={{ fontSize: "small" }}>Add</Typography>
-              </Button>
-            </Box>
-          </Grid>
+          {values.taxes.map((tax, index) => (
+            <>
+              <Grid item xs={12} md={6} lg={3}>
+                <FormControl fullWidth>
+                  <FormLabel id="name" {...globalStyles.textFieldLabel}>
+                    Name
+                  </FormLabel>
+                  <TextField
+                    variant="filled"
+                    size="small"
+                    type={"text"}
+                    InputProps={{
+                      disableUnderline: true,
+                      style: { ...globalStyles.textField },
+                    }}
+                    value={(values.taxes && values.taxes[index].name) || ""}
+                    onChange={(event) => {
+                      handleChangeTaxName(event, index);
+                    }}
+                    onBlur={handleBlur}
+                    //   error={touched.addressLine1 && errors.addressLine1 ? true : false}
+                    //   helperText={touched.addressLine1 && errors.addressLine1}
+                  />
+                </FormControl>
+              </Grid>
+              <Grid item xs={12} md={6} lg={3}>
+                <FormControl fullWidth>
+                  <FormLabel id="value" {...globalStyles.textFieldLabel}>
+                    value
+                  </FormLabel>
+                  <TextField
+                    variant="filled"
+                    size="small"
+                    type={"text"}
+                    value={(values.taxes && values.taxes[index].value) || ""}
+                    InputProps={{
+                      disableUnderline: true,
+                      style: { ...globalStyles.textField },
+                    }}
+                    onChange={(event) => {
+                      handleChangeTaxValue(event, index);
+                    }}
+                    //   onBlur={handleBlur}
+                    //   error={touched.addressLine1 && errors.addressLine1 ? true : false}
+                    //   helperText={touched.addressLine1 && errors.addressLine1}
+                  />
+                </FormControl>
+              </Grid>
+              {/* buttons add or remove */}
+              <Grid item xs={12} md={12} lg={6}>
+                <Box sx={{ display: "flex", justifyContent: "baseline" }}>
+                  <CheckIcon
+                    {...styles.checkIcon}
+                    onClick={() => {
+                      handleSubmitTaxes(index);
+                    }}
+                  />
+                  <CloseIcon
+                    {...styles.closeIcon}
+                    onClick={() => {
+                      handleRemoveTaxes(index);
+                    }}
+                  />
+                  {values.taxes.length - 1 === index ? (
+                    <Button {...styles.addButton} onClick={handleAddTaxes}>
+                      <AddIcon fontSize="small" {...styles.addIcon} />
+                      <Typography sx={{ fontSize: "small" }}>Add</Typography>
+                    </Button>
+                  ) : null}
+                </Box>
+              </Grid>
+            </>
+          ))}
         </Grid>
       </Card>
 
