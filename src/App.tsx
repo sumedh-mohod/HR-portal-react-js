@@ -15,7 +15,6 @@ import CompanyAddEdit from "./screens/Company/ComapnyAddEdit";
 import NotFound from "./screens/Authentication/NotFound";
 import Partners from "./screens/Partner/Partners";
 import Logout from "./screens/Authentication/Logout";
-import AddPartner from "./components/Partner/AddPartner";
 import EmployeeAddEdit from "./screens/Employee/EmployeeAddEdit";
 import ProjectAddEdit from "./screens/Project/ProjectAddEdit";
 import PartnerAddEdit from "./screens/Partner/PartnerAddEdit";
@@ -30,11 +29,10 @@ const App = () => {
         <Route element={<Header />}>
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/partners" element={<Partners />} />
-          <Route path="/partners/:opration" element={<PartnerAddEdit/>} />
-          {/* <Route path="/editcompany" element={<EditCompany />} /> */}
+          <Route path="/partners/:opration" element={<PartnerAddEdit />} />
           <Route path="/companies" element={<CompanyList />} />
           <Route path="/companies/:opration" element={<CompanyAddEdit />} />
-          <Route path="/employees" element={<Employee/>} />
+          <Route path="/employees" element={<Employee />} />
           <Route path="/employees/:opration" element={<EmployeeAddEdit />} />
           <Route path="/projects" element={<ProjectsList />} />
           <Route path="/projects/:opration" element={<ProjectAddEdit />} />
