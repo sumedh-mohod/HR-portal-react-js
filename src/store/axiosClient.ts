@@ -18,11 +18,11 @@ const headers: any = {
 };
 
 // We can use the following function to inject the JWT token through an interceptor
-// We get the `accessToken` from the localStorage that we set when we authenticate
+// We get the `accessToken` from the sessionstorage that we set when we authenticate
 const injectToken = (config: AxiosRequestConfig): AxiosRequestConfig => {
   try {
-    if (localStorage) {
-      const token = localStorage.getItem("access_token");
+    if (sessionStorage) {
+      const token = sessionStorage.getItem("access_token");
 
       if (token != null && config.headers) {
         config.headers = {
@@ -129,8 +129,8 @@ class AxiosClient {
       }
       case StatusCode.Unauthorized: {
         // Handle Unauthorized
-        localStorage.clear();
-        window.location.href = "/login";
+        sessionStorage.clear();
+        window.location.href = "/";
         break;
       }
       case StatusCode.TooManyRequests: {
