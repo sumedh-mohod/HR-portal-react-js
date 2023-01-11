@@ -9,13 +9,14 @@ export const addcompany = createAsyncThunk(
   async (params: any) => {
     //response of addcompany api
     try {
-      const response = await axiosClient.get(RestfulUrls.Add_Company);
+      const response = await axiosClient.post(RestfulUrls.Add_Company, {
+        params,
+      });
       return response;
     } catch (error) {
       console.log("error", error);
     }
     //returned a response to reducer
-   
   }
 );
 
@@ -39,9 +40,8 @@ export const companylist = createAsyncThunk(
     //response of company
     try {
       const response = await axiosClient.get(RestfulUrls.Get_Companies);
-      console.log("response",response)
+      console.log("response", response);
       return response.data;
-    
     } catch (error) {
       console.log("error", error);
     }
