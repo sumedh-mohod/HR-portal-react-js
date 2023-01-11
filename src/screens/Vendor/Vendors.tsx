@@ -12,13 +12,13 @@ import { styles } from "../../styles/screens/CompanyList";
 import { globalStyles } from "../../styles/global";
 
 import { useAppDispatch, useAppSelector } from "../../store/hooks";
-import { companylist } from "../../store/reducers/companies/companies";
 
 import VendorCard from "../../components/Vendor/VendorCard";
-import CompaniesList from "../../components/Company/CompanyList";
+import VendorList from "../../components/Vendor/VendorList";
 import Paginations from "../../components/HigherOrder/Paginations";
 import CustomizationButtons from "../../components/HigherOrder/CustomizationButtons";
 import Loader from "../../components/HigherOrder/Loader";
+import { getVendors } from "../../store/reducers/vendors/vendors";
 
 const columns: GridColDef[] = [
     {
@@ -29,7 +29,7 @@ const columns: GridColDef[] = [
         hide: false,
     },
     {
-        field: "name",
+        field: "vendor_name",
         headerName: "Vendor Name",
         width: 300,
         minWidth: 200,
@@ -37,8 +37,56 @@ const columns: GridColDef[] = [
         hide: false,
     },
     {
-        field: "PAN",
-        headerName: "PAN",
+        field: "Address_Line_1",
+        headerName: "Address Line 1",
+        width: 100,
+        minWidth: 150,
+        maxWidth: 400,
+        hide: false,
+    },
+    {
+        field: "Address_Line_2",
+        headerName: "Address Line 2",
+        width: 100,
+        minWidth: 150,
+        maxWidth: 400,
+        hide: false,
+    },
+    {
+        field: "city",
+        headerName: "city",
+        width: 100,
+        minWidth: 150,
+        maxWidth: 400,
+        hide: false,
+    },
+    {
+        field: "state",
+        headerName: "state",
+        width: 100,
+        minWidth: 150,
+        maxWidth: 400,
+        hide: false,
+    },
+    {
+        field: "country",
+        headerName: "country",
+        width: 100,
+        minWidth: 150,
+        maxWidth: 400,
+        hide: false,
+    },
+    {
+        field: "Postal_Code",
+        headerName: "Postal Code",
+        width: 100,
+        minWidth: 150,
+        maxWidth: 400,
+        hide: false,
+    },
+    {
+        field: "Vendor_Onboard_Date",
+        headerName: "Vendor onboard Date",
         width: 100,
         minWidth: 150,
         maxWidth: 400,
@@ -46,9 +94,10 @@ const columns: GridColDef[] = [
     },
 ];
 
+
 let PageSize = 5;
 
-const CompanyList = () => {
+const Vendors = () => {
     const dispatch = useAppDispatch();
     const navigate = useNavigate();
 
@@ -59,17 +108,17 @@ const CompanyList = () => {
 
     const openDropDown = Boolean(anchorEl);
 
-    const companyStore = useAppSelector((state) => state.companies);
-    const { isLoadingRequest, companies } = companyStore;
+    const vendorStore = useAppSelector((state) => state.getVendors);
+    const { isLoadingRequest, vendors } = vendorStore;
 
     const currentTableData = useMemo(() => {
         const firstPageIndex = (currentPage - 1) * PageSize;
         const lastPageIndex = firstPageIndex + PageSize;
-        return companies?.content?.slice(firstPageIndex, lastPageIndex);
+        return vendors?.slice(firstPageIndex, lastPageIndex);
     }, [currentPage, isLoadingRequest]);
 
     useEffect(() => {
-        dispatch(companylist())
+        dispatch(getVendors())
             .unwrap()
             .then((response: any) => { })
             .catch((error) => { });
@@ -171,7 +220,7 @@ const CompanyList = () => {
 
             <Box sx={{ flexGrow: 1 }}>
                 {designView === "list" ? (
-                    <CompaniesList
+                    <VendorList
                         showColumns={showColumns?.length >= 0 ? showColumns : []}
                         rows={
                             currentTableData !== undefined && currentTableData?.length >= 0
@@ -192,4 +241,4 @@ const CompanyList = () => {
     );
 };
 
-export default CompanyList;
+export default Vendors;
