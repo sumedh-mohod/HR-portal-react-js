@@ -36,159 +36,15 @@ export const editcompany = createAsyncThunk(
 
 export const companylist = createAsyncThunk(
   actionTypes.COMPANY_LIST,
-  async () => {
+  async (_, { rejectWithValue }) => {
     //response of company
     try {
       const response = await axiosClient.get(RestfulUrls.Get_Companies);
       console.log("response", response);
       return response.data;
     } catch (error) {
-      console.log("error", error);
+      return rejectWithValue("Something went wrong");
     }
-
-    // [
-    //   {
-    //     id: 1,
-    //     name: "Orangebits Software Technologies(India) Pvt. Ltd-1",
-    //     PAN: "AYAPN7894N",
-    //     TAN: "AYAPN7894N",
-    //     GST: "AYAPN7894N",
-    //     defaultLetterHead: "ORNG123",
-    //     defaultCurrency: "Rupees",
-    //     domain: "orange.com",
-    //     abbr: "ORNG123",
-    //     taxID: "TAX123",
-    //     country: "india",
-    //     dateofEstiblishment: "2 October, 2023",
-    //   },
-    //   {
-    //     id: 2,
-    //     name: "Orangebits Software Technologies(India) Pvt. Ltd-2",
-    //     PAN: "AYAPN7894N",
-    //     TAN: "AYAPN7894N",
-    //     GST: "AYAPN7894N",
-    //     defaultLetterHead: "ORNG123",
-    //     defaultCurrency: "Rupees",
-    //     domain: "orange.com",
-    //     abbr: "ORNG123",
-    //     taxID: "TAX123",
-    //     country: "india",
-    //     dateofEstiblishment: "2 October, 2023",
-    //   },
-    //   {
-    //     id: 3,
-    //     name: "Orangebits Software Technologies(India) Pvt. Ltd-3",
-    //     PAN: "AYAPN7894N",
-    //     TAN: "AYAPN7894N",
-    //     GST: "AYAPN7894N",
-    //     defaultLetterHead: "ORNG123",
-    //     defaultCurrency: "Rupees",
-    //     domain: "orange.com",
-    //     abbr: "ORNG123",
-    //     taxID: "TAX123",
-    //     country: "india",
-    //     dateofEstiblishment: "2 October, 2023",
-    //   },
-    //   {
-    //     id: 4,
-    //     name: "Orangebits Software Technologies(India) Pvt. Ltd-4",
-    //     PAN: "AYAPN7894N",
-    //     TAN: "AYAPN7894N",
-    //     GST: "AYAPN7894N",
-    //     defaultLetterHead: "ORNG123",
-    //     defaultCurrency: "Rupees",
-    //     domain: "orange.com",
-    //     abbr: "ORNG123",
-    //     taxID: "TAX123",
-    //     country: "india",
-    //     dateofEstiblishment: "2 October, 2023",
-    //   },
-    //   {
-    //     id: 5,
-    //     name: "Orangebits Software Technologies(India) Pvt. Ltd-5",
-    //     PAN: "AYAPN7894N",
-    //     TAN: "AYAPN7894N",
-    //     GST: "AYAPN7894N",
-    //     defaultLetterHead: "ORNG123",
-    //     defaultCurrency: "Rupees",
-    //     domain: "orange.com",
-    //     abbr: "ORNG123",
-    //     taxID: "TAX123",
-    //     country: "india",
-    //     dateofEstiblishment: "2 October, 2023",
-    //   },
-    //   {
-    //     id: 6,
-    //     name: "Orangebits Software Technologies(India) Pvt. Ltd-6",
-    //     PAN: "AYAPN7894N",
-    //     TAN: "AYAPN7894N",
-    //     GST: "AYAPN7894N",
-    //     defaultLetterHead: "ORNG123",
-    //     defaultCurrency: "Rupees",
-    //     domain: "orange.com",
-    //     abbr: "ORNG123",
-    //     taxID: "TAX123",
-    //     country: "india",
-    //     dateofEstiblishment: "2 October, 2023",
-    //   },
-    //   {
-    //     id: 7,
-    //     name: "Orangebits Software Technologies(India) Pvt. Ltd-7",
-    //     PAN: "AYAPN7894N",
-    //     TAN: "AYAPN7894N",
-    //     GST: "AYAPN7894N",
-    //     defaultLetterHead: "ORNG123",
-    //     defaultCurrency: "Rupees",
-    //     domain: "orange.com",
-    //     abbr: "ORNG123",
-    //     taxID: "TAX123",
-    //     country: "india",
-    //     dateofEstiblishment: "2 October, 2023",
-    //   },
-    //   {
-    //     id: 8,
-    //     name: "Orangebits Software Technologies(India) Pvt. Ltd-8",
-    //     PAN: "AYAPN7894N",
-    //     TAN: "AYAPN7894N",
-    //     GST: "AYAPN7894N",
-    //     defaultLetterHead: "ORNG123",
-    //     defaultCurrency: "Rupees",
-    //     domain: "orange.com",
-    //     abbr: "ORNG123",
-    //     taxID: "TAX123",
-    //     country: "india",
-    //     dateofEstiblishment: "2 October, 2023",
-    //   },
-    //   {
-    //     id: 9,
-    //     name: "Orangebits Software Technologies(India) Pvt. Ltd-9",
-    //     PAN: "AYAPN7894N",
-    //     TAN: "AYAPN7894N",
-    //     GST: "AYAPN7894N",
-    //     defaultLetterHead: "ORNG123",
-    //     defaultCurrency: "Rupees",
-    //     domain: "orange.com",
-    //     abbr: "ORNG123",
-    //     taxID: "TAX123",
-    //     country: "india",
-    //     dateofEstiblishment: "2 October, 2023",
-    //   },
-    //   {
-    //     id: 10,
-    //     name: "Orangebits Software Technologies(India) Pvt. Ltd-10",
-    //     PAN: "AYAPN7894N",
-    //     TAN: "AYAPN7894N",
-    //     GST: "AYAPN7894N",
-    //     defaultLetterHead: "ORNG123",
-    //     defaultCurrency: "Rupees",
-    //     domain: "orange.com",
-    //     abbr: "ORNG123",
-    //     taxID: "TAX123",
-    //     country: "india",
-    //     dateofEstiblishment: "2 October, 2023",
-    //   },
-    // ];
-    //returned a response to reducer
   }
 );
 
@@ -263,6 +119,7 @@ const Companies = createSlice({
     });
     // reducer when api call is rejected
     builder.addCase(companylist.rejected, (state: StateI) => {
+      console.log("companylist REJECTED");
       //state updated in rejected state
       state.isLoadingRequest = false;
       state.companies = undefined;

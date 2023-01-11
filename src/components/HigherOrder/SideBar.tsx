@@ -11,6 +11,7 @@ import {
   ListItemText,
   List,
   Collapse,
+  Box,
 } from "@mui/material";
 import MuiDrawer from "@mui/material/Drawer";
 import { styled, Theme, CSSObject } from "@mui/material/styles";
@@ -116,9 +117,9 @@ const SideBar = ({ open, setOpen }: any) => {
           const ICON = text.icon;
 
           return (
-            <>
+            <Box key={text.id}>
               <ListItem
-                key={text.name}
+                key={text.id}
                 disablePadding
                 sx={{
                   display: "block",
@@ -176,6 +177,7 @@ const SideBar = ({ open, setOpen }: any) => {
                     return (
                       <ListItemButton
                         sx={{ pl: 4 }}
+                        key={menu.name}
                         onClick={() => {
                           handleNavigation(menu);
                         }}
@@ -196,7 +198,7 @@ const SideBar = ({ open, setOpen }: any) => {
                   })}
                 </List>
               </Collapse>
-            </>
+            </Box>
           );
         })}
       </List>
