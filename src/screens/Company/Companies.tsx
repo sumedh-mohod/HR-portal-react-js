@@ -122,9 +122,7 @@ const CompanyList = () => {
 
   const companyStore = useAppSelector((state) => state.companies);
   const { isLoadingRequest, companies } = companyStore;
-  console.log("companies data",companies);
-  console.log("companies data content",companies?.content)
-  // console.log("companies data",companies.content);
+
   const currentTableData = useMemo(() => {
     const firstPageIndex = (currentPage - 1) * PageSize;
     const lastPageIndex = firstPageIndex + PageSize;
@@ -134,8 +132,8 @@ const CompanyList = () => {
   useEffect(() => {
     dispatch(companylist())
       .unwrap()
-      .then((response: any) => { })
-      .catch((error) => { });
+      .then((response: any) => {})
+      .catch((error) => {});
   }, []);
 
   const handleCompanyAddClick = () => {
@@ -179,9 +177,8 @@ const CompanyList = () => {
   };
 
   return (
-
     <Box sx={{ display: "flex", flexDirection: "column" }}>
-      <Loader isLoading={isLoadingRequest}/>
+      <Loader isLoading={isLoadingRequest} />
       {/* box for search bar and company */}
       <Box {...styles.companyTitleBox}>
         <Typography variant="h5" {...globalStyles.moduleTitle}>
@@ -235,7 +232,14 @@ const CompanyList = () => {
 
       <Box sx={{ flexGrow: 1 }}>
         {designView === "list" ? (
-          <CompaniesList showColumns={showColumns} rows={currentTableData} />
+          <CompaniesList
+            showColumns={showColumns?.length >= 0 ? showColumns : []}
+            rows={
+              currentTableData !== undefined && currentTableData?.length >= 0
+                ? currentTableData
+                : []
+            }
+          />
         ) : (
           <CompanyCard
             companies={currentTableData}
@@ -245,7 +249,7 @@ const CompanyList = () => {
         )}
       </Box>
       <Paginations handlePageChange={handlePageChange} />
-    </Box >
+    </Box>
   );
 };
 

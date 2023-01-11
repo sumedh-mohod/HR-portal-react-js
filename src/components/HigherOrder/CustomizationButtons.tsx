@@ -121,6 +121,7 @@ const CustomizationButtons = (props: CustomizationButtonsInterface) => {
       >
         {showColumns.map((item: any) => (
           <MenuItem
+            key={item?.headerName}
             sx={{
               "&:hover": {
                 cursor: "default",
