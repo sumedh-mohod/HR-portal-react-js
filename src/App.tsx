@@ -18,6 +18,8 @@ import Logout from "./screens/Authentication/Logout";
 import EmployeeAddEdit from "./screens/Employee/EmployeeAddEdit";
 import ProjectAddEdit from "./screens/Project/ProjectAddEdit";
 import PartnerAddEdit from "./screens/Partner/PartnerAddEdit";
+import Vendors from "./screens/Vendor/Vendors";
+import VendorAddEdit from "./screens/Vendor/VendorAddEdit";
 
 import ProtectedRoute, {
   AuthRoute,
@@ -34,8 +36,8 @@ const App = () => {
     isAuthenticated: sessionStorage.getItem("access_token")
       ? true
       : false || storeResponse?.user?.token
-      ? true
-      : false,
+        ? true
+        : false,
     authenticationPath: "/",
   };
 
@@ -143,8 +145,25 @@ const App = () => {
               />
             }
           />
+          <Route
+            path="/vendors"
+            element={
+              <ProtectedRoute
+                {...defaultProtectedRouteProps}
+                outlet={<Vendors />}
+              />
+            }
+          />
+          <Route
+            path="/vendors/:opration"
+            element={
+              <ProtectedRoute
+                {...defaultProtectedRouteProps}
+                outlet={<VendorAddEdit />}
+              />
+            }
+          />
         </Route>
-
         <Route path="*" element={<NotFound />} />
       </Routes>
     </Box>

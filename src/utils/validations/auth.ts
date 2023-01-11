@@ -51,5 +51,14 @@ export const addPartnerValidator = Yup.object().shape({
 // add project validation
 export const addProjectValidator = Yup.object().shape({
   logo: Yup.string().required("Please upload a valid logo"),
-  name: Yup.string().required("Please enter a valid name")
+  name: Yup.string().required("Please enter a valid name"),
+});
+
+// add vendor validation
+export const addVendorValidator = Yup.object().shape({
+  logo: Yup.mixed().required("Please upload a valid logo"),
+  vendorName: Yup.string().required("Please enter a valid vendor name"),
+  selectCity: Yup.string().required("Please Select a valid city"),
+  selectState: Yup.string().required("Please Select a valid state"),
+  country: Yup.string().required("Please Select a valid country"),
 });
