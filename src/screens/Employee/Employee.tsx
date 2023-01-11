@@ -7,10 +7,10 @@ import { styles } from "../../styles/screens/Employee";
 import SearchIcon from "@mui/icons-material/Search";
 import AddIcon from "@mui/icons-material/Add";
 import { globalStyles } from "../../styles/global";
-import EmployeeCard from "../../components/employee/EmployeeCard";
-import EmployeeList from "../../components/employee/EmployeeList";
-import CustomizationButtons from "../../components/higherorder/CustomizationButtons";
-import Paginations from "../../components/higherorder/Paginations";
+import EmployeeCard from "../../components/Employee/EmployeeCard";
+import EmployeeList from "../../components/Employee/EmployeeList";
+import CustomizationButtons from "../../components/HigherOrder/CustomizationButtons";
+import Paginations from "../../components/HigherOrder/Paginations";
 
 // colums data
 const columns: GridColDef[] = [

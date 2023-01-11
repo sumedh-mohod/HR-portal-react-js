@@ -50,7 +50,7 @@ class AxiosClient {
   initAxiosInstance() {
     // creating axios instance
     const axiosRequest = axios.create({
-      baseURL: process.env.NEXT_PUBLIC_DEV_BASE_URL,
+      baseURL: process.env.REACT_APP_BASE_URL,
       headers,
       withCredentials: false,
     });
