@@ -72,6 +72,12 @@ const SideBar = ({ open, setOpen }: any) => {
   const navigate = useNavigate();
 
   const [activeRoute, setActiveRoute] = useState(1);
+  const [activeSubRoute, setActiveSubRoute] = useState({
+    id: 1,
+    name: "Holiday",
+    route: "companies",
+  });
+
   const [sideBarMenus, setSideBarMenus] = useState(Menus);
 
   const handleDrawerClose = () => {
@@ -90,7 +96,7 @@ const SideBar = ({ open, setOpen }: any) => {
   };
 
   const handleNavigation = (item: any) => {
-    // setActiveRoute(item.id);
+    setActiveSubRoute(item);
     navigate(`${item.route}`);
   };
 
@@ -124,10 +130,6 @@ const SideBar = ({ open, setOpen }: any) => {
                 sx={{
                   display: "block",
                   color: activeRoute === text.id ? "#F58634" : "#A4A6B3",
-                  borderLeftWidth: activeRoute === text.id ? 3 : 0,
-                  borderLeftColor:
-                    activeRoute === text.id ? "#F58634" : "#A4A6B3",
-                  borderLeftStyle: activeRoute === text.id ? "solid" : "none",
                 }}
               >
                 <ListItemButton
@@ -176,7 +178,17 @@ const SideBar = ({ open, setOpen }: any) => {
                     // const SubIcon = menu.icon
                     return (
                       <ListItemButton
-                        sx={{ pl: 4 }}
+                        sx={{
+                          pl: 4,
+                          borderLeftWidth:
+                            activeSubRoute.id === menu.id ? 3 : 0,
+                          borderLeftColor:
+                            activeSubRoute.id === menu.id
+                              ? "#F58634"
+                              : "#A4A6B3",
+                          borderLeftStyle:
+                            activeSubRoute.id === menu.id ? "solid" : "none",
+                        }}
                         key={menu.name}
                         onClick={() => {
                           handleNavigation(menu);

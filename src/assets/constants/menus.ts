@@ -17,15 +17,43 @@ export const Menus: any = [
     active: false,
     submenu: [
       {
-        name: "Master",
+        id: 1,
+        name: "Holiday",
         route: "companies",
       },
       {
-        name: "Old Comapnies",
+        id: 2,
+        name: "Leave Policy",
         route: "companies",
       },
       {
-        name: "New Comapnies",
+        id: 3,
+        name: "Masters",
+        route: "companies",
+      },
+      {
+        id: 4,
+        name: "Certificates",
+        route: "companies",
+      },
+      {
+        id: 5,
+        name: "Information Security",
+        route: "companies",
+      },
+      {
+        id: 6,
+        name: "Security Policies",
+        route: "companies",
+      },
+      {
+        id: 7,
+        name: "Processes",
+        route: "companies",
+      },
+      {
+        id: 8,
+        name: "Do’s & Don’t",
         route: "companies",
       },
     ],
