@@ -18,6 +18,8 @@ import Logout from "./screens/Authentication/Logout";
 import EmployeeAddEdit from "./screens/Employee/EmployeeAddEdit";
 import ProjectAddEdit from "./screens/Project/ProjectAddEdit";
 import PartnerAddEdit from "./screens/Partner/PartnerAddEdit";
+import Vendors from "./screens/Vendor/Vendors";
+import VendorAddEdit from "./screens/Vendor/VendorAddEdit";
 
 const App = () => {
   return (
@@ -36,6 +38,8 @@ const App = () => {
           <Route path="/employees/:opration" element={<EmployeeAddEdit />} />
           <Route path="/projects" element={<ProjectsList />} />
           <Route path="/projects/:opration" element={<ProjectAddEdit />} />
+          <Route path="/vendors" element={<Vendors />} />
+          <Route path="/vendors/:opration" element={<VendorAddEdit />} />
         </Route>
         <Route path="/logout" element={<Logout />} />
         <Route path="*" element={<NotFound />} />
