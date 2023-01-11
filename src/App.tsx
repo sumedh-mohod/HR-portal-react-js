@@ -1,5 +1,5 @@
-import React from "react";
 import { Route, Routes } from "react-router-dom";
+import { useAppSelector } from "./store/hooks";
 
 //import sreens
 import Login from "./screens/Authentication/Login";
@@ -19,25 +19,132 @@ import EmployeeAddEdit from "./screens/Employee/EmployeeAddEdit";
 import ProjectAddEdit from "./screens/Project/ProjectAddEdit";
 import PartnerAddEdit from "./screens/Partner/PartnerAddEdit";
 
+import ProtectedRoute, {
+  AuthRoute,
+  ProtectedRouteProps,
+  LoggedInUserProps,
+} from "./ProtectedRoute";
+
 const App = () => {
+  const storeResponse: any = useAppSelector(
+    (state: any) => state.authentication
+  );
+
+  const defaultProtectedRouteProps: Omit<ProtectedRouteProps, "outlet"> = {
+    isAuthenticated: sessionStorage.getItem("access_token")
+      ? true
+      : false || storeResponse?.user?.token
+      ? true
+      : false,
+    authenticationPath: "/",
+  };
+
+  const preLoginProps: Omit<LoggedInUserProps, "outlet"> = {
+    isLoggedInUser: sessionStorage.getItem("access_token") ? false : true,
+    loggedInUserPath: "/companies",
+  };
+
   return (
     <Box sx={{ display: "flex" }}>
       <Routes>
         {/* Different routes */}
-        <Route path="/" element={<Login />} />
-        <Route path="/register" element={<Registration />} />
+        <Route
+          path="/"
+          element={<AuthRoute {...preLoginProps} outlet={<Login />} />}
+        />
+        <Route
+          path="/register"
+          element={<AuthRoute {...preLoginProps} outlet={<Registration />} />}
+        />
+        <Route
+          path="/logout"
+          element={<AuthRoute {...preLoginProps} outlet={<Logout />} />}
+        />
+
         <Route element={<Header />}>
-          <Route path="/dashboard" element={<Dashboard />} />
-          <Route path="/partners" element={<Partners />} />
-          <Route path="/partners/:opration" element={<PartnerAddEdit />} />
-          <Route path="/companies" element={<CompanyList />} />
-          <Route path="/companies/:opration" element={<CompanyAddEdit />} />
-          <Route path="/employees" element={<Employee />} />
-          <Route path="/employees/:opration" element={<EmployeeAddEdit />} />
-          <Route path="/projects" element={<ProjectsList />} />
-          <Route path="/projects/:opration" element={<ProjectAddEdit />} />
+          <Route
+            path="/dashboard"
+            element={
+              <ProtectedRoute
+                {...defaultProtectedRouteProps}
+                outlet={<Dashboard />}
+              />
+            }
+          />
+          <Route
+            path="/partners"
+            element={
+              <ProtectedRoute
+                {...defaultProtectedRouteProps}
+                outlet={<Partners />}
+              />
+            }
+          />
+          <Route
+            path="/partners/:opration"
+            element={
+              <ProtectedRoute
+                {...defaultProtectedRouteProps}
+                outlet={<PartnerAddEdit />}
+              />
+            }
+          />
+          <Route
+            path="/companies"
+            element={
+              <ProtectedRoute
+                {...defaultProtectedRouteProps}
+                outlet={<CompanyList />}
+              />
+            }
+          />
+          <Route
+            path="/companies/:opration"
+            element={
+              <ProtectedRoute
+                {...defaultProtectedRouteProps}
+                outlet={<CompanyAddEdit />}
+              />
+            }
+          />
+          <Route
+            path="/employees"
+            element={
+              <ProtectedRoute
+                {...defaultProtectedRouteProps}
+                outlet={<Employee />}
+              />
+            }
+          />
+          <Route
+            path="/employees/:opration"
+            element={
+              <ProtectedRoute
+                {...defaultProtectedRouteProps}
+                outlet={<EmployeeAddEdit />}
+              />
+            }
+          />
+          <Route
+            path="/projects"
+            element={
+              <ProtectedRoute
+                {...defaultProtectedRouteProps}
+                outlet={<ProjectsList />}
+              />
+            }
+          />
+          <Route
+            path="/projects/:opration"
+            element={
+              <ProtectedRoute
+                {...defaultProtectedRouteProps}
+                outlet={<ProjectAddEdit />}
+              />
+            }
+          />
         </Route>
-        <Route path="/logout" element={<Logout />} />
+
         <Route path="*" element={<NotFound />} />
       </Routes>
     </Box>
