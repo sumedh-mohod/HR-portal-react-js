@@ -1,4 +1,4 @@
-import React, { useEffect, useState,useMemo } from "react";
+import React, { useEffect, useState, useMemo } from "react";
 import { GridColDef } from "@mui/x-data-grid";
 import { Grid, Box, Typography, Container, TextField, Button } from "@mui/material";
 import { useAppDispatch, useAppSelector } from "../../store/hooks";
@@ -165,7 +165,7 @@ const Partners = () => {
   };
 
   return (
-    <Box sx={{display:"flex" ,flexDirection:"column"}}>
+    <Box sx={{ display: "flex", flexDirection: "column" }}>
       {/* box for search bar and company */}
       <Box {...styles.companyTitleBox}>
         <Typography variant="h5" {...globalStyles.moduleTitle}>
@@ -177,7 +177,7 @@ const Partners = () => {
             display: "flex",
           }}
         >
-           <Button
+          <Button
             variant="contained"
             onClick={handlePartnerAddClick}
             startIcon={<AddIcon />}
@@ -204,7 +204,7 @@ const Partners = () => {
             anchorEl={anchorEl}
             showColumns={showColumns}
           />
-          
+
           <TextField
             sx={{ ml: 2 }}
             size="small"
@@ -217,7 +217,7 @@ const Partners = () => {
           />
         </Box>
       </Box>
-      <Box sx={{ flexGrow: 1}}>
+      <Box sx={{ flexGrow: 1 }}>
         {designView === "list" ? (
           <PartnersList
             handlePartnerAddClick={handlePartnerAddClick}

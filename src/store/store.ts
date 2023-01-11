@@ -4,6 +4,7 @@ import { configureStore } from "@reduxjs/toolkit";
 import authentication from "./reducers/users/authentication";
 import companies from "./reducers/companies/companies";
 import partners from "./reducers/partners/partners";
+import getVendors from "./reducers/vendors/vendors";
 
 //store configuration
 export const store = configureStore({
@@ -11,7 +12,8 @@ export const store = configureStore({
     //storename and redicers name
     authentication: authentication,
     companies: companies,
-    partners:partners
+    partners: partners,
+    getVendors: getVendors,
   },
   //enable dev tools for development env
   devTools: process.env.NODE_ENV !== "production",
