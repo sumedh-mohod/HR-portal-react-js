@@ -30,7 +30,7 @@ const columns: GridColDef[] = [
     hide: false,
   },
   {
-    field: "name",
+    field: "company_name",
     headerName: "Company Name",
     width: 300,
     minWidth: 200,
@@ -117,13 +117,14 @@ const CompanyList = () => {
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
   const [showColumns, setShowColumns] = useState(columns);
   const [currentPage, setCurrentPage] = useState(1);
+  const [searchText, setSearchText] = useState("");
 
   const openDropDown = Boolean(anchorEl);
 
   const companyStore = useAppSelector((state) => state.companies);
   const { isLoadingRequest, companies } = companyStore;
 
-  const currentTableData = useMemo(() => {
+  let currentTableData = useMemo(() => {
     const firstPageIndex = (currentPage - 1) * PageSize;
     const lastPageIndex = firstPageIndex + PageSize;
     return companies?.content?.slice(firstPageIndex, lastPageIndex);
@@ -131,7 +132,7 @@ const CompanyList = () => {
 
   useEffect(() => {
     dispatch(getCompanies())
-      .unwrap()
+       .unwrap()
       .then((response: any) => {})
       .catch((error) => {});
   }, []);
@@ -174,6 +175,18 @@ const CompanyList = () => {
     value: number
   ) => {
     setCurrentPage(value);
+  };
+
+  const handleSearchChange = (event: any) => {
+    const SearchText = event.target.value;
+    setSearchText(SearchText);
+
+    if (SearchText.length > 3) {
+      const newFilter = currentTableData.filter(
+        (value: any) => value.name === SearchText
+      );
+      currentTableData = newFilter;
+    }
   };
 
   return (
@@ -222,7 +235,9 @@ const CompanyList = () => {
             size="small"
             id="standard-bare"
             variant="outlined"
-            placeholder="Search..."
+            value={""}
+            onChange={handleSearchChange}
+            placeholder="Search Companies..."
             InputProps={{
               startAdornment: <SearchIcon />,
             }}
