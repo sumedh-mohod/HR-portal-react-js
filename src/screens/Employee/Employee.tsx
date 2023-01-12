@@ -1,4 +1,4 @@
-import React, { useState, useMemo } from "react";
+import React, { useState, useMemo, useEffect } from "react";
 
 import { GridColDef } from "@mui/x-data-grid";
 import { Box, Typography, Container, TextField, Button } from "@mui/material";
@@ -11,14 +11,16 @@ import EmployeeCard from "../../components/Employee/EmployeeCard";
 import EmployeeList from "../../components/Employee/EmployeeList";
 import CustomizationButtons from "../../components/HigherOrder/CustomizationButtons";
 import Paginations from "../../components/HigherOrder/Paginations";
-
+import { useAppDispatch, useAppSelector } from "../../store/hooks";
+import { getEmployees } from "../../store/reducers/employee/employees";
+import Loader from "../../components/HigherOrder/Loader";
 // colums data
 const columns: GridColDef[] = [
   {
     field: "id",
     headerName: "Sr.",
     minWidth: 50,
-    width:100,
+    width: 100,
     hide: false,
   },
   {
@@ -54,10 +56,7 @@ const columns: GridColDef[] = [
     maxWidth: 400,
     hide: false,
   },
-  
 ];
-
-// row data
 const rows = [
   {
     id: 1,
@@ -73,81 +72,11 @@ const rows = [
     Designation: "Senior Consultant",
     Technology: "IOS Developer, Swift",
   },
-  {
-    id: 3,
-    name: "Nikhil Thaware",
-    EmployeeId: "ORNG123456",
-    Designation: "Senior Consultant",
-    Technology: "IOS Developer, Swift",
-  },
-  {
-    id: 4,
-    name: "Nikhil Thaware",
-    EmployeeId: "ORNG123456",
-    Designation: "Senior Consultant",
-    Technology: "IOS Developer, Swift",
-  },
-  {
-    id: 5,
-    name: "Nikhil Thaware",
-    EmployeeId: "ORNG123456",
-    Designation: "Senior Consultant",
-    Technology: "IOS Developer, Swift",
-  },
-  {
-    id: 6,
-    name: "Nikhil Thaware",
-    EmployeeId: "ORNG123456",
-    Designation: "Senior Consultant",
-    Technology: "IOS Developer, Swift",
-  },
-  {
-    id: 7,
-    name: "Nikhil Thaware",
-    EmployeeId: "ORNG123456",
-    Designation: "Senior Consultant",
-    Technology: "IOS Developer, Swift",
-  },
-  {
-    id: 8,
-    name: "Nikhil Thaware",
-    EmployeeId: "ORNG123456",
-    Designation: "Senior Consultant",
-    Technology: "IOS Developer, Swift",
-  },
-  {
-    id: 9,
-    name: "Nikhil Thaware",
-    EmployeeId: "ORNG123456",
-    Designation: "Senior Consultant",
-    Technology: "IOS Developer, Swift",
-  },
-  {
-    id: 10,
-    name: "Nikhil Thaware",
-    EmployeeId: "ORNG123456",
-    Designation: "Senior Consultant",
-    Technology: "IOS Developer, Swift",
-  },
-  {
-    id: 11,
-    name: "Nikhil Thaware",
-    EmployeeId: "ORNG123456",
-    Designation: "Senior Consultant",
-    Technology: "IOS Developer, Swift",
-  },
-  {
-    id: 12,
-    name: "Nikhil Thaware",
-    EmployeeId: "ORNG123456",
-    Designation: "Senior Consultant",
-    Technology: "IOS Developer, Swift",
-  },
 ];
-
 let PageSize = 5;
 const Employee = () => {
   const navigate = useNavigate();
+  const dispatch = useAppDispatch();
 
   const [designView, setDesignView] = useState("list");
   const [currentPage, setCurrentPage] = useState(1);
@@ -155,11 +84,22 @@ const Employee = () => {
   const openDropDown = Boolean(anchorEl);
   const [showColumns, setShowColumns] = useState(columns);
 
+  const employeesStore = useAppSelector((state) => state.employees);
+  const { isLoadingRequest, employees } = employeesStore;
+  console.log("employee data", employees);
+
   const currentTableData = useMemo(() => {
     const firstPageIndex = (currentPage - 1) * PageSize;
     const lastPageIndex = firstPageIndex + PageSize;
-    return rows?.slice(firstPageIndex, lastPageIndex);
+    return employees?.slice(firstPageIndex, lastPageIndex);
   }, [currentPage]);
+
+  useEffect(() => {
+    dispatch(getEmployees())
+      .unwrap()
+      .then((response: any) => {})
+      .catch((error: any) => {});
+  }, []);
 
   // add and edit functions
   const handleEmployeeEditClick = () => {
@@ -200,7 +140,8 @@ const Employee = () => {
   };
 
   return (
-    <Box sx={{display:"flex" ,flexDirection:"column"}}>
+    <Box sx={{ display: "flex", flexDirection: "column" }}>
+      <Loader isLoading={isLoadingRequest} />
       {/* box for search bar and company */}
       <Box {...styles.employeeTitleBox}>
         <Typography variant="h5" {...globalStyles.moduleTitle}>
@@ -251,7 +192,7 @@ const Employee = () => {
           />
         </Box>
       </Box>
-      <Box sx={{ flexGrow: 1}}>
+      <Box sx={{ flexGrow: 1 }}>
         {designView === "list" ? (
           <EmployeeList columns={showColumns} rows={currentTableData} />
         ) : (
@@ -264,7 +205,7 @@ const Employee = () => {
         )}
       </Box>
       <Paginations handlePageChange={handlePageChange} />
-    </Box>   
+    </Box>
   );
 };
 

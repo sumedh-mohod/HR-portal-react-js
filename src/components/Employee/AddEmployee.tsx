@@ -15,10 +15,11 @@ import {
 import { styles } from "../../styles/components/addEmployee";
 import { useNavigate } from "react-router-dom";
 import { globalStyles } from "../../styles/global";
-// import { useAppDispatch} from "../store/hooks";
+import { useAppDispatch } from "../../store/hooks";
+import { addEmployee } from "../../store/reducers/employee/employees";
 const AddEmployee = () => {
   const navigate = useNavigate();
-  //   const dispatch = useAppDispatch();
+    const dispatch = useAppDispatch();
   const {
     handleBlur,
     handleChange,
@@ -40,9 +41,16 @@ const AddEmployee = () => {
     },
     // validationSchema: addEmployeeValidator,
     onSubmit: (values) => {
-      console.log("values of add project", values);
+      console.log("values of add employee", values);
+      dispatch(addEmployee(values))
+      .unwrap()
+      .then((response: any) => {
+        console.log("response from addEmployee file", response);
+      })
+      .catch((error: any) => { });
+  },
     },
-  });
+  );
   const inputRef: any = useRef(null);
   const handleClick = () => {
     // open file input box on click of other element
