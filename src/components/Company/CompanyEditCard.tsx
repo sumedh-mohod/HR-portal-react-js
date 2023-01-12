@@ -13,7 +13,7 @@ import SaveIcon from '@mui/icons-material/Save';
 import { styles } from "../../styles/components/editCompany";
 import { editCompanyValidator } from "../../utils/validations/auth";
 import { useAppDispatch, useAppSelector } from "../../store/hooks";
-import { editcompany } from "../../store/reducers/companies/companies";
+import { updateCompany } from "../../store/reducers/companies/companies";
 const CompanyDetailsCard = () => {
   const dispatch = useAppDispatch();
   const {
@@ -39,7 +39,7 @@ const CompanyDetailsCard = () => {
     validationSchema: editCompanyValidator,
     onSubmit: (values) => {
       console.log("values", values);
-      dispatch(editcompany(values))
+      dispatch(updateCompany(values))
         .unwrap()
         .then((response: any) => {
           console.log("response from edit Company file", response)
