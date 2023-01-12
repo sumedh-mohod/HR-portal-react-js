@@ -3,7 +3,7 @@ import { Grid, Typography, Paper, Box } from "@mui/material";
 import OrangeBitsIcon from "../Icons/OrangeBitsIcon";
 import { styles } from "../../styles/screens/ProjectList";
 
-const ProjectCard = ({ project, handleProjectEditClick }: { project: any, handleProjectEditClick: any }) => {
+const ProjectCard = ({ project, handleProjectEditClick,handleProjectAddClick }: { project: any, handleProjectEditClick: any,handleProjectAddClick:any }) => {
 
     return (
         <Grid container spacing={2} sx={{ mt: 1 }}>
