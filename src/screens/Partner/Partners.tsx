@@ -1,6 +1,13 @@
 import React, { useEffect, useState, useMemo } from "react";
 import { GridColDef } from "@mui/x-data-grid";
-import { Grid, Box, Typography, Container, TextField, Button } from "@mui/material";
+import {
+  Grid,
+  Box,
+  Typography,
+  Container,
+  TextField,
+  Button,
+} from "@mui/material";
 import { useAppDispatch, useAppSelector } from "../../store/hooks";
 import { getPartners } from "../../store/reducers/partners/partners";
 import { useNavigate } from "react-router-dom";
@@ -47,77 +54,77 @@ const rows = [
   },
   {
     id: 2,
-    company_name: "Google",
+    company_name: "Microsoft",
     description:
       "Plot No 10, Chintamani, Near Antarbharti Ashram, Dhangarpura, Khamla Rd, Nagpur, Maharashtra 440015",
   },
   {
     id: 3,
-    company_name: "Google",
+    company_name: "Tesla",
     description:
       "Plot No 10, Chintamani, Near Antarbharti Ashram, Dhangarpura, Khamla Rd, Nagpur, Maharashtra 440015",
   },
   {
     id: 4,
-    company_name: "Google",
+    company_name: "Twitter",
     description:
       "Plot No 10, Chintamani, Near Antarbharti Ashram, Dhangarpura, Khamla Rd, Nagpur, Maharashtra 440015",
   },
   {
     id: 5,
-    company_name: "Google",
+    company_name: "Wipro",
     description:
       "Plot No 10, Chintamani, Near Antarbharti Ashram, Dhangarpura, Khamla Rd, Nagpur, Maharashtra 440015",
   },
   {
     id: 6,
-    company_name: "Google",
+    company_name: "Accenture",
     description:
       "Plot No 10, Chintamani, Near Antarbharti Ashram, Dhangarpura, Khamla Rd, Nagpur, Maharashtra 440015",
   },
   {
     id: 7,
-    company_name: "Google",
+    company_name: "Infosys",
     description:
       "Plot No 10, Chintamani, Near Antarbharti Ashram, Dhangarpura, Khamla Rd, Nagpur, Maharashtra 440015",
   },
   {
     id: 8,
-    company_name: "Google",
+    company_name: "Tata Consultancy Services",
     description:
       "Plot No 10, Chintamani, Near Antarbharti Ashram, Dhangarpura, Khamla Rd, Nagpur, Maharashtra 440015",
   },
   {
     id: 9,
-    company_name: "Google",
+    company_name: "Yahoo",
     description:
       "Plot No 10, Chintamani, Near Antarbharti Ashram, Dhangarpura, Khamla Rd, Nagpur, Maharashtra 440015",
   },
   {
     id: 10,
-    company_name: "Google",
+    company_name: "DuckDuckGo",
     description:
       "Plot No 10, Chintamani, Near Antarbharti Ashram, Dhangarpura, Khamla Rd, Nagpur, Maharashtra 440015",
   },
 ];
+
 let PageSize = 5;
+
 const Partners = () => {
   // const dispatch = useAppDispatch();
   // const partnersStore = useAppSelector((state) => state.partners);
+
   const [designView, setDesignView] = useState("list");
   const [currentPage, setCurrentPage] = useState(1);
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
-  const openDropDown = Boolean(anchorEl);
   const [showColumns, setShowColumns] = useState(columns);
+  const [searchText, setSearchText] = useState("");
+  const [currentData, setCurrentData] = useState<any>([]);
+  const openDropDown = Boolean(anchorEl);
 
-  const currentTableData = useMemo(() => {
-    const firstPageIndex = (currentPage - 1) * PageSize;
-    const lastPageIndex = firstPageIndex + PageSize;
-    return rows?.slice(firstPageIndex, lastPageIndex);
-  }, [currentPage]);
 
   // const { isLoadingRequest, partners } = partnersStore;
-  // console.log("partners data is", partners);
+  
   const navigate = useNavigate();
 
   // useEffect(() => {
@@ -126,6 +133,14 @@ const Partners = () => {
   //     .then((response: any) => {})
   //     .catch((error: any) => {});
   // }, []);
+
+  useEffect(() => {
+    const firstPageIndex = (currentPage - 1) * PageSize;
+    const lastPageIndex = firstPageIndex + PageSize;
+
+    const DataSliced = rows?.slice(firstPageIndex, lastPageIndex);
+    setCurrentData(DataSliced);
+  }, [currentPage]);
 
   const handlePartnerEditClick = () => {
     navigate("/partners/edit");
@@ -162,6 +177,24 @@ const Partners = () => {
     value: number
   ) => {
     setCurrentPage(value);
+  };
+
+  const handleSearchChange = (event: any) => {
+    const SearchText = event.target.value;
+    setSearchText(SearchText);
+
+    if (SearchText.length > 1) {
+      const newFilter = rows.filter((value: any) =>
+        value.company_name.toLowerCase().includes(SearchText.toLowerCase())
+      );
+      setCurrentData(newFilter);
+    } else {
+      const firstPageIndex = (currentPage - 1) * PageSize;
+      const lastPageIndex = firstPageIndex + PageSize;
+
+      const DataSliced = rows?.slice(firstPageIndex, lastPageIndex);
+      setCurrentData(DataSliced);
+    }
   };
 
   return (
@@ -210,7 +243,9 @@ const Partners = () => {
             size="small"
             id="standard-bare"
             variant="outlined"
-            placeholder="Search..."
+            placeholder="Search Partners..."
+            value={searchText}
+            onChange={handleSearchChange}
             InputProps={{
               startAdornment: <SearchIcon />,
             }}
@@ -222,11 +257,11 @@ const Partners = () => {
           <PartnersList
             handlePartnerAddClick={handlePartnerAddClick}
             showColumns={showColumns}
-            rows={currentTableData}
+            rows={currentData}
           />
         ) : (
           <PartnersCard
-            partners={currentTableData}
+            partners={currentData}
             handlePartnerEditClick={handlePartnerEditClick}
             handlePartnerAddClick={handlePartnerAddClick}
           />
