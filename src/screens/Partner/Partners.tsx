@@ -1,6 +1,13 @@
 import React, { useEffect, useState, useMemo } from "react";
 import { GridColDef } from "@mui/x-data-grid";
-import { Grid, Box, Typography, Container, TextField, Button } from "@mui/material";
+import {
+  Grid,
+  Box,
+  Typography,
+  Container,
+  TextField,
+  Button,
+} from "@mui/material";
 import { useAppDispatch, useAppSelector } from "../../store/hooks";
 import { getPartners } from "../../store/reducers/partners/partners";
 import { useNavigate } from "react-router-dom";
@@ -12,6 +19,7 @@ import PartnersList from "../../components/Partner/PartnersList";
 import CustomizationButtons from "../../components/HigherOrder/CustomizationButtons";
 import AddIcon from "@mui/icons-material/Add";
 import Paginations from "../../components/HigherOrder/Paginations";
+import Loader from "../../components/HigherOrder/Loader";
 
 const columns: GridColDef[] = [
   {
@@ -37,95 +45,125 @@ const columns: GridColDef[] = [
     hide: false,
   },
 ];
-
 const rows = [
   {
     id: 1,
-    company_name: "Google",
+    company_name: "Googlemnmnb",
     description:
       "Plot No 10, Chintamani, Near Antarbharti Ashram, Dhangarpura, Khamla Rd, Nagpur, Maharashtra 440015",
   },
+
   {
     id: 2,
+
     company_name: "Google",
+
     description:
       "Plot No 10, Chintamani, Near Antarbharti Ashram, Dhangarpura, Khamla Rd, Nagpur, Maharashtra 440015",
   },
+
   {
     id: 3,
+
     company_name: "Google",
+
     description:
       "Plot No 10, Chintamani, Near Antarbharti Ashram, Dhangarpura, Khamla Rd, Nagpur, Maharashtra 440015",
   },
+
   {
     id: 4,
+
     company_name: "Google",
+
     description:
       "Plot No 10, Chintamani, Near Antarbharti Ashram, Dhangarpura, Khamla Rd, Nagpur, Maharashtra 440015",
   },
+
   {
     id: 5,
+
     company_name: "Google",
+
     description:
       "Plot No 10, Chintamani, Near Antarbharti Ashram, Dhangarpura, Khamla Rd, Nagpur, Maharashtra 440015",
   },
+
   {
     id: 6,
+
     company_name: "Google",
+
     description:
       "Plot No 10, Chintamani, Near Antarbharti Ashram, Dhangarpura, Khamla Rd, Nagpur, Maharashtra 440015",
   },
+
   {
     id: 7,
+
     company_name: "Google",
+
     description:
       "Plot No 10, Chintamani, Near Antarbharti Ashram, Dhangarpura, Khamla Rd, Nagpur, Maharashtra 440015",
   },
+
   {
     id: 8,
+
     company_name: "Google",
+
     description:
       "Plot No 10, Chintamani, Near Antarbharti Ashram, Dhangarpura, Khamla Rd, Nagpur, Maharashtra 440015",
   },
+
   {
     id: 9,
+
     company_name: "Google",
+
     description:
       "Plot No 10, Chintamani, Near Antarbharti Ashram, Dhangarpura, Khamla Rd, Nagpur, Maharashtra 440015",
   },
+
   {
     id: 10,
+
     company_name: "Google",
+
     description:
       "Plot No 10, Chintamani, Near Antarbharti Ashram, Dhangarpura, Khamla Rd, Nagpur, Maharashtra 440015",
   },
 ];
+
+
 let PageSize = 5;
 const Partners = () => {
-  // const dispatch = useAppDispatch();
-  // const partnersStore = useAppSelector((state) => state.partners);
+  const dispatch = useAppDispatch();
+
   const [designView, setDesignView] = useState("list");
   const [currentPage, setCurrentPage] = useState(1);
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
   const openDropDown = Boolean(anchorEl);
   const [showColumns, setShowColumns] = useState(columns);
 
+  const partnersStore = useAppSelector((state) => state.partners);
+  const { isLoadingRequest, partners } = partnersStore;
+  console.log("get partner response", partners);
+
   const currentTableData = useMemo(() => {
     const firstPageIndex = (currentPage - 1) * PageSize;
     const lastPageIndex = firstPageIndex + PageSize;
-    return rows?.slice(firstPageIndex, lastPageIndex);
+    return partners?.slice(firstPageIndex, lastPageIndex);
   }, [currentPage]);
 
-  // const { isLoadingRequest, partners } = partnersStore;
-  // console.log("partners data is", partners);
   const navigate = useNavigate();
 
-  // useEffect(() => {
-  //   dispatch(getPartners())
-  //     .unwrap()
-  //     .then((response: any) => {})
-  //     .catch((error: any) => {});
-  // }, []);
+  useEffect(() => {
+    dispatch(getPartners())
+      .unwrap()
+      .then((response: any) => {})
+      .catch((error: any) => {});
+  }, []);
 
   const handlePartnerEditClick = () => {
     navigate("/partners/edit");
@@ -166,6 +204,7 @@ const Partners = () => {
 
   return (
     <Box sx={{ display: "flex", flexDirection: "column" }}>
+      <Loader isLoading={isLoadingRequest} />
       {/* box for search bar and company */}
       <Box {...styles.companyTitleBox}>
         <Typography variant="h5" {...globalStyles.moduleTitle}>

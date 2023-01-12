@@ -49,7 +49,7 @@ export const getCompany = createAsyncThunk(
   async (_, { rejectWithValue }) => {
     //response of get company api
     const response = {
-      updateCompany: true,
+      getCompany: true,
     };
     //returned a response to reducer
     return response;
