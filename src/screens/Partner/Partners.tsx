@@ -1,11 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { GridColDef } from "@mui/x-data-grid";
-import {
-  Box,
-  Typography,
-  TextField,
-  Button,
-} from "@mui/material";
+import { Box, Typography, TextField, Button } from "@mui/material";
 import { useAppDispatch, useAppSelector } from "../../store/hooks";
 import { getPartners } from "../../store/reducers/partners/partners";
 import { useNavigate } from "react-router-dom";
@@ -43,8 +38,6 @@ const columns: GridColDef[] = [
     hide: false,
   },
 ];
-
-
 
 let PageSize = 5;
 
@@ -194,8 +187,13 @@ const Partners = () => {
         {designView === "list" ? (
           <PartnersList
             handlePartnerAddClick={handlePartnerAddClick}
-            showColumns={showColumns}
-            rows={currentData}
+            // rows={currentData}
+            showColumns={showColumns?.length >= 0 ? showColumns : []}
+            rows={
+              currentData !== undefined && currentData?.length >= 0
+                ? currentData
+                : []
+            }
           />
         ) : (
           <PartnersCard
