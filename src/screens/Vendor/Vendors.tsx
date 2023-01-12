@@ -108,9 +108,9 @@ const Vendors = () => {
 
     const openDropDown = Boolean(anchorEl);
 
-    const vendorStore = useAppSelector((state) => state.getVendors);
-    const { isLoadingRequest, vendors } = vendorStore;
-
+    const vendorsStore = useAppSelector((state) => state.vendors);
+    const { isLoadingRequest, vendors } = vendorsStore;
+   console.log("vendor response",vendors);
     const currentTableData = useMemo(() => {
         const firstPageIndex = (currentPage - 1) * PageSize;
         const lastPageIndex = firstPageIndex + PageSize;

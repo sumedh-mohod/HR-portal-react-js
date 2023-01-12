@@ -1,7 +1,7 @@
 import { DataGrid } from "@mui/x-data-grid";
 import { Grid, Box, Card } from "@mui/material";
 
-const EmployeeList = ({ columns, rows }: { columns: any; rows: any }) => {
+const EmployeeList = ({ showColumns, rows }: { showColumns: any; rows: any }) => {
   return (
     <Card sx={{ marginTop: "35px", p: 0 }}>
       <Grid container width="1">
@@ -19,7 +19,7 @@ const EmployeeList = ({ columns, rows }: { columns: any; rows: any }) => {
             getRowId={(row) => row.id}
             autoHeight={true}
             rows={rows}
-            columns={columns}
+            columns={showColumns}
             hideFooterPagination={true}
             hideFooter={true}
           />
