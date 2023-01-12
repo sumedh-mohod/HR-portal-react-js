@@ -1,9 +1,37 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { actionTypes } from "../../actionTypes";
+import { axiosClient } from "../../axiosClient";
+import { RestfulUrls } from "../../restfulUrls";
+
+//add vendor action
+export const addVendor = createAsyncThunk(
+  actionTypes.ADD_PROJECT,
+  async (params: any) => {
+    //response of addvendor api
+    const response = {
+      addVendor: true,
+    };
+    //returned a response to reducer
+    return response;
+  }
+);
+
+// update vendor action
+export const updateVendor = createAsyncThunk(
+  actionTypes.UPDATE_VENDOR,
+  async (params: any) => {
+    //response of update project api
+    const response = {
+      updateVendor: true,
+    };
+    //returned a response to reducer
+    return response;
+  }
+);
 
 //vendors action
 export const getVendors = createAsyncThunk(
-  actionTypes.VENDOR_LIST,
+  actionTypes.GET_VENDORS,
   async () => {
     //response of vendors api
     const response = [
@@ -195,6 +223,18 @@ export const getVendors = createAsyncThunk(
   }
 );
 
+// update vendor action
+export const getVendor = createAsyncThunk(
+  actionTypes.GET_VENDOR,
+  async (params: any) => {
+    //response of update project api
+    const response = {
+      getVendor: true,
+    };
+    //returned a response to reducer
+    return response;
+  }
+);
 // inteface for redux state
 export interface StateI {
   vendors?: any; // vendors with details
@@ -211,7 +251,7 @@ const initialState: StateI = {
 
 //slice or reducer
 const Vendors = createSlice({
-  name: "Vendors",
+  name: "vendors",
   initialState,
   //normal reducers
   reducers: {
@@ -221,21 +261,77 @@ const Vendors = createSlice({
   },
   //async reducers
   extraReducers: (builder) => {
+      // ======================add Vendor ========================
     // reducer when api call is in progress
-    builder.addCase(getVendors.pending, (state: StateI) => {
+    builder.addCase(addVendor.pending, (state: StateI) => {
       //state updated in pending state
       state.isLoadingRequest = true;
     });
     // reducer when api call is fulfilled
-    builder.addCase(getVendors.fulfilled, (state: StateI, action: any) => {
+    builder.addCase(addVendor.fulfilled, (state: StateI, action: any) => {
       //state updated in fulfilled state
       state.vendors = action.payload;
       state.isLoadingRequest = false;
     });
     // reducer when api call is rejected
-    builder.addCase(getVendors.rejected, (state: StateI) => {
+    builder.addCase(addVendor.rejected, (state: StateI) => {
       //state updated in rejected state
       state.isLoadingRequest = false;
+    });
+    // ======================update Project========================
+    builder.addCase(updateVendor.pending, (state: StateI) => {
+      //state updated in pending state
+      state.isLoadingRequest = true;
+    });
+    // reducer when api call is fulfilled
+    builder.addCase(updateVendor.fulfilled, (state: StateI, action: any) => {
+      //state updated in fulfilled state
+      state.isLoadingRequest = false;
+      state.vendors = action.payload;
+    });
+    // reducer when api call is rejected
+    builder.addCase(updateVendor.rejected, (state: StateI) => {
+      //state updated in rejected state
+      state.isLoadingRequest = false;
+    });
+    // ======================ggetProjects========================
+    builder.addCase(getVendors.pending, (state: StateI) => {
+      //state updated in pending state
+      state.isLoadingRequest = true;
+      state.vendors = undefined;
+    });
+    // reducer when api call is fulfilled
+    builder.addCase(getVendors.fulfilled, (state: StateI, action: any) => {
+      //state updated in fulfilled state
+      state.vendors = action.payload;
+      console.log("action payload project", action.paylaod);
+      state.isLoadingRequest = false;
+    });
+    // reducer when api call is rejected
+    builder.addCase(getVendors.rejected, (state: StateI) => {
+      console.log("get projecgt REJECTED");
+      //state updated in rejected state
+      state.isLoadingRequest = false;
+      state.vendors = undefined;
+    });
+    // ======================get project========================
+    builder.addCase(getVendor.pending, (state: StateI) => {
+      //state updated in pending state
+      state.isLoadingRequest = true;
+      state.vendors = undefined;
+    });
+    // reducer when api call is fulfilled
+    builder.addCase(getVendor.fulfilled, (state: StateI, action: any) => {
+      //state updated in fulfilled state
+      state.vendors = action.payload;
+      state.isLoadingRequest = false;
+    });
+    // reducer when api call is rejected
+    builder.addCase(getVendor.rejected, (state: StateI) => {
+      console.log("get projeect REJECTED");
+      //state updated in rejected state
+      state.isLoadingRequest = false;
+      state.vendors = undefined;
     });
   },
 });
