@@ -15,11 +15,12 @@ import {
 import { styles } from "../../styles/components/addProject";
 import { useNavigate } from "react-router-dom";
 import { globalStyles } from "../../styles/global";
-// import { useAppDispatch} from "../store/hooks";
+import { useAppDispatch } from "../../store/hooks";
+import { addProject } from "../../store/reducers/projects/projects";
 
 const AddProject = () => {
   const navigate = useNavigate();
-  //   const dispatch = useAppDispatch();
+    const dispatch = useAppDispatch();
   const {
     handleBlur,
     handleChange,
@@ -42,8 +43,15 @@ const AddProject = () => {
     validationSchema: addProjectValidator,
     onSubmit: (values) => {
       console.log("values of add project", values);
+      dispatch(addProject(values))
+        .unwrap()
+        .then((response: any) => {
+          console.log("response from add partner file", response);
+        })
+        .catch((error: any) => { });
     },
-  });
+    },
+  );
 
   const inputRef: any = useRef(null);
   const handleClick = () => {
