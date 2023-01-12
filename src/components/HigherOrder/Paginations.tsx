@@ -5,6 +5,8 @@ import KeyboardDoubleArrowLeftIcon from "@mui/icons-material/KeyboardDoubleArrow
 import KeyboardArrowLeftIcon from "@mui/icons-material/KeyboardArrowLeft";
 import KeyboardArrowRightIcon from "@mui/icons-material/KeyboardArrowRight";
 
+import { styles } from "../../styles/components/paginations";
+
 const Paginations = (props: any) => {
   const { handlePageChange } = props;
   return (
@@ -34,16 +36,7 @@ const Paginations = (props: any) => {
             {...item}
           />
         )}
-        sx={{
-          "& .MuiPaginationItem": {
-            color: "#1C1B1F",
-            background: "#D9D9D9",
-          },
-          "& .Mui-selected": {
-            background: "#F58634",
-            color: "#FFFFFF",
-          },
-        }}
+        {...styles.pageSelected}
       />
     </Box>
   );

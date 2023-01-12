@@ -14,7 +14,7 @@ import {
 } from "@mui/material";
 import { styles } from "../../styles/components/addCompany";
 import { useAppDispatch } from "../../store/hooks";
-import { addcompany } from "../../store/reducers/companies/companies";
+import { addCompany } from "../../store/reducers/companies/companies";
 import { useNavigate } from "react-router-dom";
 import { padding } from "@mui/system";
 
@@ -45,7 +45,7 @@ const AddCompany = () => {
     validationSchema: addCompanyValidator,
     onSubmit: (values) => {
       console.log("values", values);
-      dispatch(addcompany(values))
+      dispatch(addCompany(values))
         .unwrap()
         .then((response: any) => {
           console.log("response from addCompany file", response);

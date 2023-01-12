@@ -138,7 +138,7 @@ export const Menus: any = [
     submenu: [
       {
         name: "Master",
-        route: "#",
+        route: "vendors",
       },
     ],
   },
