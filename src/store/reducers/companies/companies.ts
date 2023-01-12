@@ -3,41 +3,37 @@ import { actionTypes } from "../../actionTypes";
 import { axiosClient } from "../../axiosClient";
 import { RestfulUrls } from "../../restfulUrls";
 
-//addcompany action
-export const addcompany = createAsyncThunk(
+//add company action
+export const addCompany = createAsyncThunk(
   actionTypes.ADD_COMPANY,
   async (params: any) => {
     //response of addcompany api
-    try {
-      const response = await axiosClient.post(RestfulUrls.Add_Company, {
-        params,
-      });
-      return response;
-    } catch (error) {
-      console.log("error", error);
-    }
-    //returned a response to reducer
-  }
-);
-
-// edit company action
-
-export const editcompany = createAsyncThunk(
-  actionTypes.EDIT_COMPANY,
-  async (params: any) => {
-    //response of addcompany api
     const response = {
-      editcompany: true,
+      addCompany: true,
     };
     //returned a response to reducer
     return response;
   }
 );
 
-export const companylist = createAsyncThunk(
-  actionTypes.COMPANY_LIST,
+// update company action
+export const updateCompany = createAsyncThunk(
+  actionTypes.UPDATE_COMPANY,
+  async (params: any) => {
+    //response of update company api
+    const response = {
+      updateCompany: true,
+    };
+    //returned a response to reducer
+    return response;
+  }
+);
+
+// get companies action
+export const getCompanies = createAsyncThunk(
+  actionTypes.GET_COMPANIES,
   async (_, { rejectWithValue }) => {
-    //response of company
+    //response of getcompany
     try {
       const response = await axiosClient.get(RestfulUrls.Get_Companies);
       console.log("response", response);
@@ -47,7 +43,18 @@ export const companylist = createAsyncThunk(
     }
   }
 );
-
+// get company action
+export const getCompany = createAsyncThunk(
+  actionTypes.GET_COMPANY,
+  async (_, { rejectWithValue }) => {
+    //response of get company api
+    const response = {
+      updateCompany: true,
+    };
+    //returned a response to reducer
+    return response;
+  }
+);
 // inteface for redux state
 export interface StateI {
   companies?: any; // company with details
@@ -74,51 +81,72 @@ const Companies = createSlice({
   },
   //async reducers
   extraReducers: (builder) => {
+    // ======================add company========================
     // reducer when api call is in progress
-    builder.addCase(addcompany.pending, (state: StateI) => {
+    builder.addCase(addCompany.pending, (state: StateI) => {
       //state updated in pending state
       state.isLoadingRequest = true;
     });
     // reducer when api call is fulfilled
-    builder.addCase(addcompany.fulfilled, (state: StateI, action: any) => {
+    builder.addCase(addCompany.fulfilled, (state: StateI, action: any) => {
       //state updated in fulfilled state
       state.companies = action.payload;
       state.isLoadingRequest = false;
     });
     // reducer when api call is rejected
-    builder.addCase(addcompany.rejected, (state: StateI) => {
+    builder.addCase(addCompany.rejected, (state: StateI) => {
       //state updated in rejected state
       state.isLoadingRequest = false;
     });
-    // edit start
-    builder.addCase(editcompany.pending, (state: StateI) => {
+    // ======================update company========================
+    builder.addCase(updateCompany.pending, (state: StateI) => {
       //state updated in pending state
       state.isLoadingRequest = true;
     });
     // reducer when api call is fulfilled
-    builder.addCase(editcompany.fulfilled, (state: StateI, action: any) => {
+    builder.addCase(updateCompany.fulfilled, (state: StateI, action: any) => {
       //state updated in fulfilled state
       state.isLoadingRequest = false;
       state.companies = action.payload;
     });
     // reducer when api call is rejected
-    builder.addCase(editcompany.rejected, (state: StateI) => {
+    builder.addCase(updateCompany.rejected, (state: StateI) => {
       //state updated in rejected state
       state.isLoadingRequest = false;
     });
-    builder.addCase(companylist.pending, (state: StateI) => {
+    // ======================get companies========================
+    builder.addCase(getCompanies.pending, (state: StateI) => {
       //state updated in pending state
       state.isLoadingRequest = true;
       state.companies = undefined;
     });
     // reducer when api call is fulfilled
-    builder.addCase(companylist.fulfilled, (state: StateI, action: any) => {
+    builder.addCase(getCompanies.fulfilled, (state: StateI, action: any) => {
       //state updated in fulfilled state
       state.companies = action.payload.data;
       state.isLoadingRequest = false;
     });
     // reducer when api call is rejected
-    builder.addCase(companylist.rejected, (state: StateI) => {
+    builder.addCase(getCompanies.rejected, (state: StateI) => {
+      console.log("companylist REJECTED");
+      //state updated in rejected state
+      state.isLoadingRequest = false;
+      state.companies = undefined;
+    });
+    // ======================get company========================
+    builder.addCase(getCompany.pending, (state: StateI) => {
+      //state updated in pending state
+      state.isLoadingRequest = true;
+      state.companies = undefined;
+    });
+    // reducer when api call is fulfilled
+    builder.addCase(getCompany.fulfilled, (state: StateI, action: any) => {
+      //state updated in fulfilled state
+      state.companies = action.payload.data;
+      state.isLoadingRequest = false;
+    });
+    // reducer when api call is rejected
+    builder.addCase(getCompany.rejected, (state: StateI) => {
       console.log("companylist REJECTED");
       //state updated in rejected state
       state.isLoadingRequest = false;

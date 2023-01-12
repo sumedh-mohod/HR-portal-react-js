@@ -13,7 +13,7 @@ import { styles } from "../../styles/screens/CompanyList";
 import { globalStyles } from "../../styles/global";
 
 import { useAppDispatch, useAppSelector } from "../../store/hooks";
-import { companylist } from "../../store/reducers/companies/companies";
+import { getCompanies } from "../../store/reducers/companies/companies";
 
 import CompanyCard from "../../components/Company/CompanyCard";
 import CompaniesList from "../../components/Company/CompanyList";
@@ -130,7 +130,7 @@ const CompanyList = () => {
   }, [currentPage, isLoadingRequest]);
 
   useEffect(() => {
-    dispatch(companylist())
+    dispatch(getCompanies())
       .unwrap()
       .then((response: any) => {})
       .catch((error) => {});
