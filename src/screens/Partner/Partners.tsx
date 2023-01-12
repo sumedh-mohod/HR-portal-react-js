@@ -113,7 +113,7 @@ const Partners = () => {
     const SearchText = event.target.value;
     setSearchText(SearchText);
 
-    if (SearchText.length > 1) {
+    if (SearchText.length > 0) {
       const newFilter = partners.filter((value: any) =>
         value.company_name.toLowerCase().includes(SearchText.toLowerCase())
       );
