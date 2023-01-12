@@ -5,7 +5,7 @@ import authentication from "./reducers/users/authentication";
 import companies from "./reducers/companies/companies";
 import partners from "./reducers/partners/partners";
 import projects from "./reducers/projects/projects";
-import getVendors from "./reducers/vendors/vendors";
+import vendors from "./reducers/vendors/vendors";
 import employees from "./reducers/employee/employees";
 //store configuration
 export const store = configureStore({
@@ -16,7 +16,7 @@ export const store = configureStore({
     partners: partners,
     projects: projects,
     employees:employees,
-    getVendors: getVendors,
+    vendors: vendors,
   },
   //enable dev tools for development env
   devTools: process.env.NODE_ENV !== "production",

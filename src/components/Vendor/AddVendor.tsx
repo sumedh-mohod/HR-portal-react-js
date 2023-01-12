@@ -16,13 +16,14 @@ import {
 import { styles } from "../../styles/components/addVendor";
 import { useNavigate } from "react-router-dom";
 import { globalStyles } from "../../styles/global";
-// import { useAppDispatch} from "../store/hooks";
+import { useAppDispatch } from "../../store/hooks";
 import CheckIcon from "@mui/icons-material/Check";
 import CloseIcon from "@mui/icons-material/Close";
 import AddIcon from "@mui/icons-material/Add";
 import DisabledByDefaultIcon from "@mui/icons-material/DisabledByDefault";
+import { addVendor } from "../../store/reducers/vendors/vendors";
 const AddVendor = () => {
-    //   const dispatch = useAppDispatch();
+      const dispatch = useAppDispatch();
     const navigate = useNavigate();
     const {
         handleBlur,
@@ -56,8 +57,15 @@ const AddVendor = () => {
         validationSchema: addVendorValidator,
         onSubmit: (values) => {
             console.log("values of add VENDOR", values);
-        },
-    });
+            dispatch(addVendor(values))
+        .unwrap()
+        .then((response: any) => {
+          console.log("response from add vendor file", response);
+        })
+        .catch((error: any) => { });
+    },
+    },
+    );
     const inputRef: any = useRef(null);
     const handleClick = () => {
         // open file input box on click of other element
