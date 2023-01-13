@@ -37,7 +37,7 @@ export const getVendors = createAsyncThunk(
     const response = [
       {
         id: 1,
-        vendor_name: "Vendor 1",
+        vendor_name: "Depansh ",
         Address_Line_1: 3,
         Address_Line_2: 200,
         city: "Nagpur",

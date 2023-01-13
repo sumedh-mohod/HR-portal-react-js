@@ -105,17 +105,19 @@ const Vendors = () => {
     const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
     const [showColumns, setShowColumns] = useState(columns);
     const [currentPage, setCurrentPage] = useState(1);
-
+    const [searchText, setSearchText] = useState("");
+    const [currentData, setCurrentData] = useState<any>([]);
     const openDropDown = Boolean(anchorEl);
 
     const vendorsStore = useAppSelector((state) => state.vendors);
     const { isLoadingRequest, vendors } = vendorsStore;
    console.log("vendor response",vendors);
-    const currentTableData = useMemo(() => {
-        const firstPageIndex = (currentPage - 1) * PageSize;
-        const lastPageIndex = firstPageIndex + PageSize;
-        return vendors?.slice(firstPageIndex, lastPageIndex);
-    }, [currentPage, isLoadingRequest]);
+    // const currentTableData = useMemo(() => {
+    //     const firstPageIndex = (currentPage - 1) * PageSize;
+    //     const lastPageIndex = firstPageIndex + PageSize;
+    //     return vendors?.slice(firstPageIndex, lastPageIndex);
+    // }, [currentPage, isLoadingRequest]);
+
 
     useEffect(() => {
         dispatch(getVendors())
@@ -123,6 +125,14 @@ const Vendors = () => {
             .then((response: any) => { })
             .catch((error) => { });
     }, []);
+
+    useEffect(() => {
+        const firstPageIndex = (currentPage - 1) * PageSize;
+        const lastPageIndex = firstPageIndex + PageSize;
+    
+        const DataSliced = vendors?.slice(firstPageIndex, lastPageIndex);
+        setCurrentData(DataSliced);
+      }, [currentPage, isLoadingRequest]);
 
     const handleVendorAddClick = () => {
         navigate("/vendors/add");
@@ -163,6 +173,24 @@ const Vendors = () => {
     ) => {
         setCurrentPage(value);
     };
+
+    const handleSearchChange = (event: any) => {
+        const SearchText = event.target.value;
+        setSearchText(SearchText);
+    
+        if (SearchText.length > 0) {
+          const newFilter = vendors.filter((value: any) =>
+            value.vendor_name.toLowerCase().includes(SearchText.toLowerCase())
+          );
+          setCurrentData(newFilter);
+        } else {
+          const firstPageIndex = (currentPage - 1) * PageSize;
+          const lastPageIndex = firstPageIndex + PageSize;
+    
+          const DataSliced = vendors?.slice(firstPageIndex, lastPageIndex);
+          setCurrentData(DataSliced);
+        }
+      };
 
     return (
         <Box sx={{ display: "flex", flexDirection: "column" }}>
@@ -210,7 +238,9 @@ const Vendors = () => {
                         size="small"
                         id="standard-bare"
                         variant="outlined"
-                        placeholder="Search..."
+                        placeholder="Search Vendors..."
+                        value={searchText}
+                        onChange={handleSearchChange}
                         InputProps={{
                             startAdornment: <SearchIcon />,
                         }}
@@ -223,14 +253,14 @@ const Vendors = () => {
                     <VendorList
                         showColumns={showColumns?.length >= 0 ? showColumns : []}
                         rows={
-                            currentTableData !== undefined && currentTableData?.length >= 0
-                                ? currentTableData
+                            currentData !== undefined && currentData?.length >= 0
+                                ? currentData
                                 : []
                         }
                     />
                 ) : (
                     <VendorCard
-                        vendors={currentTableData}
+                        vendors={currentData}
                         handleVendorEditClick={handleVendorEditClick}
                         handleVendorAddClick={handleVendorAddClick}
                     />
