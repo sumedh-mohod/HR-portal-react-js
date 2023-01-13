@@ -69,29 +69,6 @@ const CompanyDetailsCard = () => {
             </Grid>
             <Grid item xs={12} md={6} lg={3}>
               <FormControl fullWidth>
-                <FormLabel id="defaultLetterHead">
-                  Default Letter Head*
-                </FormLabel>
-                <TextField
-                  name="defaultLetterHead"
-                  variant="filled"
-                  size="small"
-                  value={values.defaultLetterHead}
-                  onChange={handleChange}
-                  onBlur={handleBlur}
-                  error={
-                    touched.defaultLetterHead && errors.defaultLetterHead
-                      ? true
-                      : false
-                  }
-                  helperText={
-                    touched.defaultLetterHead && errors.defaultLetterHead
-                  }
-                />
-              </FormControl>
-            </Grid>
-            <Grid item xs={12} md={6} lg={3}>
-              <FormControl fullWidth>
                 <FormLabel id="abbr">Abbr*</FormLabel>
                 <TextField
                   name="abbr"
@@ -102,18 +79,6 @@ const CompanyDetailsCard = () => {
                   onBlur={handleBlur}
                   error={touched.abbr && errors.abbr ? true : false}
                   helperText={touched.abbr && errors.abbr}
-                />
-              </FormControl>
-            </Grid>
-            <Grid item xs={12} md={6} lg={3}>
-              <FormControl fullWidth>
-                <FormLabel id="taxID">Tax ID</FormLabel>
-                <TextField
-                  name="taxID"
-                  variant="filled"
-                  size="small"
-                  value={values.taxID}
-                  onChange={handleChange}
                 />
               </FormControl>
             </Grid>

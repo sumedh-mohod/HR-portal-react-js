@@ -30,18 +30,18 @@ const EditCompany = () => {
     navigate(-1);
   }
   return (
-    <Container sx={{ p: 3, width: 1 }} >
+    <Container sx={{ width: 1 }} >
       {/* toggle card for details and edit form of company */}
       <Box {...styles.box}>
         <Typography variant="h5">Company 1</Typography>
         <Box>
-          <Button
+          {/* <Button
             {...styles.parentBoxCancelButton}
             variant="contained"
             onClick={handleCancleEdit}
           >
             Cancle
-          </Button>
+          </Button> */}
           {editBtn && (
             <Button
               {...styles.parentBoxButtonEdit}
@@ -55,39 +55,6 @@ const EditCompany = () => {
         </Box>
       </Box>
       {isEditing ? <CompanyEditCard /> : <CompanyDetailsCard />}
-
-      {/* holiday card start--------- */}
-      <Box {...styles.box}>
-        <Typography variant="h5">Holiday</Typography>
-        <Box>
-          <Button
-            {...styles.parentBoxCancelButton}
-            variant="contained"
-            onClick={handleCancleEdit}
-          >
-            Cancle
-          </Button>
-          {editHollidayBtn ? (
-            <Button
-              {...styles.parentBoxButtonEdit}
-              variant="contained"
-              type="submit"
-              onClick={EditHollidayHandle}
-            >
-              <EditIcon {...styles.icon} /> Edit
-            </Button>
-          ) :
-            <Button
-              {...styles.parentBoxButtonSave}
-              variant="contained"
-              type="submit"
-            >
-              <SaveIcon {...styles.icon} /> Save
-            </Button>
-          }
-        </Box>
-      </Box>
-      {isHollidayEditing ? <HolidayCard /> : <HollidayDetailsCard />}
     </Container>
   );
 };
