@@ -1,6 +1,6 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 
 import {
   IconButton,
@@ -70,19 +70,25 @@ const DrawerHeader = styled("div")(({ theme }) => ({
 
 const SideBar = ({ open, setOpen }: any) => {
   const navigate = useNavigate();
+  const params = useLocation();
 
-  const [activeRoute, setActiveRoute] = useState(1);
-  const [activeSubRoute, setActiveSubRoute] = useState({
-    id: 1,
-    name: "Holiday",
-    route: "companies",
-  });
+  const [activeRoute, setActiveRoute] = useState<any>();
+  const [activeSubRoute, setActiveSubRoute] = useState<any>();
 
   const [sideBarMenus, setSideBarMenus] = useState(Menus);
 
   const handleDrawerClose = () => {
     setOpen(false);
   };
+
+  useEffect(() => {
+    const Pathname = params.pathname.split("/");
+    const newMenues = sideBarMenus.find(
+      (value: any) => value.route === Pathname[1]
+    );
+    setActiveRoute(newMenues?.id);
+    setActiveSubRoute(newMenues?.submenu[0]);
+  }, [params.pathname]);
 
   const handleDrawerNavigation = (item: any) => {
     setActiveRoute(item.id);

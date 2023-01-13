@@ -21,79 +21,78 @@ import Loader from "../../components/HigherOrder/Loader";
 import { getVendors } from "../../store/reducers/vendors/vendors";
 
 const columns: GridColDef[] = [
-    {
-        field: "id",
-        headerName: "Sr",
-        minWidth: 50,
-        width: 100,
-        hide: false,
-    },
-    {
-        field: "vendor_name",
-        headerName: "Vendor Name",
-        width: 300,
-        minWidth: 200,
-        maxWidth: 400,
-        hide: false,
-    },
-    {
-        field: "Address_Line_1",
-        headerName: "Address Line 1",
-        width: 100,
-        minWidth: 150,
-        maxWidth: 400,
-        hide: false,
-    },
-    {
-        field: "Address_Line_2",
-        headerName: "Address Line 2",
-        width: 100,
-        minWidth: 150,
-        maxWidth: 400,
-        hide: false,
-    },
-    {
-        field: "city",
-        headerName: "city",
-        width: 100,
-        minWidth: 150,
-        maxWidth: 400,
-        hide: false,
-    },
-    {
-        field: "state",
-        headerName: "state",
-        width: 100,
-        minWidth: 150,
-        maxWidth: 400,
-        hide: false,
-    },
-    {
-        field: "country",
-        headerName: "country",
-        width: 100,
-        minWidth: 150,
-        maxWidth: 400,
-        hide: false,
-    },
-    {
-        field: "Postal_Code",
-        headerName: "Postal Code",
-        width: 100,
-        minWidth: 150,
-        maxWidth: 400,
-        hide: false,
-    },
-    {
-        field: "Vendor_Onboard_Date",
-        headerName: "Vendor onboard Date",
-        width: 100,
-        minWidth: 150,
-        maxWidth: 400,
-        hide: false,
-    },
+  {
+    field: "id",
+    headerName: "Sr",
+    minWidth: 50,
+    width: 100,
+    hide: false,
+  },
+  {
+    field: "vendor_name",
+    headerName: "Vendor Name",
+    width: 300,
+    minWidth: 200,
+    maxWidth: 400,
+    hide: false,
+  },
+  {
+    field: "Address_Line_1",
+    headerName: "Address Line 1",
+    width: 100,
+    minWidth: 150,
+    maxWidth: 400,
+    hide: false,
+  },
+  {
+    field: "Address_Line_2",
+    headerName: "Address Line 2",
+    width: 100,
+    minWidth: 150,
+    maxWidth: 400,
+    hide: false,
+  },
+  {
+    field: "city",
+    headerName: "city",
+    width: 100,
+    minWidth: 150,
+    maxWidth: 400,
+    hide: false,
+  },
+  {
+    field: "state",
+    headerName: "state",
+    width: 100,
+    minWidth: 150,
+    maxWidth: 400,
+    hide: false,
+  },
+  {
+    field: "country",
+    headerName: "country",
+    width: 100,
+    minWidth: 150,
+    maxWidth: 400,
+    hide: false,
+  },
+  {
+    field: "Postal_Code",
+    headerName: "Postal Code",
+    width: 100,
+    minWidth: 150,
+    maxWidth: 400,
+    hide: false,
+  },
+  {
+    field: "Vendor_Onboard_Date",
+    headerName: "Vendor onboard Date",
+    width: 100,
+    minWidth: 150,
+    maxWidth: 400,
+    hide: false,
+  },
 ];
-
 
 let PageSize = 5;
 
@@ -268,7 +267,29 @@ const Vendors = () => {
             </Box>
             <Paginations handlePageChange={handlePageChange} />
         </Box>
-    );
+      </Box>
+
+      <Box sx={{ flexGrow: 1 }}>
+        {designView === "list" ? (
+          <VendorList
+            showColumns={showColumns?.length >= 0 ? showColumns : []}
+            rows={
+              currentTableData !== undefined && currentTableData?.length >= 0
+                ? currentTableData
+                : []
+            }
+          />
+        ) : (
+          <VendorCard
+            vendors={currentTableData}
+            handleVendorEditClick={handleVendorEditClick}
+            handleVendorAddClick={handleVendorAddClick}
+          />
+        )}
+      </Box>
+      <Paginations handlePageChange={handlePageChange} />
+    </Box>
+  );
 };
 
 export default Vendors;

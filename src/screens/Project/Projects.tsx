@@ -1,9 +1,8 @@
 import React, { useEffect, useState, useMemo } from "react";
-import { Grid, Typography, Paper, Box, TextField } from "@mui/material";
+import { Typography, Box, TextField } from "@mui/material";
 import { GridColDef } from "@mui/x-data-grid";
 import AddIcon from "@mui/icons-material/Add";
 import SearchIcon from "@mui/icons-material/Search";
-import { Container } from "@mui/system";
 import { useNavigate } from "react-router-dom";
 import { styles } from "../../styles/screens/ProjectList";
 import ProjectCard from "../../components/Project/ProjectCard";
@@ -15,6 +14,7 @@ import ProjectList from "../../components/Project/ProjectList";
 import { useAppDispatch, useAppSelector } from "../../store/hooks";
 import { getProjects } from "../../store/reducers/projects/projects";
 import Loader from "../../components/HigherOrder/Loader";
+
 const columns: GridColDef[] = [
   {
     field: "id",
@@ -72,7 +72,6 @@ const Projects = () => {
 
   const projectsStore = useAppSelector((state) => state.projects);
   const { isLoadingRequest, projects } = projectsStore;
-  console.log("projects data", projects);
 
   const currentTableData = useMemo(() => {
     const firstPageIndex = (currentPage - 1) * PageSize;
@@ -85,7 +84,7 @@ const Projects = () => {
       .unwrap()
       .then((response: any) => {})
       .catch((error) => {});
-  }, []);
+  }, [dispatch]);
 
   const handleProjectAddClick = () => {
     navigate("/projects/add");
@@ -182,17 +181,16 @@ const Projects = () => {
       </Box>
       <Box sx={{ flexGrow: 1 }}>
         {designView === "list" ? (
-          <ProjectList 
-          // handleProjectAddClick={handleProjectAddClick}
-           showColumns={showColumns?.length >= 0 ? showColumns : []}
-          rows={
-            currentData !== undefined && currentData?.length >= 0
-              ? currentData
-              : []
-          }
+          <ProjectList
+            // handleProjectAddClick={handleProjectAddClick}
+            showColumns={showColumns?.length >= 0 ? showColumns : []}
+            rows={
+              currentData !== undefined && currentData?.length >= 0
+                ? currentData
+                : []
+            }
           />
-        ) 
-        : (
+        ) : (
           <ProjectCard
             project={currentTableData}
             handleProjectEditClick={handleProjectEditClick}
