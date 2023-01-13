@@ -119,8 +119,8 @@ export const Menus: any = [
   },
   {
     id: 8,
-    name: "Venders",
-    route: "venders",
+    name: "Vendors",
+    route: "vendors",
     icon: Vendors,
     active: false,
     submenu: [
