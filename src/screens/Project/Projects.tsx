@@ -1,9 +1,8 @@
 import React, { useEffect, useState, useMemo } from "react";
-import { Grid, Typography, Paper, Box, TextField } from "@mui/material";
+import { Typography, Box, TextField } from "@mui/material";
 import { GridColDef } from "@mui/x-data-grid";
 import AddIcon from "@mui/icons-material/Add";
 import SearchIcon from "@mui/icons-material/Search";
-import { Container } from "@mui/system";
 import { useNavigate } from "react-router-dom";
 import { styles } from "../../styles/screens/ProjectList";
 import ProjectCard from "../../components/Project/ProjectCard";
@@ -74,7 +73,6 @@ const Projects = () => {
 
   const projectsStore = useAppSelector((state) => state.projects);
   const { isLoadingRequest, projects } = projectsStore;
-  console.log("projects data", projects);
 
   // const currentTableData = useMemo(() => {
   //   const firstPageIndex = (currentPage - 1) * PageSize;
@@ -87,7 +85,7 @@ const Projects = () => {
       .unwrap()
       .then((response: any) => {})
       .catch((error) => {});
-  }, []);
+  }, [dispatch]);
 
   useEffect(() => {
     const firstPageIndex = (currentPage - 1) * PageSize;
