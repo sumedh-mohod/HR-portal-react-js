@@ -14,6 +14,7 @@ import Paginations from "../../components/HigherOrder/Paginations";
 import { useAppDispatch, useAppSelector } from "../../store/hooks";
 import { getEmployees } from "../../store/reducers/employee/employees";
 import Loader from "../../components/HigherOrder/Loader";
+
 // colums data
 const columns: GridColDef[] = [
   {
@@ -24,7 +25,7 @@ const columns: GridColDef[] = [
     hide: false,
   },
   {
-    field: "name",
+    field: "employee_name",
     headerName: "Name",
     width: 300,
     minWidth: 200,
@@ -57,22 +58,7 @@ const columns: GridColDef[] = [
     hide: false,
   },
 ];
-const rows = [
-  {
-    id: 1,
-    name: "Nikhil Thaware",
-    EmployeeId: "ORNG123456",
-    Designation: "Senior Consultant",
-    Technology: "IOS Developer, Swift",
-  },
-  {
-    id: 2,
-    name: "Nikhil Thaware",
-    EmployeeId: "ORNG123456",
-    Designation: "Senior Consultant",
-    Technology: "IOS Developer, Swift",
-  },
-];
+
 let PageSize = 5;
 const Employee = () => {
   const navigate = useNavigate();
@@ -83,16 +69,17 @@ const Employee = () => {
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
   const openDropDown = Boolean(anchorEl);
   const [showColumns, setShowColumns] = useState(columns);
-
+  const [searchText, setSearchText] = useState("");
+  const [currentData, setCurrentData] = useState<any>([]);
   const employeesStore = useAppSelector((state) => state.employees);
   const { isLoadingRequest, employees } = employeesStore;
   console.log("employee data", employees);
 
-  const currentTableData = useMemo(() => {
-    const firstPageIndex = (currentPage - 1) * PageSize;
-    const lastPageIndex = firstPageIndex + PageSize;
-    return employees?.slice(firstPageIndex, lastPageIndex);
-  }, [currentPage]);
+  // const currentTableData = useMemo(() => {
+  //   const firstPageIndex = (currentPage - 1) * PageSize;
+  //   const lastPageIndex = firstPageIndex + PageSize;
+  //   return employees?.slice(firstPageIndex, lastPageIndex);
+  // }, [currentPage]);
 
   useEffect(() => {
     dispatch(getEmployees())
@@ -100,6 +87,14 @@ const Employee = () => {
       .then((response: any) => {})
       .catch((error: any) => {});
   }, []);
+  useEffect(() => {
+    const firstPageIndex = (currentPage - 1) * PageSize;
+    const lastPageIndex = firstPageIndex + PageSize;
+
+    const DataSliced = employees?.slice(firstPageIndex, lastPageIndex);
+    setCurrentData(DataSliced);
+  }, [currentPage, isLoadingRequest]);
+
 
   // add and edit functions
   const handleEmployeeEditClick = () => {
@@ -138,6 +133,24 @@ const Employee = () => {
   ) => {
     setCurrentPage(value);
   };
+  const handleSearchChange = (event: any) => {
+    const SearchText = event.target.value;
+    setSearchText(SearchText);
+
+    if (SearchText.length > 0) {
+      const newFilter = employees.filter((value: any) =>
+        value.employee_name.toLowerCase().includes(SearchText.toLowerCase())
+      );
+      setCurrentData(newFilter);
+    } else {
+      const firstPageIndex = (currentPage - 1) * PageSize;
+      const lastPageIndex = firstPageIndex + PageSize;
+
+      const DataSliced = employees?.slice(firstPageIndex, lastPageIndex);
+      setCurrentData(DataSliced);
+    }
+  };
+
 
   return (
     <Box sx={{ display: "flex", flexDirection: "column" }}>
@@ -185,7 +198,9 @@ const Employee = () => {
             size="small"
             id="standard-bare"
             variant="outlined"
-            placeholder="Search..."
+            placeholder="Search Employees..."
+            value={searchText}
+            onChange={handleSearchChange}
             InputProps={{
               startAdornment: <SearchIcon />,
             }}
@@ -196,14 +211,14 @@ const Employee = () => {
         {designView === "list" ? (
           <EmployeeList showColumns={showColumns?.length >= 0 ? showColumns : []}
           rows={
-              currentTableData !== undefined && currentTableData?.length >= 0
-                  ? currentTableData
+              currentData !== undefined && currentData?.length >= 0
+                  ? currentData
                   : []
           }
           />
         ) : (
           <EmployeeCard
-            employee={currentTableData}
+            employee={currentData}
             handleEmployeeEditClick={handleEmployeeEditClick}
             handleEmployeeAddClick={handleEmployeeAddClick}
             index={undefined}
