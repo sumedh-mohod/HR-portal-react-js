@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useMemo } from "react";
-import { useNavigate } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import {
   Grid,
   Typography,
@@ -20,93 +20,35 @@ import { styles } from "../../styles/screens/CompanyList";
 import Paginations from "../../components/HigherOrder/Paginations";
 import CustomizationButtons from "../../components/HigherOrder/CustomizationButtons";
 import Loader from "../../components/HigherOrder/Loader";
-import { Stack } from "@mui/system";
-
-const columns: GridColDef[] = [
+import OrganizationList from "../../components/OrganizationlData/OrganizationList";
+import OrganizationalCard from "../../components/OrganizationlData/OrganizationalCard";
+import CollectionsIcon from "@mui/icons-material/Collections";
+import PictureAsPdfIcon from "@mui/icons-material/PictureAsPdf";
+import ViewOraganisationalDatamodel from "../../components/OrganizationlData/ViewOraganisationalDatamodel";
+import AddOrganisationData from "../../components/OrganizationlData/AddOrganisationData";
+const Data = [
   {
-    field: "id",
-    headerName: "Sr",
-    minWidth: 50,
-    width: 100,
-    hide: false,
+    mainIcon: <PictureAsPdfIcon sx={{ color: "#F24A4A", fontSize: "45px", mt: 3 }} />,
+    subIcon: <PictureAsPdfIcon fontSize="small" sx={{ color: "#F24A4A" }} />,
+    File_name: "Certificate 01.PDF",
   },
   {
-    field: "company_name",
-    headerName: "Company Name",
-    width: 300,
-    minWidth: 200,
-    maxWidth: 400,
-    hide: false,
+    mainIcon: <CollectionsIcon sx={{ color: "#A9A9A9", fontSize: "45px", mt: 3 }} />,
+    subIcon: <CollectionsIcon fontSize="small" sx={{ color: "#A9A9A9" }} />,
+    File_name: "Certificate 02.PDF",
   },
   {
-    field: "PAN",
-    headerName: "PAN",
-    width: 100,
-    minWidth: 150,
-    maxWidth: 400,
-    hide: false,
+    mainIcon: <PictureAsPdfIcon sx={{ color: "#F24A4A", fontSize: "45px", mt: 3 }} />,
+    subIcon: <PictureAsPdfIcon fontSize="small" sx={{ color: "#F24A4A" }} />,
+    File_name: "Certificate 01.PDF",
   },
   {
-    field: "TAN",
-    headerName: "TAN",
-    width: 100,
-    minWidth: 150,
-    maxWidth: 400,
-    hide: false,
+    mainIcon: <CollectionsIcon sx={{ color: "#A9A9A9", fontSize: "45px", mt: 3 }} />,
+    subIcon: <CollectionsIcon fontSize="small" sx={{ color: "#A9A9A9" }} />,
+    File_name: "Certificate 02.PDF",
   },
-  {
-    field: "GST",
-    headerName: "GST",
-    width: 100,
-    minWidth: 150,
-    maxWidth: 400,
-    hide: false,
-  },
-
-  {
-    field: "domain",
-    headerName: "Domain",
-    width: 100,
-    minWidth: 150,
-    maxWidth: 400,
-    hide: false,
-  },
-  {
-    field: "defaultLetterHead",
-    headerName: "Default Letter Head",
-    width: 100,
-    minWidth: 150,
-    maxWidth: 400,
-    hide: false,
-  },
-  {
-    field: "abbr",
-    headerName: "Abbrivation",
-    width: 100,
-    minWidth: 150,
-    maxWidth: 400,
-    hide: false,
-  },
-  {
-    field: "taxID",
-    headerName: "Tax Id",
-    width: 100,
-    minWidth: 150,
-    maxWidth: 400,
-    hide: false,
-  },
-  {
-    field: "dateofEstiblishment",
-    headerName: "Date of Estiblishment",
-    width: 100,
-    minWidth: 150,
-    maxWidth: 400,
-    hide: false,
-  },
-
-  { field: "country", headerName: "Country", minWidth: 150 },
-  { field: "defaultCurrency", headerName: "Default Currency", minWidth: 150 },
 ];
+
 
 let PageSize = 5;
 
@@ -115,22 +57,28 @@ const OrganizationlData = () => {
   const navigate = useNavigate();
   const [designView, setDesignView] = useState("grid");
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
-  const [showColumns, setShowColumns] = useState(columns);
+  const [showColumns, setShowColumns] = useState(Data);
   const [currentPage, setCurrentPage] = useState(1);
   const [searchText, setSearchText] = useState("");
   const [currentData, setCurrentData] = useState<any>([]);
   const openDropDown = Boolean(anchorEl);
+  const [viewOpen, setViewOpen] = React.useState(false);
+  const [addOpen, setAddOpen] = React.useState(false);
+  const handleViewOpen = () => setViewOpen(true);
+  const handleViewClose = () => setViewOpen(false);
+  const handleAddOpen = () => setAddOpen(true);
+  const handleAddClose = () => setAddOpen(false);
 
   // const companyStore = useAppSelector((state) => state.companies);
   // const { isLoadingRequest, companies } = companyStore;
 
-  // useEffect(() => {
-  //   const firstPageIndex = (currentPage - 1) * PageSize;
-  //   const lastPageIndex = firstPageIndex + PageSize;
+  useEffect(() => {
+    const firstPageIndex = (currentPage - 1) * PageSize;
+    const lastPageIndex = firstPageIndex + PageSize;
 
-  //   const DataSliced = companies?.slice(firstPageIndex, lastPageIndex);
-  //   setCurrentData(DataSliced);
-  // }, [currentPage, isLoadingRequest]);
+    const DataSliced = Data?.slice(firstPageIndex, lastPageIndex);
+    setCurrentData(DataSliced);
+  }, [currentPage]);
 
   // useEffect(() => {
   //   dispatch(getCompanies())
@@ -138,40 +86,7 @@ const OrganizationlData = () => {
   //     .then((response: any) => {})
   //     .catch((error) => {});
   // }, []);
-
-  const handleCompanyAddClick = () => {
-    navigate("/companies/add");
-  };
-
-  const handleCompanyEditClick = (company: any) => {
-    navigate("/companies/edit", {
-      state: { company },
-    });
-  };
-
-  const handleClickDropDown = (event: React.MouseEvent<HTMLButtonElement>) => {
-    setAnchorEl(event.currentTarget);
-  };
-  const handleCloseDropDown = () => {
-    setAnchorEl(null);
-  };
-
-  const handleAddColumn = (item: any) => {
-    setShowColumns((prevEl) => {
-      let ind = prevEl.findIndex((value) => value.field === item.field);
-      showColumns[ind].hide = false;
-      return [...prevEl];
-    });
-  };
-
-  const handleRemoveColumn = (item: any) => {
-    setShowColumns((prevEl) => {
-      let ind = prevEl.findIndex((value) => value.field === item.field);
-      showColumns[ind].hide = true;
-      return [...prevEl];
-    });
-  };
-
+  
   const handlePageChange = (
     event: React.ChangeEvent<unknown>,
     value: number
@@ -179,24 +94,24 @@ const OrganizationlData = () => {
     setCurrentPage(value);
   };
 
-  // const handleSearchChange = (event: any) => {
-  //   const SearchText = event.target.value;
-  //   setSearchText(SearchText);
+  const handleSearchChange = (event: any) => {
+    const SearchText = event.target.value;
+    setSearchText(SearchText);
 
-  //   if (SearchText.length > 0) {
-  //     const newFilter = companies.filter((value: any) =>
-  //       value.company_name.toLowerCase().includes(SearchText.toLowerCase())
-  //     );
-  //     setCurrentData(newFilter);
-  //   } else {
-  //     const firstPageIndex = (currentPage - 1) * PageSize;
-  //     const lastPageIndex = firstPageIndex + PageSize;
+    if (SearchText.length > 0) {
+      const newFilter = Data.filter((value: any) =>
+        value.file_name.toLowerCase().includes(SearchText.toLowerCase())
+      );
+      setCurrentData(newFilter);
+    } else {
+      const firstPageIndex = (currentPage - 1) * PageSize;
+      const lastPageIndex = firstPageIndex + PageSize;
 
-  //     const DataSliced = companies?.slice(firstPageIndex, lastPageIndex);
-  //     setCurrentData(DataSliced);
-  //   }
-  // };
-
+      const DataSliced = Data?.slice(firstPageIndex, lastPageIndex);
+      setCurrentData(DataSliced);
+    }
+  };
+  
   return (
     <Box sx={{ display: "flex", flexDirection: "column" }}>
       {/* <Loader isLoading={isLoadingRequest} /> */}
@@ -212,7 +127,7 @@ const OrganizationlData = () => {
         >
           <Button
             variant="contained"
-            onClick={handleCompanyAddClick}
+            onClick={handleAddOpen}
             startIcon={<AddIcon />}
             sx={{
               background: "#F58634",
@@ -225,27 +140,14 @@ const OrganizationlData = () => {
           >
             Add
           </Button>
-
-          <CustomizationButtons
-            setDesignView={setDesignView}
-            handleClickDropDown={handleClickDropDown}
-            handleCloseDropDown={handleCloseDropDown}
-            handleAddColumn={handleAddColumn}
-            handleRemoveColumn={handleRemoveColumn}
-            designView={designView}
-            openDropDown={openDropDown}
-            anchorEl={anchorEl}
-            showColumns={showColumns}
-          />
-
           <TextField
             sx={{ ml: 2 }}
             size="small"
             id="standard-bare"
             variant="outlined"
             value={searchText}
-            // onChange={handleSearchChange}
-            placeholder="Search Companies..."
+            onChange={handleSearchChange}
+            placeholder="Search Organisational Data..."
             InputProps={{
               startAdornment: <SearchIcon />,
             }}
@@ -253,108 +155,12 @@ const OrganizationlData = () => {
         </Box>
       </Box>
 
-      {/* <Box sx={{ flexGrow: 1, display: "flex", borderBottom: "1px solid #C5C7CD" ,mt:2}}>
-        <Typography
-          sx={{
-            fontFamily: "Montserrat",
-            fontStyle: "normal",
-            fontWeight: "500",
-            fontSize: "15px",
-            lineHeight: "22px",
-            letterSpacing: "0.2px",
-            color: "#515151",
-            
-           marginX:"25px",
-           marginLeft:"0",
-            borderBottom:"2px solid red",
-            pb:1
-          
+      {/* list */}
+    <OrganizationList/>
 
-          }}
-        >
-          Certificates
-        </Typography>
-        <Typography sx={{
-            fontFamily: "Montserrat",
-            fontStyle: "normal",
-            fontWeight: "500",
-            fontSize: "15px",
-            lineHeight: "22px",
-            letterSpacing: "0.2px",
-            color: "#515151",
-            paddingRight:"25px"
-
-          }}>Information Security</Typography>
-        <Typography sx={{
-            fontFamily: "Montserrat",
-            fontStyle: "normal",
-            fontWeight: "500",
-            fontSize: "15px",
-            lineHeight: "22px",
-            letterSpacing: "0.2px",
-            color: "#515151",
-            paddingRight:"25px"
-
-          }}>Security Policies</Typography>
-        <Typography sx={{
-            fontFamily: "Montserrat",
-            fontStyle: "normal",
-            fontWeight: "500",
-            fontSize: "15px",
-            lineHeight: "22px",
-            letterSpacing: "0.2px",
-            color: "#515151",
-            paddingRight:"25px"
-
-          }}>Processes</Typography>
-        <Typography sx={{
-            fontFamily: "Montserrat",
-            fontStyle: "normal",
-            fontWeight: "500",
-            fontSize: "15px",
-            lineHeight: "22px",
-            letterSpacing: "0.2px",
-            color: "#515151",
-            paddingRight:"25px",
-
-          }}>Do’s & Don’t</Typography>
-      </Box> */}
-    <List sx={{ display: "flex", borderBottom: "1px solid #C5C7CD",p:0 ,mt:2}}>
-            <ListItem sx={{
-            fontFamily: "Montserrat",
-            fontStyle: "normal",
-            fontWeight: "500",
-            fontSize: "16px",
-            lineHeight: "22px",
-            letterSpacing: "0.2px",
-            color: "#515151",
-            borderBottom:"2px solid red",
-            px:0,
-            pb:1,
-            width:"max-content",
-            textAlign:"start",
-            mr:4,
-            
-          }}>Certificates</ListItem>
-            
-            <ListItem sx={{
-            fontFamily: "Montserrat",
-            fontStyle: "normal",
-            fontWeight: "500",
-            fontSize: "16px",
-            lineHeight: "22px",
-            letterSpacing: "0.2px",
-            color: "#515151",
-            borderBottom:"2px solid red",
-            pl:0,
-            pb:1,
-            width:"max-content",
-            mr:4,
-            textAlign:"start"
-            
-          }}>Certificates</ListItem>
-            
-        </List>
+    <OrganizationalCard  organasationlData={currentData} handleViewOpen={handleViewOpen}/>
+    <ViewOraganisationalDatamodel viewOpen={viewOpen} handleViewClose={handleViewClose}/>
+    <AddOrganisationData addOpen={addOpen} handleAddClose={handleAddClose}/>
       <Paginations handlePageChange={handlePageChange} />
     </Box>
   );
