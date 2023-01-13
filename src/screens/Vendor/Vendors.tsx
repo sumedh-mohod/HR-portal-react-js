@@ -97,177 +97,154 @@ const columns: GridColDef[] = [
 let PageSize = 5;
 
 const Vendors = () => {
-    const dispatch = useAppDispatch();
-    const navigate = useNavigate();
+  const dispatch = useAppDispatch();
+  const navigate = useNavigate();
 
-    const [designView, setDesignView] = useState("grid");
-    const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
-    const [showColumns, setShowColumns] = useState(columns);
-    const [currentPage, setCurrentPage] = useState(1);
-    const [searchText, setSearchText] = useState("");
-    const [currentData, setCurrentData] = useState<any>([]);
-    const openDropDown = Boolean(anchorEl);
+  const [designView, setDesignView] = useState("grid");
+  const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
+  const [showColumns, setShowColumns] = useState(columns);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [searchText, setSearchText] = useState("");
+  const [currentData, setCurrentData] = useState<any>([]);
+  const openDropDown = Boolean(anchorEl);
 
-    const vendorsStore = useAppSelector((state) => state.vendors);
-    const { isLoadingRequest, vendors } = vendorsStore;
-   console.log("vendor response",vendors);
-    // const currentTableData = useMemo(() => {
-    //     const firstPageIndex = (currentPage - 1) * PageSize;
-    //     const lastPageIndex = firstPageIndex + PageSize;
-    //     return vendors?.slice(firstPageIndex, lastPageIndex);
-    // }, [currentPage, isLoadingRequest]);
+  const vendorsStore = useAppSelector((state) => state.vendors);
+  const { isLoadingRequest, vendors } = vendorsStore;
+  console.log("vendor response", vendors);
+  // const currentTableData = useMemo(() => {
+  //     const firstPageIndex = (currentPage - 1) * PageSize;
+  //     const lastPageIndex = firstPageIndex + PageSize;
+  //     return vendors?.slice(firstPageIndex, lastPageIndex);
+  // }, [currentPage, isLoadingRequest]);
 
+  useEffect(() => {
+    dispatch(getVendors())
+      .unwrap()
+      .then((response: any) => {})
+      .catch((error) => {});
+  }, []);
 
-    useEffect(() => {
-        dispatch(getVendors())
-            .unwrap()
-            .then((response: any) => { })
-            .catch((error) => { });
-    }, []);
+  useEffect(() => {
+    const firstPageIndex = (currentPage - 1) * PageSize;
+    const lastPageIndex = firstPageIndex + PageSize;
 
-    useEffect(() => {
-        const firstPageIndex = (currentPage - 1) * PageSize;
-        const lastPageIndex = firstPageIndex + PageSize;
-    
-        const DataSliced = vendors?.slice(firstPageIndex, lastPageIndex);
-        setCurrentData(DataSliced);
-      }, [currentPage, isLoadingRequest]);
+    const DataSliced = vendors?.slice(firstPageIndex, lastPageIndex);
+    setCurrentData(DataSliced);
+  }, [currentPage, isLoadingRequest]);
 
-    const handleVendorAddClick = () => {
-        navigate("/vendors/add");
-    };
+  const handleVendorAddClick = () => {
+    navigate("/vendors/add");
+  };
 
-    const handleVendorEditClick = (vendor: any) => {
-        navigate("/vendors/edit", {
-            state: { vendor },
-        });
-    };
+  const handleVendorEditClick = (vendor: any) => {
+    navigate("/vendors/edit", {
+      state: { vendor },
+    });
+  };
 
-    const handleClickDropDown = (event: React.MouseEvent<HTMLButtonElement>) => {
-        setAnchorEl(event.currentTarget);
-    };
-    const handleCloseDropDown = () => {
-        setAnchorEl(null);
-    };
+  const handleClickDropDown = (event: React.MouseEvent<HTMLButtonElement>) => {
+    setAnchorEl(event.currentTarget);
+  };
+  const handleCloseDropDown = () => {
+    setAnchorEl(null);
+  };
 
-    const handleAddColumn = (item: any) => {
-        setShowColumns((prevEl) => {
-            let ind = prevEl.findIndex((value) => value.field === item.field);
-            showColumns[ind].hide = false;
-            return [...prevEl];
-        });
-    };
+  const handleAddColumn = (item: any) => {
+    setShowColumns((prevEl) => {
+      let ind = prevEl.findIndex((value) => value.field === item.field);
+      showColumns[ind].hide = false;
+      return [...prevEl];
+    });
+  };
 
-    const handleRemoveColumn = (item: any) => {
-        setShowColumns((prevEl) => {
-            let ind = prevEl.findIndex((value) => value.field === item.field);
-            showColumns[ind].hide = true;
-            return [...prevEl];
-        });
-    };
+  const handleRemoveColumn = (item: any) => {
+    setShowColumns((prevEl) => {
+      let ind = prevEl.findIndex((value) => value.field === item.field);
+      showColumns[ind].hide = true;
+      return [...prevEl];
+    });
+  };
 
-    const handlePageChange = (
-        event: React.ChangeEvent<unknown>,
-        value: number
-    ) => {
-        setCurrentPage(value);
-    };
+  const handlePageChange = (
+    event: React.ChangeEvent<unknown>,
+    value: number
+  ) => {
+    setCurrentPage(value);
+  };
 
-    const handleSearchChange = (event: any) => {
-        const SearchText = event.target.value;
-        setSearchText(SearchText);
-    
-        if (SearchText.length > 0) {
-          const newFilter = vendors.filter((value: any) =>
-            value.vendor_name.toLowerCase().includes(SearchText.toLowerCase())
-          );
-          setCurrentData(newFilter);
-        } else {
-          const firstPageIndex = (currentPage - 1) * PageSize;
-          const lastPageIndex = firstPageIndex + PageSize;
-    
-          const DataSliced = vendors?.slice(firstPageIndex, lastPageIndex);
-          setCurrentData(DataSliced);
-        }
-      };
+  const handleSearchChange = (event: any) => {
+    const SearchText = event.target.value;
+    setSearchText(SearchText);
 
-    return (
-        <Box sx={{ display: "flex", flexDirection: "column" }}>
-            <Loader isLoading={isLoadingRequest} />
-            {/* box for search bar and vendor */}
-            <Box {...styles.companyTitleBox}>
-                <Typography variant="h5" {...globalStyles.moduleTitle}>
-                    Vendors
-                </Typography>
-                <Box
-                    sx={{
-                        display: "flex",
-                    }}
-                >
-                    <Button
-                        variant="contained"
-                        onClick={handleVendorAddClick}
-                        startIcon={<AddIcon />}
-                        sx={{
-                            background: "#F58634",
-                            borderRadius: "5px",
-                            mr: "10px",
-                            cursor: "pointer",
-                            fontSize: "14px",
-                            textTransform: "inherit",
-                        }}
-                    >
-                        Add
-                    </Button>
+    if (SearchText.length > 0) {
+      const newFilter = vendors.filter((value: any) =>
+        value.vendor_name.toLowerCase().includes(SearchText.toLowerCase())
+      );
+      setCurrentData(newFilter);
+    } else {
+      const firstPageIndex = (currentPage - 1) * PageSize;
+      const lastPageIndex = firstPageIndex + PageSize;
 
-                    <CustomizationButtons
-                        setDesignView={setDesignView}
-                        handleClickDropDown={handleClickDropDown}
-                        handleCloseDropDown={handleCloseDropDown}
-                        handleAddColumn={handleAddColumn}
-                        handleRemoveColumn={handleRemoveColumn}
-                        designView={designView}
-                        openDropDown={openDropDown}
-                        anchorEl={anchorEl}
-                        showColumns={showColumns}
-                    />
+      const DataSliced = vendors?.slice(firstPageIndex, lastPageIndex);
+      setCurrentData(DataSliced);
+    }
+  };
 
-                    <TextField
-                        sx={{ ml: 2 }}
-                        size="small"
-                        id="standard-bare"
-                        variant="outlined"
-                        placeholder="Search Vendors..."
-                        value={searchText}
-                        onChange={handleSearchChange}
-                        InputProps={{
-                            startAdornment: <SearchIcon />,
-                        }}
-                    />
-                </Box>
-            </Box>
+  return (
+    <Box sx={{ display: "flex", flexDirection: "column" }}>
+      <Loader isLoading={isLoadingRequest} />
+      {/* box for search bar and vendor */}
+      <Box {...styles.companyTitleBox}>
+        <Typography variant="h5" {...globalStyles.moduleTitle}>
+          Vendors
+        </Typography>
+        <Box
+          sx={{
+            display: "flex",
+          }}
+        >
+          <Button
+            variant="contained"
+            onClick={handleVendorAddClick}
+            startIcon={<AddIcon />}
+            sx={{
+              background: "#F58634",
+              borderRadius: "5px",
+              mr: "10px",
+              cursor: "pointer",
+              fontSize: "14px",
+              textTransform: "inherit",
+            }}
+          >
+            Add
+          </Button>
 
-            <Box sx={{ flexGrow: 1 }}>
-                {designView === "list" ? (
-                    <VendorList
-                        showColumns={showColumns?.length >= 0 ? showColumns : []}
-                        rows={
-                            currentData !== undefined && currentData?.length >= 0
-                                ? currentData
-                                : []
-                        }
-                    />
-                ) : (
-                    <VendorCard
-                        vendors={currentData}
-                        handleVendorEditClick={handleVendorEditClick}
-                        handleVendorAddClick={handleVendorAddClick}
-                    />
-                )}
-            </Box>
-            <Paginations handlePageChange={handlePageChange} />
-        
-      
+          <CustomizationButtons
+            setDesignView={setDesignView}
+            handleClickDropDown={handleClickDropDown}
+            handleCloseDropDown={handleCloseDropDown}
+            handleAddColumn={handleAddColumn}
+            handleRemoveColumn={handleRemoveColumn}
+            designView={designView}
+            openDropDown={openDropDown}
+            anchorEl={anchorEl}
+            showColumns={showColumns}
+          />
+
+          <TextField
+            sx={{ ml: 2 }}
+            size="small"
+            id="standard-bare"
+            variant="outlined"
+            placeholder="Search Vendors..."
+            value={searchText}
+            onChange={handleSearchChange}
+            InputProps={{
+              startAdornment: <SearchIcon />,
+            }}
+          />
+        </Box>
+      </Box>
 
       <Box sx={{ flexGrow: 1 }}>
         {designView === "list" ? (

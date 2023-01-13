@@ -187,13 +187,13 @@ const SideBar = ({ open, setOpen }: any) => {
                         sx={{
                           pl: 4,
                           borderLeftWidth:
-                            activeSubRoute.id === menu.id ? 3 : 0,
+                            activeSubRoute?.id === menu.id ? 3 : 0,
                           borderLeftColor:
-                            activeSubRoute.id === menu.id
+                            activeSubRoute?.id === menu.id
                               ? "#F58634"
                               : "#A4A6B3",
                           borderLeftStyle:
-                            activeSubRoute.id === menu.id ? "solid" : "none",
+                            activeSubRoute?.id === menu.id ? "solid" : "none",
                         }}
                         key={menu.name}
                         onClick={() => {
