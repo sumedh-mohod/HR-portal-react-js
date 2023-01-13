@@ -17,7 +17,7 @@ const ProjectCard = ({ project, handleProjectEditClick,handleProjectAddClick }: 
                     >
                         <OrangeBitsIcon width={40} />
                         <Typography variant="h5" gutterBottom {...styles.projectName}>
-                            {project.name}
+                            {project.project_name}
                         </Typography>
                         <Box {...styles.projectDescriptionBox}>
                             <Typography {...styles.projectDescription}>

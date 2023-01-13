@@ -24,7 +24,7 @@ const columns: GridColDef[] = [
     hide: false,
   },
   {
-    field: "name",
+    field: "project_name",
     headerName: "Project Name",
     width: 300,
     minWidth: 200,
@@ -67,17 +67,18 @@ const Projects = () => {
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
   const [showColumns, setShowColumns] = useState(columns);
   const [currentPage, setCurrentPage] = useState(1);
+  const [searchText, setSearchText] = useState("");
   const [currentData, setCurrentData] = useState<any>([]);
   const openDropDown = Boolean(anchorEl);
 
   const projectsStore = useAppSelector((state) => state.projects);
   const { isLoadingRequest, projects } = projectsStore;
 
-  const currentTableData = useMemo(() => {
-    const firstPageIndex = (currentPage - 1) * PageSize;
-    const lastPageIndex = firstPageIndex + PageSize;
-    return projects?.slice(firstPageIndex, lastPageIndex);
-  }, [currentPage]);
+  // const currentTableData = useMemo(() => {
+  //   const firstPageIndex = (currentPage - 1) * PageSize;
+  //   const lastPageIndex = firstPageIndex + PageSize;
+  //   return projects?.slice(firstPageIndex, lastPageIndex);
+  // }, [currentPage]);
 
   useEffect(() => {
     dispatch(getProjects())
@@ -85,6 +86,14 @@ const Projects = () => {
       .then((response: any) => {})
       .catch((error) => {});
   }, [dispatch]);
+
+  useEffect(() => {
+    const firstPageIndex = (currentPage - 1) * PageSize;
+    const lastPageIndex = firstPageIndex + PageSize;
+
+    const DataSliced = projects?.slice(firstPageIndex, lastPageIndex);
+    setCurrentData(DataSliced);
+  }, [currentPage, isLoadingRequest]);
 
   const handleProjectAddClick = () => {
     navigate("/projects/add");
@@ -124,6 +133,24 @@ const Projects = () => {
     value: number
   ) => {
     setCurrentPage(value);
+  };
+  // search
+  const handleSearchChange = (event: any) => {
+    const SearchText = event.target.value;
+    setSearchText(SearchText);
+
+    if (SearchText.length > 0) {
+      const newFilter = projects.filter((value: any) =>
+        value.project_name.toLowerCase().includes(SearchText.toLowerCase())
+      );
+      setCurrentData(newFilter);
+    } else {
+      const firstPageIndex = (currentPage - 1) * PageSize;
+      const lastPageIndex = firstPageIndex + PageSize;
+
+      const DataSliced = projects?.slice(firstPageIndex, lastPageIndex);
+      setCurrentData(DataSliced);
+    }
   };
 
   return (
@@ -172,7 +199,9 @@ const Projects = () => {
             size="small"
             id="standard-bare"
             variant="outlined"
-            placeholder="Search..."
+            placeholder="Search Projects..."
+            value={searchText}
+            onChange={handleSearchChange}
             InputProps={{
               startAdornment: <SearchIcon />,
             }}
@@ -192,7 +221,7 @@ const Projects = () => {
           />
         ) : (
           <ProjectCard
-            project={currentTableData}
+            project={currentData}
             handleProjectEditClick={handleProjectEditClick}
             handleProjectAddClick={handleProjectAddClick}
           />
