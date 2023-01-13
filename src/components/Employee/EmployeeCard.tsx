@@ -31,7 +31,7 @@ const EmployeeCard = ({
             >
               <OrangeBitsIcon width={40} />
               <Typography variant="h5" gutterBottom {...styles.employeeName}>
-                {employee.name}
+                {employee.employee_name}
               </Typography>
               <Box {...styles.employeeDescriptionBox}>
                 <Typography {...styles.employeeDescription}>
