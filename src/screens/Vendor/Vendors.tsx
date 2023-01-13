@@ -97,8 +97,8 @@ const columns: GridColDef[] = [
 let PageSize = 5;
 
 const Vendors = () => {
-  const dispatch = useAppDispatch();
-  const navigate = useNavigate();
+    const dispatch = useAppDispatch();
+    const navigate = useNavigate();
 
     const [designView, setDesignView] = useState("grid");
     const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
@@ -118,12 +118,12 @@ const Vendors = () => {
     // }, [currentPage, isLoadingRequest]);
 
 
-  useEffect(() => {
-    dispatch(getVendors())
-      .unwrap()
-      .then((response: any) => {})
-      .catch((error) => {});
-  }, [dispatch]);
+    useEffect(() => {
+        dispatch(getVendors())
+            .unwrap()
+            .then((response: any) => { })
+            .catch((error) => { });
+    }, []);
 
     useEffect(() => {
         const firstPageIndex = (currentPage - 1) * PageSize;
@@ -137,41 +137,41 @@ const Vendors = () => {
         navigate("/vendors/add");
     };
 
-  const handleVendorEditClick = (vendor: any) => {
-    navigate("/vendors/edit", {
-      state: { vendor },
-    });
-  };
+    const handleVendorEditClick = (vendor: any) => {
+        navigate("/vendors/edit", {
+            state: { vendor },
+        });
+    };
 
-  const handleClickDropDown = (event: React.MouseEvent<HTMLButtonElement>) => {
-    setAnchorEl(event.currentTarget);
-  };
-  const handleCloseDropDown = () => {
-    setAnchorEl(null);
-  };
+    const handleClickDropDown = (event: React.MouseEvent<HTMLButtonElement>) => {
+        setAnchorEl(event.currentTarget);
+    };
+    const handleCloseDropDown = () => {
+        setAnchorEl(null);
+    };
 
-  const handleAddColumn = (item: any) => {
-    setShowColumns((prevEl) => {
-      let ind = prevEl.findIndex((value) => value.field === item.field);
-      showColumns[ind].hide = false;
-      return [...prevEl];
-    });
-  };
+    const handleAddColumn = (item: any) => {
+        setShowColumns((prevEl) => {
+            let ind = prevEl.findIndex((value) => value.field === item.field);
+            showColumns[ind].hide = false;
+            return [...prevEl];
+        });
+    };
 
-  const handleRemoveColumn = (item: any) => {
-    setShowColumns((prevEl) => {
-      let ind = prevEl.findIndex((value) => value.field === item.field);
-      showColumns[ind].hide = true;
-      return [...prevEl];
-    });
-  };
+    const handleRemoveColumn = (item: any) => {
+        setShowColumns((prevEl) => {
+            let ind = prevEl.findIndex((value) => value.field === item.field);
+            showColumns[ind].hide = true;
+            return [...prevEl];
+        });
+    };
 
-  const handlePageChange = (
-    event: React.ChangeEvent<unknown>,
-    value: number
-  ) => {
-    setCurrentPage(value);
-  };
+    const handlePageChange = (
+        event: React.ChangeEvent<unknown>,
+        value: number
+    ) => {
+        setCurrentPage(value);
+    };
 
     const handleSearchChange = (event: any) => {
         const SearchText = event.target.value;
@@ -220,17 +220,17 @@ const Vendors = () => {
                         Add
                     </Button>
 
-          <CustomizationButtons
-            setDesignView={setDesignView}
-            handleClickDropDown={handleClickDropDown}
-            handleCloseDropDown={handleCloseDropDown}
-            handleAddColumn={handleAddColumn}
-            handleRemoveColumn={handleRemoveColumn}
-            designView={designView}
-            openDropDown={openDropDown}
-            anchorEl={anchorEl}
-            showColumns={showColumns}
-          />
+                    <CustomizationButtons
+                        setDesignView={setDesignView}
+                        handleClickDropDown={handleClickDropDown}
+                        handleCloseDropDown={handleCloseDropDown}
+                        handleAddColumn={handleAddColumn}
+                        handleRemoveColumn={handleRemoveColumn}
+                        designView={designView}
+                        openDropDown={openDropDown}
+                        anchorEl={anchorEl}
+                        showColumns={showColumns}
+                    />
 
                     <TextField
                         sx={{ ml: 2 }}
