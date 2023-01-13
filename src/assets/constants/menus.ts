@@ -15,46 +15,27 @@ export const Menus: any = [
     icon: Company,
     id: 1,
     active: false,
+    route: "companies",
     submenu: [
       {
         id: 1,
         name: "Holiday",
-        route: "companies",
+        route: "companies/holiday",
       },
       {
         id: 2,
         name: "Leave Policy",
-        route: "companies",
+        route: "companies/leave-policy",
       },
       {
         id: 3,
         name: "Masters",
-        route: "companies",
+        route: "companies/master",
       },
       {
         id: 4,
-        name: "Certificates",
-        route: "companies",
-      },
-      {
-        id: 5,
-        name: "Information Security",
-        route: "companies",
-      },
-      {
-        id: 6,
-        name: "Security Policies",
-        route: "companies",
-      },
-      {
-        id: 7,
-        name: "Processes",
-        route: "companies",
-      },
-      {
-        id: 8,
-        name: "Do’s & Don’t",
-        route: "companies",
+        name: "Organisational Data",
+        route: "companies/organisational-data",
       },
     ],
   },
@@ -63,6 +44,7 @@ export const Menus: any = [
     name: "Accounting",
     icon: Accounting,
     active: false,
+    route: "accounting",
     submenu: [
       {
         name: "Master",
@@ -74,6 +56,7 @@ export const Menus: any = [
     id: 3,
     name: "Assets",
     icon: Assets,
+    route: "assets",
     active: false,
     submenu: [
       {
@@ -86,6 +69,7 @@ export const Menus: any = [
     id: 4,
     name: "Partners",
     icon: Partners,
+    route: "partners",
     active: false,
     submenu: [
       {
@@ -97,6 +81,7 @@ export const Menus: any = [
   {
     id: 5,
     name: "Project",
+    route: "projects",
     icon: Project,
     active: false,
     submenu: [
@@ -109,6 +94,7 @@ export const Menus: any = [
   {
     id: 6,
     name: "Employee",
+    route: "employees",
     icon: Employee,
     active: false,
     submenu: [
@@ -121,6 +107,7 @@ export const Menus: any = [
   {
     id: 7,
     name: "Settings",
+    route: "settings",
     icon: Settings,
     active: false,
     submenu: [
@@ -133,6 +120,7 @@ export const Menus: any = [
   {
     id: 8,
     name: "Venders",
+    route: "venders",
     icon: Vendors,
     active: false,
     submenu: [
@@ -145,6 +133,7 @@ export const Menus: any = [
   {
     id: 9,
     name: "Recruitment",
+    route: "recruitment",
     icon: Recruitment,
     active: false,
     submenu: [
@@ -157,6 +146,7 @@ export const Menus: any = [
   {
     id: 10,
     name: "Training",
+    route: "training",
     icon: Training,
     active: false,
     submenu: [

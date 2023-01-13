@@ -67,7 +67,7 @@ const Projects = () => {
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
   const [showColumns, setShowColumns] = useState(columns);
   const [currentPage, setCurrentPage] = useState(1);
-
+  const [currentData, setCurrentData] = useState<any>([]);
   const openDropDown = Boolean(anchorEl);
 
   const projectsStore = useAppSelector((state) => state.projects);
@@ -87,7 +87,7 @@ const Projects = () => {
       .catch((error) => {});
   }, []);
 
-  const handleProjectsAddClick = () => {
+  const handleProjectAddClick = () => {
     navigate("/projects/add");
   };
 
@@ -142,7 +142,7 @@ const Projects = () => {
         >
           <Button
             variant="contained"
-            onClick={handleProjectsAddClick}
+            onClick={handleProjectAddClick}
             startIcon={<AddIcon />}
             sx={{
               background: "#F58634",
@@ -180,18 +180,23 @@ const Projects = () => {
           />
         </Box>
       </Box>
-      {/* <Grid container spacing={2} sx={{ mt: 1, display: "flex" }}>
-                {projects?.map((project: any, index: any) => (
-                    <ProjectListCard project={project} index={index} handleProjectEditClick={handleProjectEditClick} />
-                ))}
-            </Grid> */}
       <Box sx={{ flexGrow: 1 }}>
         {designView === "list" ? (
-          <ProjectList showColumns={showColumns} rows={currentTableData} />
-        ) : (
+          <ProjectList 
+          // handleProjectAddClick={handleProjectAddClick}
+           showColumns={showColumns?.length >= 0 ? showColumns : []}
+          rows={
+            currentData !== undefined && currentData?.length >= 0
+              ? currentData
+              : []
+          }
+          />
+        ) 
+        : (
           <ProjectCard
             project={currentTableData}
             handleProjectEditClick={handleProjectEditClick}
+            handleProjectAddClick={handleProjectAddClick}
           />
         )}
       </Box>

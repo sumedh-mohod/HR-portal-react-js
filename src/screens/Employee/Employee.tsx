@@ -194,7 +194,13 @@ const Employee = () => {
       </Box>
       <Box sx={{ flexGrow: 1 }}>
         {designView === "list" ? (
-          <EmployeeList columns={showColumns} rows={currentTableData} />
+          <EmployeeList showColumns={showColumns?.length >= 0 ? showColumns : []}
+          rows={
+              currentTableData !== undefined && currentTableData?.length >= 0
+                  ? currentTableData
+                  : []
+          }
+          />
         ) : (
           <EmployeeCard
             employee={currentTableData}
@@ -203,6 +209,7 @@ const Employee = () => {
             index={undefined}
           />
         )}
+    
       </Box>
       <Paginations handlePageChange={handlePageChange} />
     </Box>
