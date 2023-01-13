@@ -16,14 +16,15 @@ import {
 import { styles } from "../../styles/components/addVendor";
 import { useNavigate } from "react-router-dom";
 import { globalStyles } from "../../styles/global";
-// import { useAppDispatch} from "../store/hooks";
+import { useAppDispatch } from "../../store/hooks";
 import CheckIcon from "@mui/icons-material/Check";
 import CloseIcon from "@mui/icons-material/Close";
 import AddIcon from "@mui/icons-material/Add";
 import DisabledByDefaultIcon from "@mui/icons-material/DisabledByDefault";
 import AddContact from "../AddContact";
+import { addVendor } from "../../store/reducers/vendors/vendors";
 const AddVendor = () => {
-    //   const dispatch = useAppDispatch();
+    const dispatch = useAppDispatch();
     const navigate = useNavigate();
     const {
         handleBlur,
@@ -46,26 +47,19 @@ const AddVendor = () => {
             postalCode: "",
             vendorOnbaordDate: "",
             taxId: "",
-            contactVendor: [
-                {
-                    name: "",
-                    emailId: "",
-                    contactNumber: ""
-                },
-            ],
-            contactOrangebits: [
-                {
-                    name: "",
-                    emailId: "",
-                    contactNumber: ""
-                },
-            ],
         },
         validationSchema: addVendorValidator,
         onSubmit: (values) => {
             console.log("values of add VENDOR", values);
+            dispatch(addVendor(values))
+                .unwrap()
+                .then((response: any) => {
+                    console.log("response from add vendor file", response);
+                })
+                .catch((error: any) => { });
         },
-    });
+    },
+    );
     const inputRef: any = useRef(null);
     const handleClick = () => {
         // open file input box on click of other element
@@ -88,51 +82,6 @@ const AddVendor = () => {
     const handleCancle = () => {
         navigate(-1);
     };
-
-    //add contact vendor function
-    const handleAddContactVendor = () => {
-        console.log("add contact vendor");
-        const newContactVendor = [
-            ...values.contactVendor,
-            {
-                name: "",
-                emailId: "",
-                contactNumber: ""
-            },
-        ];
-        setFieldValue("contactVendor", newContactVendor);
-    };
-
-    //add contact orangebits function
-    const handleAddContactOrangebits = () => {
-        console.log("add contact orangebits");
-        const newContactOrangebits = [
-            ...values.contactOrangebits,
-            {
-                name: "",
-                emailId: "",
-                contactNumber: ""
-            },
-        ];
-        setFieldValue("contactOrangebits", newContactOrangebits);
-    };
-
-    // handle remove function for contact vendor
-    const handleRemoveContactVendor = (contactVendorIndex: number) => {
-        const newContactVendor = [...values.contactVendor];
-        newContactVendor.splice(contactVendorIndex, 1);
-        setFieldValue("contactVendor", newContactVendor);
-    };
-
-    // handle remove function for contact orangebits
-    const handleRemoveContactOrangebits = (contactOrangebitsIndex: number) => {
-        const newContactOrangebits = [...values.contactOrangebits];
-        newContactOrangebits.splice(contactOrangebitsIndex, 1);
-        setFieldValue("contactOrangebits", newContactOrangebits);
-    };
-
-    const handleSubmitContactVendor = (index: number) => { };
-    const handleSubmitContactOrangebits = (index: number) => { };
 
     return (
         <Box>
@@ -422,15 +371,73 @@ const AddVendor = () => {
             </Box>
             <Card {...styles.card}>
                 <Grid container columnSpacing={3} rowGap={3}>
-                    {values.contactOrangebits.map((orangebitsContact, contactOrangebitsIndex: any) => (
-                        <AddContact
-                            values={values.contactOrangebits}
-                            index={contactOrangebitsIndex}
-                            handleAddContactGlobal={handleAddContactOrangebits}
-                            handleRemoveContactGlobal={handleRemoveContactOrangebits}
-                            handleSubmitContactGlobal={handleSubmitContactOrangebits}
-                        />
-                    ))}
+                    {/* name */}
+                    <Grid item xs={12} md={6} lg={3}>
+                        <FormControl fullWidth>
+                            <FormLabel id="name" {...globalStyles.textFieldLabel}>
+                                Name
+                            </FormLabel>
+                            <TextField
+                                variant="filled"
+                                size="small"
+                                type={"text"}
+                                name="name"
+                                InputProps={{
+                                    disableUnderline: true,
+                                    style: { ...globalStyles.textField },
+                                }}
+                            />
+                        </FormControl>
+                    </Grid>
+
+                    {/* email id */}
+                    <Grid item xs={12} md={6} lg={3}>
+                        <FormControl fullWidth>
+                            <FormLabel id="email_id" {...globalStyles.textFieldLabel}>
+                                Email id
+                            </FormLabel>
+                            <TextField
+                                variant="filled"
+                                size="small"
+                                type={"email"}
+                                name="email_id"
+                                InputProps={{
+                                    disableUnderline: true,
+                                    style: { ...globalStyles.textField },
+                                }}
+                            />
+                        </FormControl>
+                    </Grid>
+
+                    {/* contact no */}
+                    <Grid item xs={12} md={6} lg={3}>
+                        <FormControl fullWidth>
+                            <FormLabel id="contact" {...globalStyles.textFieldLabel}>
+                                Contact
+                            </FormLabel>
+                            <TextField
+                                variant="filled"
+                                size="small"
+                                type={"phone"}
+                                name="contact"
+                                InputProps={{
+                                    disableUnderline: true,
+                                    style: { ...globalStyles.textField },
+                                }}
+                            />
+                        </FormControl>
+                    </Grid>
+                    {/* buttons add or remove */}
+                    <Grid item xs={12} md={6} lg={3}>
+                        <Box sx={{ display: "flex", justifyContent: "baseline" }}>
+                            <CheckIcon {...styles.checkIcon} />
+                            <CloseIcon {...styles.closeIcon} />
+                            <Button {...styles.addButton}>
+                                <AddIcon fontSize="small" {...styles.addIcon} />
+                                <Typography sx={{ fontSize: "small" }}>Add</Typography>
+                            </Button>
+                        </Box>
+                    </Grid>
                 </Grid>
             </Card>
 
@@ -441,15 +448,72 @@ const AddVendor = () => {
             </Box>
             <Card {...styles.card}>
                 <Grid container columnSpacing={3} rowGap={3}>
-                    {values.contactVendor.map((vendor, contactVendorIndex: any) => (
-                        <AddContact
-                            values={values.contactVendor}
-                            index={contactVendorIndex}
-                            handleAddContactGlobal={handleAddContactVendor}
-                            handleRemoveContactGlobal={handleRemoveContactVendor}
-                            handleSubmitContactGlobal={handleSubmitContactVendor}
-                        />
-                    ))}
+                    {/* name */}
+                    <Grid item xs={12} md={6} lg={3}>
+                        <FormControl fullWidth>
+                            <FormLabel id="name" {...globalStyles.textFieldLabel}>
+                                Name
+                            </FormLabel>
+                            <TextField
+                                variant="filled"
+                                size="small"
+                                type={"text"}
+                                name="name"
+                                InputProps={{
+                                    disableUnderline: true,
+                                    style: { ...globalStyles.textField },
+                                }}
+                            />
+                        </FormControl>
+                    </Grid>
+
+                    {/* email id */}
+                    <Grid item xs={12} md={6} lg={3}>
+                        <FormControl fullWidth>
+                            <FormLabel id="email_id" {...globalStyles.textFieldLabel}>
+                                Email id
+                            </FormLabel>
+                            <TextField
+                                variant="filled"
+                                size="small"
+                                type={"email"}
+                                name="email_id"
+                                InputProps={{
+                                    disableUnderline: true,
+                                    style: { ...globalStyles.textField },
+                                }}
+                            />
+                        </FormControl>
+                    </Grid>
+                    {/* contact no */}
+                    <Grid item xs={12} md={6} lg={3}>
+                        <FormControl fullWidth>
+                            <FormLabel id="contact" {...globalStyles.textFieldLabel}>
+                                Contact
+                            </FormLabel>
+                            <TextField
+                                variant="filled"
+                                size="small"
+                                type={"phone"}
+                                name="contact"
+                                InputProps={{
+                                    disableUnderline: true,
+                                    style: { ...globalStyles.textField },
+                                }}
+                            />
+                        </FormControl>
+                    </Grid>
+                    {/* buttons add or remove */}
+                    <Grid item xs={12} md={6} lg={3}>
+                        <Box sx={{ display: "flex", justifyContent: "baseline" }}>
+                            <CheckIcon {...styles.checkIcon} />
+                            <CloseIcon {...styles.closeIcon} />
+                            <Button {...styles.addButton}>
+                                <AddIcon fontSize="small" {...styles.addIcon} />
+                                <Typography sx={{ fontSize: "small" }}>Add</Typography>
+                            </Button>
+                        </Box>
+                    </Grid>
                 </Grid>
             </Card>
         </Box >
