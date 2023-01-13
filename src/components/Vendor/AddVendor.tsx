@@ -21,9 +21,10 @@ import CheckIcon from "@mui/icons-material/Check";
 import CloseIcon from "@mui/icons-material/Close";
 import AddIcon from "@mui/icons-material/Add";
 import DisabledByDefaultIcon from "@mui/icons-material/DisabledByDefault";
+import AddContact from "../AddContact";
 import { addVendor } from "../../store/reducers/vendors/vendors";
 const AddVendor = () => {
-      const dispatch = useAppDispatch();
+    const dispatch = useAppDispatch();
     const navigate = useNavigate();
     const {
         handleBlur,
@@ -46,24 +47,17 @@ const AddVendor = () => {
             postalCode: "",
             vendorOnbaordDate: "",
             taxId: "",
-            contactVendor: [
-                {
-                    name: "",
-                    emailId: "",
-                    contactNumber: ""
-                },
-            ],
         },
         validationSchema: addVendorValidator,
         onSubmit: (values) => {
             console.log("values of add VENDOR", values);
             dispatch(addVendor(values))
-        .unwrap()
-        .then((response: any) => {
-          console.log("response from add vendor file", response);
-        })
-        .catch((error: any) => { });
-    },
+                .unwrap()
+                .then((response: any) => {
+                    console.log("response from add vendor file", response);
+                })
+                .catch((error: any) => { });
+        },
     },
     );
     const inputRef: any = useRef(null);
@@ -88,26 +82,6 @@ const AddVendor = () => {
     const handleCancle = () => {
         navigate(-1);
     };
-
-    const handleAddContactVendor = () => {
-        const newContactVendor = [
-            ...values.contactVendor,
-            {
-                name: "",
-                emailId: "",
-                contactNumber: ""
-            },
-        ];
-        setFieldValue("contactVendor", newContactVendor);
-    };
-
-    const handleRemoveContactVendor = (index: number) => {
-        const newContactVendor = [...values.contactVendor];
-        newContactVendor.splice(index, 1);
-        setFieldValue("contactVendor", newContactVendor);
-    };
-
-    const handleSubmitContactVendor = (index: number) => { };
 
     return (
         <Box>
@@ -415,6 +389,84 @@ const AddVendor = () => {
                             />
                         </FormControl>
                     </Grid>
+
+                    {/* email id */}
+                    <Grid item xs={12} md={6} lg={3}>
+                        <FormControl fullWidth>
+                            <FormLabel id="email_id" {...globalStyles.textFieldLabel}>
+                                Email id
+                            </FormLabel>
+                            <TextField
+                                variant="filled"
+                                size="small"
+                                type={"email"}
+                                name="email_id"
+                                InputProps={{
+                                    disableUnderline: true,
+                                    style: { ...globalStyles.textField },
+                                }}
+                            />
+                        </FormControl>
+                    </Grid>
+
+                    {/* contact no */}
+                    <Grid item xs={12} md={6} lg={3}>
+                        <FormControl fullWidth>
+                            <FormLabel id="contact" {...globalStyles.textFieldLabel}>
+                                Contact
+                            </FormLabel>
+                            <TextField
+                                variant="filled"
+                                size="small"
+                                type={"phone"}
+                                name="contact"
+                                InputProps={{
+                                    disableUnderline: true,
+                                    style: { ...globalStyles.textField },
+                                }}
+                            />
+                        </FormControl>
+                    </Grid>
+                    {/* buttons add or remove */}
+                    <Grid item xs={12} md={6} lg={3}>
+                        <Box sx={{ display: "flex", justifyContent: "baseline" }}>
+                            <CheckIcon {...styles.checkIcon} />
+                            <CloseIcon {...styles.closeIcon} />
+                            <Button {...styles.addButton}>
+                                <AddIcon fontSize="small" {...styles.addIcon} />
+                                <Typography sx={{ fontSize: "small" }}>Add</Typography>
+                            </Button>
+                        </Box>
+                    </Grid>
+                </Grid>
+            </Card>
+
+            <Box {...styles.parentBox}>
+                <Typography {...globalStyles.moduleTitle} variant="h5">
+                    Point of Contact Vendor{" "}
+                </Typography>
+            </Box>
+            <Card {...styles.card}>
+                <Grid container columnSpacing={3} rowGap={3}>
+                    {/* name */}
+                    <Grid item xs={12} md={6} lg={3}>
+                        <FormControl fullWidth>
+                            <FormLabel id="name" {...globalStyles.textFieldLabel}>
+                                Name
+                            </FormLabel>
+                            <TextField
+                                variant="filled"
+                                size="small"
+                                type={"text"}
+                                name="name"
+                                InputProps={{
+                                    disableUnderline: true,
+                                    style: { ...globalStyles.textField },
+                                }}
+                            />
+                        </FormControl>
+                    </Grid>
+
                     {/* email id */}
                     <Grid item xs={12} md={6} lg={3}>
                         <FormControl fullWidth>
@@ -464,96 +516,6 @@ const AddVendor = () => {
                     </Grid>
                 </Grid>
             </Card>
-
-            <Box {...styles.parentBox}>
-                <Typography {...globalStyles.moduleTitle} variant="h5">
-                    Point of Contact Vendor{" "}
-                </Typography>
-            </Box>
-            <Card {...styles.card}>
-                <Grid container columnSpacing={3} rowGap={3}>
-                    {values.contactVendor.map((tax, index) => (
-                        <>
-                            {/* name */}
-                            <Grid item xs={12} md={6} lg={3}>
-                                <FormControl fullWidth>
-                                    <FormLabel id="name" {...globalStyles.textFieldLabel}>
-                                        Name
-                                    </FormLabel>
-                                    <TextField
-                                        variant="filled"
-                                        size="small"
-                                        type={"text"}
-                                        name="name"
-                                        InputProps={{
-                                            disableUnderline: true,
-                                            style: { ...globalStyles.textField },
-                                        }}
-                                    />
-                                </FormControl>
-                            </Grid>
-                            {/* email id */}
-                            <Grid item xs={12} md={6} lg={3}>
-                                <FormControl fullWidth>
-                                    <FormLabel id="email_id" {...globalStyles.textFieldLabel}>
-                                        Email id
-                                    </FormLabel>
-                                    <TextField
-                                        variant="filled"
-                                        size="small"
-                                        type={"email"}
-                                        name="email_id"
-                                        InputProps={{
-                                            disableUnderline: true,
-                                            style: { ...globalStyles.textField },
-                                        }}
-                                    />
-                                </FormControl>
-                            </Grid>
-                            {/* contact no */}
-                            <Grid item xs={12} md={6} lg={3}>
-                                <FormControl fullWidth>
-                                    <FormLabel id="contact" {...globalStyles.textFieldLabel}>
-                                        Contact
-                                    </FormLabel>
-                                    <TextField
-                                        variant="filled"
-                                        size="small"
-                                        type={"phone"}
-                                        name="contact"
-                                        InputProps={{
-                                            disableUnderline: true,
-                                            style: { ...globalStyles.textField },
-                                        }}
-                                    />
-                                </FormControl>
-                            </Grid>
-                            {/* buttons add or remove */}
-                            <Grid item xs={12} md={6} lg={3}>
-                                <Box sx={{ display: "flex", justifyContent: "baseline" }}>
-                                    <CheckIcon {...styles.checkIcon}
-                                        onClick={() => {
-                                            handleSubmitContactVendor(index);
-                                        }}
-                                    />
-                                    <CloseIcon {...styles.closeIcon}
-                                        onClick={() => {
-                                            handleRemoveContactVendor(index);
-                                        }}
-                                    />
-                                    {values.contactVendor.length - 1 === index ? (
-                                        <Button {...styles.addButton}>
-                                            <AddIcon fontSize="small" {...styles.addIcon} onClick={handleAddContactVendor} />
-                                            <Typography sx={{ fontSize: "small" }}>Add</Typography>
-                                        </Button>
-                                    ) : null}
-                                </Box>
-                            </Grid>
-                        </>
-                    ))}
-                </Grid>
-            </Card>
-
         </Box >
     );
 };
