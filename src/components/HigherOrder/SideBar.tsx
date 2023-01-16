@@ -82,12 +82,22 @@ const SideBar = ({ open, setOpen }: any) => {
   };
 
   useEffect(() => {
-    const Pathname = params.pathname.split("/");
+    const actualPathname = params.pathname.toString();
+
+    const Pathname = actualPathname.split("/");
     const newMenues = sideBarMenus.find(
       (value: any) => value.route === Pathname[1]
     );
     setActiveRoute(newMenues?.id);
-    // setActiveSubRoute(newMenues?.submenu[0]);
+
+    if (Pathname.length === 3) {
+      const subMenus = newMenues?.submenu.find(
+        (value: any) => value.route === actualPathname
+      );
+      setActiveSubRoute(subMenus);
+    } else {
+      setActiveSubRoute(newMenues?.submenu[0]);
+    }
   }, []);
 
   const handleDrawerNavigation = (item: any) => {
@@ -97,7 +107,7 @@ const SideBar = ({ open, setOpen }: any) => {
         ? { ...value, active: !value.active }
         : { ...value, active: false }
     );
-    navigate(`${item.route}`);
+    // navigate(`${item.route}`);
     setSideBarMenus([...filerted]);
   };
 

@@ -36,8 +36,8 @@ const App = () => {
     isAuthenticated: sessionStorage.getItem("access_token")
       ? true
       : false || storeResponse?.user?.token
-        ? true
-        : false,
+      ? true
+      : false,
     authenticationPath: "/",
   };
 
@@ -58,10 +58,7 @@ const App = () => {
           path="/register"
           element={<AuthRoute {...preLoginProps} outlet={<Registration />} />}
         />
-        <Route
-          path="/logout"
-          element={<AuthRoute {...preLoginProps} outlet={<Logout />} />}
-        />
+        <Route path="/logout" element={<Logout />} />
 
         <Route element={<Header />}>
           <Route

@@ -1,9 +1,8 @@
-import React, { useEffect, useState, useMemo } from "react";
+import React, { useEffect, useState } from "react";
 
 import { useNavigate } from "react-router-dom";
 
-import { Grid, Typography, Box, TextField, Button } from "@mui/material";
-import SearchIcon from "@mui/icons-material/Search";
+import { Typography, Box, Button } from "@mui/material";
 import AddIcon from "@mui/icons-material/Add";
 
 import { GridColDef } from "@mui/x-data-grid";
@@ -19,6 +18,7 @@ import Paginations from "../../components/HigherOrder/Paginations";
 import CustomizationButtons from "../../components/HigherOrder/CustomizationButtons";
 import Loader from "../../components/HigherOrder/Loader";
 import { getVendors } from "../../store/reducers/vendors/vendors";
+import Search from "../../components/HigherOrder/Search";
 
 const columns: GridColDef[] = [
   {
@@ -110,12 +110,6 @@ const Vendors = () => {
 
   const vendorsStore = useAppSelector((state) => state.vendors);
   const { isLoadingRequest, vendors } = vendorsStore;
-  console.log("vendor response", vendors);
-  // const currentTableData = useMemo(() => {
-  //     const firstPageIndex = (currentPage - 1) * PageSize;
-  //     const lastPageIndex = firstPageIndex + PageSize;
-  //     return vendors?.slice(firstPageIndex, lastPageIndex);
-  // }, [currentPage, isLoadingRequest]);
 
   useEffect(() => {
     dispatch(getVendors())
@@ -231,17 +225,10 @@ const Vendors = () => {
             showColumns={showColumns}
           />
 
-          <TextField
-            sx={{ ml: 2 }}
-            size="small"
-            id="standard-bare"
-            variant="outlined"
-            placeholder="Search Vendors..."
-            value={searchText}
-            onChange={handleSearchChange}
-            InputProps={{
-              startAdornment: <SearchIcon />,
-            }}
+          <Search
+            searchText={searchText}
+            handleSearchChange={handleSearchChange}
+            placeholder={"Vendors..."}
           />
         </Box>
       </Box>

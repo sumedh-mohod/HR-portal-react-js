@@ -6,10 +6,8 @@ import { useParams, useLocation } from "react-router-dom";
 import LeavePolicy from "./LeavePolicy";
 import OrganizationlData from "./OrganisationalData";
 
-const CompanyAddEdit = () => {
+const ComapnyOperations = () => {
   let params = useParams();
-  let location = useLocation();
-  // console.log("company data ", location.state.company);
 
   const { opration } = params;
   // return <>{opration === "add" ? <LeavePolicy /> : <EditCompany />}</>;
@@ -34,6 +32,22 @@ const CompanyAddEdit = () => {
     })()}
   </>
 
+  switch (opration) {
+    case "add":
+      return <AddCompany />;
+    case "edit":
+      return <EditCompany />;
+    case "leavepolicy":
+      return <LeavePolicy />;
+    case "organisationaldata":
+      return null;
+    case "holiday":
+      return null;
+    case "master":
+      return null;
+    default:
+      return null;
+  }
 };
 
-export default CompanyAddEdit;
+export default ComapnyOperations;

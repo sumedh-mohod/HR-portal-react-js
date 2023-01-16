@@ -1,10 +1,9 @@
-import React, { useState, useMemo, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 
 import { GridColDef } from "@mui/x-data-grid";
-import { Box, Typography, Container, TextField, Button } from "@mui/material";
+import { Box, Typography, Button } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import { styles } from "../../styles/screens/Employee";
-import SearchIcon from "@mui/icons-material/Search";
 import AddIcon from "@mui/icons-material/Add";
 import { globalStyles } from "../../styles/global";
 import EmployeeCard from "../../components/Employee/EmployeeCard";
@@ -14,6 +13,7 @@ import Paginations from "../../components/HigherOrder/Paginations";
 import { useAppDispatch, useAppSelector } from "../../store/hooks";
 import { getEmployees } from "../../store/reducers/employee/employees";
 import Loader from "../../components/HigherOrder/Loader";
+import Search from "../../components/HigherOrder/Search";
 
 // colums data
 const columns: GridColDef[] = [
@@ -73,13 +73,6 @@ const Employee = () => {
   const [currentData, setCurrentData] = useState<any>([]);
   const employeesStore = useAppSelector((state) => state.employees);
   const { isLoadingRequest, employees } = employeesStore;
-  console.log("employee data", employees);
-
-  // const currentTableData = useMemo(() => {
-  //   const firstPageIndex = (currentPage - 1) * PageSize;
-  //   const lastPageIndex = firstPageIndex + PageSize;
-  //   return employees?.slice(firstPageIndex, lastPageIndex);
-  // }, [currentPage]);
 
   useEffect(() => {
     dispatch(getEmployees())
@@ -87,6 +80,7 @@ const Employee = () => {
       .then((response: any) => {})
       .catch((error: any) => {});
   }, []);
+
   useEffect(() => {
     const firstPageIndex = (currentPage - 1) * PageSize;
     const lastPageIndex = firstPageIndex + PageSize;
@@ -94,7 +88,6 @@ const Employee = () => {
     const DataSliced = employees?.slice(firstPageIndex, lastPageIndex);
     setCurrentData(DataSliced);
   }, [currentPage, isLoadingRequest]);
-
 
   // add and edit functions
   const handleEmployeeEditClick = () => {
@@ -151,7 +144,6 @@ const Employee = () => {
     }
   };
 
-
   return (
     <Box sx={{ display: "flex", flexDirection: "column" }}>
       <Loader isLoading={isLoadingRequest} />
@@ -193,28 +185,23 @@ const Employee = () => {
             anchorEl={anchorEl}
             showColumns={showColumns}
           />
-          <TextField
-            sx={{ ml: 2 }}
-            size="small"
-            id="standard-bare"
-            variant="outlined"
-            placeholder="Search Employees..."
-            value={searchText}
-            onChange={handleSearchChange}
-            InputProps={{
-              startAdornment: <SearchIcon />,
-            }}
+
+          <Search
+            searchText={searchText}
+            handleSearchChange={handleSearchChange}
+            placeholder={"Employees..."}
           />
         </Box>
       </Box>
       <Box sx={{ flexGrow: 1 }}>
         {designView === "list" ? (
-          <EmployeeList showColumns={showColumns?.length >= 0 ? showColumns : []}
-          rows={
+          <EmployeeList
+            showColumns={showColumns?.length >= 0 ? showColumns : []}
+            rows={
               currentData !== undefined && currentData?.length >= 0
-                  ? currentData
-                  : []
-          }
+                ? currentData
+                : []
+            }
           />
         ) : (
           <EmployeeCard
@@ -224,7 +211,6 @@ const Employee = () => {
             index={undefined}
           />
         )}
-    
       </Box>
       <Paginations handlePageChange={handlePageChange} />
     </Box>

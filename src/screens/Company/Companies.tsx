@@ -1,13 +1,11 @@
-import React, { useEffect, useState, useMemo } from "react";
+import React, { useEffect, useState } from "react";
 
 import { useNavigate } from "react-router-dom";
 
-import { Grid, Typography, Box, TextField, Button } from "@mui/material";
-import SearchIcon from "@mui/icons-material/Search";
+import { Typography, Box, Button } from "@mui/material";
 import AddIcon from "@mui/icons-material/Add";
 
 import { GridColDef } from "@mui/x-data-grid";
-import { Container } from "@mui/system";
 
 import { styles } from "../../styles/screens/CompanyList";
 import { globalStyles } from "../../styles/global";
@@ -20,6 +18,7 @@ import CompaniesList from "../../components/Company/CompanyList";
 import Paginations from "../../components/HigherOrder/Paginations";
 import CustomizationButtons from "../../components/HigherOrder/CustomizationButtons";
 import Loader from "../../components/HigherOrder/Loader";
+import Search from "../../components/HigherOrder/Search";
 
 const columns: GridColDef[] = [
   {
@@ -134,7 +133,7 @@ const CompanyList = () => {
 
   useEffect(() => {
     dispatch(getCompanies())
-       .unwrap()
+      .unwrap()
       .then((response: any) => {})
       .catch((error) => {});
   }, []);
@@ -171,7 +170,6 @@ const CompanyList = () => {
       return [...prevEl];
     });
   };
-
 
   const handlePageChange = (
     event: React.ChangeEvent<unknown>,
@@ -239,17 +237,10 @@ const CompanyList = () => {
             showColumns={showColumns}
           />
 
-          <TextField
-            sx={{ ml: 2 }}
-            size="small"
-            id="standard-bare"
-            variant="outlined"
-            value={searchText}
-            onChange={handleSearchChange}
-            placeholder="Search Companies..."
-            InputProps={{
-              startAdornment: <SearchIcon />,
-            }}
+          <Search
+            searchText={searchText}
+            handleSearchChange={handleSearchChange}
+            placeholder={"Companies..."}
           />
         </Box>
       </Box>
