@@ -11,7 +11,7 @@ import { Box } from "@mui/material";
 import CompanyList from "./screens/Company/Companies";
 import Employee from "./screens/Employee/Employee";
 import ProjectsList from "./screens/Project/Projects";
-import CompanyAddEdit from "./screens/Company/ComapnyAddEdit";
+import CompanyAddEdit from "./screens/Company/ComapnyOperations";
 import NotFound from "./screens/Authentication/NotFound";
 import Partners from "./screens/Partner/Partners";
 import Logout from "./screens/Authentication/Logout";
