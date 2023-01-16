@@ -4,6 +4,7 @@ import EditCompany from "../../components/Company/EditCompany";
 
 import { useParams, useLocation } from "react-router-dom";
 import LeavePolicy from "./LeavePolicy";
+import OrganizationlData from "./OrganisationalData";
 
 const CompanyAddEdit = () => {
   let params = useParams();
@@ -23,7 +24,7 @@ const CompanyAddEdit = () => {
         case "leave-policy":
           return (<LeavePolicy />)
         case "organisational-data":
-          return null
+          return (<OrganizationlData />)
         case "holiday":
           return null
         case "master":

@@ -26,26 +26,19 @@ const OrganizationalCard = ({
   organasationlData: any;
   handleViewOpen: any;
 }) => {
-  const style = {
-    position: 'absolute' as 'absolute',
-    top: '50%',
-    left: '50%',
-    transform: 'translate(-50%, -50%)',
-    width: 400,
-    bgcolor: 'background.paper',
-    border: '2px solid #000',
-    boxShadow: 24,
-    p: 4,
-  };
- 
+ const handleDelet =()=>{
+  console.log("delet click")
+ }
+
   return (
     <Box>
       <Grid container spacing={2} sx={{ mt: 1 }}>
         {organasationlData?.map((info: any, index: number) => (
           <Grid item xs={12} sm={12} md={6} lg={3} xl={3}>
             <Card
+            key={index}
               variant="outlined"
-              onClick={handleViewOpen}
+             
               sx={{
                 height: "auto",
                 background: "#FFFFFF",
@@ -71,7 +64,7 @@ const OrganizationalCard = ({
               >
                 <Box sx={{ display: "flex", justifyContent: "space-between" }}>
                   {info.subIcon}
-                  <Typography variant="h6" sx={{ fontSize: "14px", ml: 1 }}>
+                  <Typography variant="h6" sx={{ fontSize: "14px", ml: 1 }}  onClick={handleViewOpen}>
                     {info.File_name}
                   </Typography>
                 </Box>
@@ -79,11 +72,11 @@ const OrganizationalCard = ({
                   <DeleteOutlineIcon
                     fontSize="small"
                     sx={{ color: "#F24A4A" }}
+                    onClick={handleDelet}
                   />
                 </Box>
               </Box>
             </Card>
-          
           </Grid>
         ))}
       </Grid>
