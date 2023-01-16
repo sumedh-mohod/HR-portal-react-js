@@ -47,6 +47,7 @@ export const Menus: any = [
     route: "accounting",
     submenu: [
       {
+        id: 1,
         name: "Master",
         route: "#",
       },
@@ -60,6 +61,7 @@ export const Menus: any = [
     active: false,
     submenu: [
       {
+        id: 1,
         name: "Master",
         route: "#",
       },
@@ -73,6 +75,7 @@ export const Menus: any = [
     active: false,
     submenu: [
       {
+        id: 1,
         name: "Master",
         route: "partners",
       },
@@ -86,6 +89,7 @@ export const Menus: any = [
     active: false,
     submenu: [
       {
+        id: 1,
         name: "Master",
         route: "projects",
       },
@@ -99,6 +103,7 @@ export const Menus: any = [
     active: false,
     submenu: [
       {
+        id: 1,
         name: "Master",
         route: "employees",
       },
@@ -112,6 +117,7 @@ export const Menus: any = [
     active: false,
     submenu: [
       {
+        id: 1,
         name: "Master",
         route: "#",
       },
@@ -125,6 +131,7 @@ export const Menus: any = [
     active: false,
     submenu: [
       {
+        id: 1,
         name: "Master",
         route: "vendors",
       },
@@ -138,6 +145,7 @@ export const Menus: any = [
     active: false,
     submenu: [
       {
+        id: 1,
         name: "Master",
         route: "#",
       },
@@ -151,6 +159,7 @@ export const Menus: any = [
     active: false,
     submenu: [
       {
+        id: 1,
         name: "Master",
         route: "#",
       },

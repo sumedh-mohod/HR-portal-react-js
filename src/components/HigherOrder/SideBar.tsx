@@ -87,8 +87,8 @@ const SideBar = ({ open, setOpen }: any) => {
       (value: any) => value.route === Pathname[1]
     );
     setActiveRoute(newMenues?.id);
-    setActiveSubRoute(newMenues?.submenu[0]);
-  }, [params.pathname]);
+    // setActiveSubRoute(newMenues?.submenu[0]);
+  }, []);
 
   const handleDrawerNavigation = (item: any) => {
     setActiveRoute(item.id);
