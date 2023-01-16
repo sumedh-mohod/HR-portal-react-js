@@ -1,4 +1,4 @@
-export const styles = {
+export const stylesss = {
   List: {
     sx: {
       display: "flex",
@@ -22,6 +22,7 @@ export const styles = {
       textAlign: "start",
       mr: 4,
       "&.Mui-selected": {
+        border:"none",
         borderBottom: "2px solid #F58634",
         background: "none",
         color: "#F58634",

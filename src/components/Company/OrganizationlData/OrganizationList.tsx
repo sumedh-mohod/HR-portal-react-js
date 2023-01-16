@@ -1,19 +1,19 @@
 import React, { useEffect, useState, useMemo } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import { ListItem, List } from "@mui/material";
-import { styles } from "../../styles/components/organizationList";
+import { stylesss } from "../../../styles/components/organizationList";
 const OrganizationList = () => {
   const [selectedIndex, setSelectedIndex] = React.useState(0);
   const handleListItemClick = (event: any, index: any) => {
     setSelectedIndex(index);
   };
   return (
-    <List {...styles.List}>
+    <List {...stylesss.List}>
       <ListItem
         button
         selected={selectedIndex === 0}
         onClick={(event) => handleListItemClick(event, 0)}
-        {...styles.ListItem}
+        {...stylesss.ListItem}
       >
         Certificates
       </ListItem>
@@ -22,7 +22,7 @@ const OrganizationList = () => {
         button
         selected={selectedIndex === 1}
         onClick={(event) => handleListItemClick(event, 1)}
-        {...styles.ListItem}
+        {...stylesss.ListItem}
       >
         Information Security
       </ListItem>
@@ -31,7 +31,7 @@ const OrganizationList = () => {
         button
         selected={selectedIndex === 2}
         onClick={(event) => handleListItemClick(event, 2)}
-        {...styles.ListItem}
+        {...stylesss.ListItem}
       >
         Security Policies
       </ListItem>
@@ -40,7 +40,7 @@ const OrganizationList = () => {
         button
         selected={selectedIndex === 3}
         onClick={(event) => handleListItemClick(event, 3)}
-        {...styles.ListItem}
+        {...stylesss.ListItem}
       >
         Processes
       </ListItem>
@@ -49,7 +49,7 @@ const OrganizationList = () => {
         button
         selected={selectedIndex === 4}
         onClick={(event) => handleListItemClick(event, 4)}
-        {...styles.ListItem}
+        {...stylesss.ListItem}
       >
         Do’s & Don’t
       </ListItem>

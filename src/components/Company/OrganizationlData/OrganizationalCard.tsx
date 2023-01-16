@@ -1,8 +1,8 @@
 import Typography from "@mui/material/Typography";
 import { Box } from "@mui/system";
 import React from "react";
-import { globalStyles } from "../../styles/global";
-import { styles } from "../../styles/components/addCompany";
+import { globalStyles } from "../../../styles/global";
+import { styles } from "../../../styles/components/addCompany";
 import Grid from "@mui/material/Grid/Grid";
 import Card from "@mui/material/Card/Card";
 import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";

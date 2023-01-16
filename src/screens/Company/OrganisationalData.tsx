@@ -20,12 +20,21 @@ import { styles } from "../../styles/screens/CompanyList";
 import Paginations from "../../components/HigherOrder/Paginations";
 import CustomizationButtons from "../../components/HigherOrder/CustomizationButtons";
 import Loader from "../../components/HigherOrder/Loader";
-import OrganizationList from "../../components/OrganizationlData/OrganizationList";
-import OrganizationalCard from "../../components/OrganizationlData/OrganizationalCard";
+import OrganizationList from "../../components/Company/OrganizationlData/OrganizationList";
+import OrganizationalCard from "../../components/Company/OrganizationlData/OrganizationalCard";
 import CollectionsIcon from "@mui/icons-material/Collections";
 import PictureAsPdfIcon from "@mui/icons-material/PictureAsPdf";
-import ViewOraganisationalDatamodel from "../../components/OrganizationlData/ViewOraganisationalDatamodel";
-import AddOrganisationData from "../../components/OrganizationlData/AddOrganisationData";
+import ViewOraganisationalDatamodel from "../../components/Company/OrganizationlData/ViewOraganisationalDatamodel";
+import AddOrganisationData from "../../components/Company/OrganizationlData/AddOrganisationData";
+
+import Tabs from '@mui/material/Tabs';
+import Tab from '@mui/material/Tab';
+import InformationSecurity from "../../components/Company/OrganizationlData/InformationSecurity";
+import SecurityPolicies from "../../components/Company/OrganizationlData/SecurityPolicies";
+import Processes from "../../components/Company/OrganizationlData/Processes";
+import DosAndDont from "../../components/Company/OrganizationlData/DosAndDont";
+import { stylesss} from "../../styles/components/organizationList";
+
 const Data = [
   {
     mainIcon: <PictureAsPdfIcon sx={{ color: "#F24A4A", fontSize: "45px", mt: 3 }} />,
@@ -51,6 +60,38 @@ const Data = [
 
 
 let PageSize = 5;
+interface TabPanelProps {
+  children?: React.ReactNode;
+  index: number;
+  value: number;
+}
+
+function TabPanel(props: TabPanelProps) {
+  const { children, value, index, ...other } = props;
+
+  return (
+    <div
+      role="tabpanel"
+      hidden={value !== index}
+      id={`simple-tabpanel-${index}`}
+      aria-labelledby={`simple-tab-${index}`}
+      {...other}
+    >
+      {value === index && (
+        <Box sx={{ p: 3 }}>
+          <Typography>{children}</Typography>
+        </Box>
+      )}
+    </div>
+  );
+}
+
+function a11yProps(index: number) {
+  return {
+    id: `simple-tab-${index}`,
+    'aria-controls': `simple-tabpanel-${index}`,
+  };
+}
 
 const OrganizationlData = () => {
   const dispatch = useAppDispatch();
@@ -68,6 +109,12 @@ const OrganizationlData = () => {
   const handleViewClose = () => setViewOpen(false);
   const handleAddOpen = () => setAddOpen(true);
   const handleAddClose = () => setAddOpen(false);
+
+  const [value, setValue] = React.useState(0);
+
+  const handleChange = (event: React.SyntheticEvent, newValue: number) => {
+    setValue(newValue);
+  };
 
   // const companyStore = useAppSelector((state) => state.companies);
   // const { isLoadingRequest, companies } = companyStore;
@@ -156,9 +203,35 @@ const OrganizationlData = () => {
       </Box>
 
       {/* list */}
-    <OrganizationList/>
+    
+    <Box sx={{ width: '100%' }}>
+      <Box >
+        <Tabs {...stylesss.List} value={value} onChange={handleChange} aria-label="basic tabs example">
+          <Tab        {...stylesss.ListItem} label="Certificates" {...a11yProps(0)} />
+          <Tab   {...stylesss.ListItem}label="Information Security" {...a11yProps(1)} />
+          <Tab   {...stylesss.ListItem}label="Security Policies" {...a11yProps(2)} />
+          <Tab   {...stylesss.ListItem}label="Processes" {...a11yProps(3)} />
+          <Tab   {...stylesss.ListItem}label="Do’s & Don’t" {...a11yProps(4)} />
+        </Tabs>
+      </Box>
+      <TabPanel value={value} index={0}>
+      <OrganizationalCard  organasationlData={currentData} handleViewOpen={handleViewOpen}/>
+      </TabPanel>
+      <TabPanel value={value} index={1}>
+      <InformationSecurity/>
+      </TabPanel>
+      <TabPanel value={value} index={2}>
+        <SecurityPolicies/>
+      </TabPanel>
+      <TabPanel value={value} index={3}>
+       <Processes/>
+      </TabPanel>
+      <TabPanel value={value} index={4}>
+      <DosAndDont/>
+      </TabPanel>
+    </Box>
 
-    <OrganizationalCard  organasationlData={currentData} handleViewOpen={handleViewOpen}/>
+   
     <ViewOraganisationalDatamodel viewOpen={viewOpen} handleViewClose={handleViewClose}/>
     <AddOrganisationData addOpen={addOpen} handleAddClose={handleAddClose}/>
       <Paginations handlePageChange={handlePageChange} />
