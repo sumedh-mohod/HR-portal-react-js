@@ -1,11 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { GridColDef } from "@mui/x-data-grid";
-import { Box, Typography, TextField, Button } from "@mui/material";
+import { Box, Typography, Button } from "@mui/material";
 import { useAppDispatch, useAppSelector } from "../../store/hooks";
 import { getPartners } from "../../store/reducers/partners/partners";
 import { useNavigate } from "react-router-dom";
 import { styles } from "../../styles/screens/Partners";
-import SearchIcon from "@mui/icons-material/Search";
 import PartnersCard from "../../components/Partner/PartnersCard";
 import { globalStyles } from "../../styles/global";
 import PartnersList from "../../components/Partner/PartnersList";
@@ -13,6 +12,7 @@ import CustomizationButtons from "../../components/HigherOrder/CustomizationButt
 import AddIcon from "@mui/icons-material/Add";
 import Paginations from "../../components/HigherOrder/Paginations";
 import Loader from "../../components/HigherOrder/Loader";
+import Search from "../../components/HigherOrder/Search";
 
 const columns: GridColDef[] = [
   {
@@ -127,7 +127,6 @@ const Partners = () => {
     }
   };
 
-  console.log("currentData", currentData);
 
   return (
     <Box sx={{ display: "flex", flexDirection: "column" }}>
@@ -171,17 +170,10 @@ const Partners = () => {
             showColumns={showColumns}
           />
 
-          <TextField
-            sx={{ ml: 2 }}
-            size="small"
-            id="standard-bare"
-            variant="outlined"
-            placeholder="Search Partners..."
-            value={searchText}
-            onChange={handleSearchChange}
-            InputProps={{
-              startAdornment: <SearchIcon />,
-            }}
+          <Search
+            searchText={searchText}
+            handleSearchChange={handleSearchChange}
+            placeholder={"Partners..."}
           />
         </Box>
       </Box>
