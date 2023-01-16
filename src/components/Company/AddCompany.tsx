@@ -16,7 +16,6 @@ import { styles } from "../../styles/components/addCompany";
 import { useAppDispatch } from "../../store/hooks";
 import { addCompany } from "../../store/reducers/companies/companies";
 import { useNavigate } from "react-router-dom";
-import { padding } from "@mui/system";
 
 const AddCompany = () => {
   const dispatch = useAppDispatch();

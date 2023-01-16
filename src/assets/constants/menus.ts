@@ -19,23 +19,28 @@ export const Menus: any = [
     submenu: [
       {
         id: 1,
-        name: "Holiday",
-        route: "companies/holiday",
+        name: "Companies",
+        route: "/companies",
       },
       {
         id: 2,
-        name: "Leave Policy",
-        route: "companies/leave-policy",
+        name: "Holiday",
+        route: "/companies/holiday",
       },
       {
         id: 3,
-        name: "Masters",
-        route: "companies/master",
+        name: "Leave Policy",
+        route: "/companies/leavepolicy",
       },
       {
         id: 4,
+        name: "Masters",
+        route: "/companies/master",
+      },
+      {
+        id: 5,
         name: "Organisational Data",
-        route: "companies/organisational-data",
+        route: "/companies/organisationaldata",
       },
     ],
   },

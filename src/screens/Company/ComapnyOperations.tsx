@@ -20,9 +20,9 @@ const CompanyAddEdit = () => {
           return (<AddCompany />)
         case "edit":
           return (<EditCompany />)
-        case "leave-policy":
+        case "leavepolicy":
           return (<LeavePolicy />)
-        case "organisational-data":
+        case "organisationaldata":
           return null
         case "holiday":
           return null
