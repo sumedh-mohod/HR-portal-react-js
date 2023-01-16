@@ -23,7 +23,7 @@ import AddIcon from "@mui/icons-material/Add";
 import DisabledByDefaultIcon from "@mui/icons-material/DisabledByDefault";
 import { addPartner } from "../../store/reducers/partners/partners";
 const AddPartner = () => {
-    const dispatch = useAppDispatch();
+  const dispatch = useAppDispatch();
   const navigate = useNavigate();
   const {
     handleBlur,
@@ -63,8 +63,8 @@ const AddPartner = () => {
         })
         .catch((error: any) => { });
     },
-    });
-  
+  });
+
   const inputRef: any = useRef(null);
   const handleClick = () => {
     // open file input box on click of other element
@@ -113,7 +113,7 @@ const AddPartner = () => {
     setFieldValue(`taxes.${index}.value`, event.target.value);
   };
 
-  const handleSubmitTaxes = (index: number) => {};
+  const handleSubmitTaxes = (index: number) => { };
 
   return (
     <Box>
@@ -225,9 +225,9 @@ const AddPartner = () => {
                     disableUnderline: true,
                     style: { ...globalStyles.textField },
                   }}
-                  //   onBlur={handleBlur}
-                  //   error={touched.addressLine1 && errors.addressLine1 ? true : false}
-                  //   helperText={touched.addressLine1 && errors.addressLine1}
+                //   onBlur={handleBlur}
+                //   error={touched.addressLine1 && errors.addressLine1 ? true : false}
+                //   helperText={touched.addressLine1 && errors.addressLine1}
                 />
               </FormControl>
             </Grid>
@@ -248,9 +248,9 @@ const AddPartner = () => {
                     disableUnderline: true,
                     style: { ...globalStyles.textField },
                   }}
-                  //   onBlur={handleBlur}
-                  //   error={touched.addressLine2 && errors.addressLine2 ? true : false}
-                  //   helperText={touched.addressLine2 && errors.addressLine2}
+                //   onBlur={handleBlur}
+                //   error={touched.addressLine2 && errors.addressLine2 ? true : false}
+                //   helperText={touched.addressLine2 && errors.addressLine2}
                 />
               </FormControl>
             </Grid>
@@ -351,9 +351,9 @@ const AddPartner = () => {
                     disableUnderline: true,
                     style: { ...globalStyles.textField },
                   }}
-                  //   onBlur={handleBlur}
-                  //   error={touched.postalCode && errors.postalCode ? true : false}
-                  //   helperText={touched.postalCode && errors.postalCode}
+                //   onBlur={handleBlur}
+                //   error={touched.postalCode && errors.postalCode ? true : false}
+                //   helperText={touched.postalCode && errors.postalCode}
                 />
               </FormControl>
             </Grid>
@@ -375,9 +375,9 @@ const AddPartner = () => {
                     disableUnderline: true,
                     style: { ...globalStyles.textField },
                   }}
-                  // onBlur={handleBlur}
-                  // error={touched.taxID && errors.taxID ? true : false}
-                  // helperText={touched.taxID && errors.taxID}
+                // onBlur={handleBlur}
+                // error={touched.taxID && errors.taxID ? true : false}
+                // helperText={touched.taxID && errors.taxID}
                 />
               </FormControl>
             </Grid>
@@ -413,8 +413,6 @@ const AddPartner = () => {
                       handleChangeTaxName(event, index);
                     }}
                     onBlur={handleBlur}
-                    //   error={touched.addressLine1 && errors.addressLine1 ? true : false}
-                    //   helperText={touched.addressLine1 && errors.addressLine1}
                   />
                 </FormControl>
               </Grid>
@@ -435,13 +433,10 @@ const AddPartner = () => {
                     onChange={(event) => {
                       handleChangeTaxValue(event, index);
                     }}
-                    //   onBlur={handleBlur}
-                    //   error={touched.addressLine1 && errors.addressLine1 ? true : false}
-                    //   helperText={touched.addressLine1 && errors.addressLine1}
                   />
                 </FormControl>
               </Grid>
-              {/* buttons add or remove */}
+
               <Grid item xs={12} md={12} lg={6}>
                 <Box sx={{ display: "flex", justifyContent: "baseline" }}>
                   <CheckIcon
@@ -492,14 +487,10 @@ const AddPartner = () => {
                   disableUnderline: true,
                   style: { ...globalStyles.textField },
                 }}
-                // value={values.name}
-                // onChange={name}
-                //   onBlur={handleBlur}
-                //   error={touched.addressLine1 && errors.addressLine1 ? true : false}
-                //   helperText={touched.addressLine1 && errors.addressLine1}
               />
             </FormControl>
           </Grid>
+
           {/* email id */}
           <Grid item xs={12} md={6} lg={3}>
             <FormControl fullWidth>
@@ -515,14 +506,10 @@ const AddPartner = () => {
                   disableUnderline: true,
                   style: { ...globalStyles.textField },
                 }}
-                // value={values.value}
-                // onChange={name}
-                //   onBlur={handleBlur}
-                //   error={touched.addressLine1 && errors.addressLine1 ? true : false}
-                //   helperText={touched.addressLine1 && errors.addressLine1}
               />
             </FormControl>
           </Grid>
+
           {/* contact no */}
           <Grid item xs={12} md={6} lg={3}>
             <FormControl fullWidth>
@@ -538,11 +525,6 @@ const AddPartner = () => {
                   disableUnderline: true,
                   style: { ...globalStyles.textField },
                 }}
-                // value={values.value}
-                // onChange={name}
-                //   onBlur={handleBlur}
-                //   error={touched.addressLine1 && errors.addressLine1 ? true : false}
-                //   helperText={touched.addressLine1 && errors.addressLine1}
               />
             </FormControl>
           </Grid>
@@ -583,14 +565,10 @@ const AddPartner = () => {
                   disableUnderline: true,
                   style: { ...globalStyles.textField },
                 }}
-                // value={values.name}
-                // onChange={name}
-                //   onBlur={handleBlur}
-                //   error={touched.addressLine1 && errors.addressLine1 ? true : false}
-                //   helperText={touched.addressLine1 && errors.addressLine1}
               />
             </FormControl>
           </Grid>
+
           {/* email id */}
           <Grid item xs={12} md={6} lg={3}>
             <FormControl fullWidth>
@@ -606,11 +584,6 @@ const AddPartner = () => {
                   disableUnderline: true,
                   style: { ...globalStyles.textField },
                 }}
-                // value={values.value}
-                // onChange={name}
-                //   onBlur={handleBlur}
-                //   error={touched.addressLine1 && errors.addressLine1 ? true : false}
-                //   helperText={touched.addressLine1 && errors.addressLine1}
               />
             </FormControl>
           </Grid>
@@ -629,11 +602,6 @@ const AddPartner = () => {
                   disableUnderline: true,
                   style: { ...globalStyles.textField },
                 }}
-                // value={values.value}
-                // onChange={name}
-                //   onBlur={handleBlur}
-                //   error={touched.addressLine1 && errors.addressLine1 ? true : false}
-                //   helperText={touched.addressLine1 && errors.addressLine1}
               />
             </FormControl>
           </Grid>

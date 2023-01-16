@@ -118,16 +118,18 @@ const CompanyList = () => {
   const [showColumns, setShowColumns] = useState(columns);
   const [currentPage, setCurrentPage] = useState(1);
   const [searchText, setSearchText] = useState("");
-
+  const [currentData, setCurrentData] = useState<any>([]);
   const openDropDown = Boolean(anchorEl);
 
   const companyStore = useAppSelector((state) => state.companies);
   const { isLoadingRequest, companies } = companyStore;
 
-  let currentTableData = useMemo(() => {
+  useEffect(() => {
     const firstPageIndex = (currentPage - 1) * PageSize;
     const lastPageIndex = firstPageIndex + PageSize;
-    return companies?.content?.slice(firstPageIndex, lastPageIndex);
+
+    const DataSliced = companies?.slice(firstPageIndex, lastPageIndex);
+    setCurrentData(DataSliced);
   }, [currentPage, isLoadingRequest]);
 
   useEffect(() => {
@@ -170,6 +172,7 @@ const CompanyList = () => {
     });
   };
 
+
   const handlePageChange = (
     event: React.ChangeEvent<unknown>,
     value: number
@@ -181,11 +184,17 @@ const CompanyList = () => {
     const SearchText = event.target.value;
     setSearchText(SearchText);
 
-    if (SearchText.length > 3) {
-      const newFilter = currentTableData.filter(
-        (value: any) => value.name === SearchText
+    if (SearchText.length > 0) {
+      const newFilter = companies.filter((value: any) =>
+        value.company_name.toLowerCase().includes(SearchText.toLowerCase())
       );
-      currentTableData = newFilter;
+      setCurrentData(newFilter);
+    } else {
+      const firstPageIndex = (currentPage - 1) * PageSize;
+      const lastPageIndex = firstPageIndex + PageSize;
+
+      const DataSliced = companies?.slice(firstPageIndex, lastPageIndex);
+      setCurrentData(DataSliced);
     }
   };
 
@@ -235,7 +244,7 @@ const CompanyList = () => {
             size="small"
             id="standard-bare"
             variant="outlined"
-            value={""}
+            value={searchText}
             onChange={handleSearchChange}
             placeholder="Search Companies..."
             InputProps={{
@@ -250,14 +259,14 @@ const CompanyList = () => {
           <CompaniesList
             showColumns={showColumns?.length >= 0 ? showColumns : []}
             rows={
-              currentTableData !== undefined && currentTableData?.length >= 0
-                ? currentTableData
+              currentData !== undefined && currentData?.length >= 0
+                ? currentData
                 : []
             }
           />
         ) : (
           <CompanyCard
-            companies={currentTableData}
+            companies={currentData}
             handleCompanyEditClick={handleCompanyEditClick}
             handleCompanyAddClick={handleCompanyAddClick}
           />

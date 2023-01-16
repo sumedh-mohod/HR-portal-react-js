@@ -15,46 +15,32 @@ export const Menus: any = [
     icon: Company,
     id: 1,
     active: false,
+    route: "companies",
     submenu: [
       {
         id: 1,
-        name: "Holiday",
-        route: "companies",
+        name: "Companies",
+        route: "/companies",
       },
       {
         id: 2,
-        name: "Leave Policy",
-        route: "companies",
+        name: "Holiday",
+        route: "/companies/holiday",
       },
       {
         id: 3,
-        name: "Masters",
-        route: "companies",
+        name: "Leave Policy",
+        route: "/companies/leavepolicy",
       },
       {
         id: 4,
-        name: "Certificates",
-        route: "companies",
+        name: "Masters",
+        route: "/companies/master",
       },
       {
         id: 5,
-        name: "Information Security",
-        route: "companies",
-      },
-      {
-        id: 6,
-        name: "Security Policies",
-        route: "companies",
-      },
-      {
-        id: 7,
-        name: "Processes",
-        route: "companies",
-      },
-      {
-        id: 8,
-        name: "Do’s & Don’t",
-        route: "companies",
+        name: "Organisational Data",
+        route: "/companies/organisationaldata",
       },
     ],
   },
@@ -63,8 +49,10 @@ export const Menus: any = [
     name: "Accounting",
     icon: Accounting,
     active: false,
+    route: "accounting",
     submenu: [
       {
+        id: 1,
         name: "Master",
         route: "#",
       },
@@ -74,9 +62,11 @@ export const Menus: any = [
     id: 3,
     name: "Assets",
     icon: Assets,
+    route: "assets",
     active: false,
     submenu: [
       {
+        id: 1,
         name: "Master",
         route: "#",
       },
@@ -86,9 +76,11 @@ export const Menus: any = [
     id: 4,
     name: "Partners",
     icon: Partners,
+    route: "partners",
     active: false,
     submenu: [
       {
+        id: 1,
         name: "Master",
         route: "partners",
       },
@@ -97,10 +89,12 @@ export const Menus: any = [
   {
     id: 5,
     name: "Project",
+    route: "projects",
     icon: Project,
     active: false,
     submenu: [
       {
+        id: 1,
         name: "Master",
         route: "projects",
       },
@@ -109,10 +103,12 @@ export const Menus: any = [
   {
     id: 6,
     name: "Employee",
+    route: "employees",
     icon: Employee,
     active: false,
     submenu: [
       {
+        id: 1,
         name: "Master",
         route: "employees",
       },
@@ -121,10 +117,12 @@ export const Menus: any = [
   {
     id: 7,
     name: "Settings",
+    route: "settings",
     icon: Settings,
     active: false,
     submenu: [
       {
+        id: 1,
         name: "Master",
         route: "#",
       },
@@ -132,11 +130,13 @@ export const Menus: any = [
   },
   {
     id: 8,
-    name: "Venders",
+    name: "Vendors",
+    route: "vendors",
     icon: Vendors,
     active: false,
     submenu: [
       {
+        id: 1,
         name: "Master",
         route: "vendors",
       },
@@ -145,10 +145,12 @@ export const Menus: any = [
   {
     id: 9,
     name: "Recruitment",
+    route: "recruitment",
     icon: Recruitment,
     active: false,
     submenu: [
       {
+        id: 1,
         name: "Master",
         route: "#",
       },
@@ -157,10 +159,12 @@ export const Menus: any = [
   {
     id: 10,
     name: "Training",
+    route: "training",
     icon: Training,
     active: false,
     submenu: [
       {
+        id: 1,
         name: "Master",
         route: "#",
       },

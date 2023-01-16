@@ -11,7 +11,7 @@ import { Box } from "@mui/material";
 import CompanyList from "./screens/Company/Companies";
 import Employee from "./screens/Employee/Employee";
 import ProjectsList from "./screens/Project/Projects";
-import CompanyAddEdit from "./screens/Company/ComapnyAddEdit";
+import CompanyAddEdit from "./screens/Company/ComapnyOperations";
 import NotFound from "./screens/Authentication/NotFound";
 import Partners from "./screens/Partner/Partners";
 import Logout from "./screens/Authentication/Logout";
@@ -36,8 +36,8 @@ const App = () => {
     isAuthenticated: sessionStorage.getItem("access_token")
       ? true
       : false || storeResponse?.user?.token
-        ? true
-        : false,
+      ? true
+      : false,
     authenticationPath: "/",
   };
 
@@ -58,10 +58,7 @@ const App = () => {
           path="/register"
           element={<AuthRoute {...preLoginProps} outlet={<Registration />} />}
         />
-        <Route
-          path="/logout"
-          element={<AuthRoute {...preLoginProps} outlet={<Logout />} />}
-        />
+        <Route path="/logout" element={<Logout />} />
 
         <Route element={<Header />}>
           <Route

@@ -15,6 +15,8 @@ enum StatusCode {
 const headers: any = {
   Accept: "application/json",
   "Content-Type": "application/json; charset=utf-8",
+  "Access-Control-Allow-Origin": "*",
+ 
 };
 
 // We can use the following function to inject the JWT token through an interceptor

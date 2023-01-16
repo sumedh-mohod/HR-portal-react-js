@@ -1,6 +1,6 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 
 import {
   IconButton,
@@ -70,19 +70,35 @@ const DrawerHeader = styled("div")(({ theme }) => ({
 
 const SideBar = ({ open, setOpen }: any) => {
   const navigate = useNavigate();
+  const params = useLocation();
 
-  const [activeRoute, setActiveRoute] = useState(1);
-  const [activeSubRoute, setActiveSubRoute] = useState({
-    id: 1,
-    name: "Holiday",
-    route: "companies",
-  });
+  const [activeRoute, setActiveRoute] = useState<any>();
+  const [activeSubRoute, setActiveSubRoute] = useState<any>();
 
   const [sideBarMenus, setSideBarMenus] = useState(Menus);
 
   const handleDrawerClose = () => {
     setOpen(false);
   };
+
+  useEffect(() => {
+    const actualPathname = params.pathname.toString();
+
+    const Pathname = actualPathname.split("/");
+    const newMenues = sideBarMenus.find(
+      (value: any) => value.route === Pathname[1]
+    );
+    setActiveRoute(newMenues?.id);
+
+    if (Pathname.length === 3) {
+      const subMenus = newMenues?.submenu.find(
+        (value: any) => value.route === actualPathname
+      );
+      setActiveSubRoute(subMenus);
+    } else {
+      setActiveSubRoute(newMenues?.submenu[0]);
+    }
+  }, []);
 
   const handleDrawerNavigation = (item: any) => {
     setActiveRoute(item.id);
@@ -91,7 +107,7 @@ const SideBar = ({ open, setOpen }: any) => {
         ? { ...value, active: !value.active }
         : { ...value, active: false }
     );
-
+    // navigate(`${item.route}`);
     setSideBarMenus([...filerted]);
   };
 
@@ -181,13 +197,13 @@ const SideBar = ({ open, setOpen }: any) => {
                         sx={{
                           pl: 4,
                           borderLeftWidth:
-                            activeSubRoute.id === menu.id ? 3 : 0,
+                            activeSubRoute?.id === menu.id ? 3 : 0,
                           borderLeftColor:
-                            activeSubRoute.id === menu.id
+                            activeSubRoute?.id === menu.id
                               ? "#F58634"
                               : "#A4A6B3",
                           borderLeftStyle:
-                            activeSubRoute.id === menu.id ? "solid" : "none",
+                            activeSubRoute?.id === menu.id ? "solid" : "none",
                         }}
                         key={menu.name}
                         onClick={() => {

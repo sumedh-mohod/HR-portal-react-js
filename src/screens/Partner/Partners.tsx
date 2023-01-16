@@ -62,7 +62,7 @@ const Partners = () => {
       .unwrap()
       .then((response: any) => {})
       .catch((error: any) => {});
-  }, []);
+  }, [dispatch]);
 
   useEffect(() => {
     const firstPageIndex = (currentPage - 1) * PageSize;
@@ -70,7 +70,7 @@ const Partners = () => {
 
     const DataSliced = partners?.slice(firstPageIndex, lastPageIndex);
     setCurrentData(DataSliced);
-  }, [currentPage]);
+  }, [currentPage, isLoadingRequest]);
 
   const handlePartnerEditClick = () => {
     navigate("/partners/edit");
@@ -126,6 +126,8 @@ const Partners = () => {
       setCurrentData(DataSliced);
     }
   };
+
+  console.log("currentData", currentData);
 
   return (
     <Box sx={{ display: "flex", flexDirection: "column" }}>
