@@ -8,15 +8,19 @@ import DeleteIcon from '../../Icons/DeleteIcon'
 import PdfIcon from '../../Icons/PdfIcon'
 
 const LeavePolicyCard = ({
-    handleOpen
+    handleViewOpen
+
 }: {
-    handleOpen: any
+    handleViewOpen: any
 }) => {
+    const handleDelet = () => {
+        console.log("delete")
+    }
     return (
         <Grid container spacing={2}>
             <Grid item lg={12}>
                 <Card variant="outlined"
-                    onClick={handleOpen}
+
                     {...styles.leavePolicyCard}
                 >
                     <Grid item lg={12}
@@ -28,7 +32,7 @@ const LeavePolicyCard = ({
                         <Box
                             {...styles.deleteIconBox}
                         >
-                            <DeleteIcon />
+                            <DeleteIcon onClick={handleDelet} />
                         </Box>
                     </Grid>
                     <Grid item lg={12}
@@ -59,6 +63,7 @@ const LeavePolicyCard = ({
                             />
                             <Typography variant="h6"
                                 sx={{ fontSize: "14px", ml: 1 }}
+                                onClick={handleViewOpen}
                             >
                                 Leave Policy.PDF
                             </Typography>
