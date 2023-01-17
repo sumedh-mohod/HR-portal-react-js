@@ -22,6 +22,9 @@ const EmployeeList = ({ showColumns, rows }: { showColumns: any; rows: any }) =>
             columns={showColumns}
             hideFooterPagination={true}
             hideFooter={true}
+            disableColumnMenu={true}
+            disableColumnFilter={true}
+            disableColumnSelector={true}
           />
         </Grid>
       </Grid>

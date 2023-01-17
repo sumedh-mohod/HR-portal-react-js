@@ -29,6 +29,9 @@ const CompaniesList = ({
             columns={showColumns}
             hideFooterPagination={true}
             hideFooter={true}
+            disableColumnMenu={true}
+            disableColumnFilter={true}
+            disableColumnSelector={true}
           />
         </Grid>
       </Grid>

@@ -1,6 +1,7 @@
 import React, { useRef } from "react";
 import { useFormik } from "formik";
 import { addPartnerValidator } from "../../utils/validations/auth";
+import { useNavigate } from "react-router-dom";
 import {
   Box,
   Button,
@@ -11,17 +12,15 @@ import {
   Typography,
   MenuItem,
   Card,
-  IconButton,
 } from "@mui/material";
-import { styles } from "../../styles/components/addPartner";
-import { useNavigate } from "react-router-dom";
-import { useAppDispatch } from "../../store/hooks";
-import { globalStyles } from "../../styles/global";
 import CheckIcon from "@mui/icons-material/Check";
 import CloseIcon from "@mui/icons-material/Close";
 import AddIcon from "@mui/icons-material/Add";
-import DisabledByDefaultIcon from "@mui/icons-material/DisabledByDefault";
+import { useAppDispatch } from "../../store/hooks";
 import { addPartner } from "../../store/reducers/partners/partners";
+import { globalStyles } from "../../styles/global";
+import { styles } from "../../styles/components/addPartner";
+
 const AddPartner = () => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();

@@ -1,19 +1,18 @@
 import React, { useEffect, useState } from "react";
-import { Typography, Box } from "@mui/material";
+import { useNavigate } from "react-router-dom";
+import { Typography, Box,Button } from "@mui/material";
 import { GridColDef } from "@mui/x-data-grid";
 import AddIcon from "@mui/icons-material/Add";
-import { useNavigate } from "react-router-dom";
-import { styles } from "../../styles/screens/ProjectList";
 import ProjectCard from "../../components/Project/ProjectCard";
-import Button from "@mui/material/Button";
-import { globalStyles } from "../../styles/global";
-import CustomizationButtons from "../../components/HigherOrder/CustomizationButtons";
-import Paginations from "../../components/HigherOrder/Paginations";
 import ProjectList from "../../components/Project/ProjectList";
-import { useAppDispatch, useAppSelector } from "../../store/hooks";
-import { getProjects } from "../../store/reducers/projects/projects";
+import CustomizationButtons from "../../components/HigherOrder/CustomizationButtons";
 import Loader from "../../components/HigherOrder/Loader";
 import Search from "../../components/HigherOrder/Search";
+import Paginations from "../../components/HigherOrder/Paginations";
+import { useAppDispatch, useAppSelector } from "../../store/hooks";
+import { getProjects } from "../../store/reducers/projects/projects";
+import { globalStyles } from "../../styles/global";
+import { styles } from "../../styles/screens/ProjectList";
 
 const columns: GridColDef[] = [
   {
