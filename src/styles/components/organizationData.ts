@@ -1,6 +1,6 @@
 import { autoBatchEnhancer } from "@reduxjs/toolkit";
 export const styles = {
-  companyTitleBox: {
+  OrganizationlDataTitleBox: {
     sx: {
       display: "flex",
       justifyContent: "space-between",
@@ -11,7 +11,7 @@ export const styles = {
       width: "fullWidth",
     },
   },
-  companyCard: {
+  OtganasationalDataCard: {
     sx: {
       p: 3,
       pt: 1,
@@ -23,32 +23,6 @@ export const styles = {
       boxShadow: "0px 4px 4px rgba(0, 0, 0, 0.25)",
     },
   },
-
-  companyName: {
-    sx: {
-      fontSize: "14px",
-      fontWeight: "600",
-      fontFamily: "Montserrat",
-      color: "#252733",
-      mt: 1,
-      paddingBottom: "11px",
-    },
-  },
-  companyDescriptionBox: {
-    sx: {
-      borderTop: "1px solid #C5C7CD",
-      paddingTop: "11px",
-    },
-  },
-  companyDescription: {
-    sx: {
-      fontSize: "12px",
-      fontWeight: "lighter",
-      fontFamily: "Montserrat",
-      color: "#252733",
-    },
-  },
-
   addCompanyIcon: {
     sx: {
       fontSize: "16px",
@@ -56,7 +30,7 @@ export const styles = {
       fontFamily: "Montserrat",
     },
   },
-  List: {
+  Tabs: {
     sx: {
       display: "flex",
       borderBottom: "1px solid #C5C7CD",
@@ -64,7 +38,7 @@ export const styles = {
       mt: 5,
     },
   },
-  ListItem: {
+  Tab: {
     sx: {
       fontFamily: "Montserrat",
       fontStyle: "normal",
@@ -124,19 +98,12 @@ export const styles = {
     sx: {
       position: "absolute" as "absolute",
       top: "50%",
-
       left: "50%",
-
       transform: "translate(-50%, -50%)",
-
       width: 450,
-
       background: "#FFFFFF",
-
-      border: "1px solid #DFDFDF",
-
+      border: "2px solid #DFDFDF",
       boxShadow: "0px 4px 4px rgba(0, 0, 0, 0.25)",
-
       borderRadius: "5px",
     },
   },
@@ -144,15 +111,10 @@ export const styles = {
   textFieldlable: {
     sx: {
       fontFamily: "Montserrat",
-
       fontStyle: "normal",
-
       fontWeight: 500,
-
       fontSize: "12px",
-
       letterSpacing: "0.3px",
-
       color: "#252733",
     },
   },
@@ -160,15 +122,10 @@ export const styles = {
   textField: {
     sx: {
       fontFamily: "Montserrat",
-
       fontStyle: "normal",
-
       fontWeight: 500,
-
       fontSize: "14px",
-
       letterSpacing: "0.2px",
-
       color: "#000000",
     },
   },
@@ -176,28 +133,19 @@ export const styles = {
   parentBoxCancleButton: {
     sx: {
       backgroundColor: "#FFFFFF",
-
       color: "black",
-
       borderRadius: "5px",
-
       marginRight: "10px",
-
       fontfamily: "Montserrat",
-
       fontStyle: "normal",
     },
   },
   parentBoxUploadButton: {
     sx: {
       backgroundColor: "#0FBD35",
-
       color: "white",
-
       borderRadius: "5px",
-
       fontfamily: "Montserrat",
-
       fontStyle: "normal",
       mt: 4,
       p: 1,
@@ -227,13 +175,9 @@ export const styles = {
   parentBoxSaveButton: {
     sx: {
       fontfamily: "Montserrat",
-
       backgroundColor: "#F58634",
-
       borderRadius: "5px",
-
       marginLeft: "10px",
-
       fontStyle: "normal",
     },
   },

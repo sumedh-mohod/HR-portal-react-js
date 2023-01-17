@@ -22,31 +22,33 @@ import Loader from "../../components/HigherOrder/Loader";
 import OrganizationList from "../../components/Company/OrganizationlData/OrganizationList";
 import OrganizationalCard from "../../components/Company/OrganizationlData/OrganizationalCard";
 import CollectionsIcon from "@mui/icons-material/Collections";
-import PictureAsPdfIcon from "@mui/icons-material/PictureAsPdf";
+import PdfIcon from "../../components/Icons/PdfIcon";
+import WordIcon from "../../components/Icons/WordIcon";
 import ViewOraganisationalDatamodel from "../../components/Company/OrganizationlData/ViewOraganisationalDatamodel";
 import AddOrganisationData from "../../components/Company/OrganizationlData/AddOrganisationData";
 
-import Tabs from '@mui/material/Tabs';
-import Tab from '@mui/material/Tab';
+import Tabs from "@mui/material/Tabs";
+import Tab from "@mui/material/Tab";
 import InformationSecurity from "../../components/Company/OrganizationlData/InformationSecurity";
 import SecurityPolicies from "../../components/Company/OrganizationlData/SecurityPolicies";
 import Processes from "../../components/Company/OrganizationlData/Processes";
 import DosAndDont from "../../components/Company/OrganizationlData/DosAndDont";
-import { styles} from "../../styles/components/organizationData";
+import { styles } from "../../styles/components/organizationData";
 
 const Data = [
-  { id:1,
-    mainIcon: <PictureAsPdfIcon sx={{ color: "#F24A4A", fontSize: "45px", mt: 3 }} />,
-    subIcon: <PictureAsPdfIcon fontSize="small" sx={{ color: "#F24A4A" }} />,
+  {
+    id: 1,
+    mainIcon: <PdfIcon width={60} height={55}/>,
+    subIcon: <PdfIcon  width={30} height={25} />,
     File_name: "Certificate 01.PDF",
   },
-  { id:2,
-    mainIcon: <CollectionsIcon sx={{ color: "#A9A9A9", fontSize: "45px", mt: 3 }} />,
-    subIcon: <CollectionsIcon fontSize="small" sx={{ color: "#A9A9A9" }} />,
+  {
+    id: 2,
+    mainIcon: <WordIcon width={60} height={55}/>,
+    subIcon: <WordIcon width={30} height={25} />,
     File_name: "Certificate 02.PDF",
   },
 ];
-
 
 let PageSize = 5;
 interface TabPanelProps {
@@ -78,7 +80,7 @@ function TabPanel(props: TabPanelProps) {
 function a11yProps(index: number) {
   return {
     id: `simple-tab-${index}`,
-    'aria-controls': `simple-tabpanel-${index}`,
+    "aria-controls": `simple-tabpanel-${index}`,
   };
 }
 
@@ -94,14 +96,12 @@ const OrganizationlData = () => {
   const openDropDown = Boolean(anchorEl);
   const [viewOpen, setViewOpen] = React.useState(false);
   const [addOpen, setAddOpen] = React.useState(false);
-  const handleViewOpen = () =>setViewOpen(true)
-  ;
+  const handleViewOpen = () => setViewOpen(true);
   const handleViewClose = () => setViewOpen(false);
   const handleAddOpen = () => setAddOpen(true);
   const handleAddClose = () => setAddOpen(false);
-
   const [value, setValue] = React.useState(0);
-
+  const [newCardData, setnewCardData] = useState();
   const handleChange = (event: React.SyntheticEvent, newValue: number) => {
     setValue(newValue);
   };
@@ -117,13 +117,6 @@ const OrganizationlData = () => {
     setCurrentData(DataSliced);
   }, [currentPage]);
 
-  // useEffect(() => {
-  //   dispatch(getCompanies())
-  //      .unwrap()
-  //     .then((response: any) => {})
-  //     .catch((error) => {});
-  // }, []);
-  
   const handlePageChange = (
     event: React.ChangeEvent<unknown>,
     value: number
@@ -148,12 +141,21 @@ const OrganizationlData = () => {
       setCurrentData(DataSliced);
     }
   };
+  const handleCardData =(currId:any)=>{
+    const CardData:any = Data.find((id)=>{
+       return currId == id.id
+    }); 
+    console.log("card data",CardData)
+    setnewCardData(CardData);
+ 
+  }
+  console.log("new card data",newCardData)
   
   return (
     <Box sx={{ display: "flex", flexDirection: "column" }}>
       {/* <Loader isLoading={isLoadingRequest} /> */}
       {/* box for search bar and company */}
-      <Box {...styles.companyTitleBox}>
+      <Box {...styles.OrganizationlDataTitleBox}>
         <Typography variant="h5" {...globalStyles.moduleTitle}>
           Organizationl Data
         </Typography>
@@ -193,35 +195,52 @@ const OrganizationlData = () => {
       </Box>
 
       {/* list */}
-    
-    <Box sx={{ width: '100%' }}>
-      <Box >
-        <Tabs  {...styles.List} value={value} onChange={handleChange} aria-label="basic tabs example">
-          <Tab   {...styles.ListItem} label="Certificates" {...a11yProps(0)} />
-          <Tab   {...styles.ListItem}label="Information Security" {...a11yProps(1)} />
-          <Tab   {...styles.ListItem}label="Security Policies" {...a11yProps(2)} />
-          <Tab   {...styles.ListItem}label="Processes" {...a11yProps(3)} />
-          <Tab   {...styles.ListItem}label="Do’s & Don’t" {...a11yProps(4)} />
-        </Tabs>
+
+      <Box sx={{ width: "100%" }}>
+        <Box>
+          <Tabs
+            {...styles.Tabs}
+            value={value}
+            onChange={handleChange}
+            aria-label="basic tabs example"
+          >
+            <Tab {...styles.Tab} label="Certificates" {...a11yProps(0)} />
+            <Tab
+              {...styles.Tab}
+              label="Information Security"
+              {...a11yProps(1)}
+            />
+            <Tab {...styles.Tab} label="Security Policies" {...a11yProps(2)} />
+            <Tab {...styles.Tab} label="Processes" {...a11yProps(3)} />
+            <Tab {...styles.Tab} label="Do’s & Don’t" {...a11yProps(4)} />
+          </Tabs>
+        </Box>
+        <TabPanel value={value} index={0}>
+          <OrganizationalCard
+          handleCardData={handleCardData}
+            organasationlData={currentData}
+            handleViewOpen={handleViewOpen}
+          />
+        </TabPanel>
+        <TabPanel value={value} index={1}>
+          <InformationSecurity />
+        </TabPanel>
+        <TabPanel value={value} index={2}>
+          <SecurityPolicies />
+        </TabPanel>
+        <TabPanel value={value} index={3}>
+          <Processes />
+        </TabPanel>
+        <TabPanel value={value} index={4}>
+          <DosAndDont />
+        </TabPanel>
       </Box>
-      <TabPanel value={value} index={0}>
-      <OrganizationalCard  organasationlData={currentData} handleViewOpen={handleViewOpen}/>
-      </TabPanel>
-      <TabPanel value={value} index={1}>
-      <InformationSecurity/>
-      </TabPanel>
-      <TabPanel value={value} index={2}>
-        <SecurityPolicies/>
-      </TabPanel>
-      <TabPanel value={value} index={3}>
-       <Processes/>
-      </TabPanel>
-      <TabPanel value={value} index={4}>
-      <DosAndDont/>
-      </TabPanel>
-    </Box>
-    <ViewOraganisationalDatamodel viewOpen={viewOpen} handleViewClose={handleViewClose}/>
-    <AddOrganisationData addOpen={addOpen} handleAddClose={handleAddClose}/>
+      <ViewOraganisationalDatamodel
+        viewOpen={viewOpen}
+        handleViewClose={handleViewClose}
+        newCardData={newCardData}
+      />
+      <AddOrganisationData addOpen={addOpen} handleAddClose={handleAddClose} />
       <Paginations handlePageChange={handlePageChange} />
     </Box>
   );

@@ -3,30 +3,19 @@ import Divider from "@mui/material/Divider";
 import Typography from "@mui/material/Typography";
 import React from "react";
 import CloseIcon from "@mui/icons-material/Close";
-import PictureAsPdfIcon from "@mui/icons-material/PictureAsPdf";
-const style = {
-  position: "absolute" as "absolute",
-  top: "50%",
-  left: "50%",
-  transform: "translate(-50%, -50%)",
-  width: 400,
-  bgcolor: "#ffff",
-  backgroundColor:"#ffff",
-  p:2,
-  border: "1px solid #DFDFDF",
-  boxshadow: "0px 4px 4px rgba(0, 0, 0, 0.25)",
-  borderRadius: "5px",
-};
+import PdfIcon from "../../Icons/PdfIcon";
+import { globalStyles } from "../../../styles/global";
+import { styles } from "../../../styles/components/organizationData";
 const ViewOraganisationalDatamodel = ({
   handleViewClose,
   viewOpen,
-  
+  newCardData,
 }: {
   handleViewClose: any;
   viewOpen: any;
-
+  newCardData: any;
 }) => {
-  
+  console.log("new card data from view", newCardData);
   return (
     <Box>
       <Modal
@@ -35,9 +24,10 @@ const ViewOraganisationalDatamodel = ({
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
       >
-        <Box sx={style}>
+        <Box {...styles.modalBox}>
           <Box
             sx={{
+              p: 2,
               display: "flex",
               justifyContent: "space-between",
               alignItems: "center",
@@ -50,43 +40,30 @@ const ViewOraganisationalDatamodel = ({
                 alignItems: "center",
               }}
             >
-              <PictureAsPdfIcon
-                fontSize="small"
-                sx={{ color: "#F24A4A", mr: 2 }}
-              />
+              {newCardData?.subIcon}
               <Typography
                 id="modal-modal-title"
                 variant="h6"
                 component="h2"
-                sx={{
-                  ms: 2,
-                  fontFamily: "Montserrat",
-                  fontStyle: "normal",
-                  fontWeight: 500,
-                  fontSize: "14px",
-                  letterSpacing: "0.2px",
-                  color: "#000000",
-                }}
+                {...styles.textField}
               >
-                Upload Leave Policy
+                {newCardData?.File_name}
               </Typography>
             </Box>
             <CloseIcon onClick={handleViewClose} />
           </Box>
 
-          <Divider sx={{p:1}}/>
+          <Divider />
           <Box
             sx={{
-              p: 2,
+              p: 5,
               display: "flex",
               flexDirection: "column",
               justifyContent: "space-between",
               alignItems: "center",
             }}
           >
-            <PictureAsPdfIcon
-              sx={{ color: "#F24A4A", fontSize: "45px", mt: 3 }}
-            />
+            {newCardData?.mainIcon}
             <Typography
               variant="h6"
               component="h2"
@@ -95,9 +72,10 @@ const ViewOraganisationalDatamodel = ({
                 fontFamily: "Montserrat",
                 fontStyle: "normal",
                 fontWeight: 500,
-                fontSize: "14px",
+                fontSize: "12px",
                 letterSpacing: "0.2px",
                 color: "#000000",
+                pb: 5,
               }}
             >
               Preview will show here
