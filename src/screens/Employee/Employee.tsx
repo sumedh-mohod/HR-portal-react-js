@@ -1,19 +1,18 @@
 import React, { useState, useEffect } from "react";
-
-import { GridColDef } from "@mui/x-data-grid";
-import { Box, Typography, Button } from "@mui/material";
 import { useNavigate } from "react-router-dom";
-import { styles } from "../../styles/screens/Employee";
+import { Box, Typography, Button } from "@mui/material";
+import { GridColDef } from "@mui/x-data-grid";
 import AddIcon from "@mui/icons-material/Add";
-import { globalStyles } from "../../styles/global";
 import EmployeeCard from "../../components/Employee/EmployeeCard";
 import EmployeeList from "../../components/Employee/EmployeeList";
+import Loader from "../../components/HigherOrder/Loader";
+import Search from "../../components/HigherOrder/Search";
 import CustomizationButtons from "../../components/HigherOrder/CustomizationButtons";
 import Paginations from "../../components/HigherOrder/Paginations";
 import { useAppDispatch, useAppSelector } from "../../store/hooks";
 import { getEmployees } from "../../store/reducers/employee/employees";
-import Loader from "../../components/HigherOrder/Loader";
-import Search from "../../components/HigherOrder/Search";
+import { globalStyles } from "../../styles/global";
+import { styles } from "../../styles/screens/Employee";
 
 // colums data
 const columns: GridColDef[] = [
