@@ -5,9 +5,7 @@ import { globalStyles } from "../../../styles/global";
 import { styles } from "../../../styles/components/addCompany";
 import Grid from "@mui/material/Grid/Grid";
 import Card from "@mui/material/Card/Card";
-import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
-import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
-
+import DeleteIcon from "../../Icons/DeleteIcon";
 import {
   Modal,
   Paper,
@@ -22,9 +20,11 @@ import {
 const OrganizationalCard = ({
   organasationlData,
   handleViewOpen,
+  handleCardData
 }: {
   organasationlData: any;
   handleViewOpen: any;
+  handleCardData:any;
 }) => {
  const handleDelet =()=>{
   console.log("delet click")
@@ -38,7 +38,6 @@ const OrganizationalCard = ({
             <Card
             key={index}
               variant="outlined"
-             
               sx={{
                 height: "auto",
                 background: "#FFFFFF",
@@ -49,8 +48,8 @@ const OrganizationalCard = ({
                 mt: 2,
               }}
             >
-              <Box display="flex" alignItems="center" justifyContent="center">
-                {info.mainIcon}
+              <Box display="flex" alignItems="center" justifyContent="center" sx={{pt:3}}>
+                {info?.mainIcon}
               </Box>
 
               <Box
@@ -63,17 +62,13 @@ const OrganizationalCard = ({
                 }}
               >
                 <Box sx={{ display: "flex", justifyContent: "space-between" }}>
-                  {info.subIcon}
-                  <Typography variant="h6" sx={{ fontSize: "14px", ml: 1 }}  onClick={handleViewOpen}>
-                    {info.File_name}
+                  {info?.subIcon}
+                  <Typography variant="h6" sx={{ fontSize: "14px", ml: 1 }}  onClick={()=>{handleViewOpen();handleCardData(info.id)}}>
+                    {info?.File_name}
                   </Typography>
                 </Box>
                 <Box>
-                  <DeleteOutlineIcon
-                    fontSize="small"
-                    sx={{ color: "#F24A4A" }}
-                    onClick={handleDelet}
-                  />
+                  <DeleteIcon/>
                 </Box>
               </Box>
             </Card>
