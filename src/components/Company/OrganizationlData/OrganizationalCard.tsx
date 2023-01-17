@@ -4,8 +4,8 @@ import DeleteIcon from "../../Icons/DeleteIcon";
 
 const OrganizationalCard = ({
   organasationlData,
-  handleViewOpen,
-  handleCardData
+  // handleViewOpen,
+  handleCardData,
 }: {
   organasationlData: any;
   handleViewOpen: any;
@@ -33,7 +33,12 @@ const OrganizationalCard = ({
                 mt: 2,
               }}
             >
-              <Box display="flex" alignItems="center" justifyContent="center" sx={{ pt: 3 }}>
+              <Box
+                display="flex"
+                alignItems="center"
+                justifyContent="center"
+                sx={{ pt: 3 }}
+              >
                 {info?.mainIcon}
               </Box>
 
@@ -48,7 +53,14 @@ const OrganizationalCard = ({
               >
                 <Box sx={{ display: "flex", justifyContent: "space-between" }}>
                   {info?.subIcon}
-                  <Typography variant="h6" sx={{ fontSize: "14px", ml: 1 }} onClick={() => { handleViewOpen(); handleCardData(info.id) }}>
+                  <Typography
+                    variant="h6"
+                    sx={{ fontSize: "14px", ml: 1 }}
+                    onClick={() => {
+                      // handleViewOpen();
+                      handleCardData(info.id);
+                    }}
+                  >
                     {info?.File_name}
                   </Typography>
                 </Box>

@@ -5,7 +5,7 @@ import EditCompany from "../../components/Company/EditCompany";
 import LeavePolicy from "./LeavePolicy";
 import OrganizationlData from "./OrganisationalData";
 
-const ComapnyOperations = () => {
+const Operations = () => {
   let params = useParams();
 
   const { opration } = params;
@@ -31,4 +31,4 @@ const ComapnyOperations = () => {
   </>
 };
 
-export default ComapnyOperations;
+export default Operations;
