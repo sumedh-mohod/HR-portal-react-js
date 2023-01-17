@@ -19,9 +19,9 @@ const ComapnyOperations = () => {
           return (<AddCompany />)
         case "edit":
           return (<EditCompany />)
-        case "leave-policy":
+        case "leavepolicy":
           return (<LeavePolicy />)
-        case "organisational-data":
+        case "organisationaldata":
           return (<OrganizationlData />)
         case "holiday":
           return null
