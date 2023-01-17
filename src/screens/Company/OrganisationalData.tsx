@@ -1,11 +1,19 @@
-import React, { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
-import { Typography, Box, TextField, Button, Tabs, Tab } from "@mui/material";
-import SearchIcon from "@mui/icons-material/Search";
+import React, { useEffect, useState, useMemo } from "react";
+import { NavLink, useNavigate } from "react-router-dom";
+import {
+  Typography,
+  Box,
+  Button,
+  Tab,Tabs
+} from "@mui/material";
 import AddIcon from "@mui/icons-material/Add";
+import { globalStyles } from "../../styles/global";
+import { styles } from "../../styles/components/organizationData";
+import { useAppDispatch, useAppSelector } from "../../store/hooks";
+import Paginations from "../../components/HigherOrder/Paginations";
+import Search from "../../components/HigherOrder/Search";
 import PdfIcon from "../../components/Icons/PdfIcon";
 import WordIcon from "../../components/Icons/WordIcon";
-import Paginations from "../../components/HigherOrder/Paginations";
 import OrganizationalCard from "../../components/Company/OrganizationlData/OrganizationalCard";
 import ViewOraganisationalDatamodel from "../../components/Company/OrganizationlData/ViewOraganisationalDatamodel";
 import AddOrganisationData from "../../components/Company/OrganizationlData/AddOrganisationData";
@@ -13,9 +21,6 @@ import InformationSecurity from "../../components/Company/OrganizationlData/Info
 import SecurityPolicies from "../../components/Company/OrganizationlData/SecurityPolicies";
 import Processes from "../../components/Company/OrganizationlData/Processes";
 import DosAndDont from "../../components/Company/OrganizationlData/DosAndDont";
-import { useAppDispatch } from "../../store/hooks";
-import { globalStyles } from "../../styles/global";
-import { styles } from "../../styles/components/organizationData";
 
 const Data = [
   {
@@ -75,7 +80,7 @@ const OrganizationlData = () => {
   const [value, setValue] = React.useState(0);
   const [newCardData, setnewCardData] = useState();
 
-  // const handleViewOpen = () => setViewOpen(true);
+  const handleViewOpen = () => setViewOpen(true);
   const handleViewClose = () => setViewOpen(false);
   const handleAddOpen = () => setAddOpen(true);
   const handleAddClose = () => setAddOpen(false);
@@ -111,7 +116,6 @@ const OrganizationlData = () => {
     } else {
       const firstPageIndex = (currentPage - 1) * PageSize;
       const lastPageIndex = firstPageIndex + PageSize;
-
       const DataSliced = Data?.slice(firstPageIndex, lastPageIndex);
       setCurrentData(DataSliced);
     }
@@ -153,23 +157,15 @@ const OrganizationlData = () => {
           >
             Add
           </Button>
-          <TextField
-            sx={{ ml: 2 }}
-            size="small"
-            id="standard-bare"
-            variant="outlined"
-            value={searchText}
-            onChange={handleSearchChange}
-            placeholder="Search Organisational Data..."
-            InputProps={{
-              startAdornment: <SearchIcon />,
-            }}
+          <Search
+            searchText={searchText}
+            handleSearchChange={handleSearchChange}
+            placeholder={"Organizational Data..."}
           />
         </Box>
       </Box>
 
-      {/* list */}
-
+      {/* Tabs */}
       <Box sx={{ width: "100%" }}>
         <Box>
           <Tabs
@@ -177,6 +173,7 @@ const OrganizationlData = () => {
             value={value}
             onChange={handleChange}
             aria-label="basic tabs example"
+            TabIndicatorProps={{ style: { background: "#F58634" } }}
           >
             <Tab {...styles.Tab} label="Certificates" {...a11yProps(0)} />
             <Tab
@@ -193,7 +190,7 @@ const OrganizationlData = () => {
           <OrganizationalCard
             handleCardData={handleCardData}
             organasationlData={currentData}
-            // handleViewOpen={handleViewOpen}
+            handleViewOpen={handleViewOpen}
           />
         </TabPanel>
         <TabPanel value={value} index={1}>
@@ -215,7 +212,7 @@ const OrganizationlData = () => {
         newCardData={newCardData}
       />
       <AddOrganisationData addOpen={addOpen} handleAddClose={handleAddClose} />
-      <Paginations handlePageChange={handlePageChange} />
+      {currentData?.length >0 &&<Paginations handlePageChange={handlePageChange} />}
     </Box>
   );
 };

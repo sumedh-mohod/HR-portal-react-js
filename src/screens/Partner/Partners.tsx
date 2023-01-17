@@ -1,19 +1,18 @@
 import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { GridColDef } from "@mui/x-data-grid";
 import { Box, Typography, Button } from "@mui/material";
-import { useAppDispatch, useAppSelector } from "../../store/hooks";
-import { getPartners } from "../../store/reducers/partners/partners";
-import { useNavigate } from "react-router-dom";
-import { styles } from "../../styles/screens/Partners";
+import AddIcon from "@mui/icons-material/Add";
 import PartnersCard from "../../components/Partner/PartnersCard";
-import { globalStyles } from "../../styles/global";
 import PartnersList from "../../components/Partner/PartnersList";
 import CustomizationButtons from "../../components/HigherOrder/CustomizationButtons";
-import AddIcon from "@mui/icons-material/Add";
 import Paginations from "../../components/HigherOrder/Paginations";
 import Loader from "../../components/HigherOrder/Loader";
 import Search from "../../components/HigherOrder/Search";
-
+import { useAppDispatch, useAppSelector } from "../../store/hooks";
+import { getPartners } from "../../store/reducers/partners/partners";
+import { globalStyles } from "../../styles/global";
+import { styles } from "../../styles/screens/Partners";
 const columns: GridColDef[] = [
   {
     field: "id",

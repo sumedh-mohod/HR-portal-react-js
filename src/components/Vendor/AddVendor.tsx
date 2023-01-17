@@ -1,4 +1,5 @@
 import React, { useRef } from "react";
+import { useNavigate } from "react-router-dom";
 import { useFormik } from "formik";
 import { addVendorValidator } from "../../utils/validations/auth";
 import {
@@ -11,18 +12,14 @@ import {
     Typography,
     MenuItem,
     Card,
-    IconButton,
 } from "@mui/material";
-import { styles } from "../../styles/components/addVendor";
-import { useNavigate } from "react-router-dom";
-import { globalStyles } from "../../styles/global";
-import { useAppDispatch } from "../../store/hooks";
 import CheckIcon from "@mui/icons-material/Check";
 import CloseIcon from "@mui/icons-material/Close";
 import AddIcon from "@mui/icons-material/Add";
-import DisabledByDefaultIcon from "@mui/icons-material/DisabledByDefault";
-import AddContact from "../AddContact";
+import { useAppDispatch } from "../../store/hooks";
 import { addVendor } from "../../store/reducers/vendors/vendors";
+import { globalStyles } from "../../styles/global";
+import { styles } from "../../styles/components/addVendor";
 const AddVendor = () => {
     const dispatch = useAppDispatch();
     const navigate = useNavigate();

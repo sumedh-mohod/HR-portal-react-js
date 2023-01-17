@@ -120,6 +120,7 @@ export default function AddOrganisationData({
                     {...styles.parentBoxSaveButton}
                     variant="contained"
                     type="submit"
+                    onClick={handleAddClose}
                   >
                     Save
                   </Button>

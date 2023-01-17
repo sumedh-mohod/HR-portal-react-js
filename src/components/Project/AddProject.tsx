@@ -1,4 +1,5 @@
 import React, { useRef } from "react";
+import { useNavigate } from "react-router-dom";
 import { useFormik } from "formik";
 import { addProjectValidator } from "../../utils/validations/auth";
 import {
@@ -9,15 +10,12 @@ import {
   FormLabel,
   TextField,
   Typography,
-  MenuItem,
   Card,
 } from "@mui/material";
-import { styles } from "../../styles/components/addProject";
-import { useNavigate } from "react-router-dom";
-import { globalStyles } from "../../styles/global";
 import { useAppDispatch } from "../../store/hooks";
 import { addProject } from "../../store/reducers/projects/projects";
-
+import { globalStyles } from "../../styles/global";
+import { styles } from "../../styles/components/addProject";
 const AddProject = () => {
   const navigate = useNavigate();
     const dispatch = useAppDispatch();
