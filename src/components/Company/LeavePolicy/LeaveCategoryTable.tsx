@@ -28,6 +28,9 @@ const LeaveCategoryTable = ({
                         columns={columns}
                         hideFooterPagination={true}
                         hideFooter={true}
+                        disableColumnMenu={true}
+                        disableColumnFilter={true}
+                        disableColumnSelector={true}
                     />
                 </Grid>
                 <Grid item lg={1}>
