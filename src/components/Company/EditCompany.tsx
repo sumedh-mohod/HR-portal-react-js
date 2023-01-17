@@ -1,14 +1,10 @@
 import React, { useState } from "react";
+import { useNavigate, useParams } from "react-router-dom";
 import { Box, Container, Typography, Button } from "@mui/material";
 import EditIcon from "@mui/icons-material/Edit";
-import SaveIcon from "@mui/icons-material/Save";
 import CompanyDetailsCard from "./CompanyDetailsCard";
 import CompanyEditCard from "./CompanyEditCard";
-import HolidayCard from "./HolidayCard";
 import { styles } from "../../styles/components/editCompany";
-import { useNavigate, useParams } from "react-router-dom";
-import { parse } from "path";
-import HollidayDetailsCard from "../Partner/HollidayCard";
 
 const EditCompany = () => {
   let { params } = useParams();

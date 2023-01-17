@@ -77,8 +77,8 @@ const Employee = () => {
   useEffect(() => {
     dispatch(getEmployees())
       .unwrap()
-      .then((response: any) => {})
-      .catch((error: any) => {});
+      .then((response: any) => { })
+      .catch((error: any) => { });
   }, []);
 
   useEffect(() => {
@@ -212,7 +212,9 @@ const Employee = () => {
           />
         )}
       </Box>
-      <Paginations handlePageChange={handlePageChange} />
+      {employees?.length > 0 &&
+        <Paginations handlePageChange={handlePageChange} />
+      }
     </Box>
   );
 };

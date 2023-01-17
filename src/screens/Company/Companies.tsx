@@ -1,24 +1,18 @@
 import React, { useEffect, useState } from "react";
-
 import { useNavigate } from "react-router-dom";
-
 import { Typography, Box, Button } from "@mui/material";
-import AddIcon from "@mui/icons-material/Add";
-
 import { GridColDef } from "@mui/x-data-grid";
-
-import { styles } from "../../styles/screens/CompanyList";
-import { globalStyles } from "../../styles/global";
-
-import { useAppDispatch, useAppSelector } from "../../store/hooks";
-import { getCompanies } from "../../store/reducers/companies/companies";
-
+import AddIcon from "@mui/icons-material/Add";
 import CompanyCard from "../../components/Company/CompanyCard";
 import CompaniesList from "../../components/Company/CompanyList";
 import Paginations from "../../components/HigherOrder/Paginations";
 import CustomizationButtons from "../../components/HigherOrder/CustomizationButtons";
 import Loader from "../../components/HigherOrder/Loader";
 import Search from "../../components/HigherOrder/Search";
+import { useAppDispatch, useAppSelector } from "../../store/hooks";
+import { getCompanies } from "../../store/reducers/companies/companies";
+import { globalStyles } from "../../styles/global";
+import { styles } from "../../styles/screens/CompanyList";
 
 const columns: GridColDef[] = [
   {
@@ -134,8 +128,8 @@ const CompanyList = () => {
   useEffect(() => {
     dispatch(getCompanies())
       .unwrap()
-      .then((response: any) => {})
-      .catch((error) => {});
+      .then((response: any) => { })
+      .catch((error) => { });
   }, []);
 
   const handleCompanyAddClick = () => {
@@ -263,7 +257,9 @@ const CompanyList = () => {
           />
         )}
       </Box>
-      <Paginations handlePageChange={handlePageChange} />
+      {companies?.length > 0 &&
+        <Paginations handlePageChange={handlePageChange} />
+      }
     </Box>
   );
 };

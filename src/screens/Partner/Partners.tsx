@@ -60,8 +60,8 @@ const Partners = () => {
   useEffect(() => {
     dispatch(getPartners())
       .unwrap()
-      .then((response: any) => {})
-      .catch((error: any) => {});
+      .then((response: any) => { })
+      .catch((error: any) => { });
   }, [dispatch]);
 
   useEffect(() => {
@@ -197,7 +197,9 @@ const Partners = () => {
           />
         )}
       </Box>
-      <Paginations handlePageChange={handlePageChange} />
+      {partners?.length > 0 &&
+        <Paginations handlePageChange={handlePageChange} />
+      }
     </Box>
   );
 };

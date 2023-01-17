@@ -1,50 +1,32 @@
-import React, { useEffect, useState, useMemo } from "react";
-import { NavLink, useNavigate } from "react-router-dom";
-import {
-  Grid,
-  Typography,
-  Box,
-  TextField,
-  Button,
-  Menu,
-  MenuItem,
-  ListItem,
-  List,
-} from "@mui/material";
+import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { Typography, Box, TextField, Button, Tabs, Tab } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
 import AddIcon from "@mui/icons-material/Add";
-import { GridColDef } from "@mui/x-data-grid";
-import { globalStyles } from "../../styles/global";
-import { useAppDispatch, useAppSelector } from "../../store/hooks";
-import Paginations from "../../components/HigherOrder/Paginations";
-import CustomizationButtons from "../../components/HigherOrder/CustomizationButtons";
-import Loader from "../../components/HigherOrder/Loader";
-import OrganizationList from "../../components/Company/OrganizationlData/OrganizationList";
-import OrganizationalCard from "../../components/Company/OrganizationlData/OrganizationalCard";
-import CollectionsIcon from "@mui/icons-material/Collections";
 import PdfIcon from "../../components/Icons/PdfIcon";
 import WordIcon from "../../components/Icons/WordIcon";
+import Paginations from "../../components/HigherOrder/Paginations";
+import OrganizationalCard from "../../components/Company/OrganizationlData/OrganizationalCard";
 import ViewOraganisationalDatamodel from "../../components/Company/OrganizationlData/ViewOraganisationalDatamodel";
 import AddOrganisationData from "../../components/Company/OrganizationlData/AddOrganisationData";
-
-import Tabs from "@mui/material/Tabs";
-import Tab from "@mui/material/Tab";
 import InformationSecurity from "../../components/Company/OrganizationlData/InformationSecurity";
 import SecurityPolicies from "../../components/Company/OrganizationlData/SecurityPolicies";
 import Processes from "../../components/Company/OrganizationlData/Processes";
 import DosAndDont from "../../components/Company/OrganizationlData/DosAndDont";
+import { useAppDispatch } from "../../store/hooks";
+import { globalStyles } from "../../styles/global";
 import { styles } from "../../styles/components/organizationData";
 
 const Data = [
   {
     id: 1,
-    mainIcon: <PdfIcon width={60} height={55}/>,
-    subIcon: <PdfIcon  width={30} height={25} />,
+    mainIcon: <PdfIcon width={60} height={55} />,
+    subIcon: <PdfIcon width={30} height={25} />,
     File_name: "Certificate 01.PDF",
   },
   {
     id: 2,
-    mainIcon: <WordIcon width={60} height={55}/>,
+    mainIcon: <WordIcon width={60} height={55} />,
     subIcon: <WordIcon width={30} height={25} />,
     File_name: "Certificate 02.PDF",
   },
@@ -141,16 +123,16 @@ const OrganizationlData = () => {
       setCurrentData(DataSliced);
     }
   };
-  const handleCardData =(currId:any)=>{
-    const CardData:any = Data.find((id)=>{
-       return currId == id.id
-    }); 
-    console.log("card data",CardData)
+  const handleCardData = (currId: any) => {
+    const CardData: any = Data.find((id) => {
+      return currId == id.id
+    });
+    console.log("card data", CardData)
     setnewCardData(CardData);
- 
+
   }
-  console.log("new card data",newCardData)
-  
+  console.log("new card data", newCardData)
+
   return (
     <Box sx={{ display: "flex", flexDirection: "column" }}>
       {/* <Loader isLoading={isLoadingRequest} /> */}
@@ -217,7 +199,7 @@ const OrganizationlData = () => {
         </Box>
         <TabPanel value={value} index={0}>
           <OrganizationalCard
-          handleCardData={handleCardData}
+            handleCardData={handleCardData}
             organasationlData={currentData}
             handleViewOpen={handleViewOpen}
           />

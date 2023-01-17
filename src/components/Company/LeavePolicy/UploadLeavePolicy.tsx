@@ -1,20 +1,10 @@
 import * as React from 'react';
-import Box from '@mui/material/Box';
-import Button from '@mui/material/Button';
-import Typography from '@mui/material/Typography';
-import Modal from '@mui/material/Modal';
-import Divider from '@mui/material/Divider';
+import { Box, Button, Grid, Typography, Modal, Divider, FormLabel, TextField, FormControl, TextareaAutosize } from '@mui/material';
 import CloseIcon from '@mui/icons-material/Close';
-import Grid from '@mui/material/Grid';
-import FormLabel from '@mui/material/FormLabel/FormLabel';
-import TextField from '@mui/material/TextField';
-import FormControl from '@mui/material/FormControl/FormControl';
-import { TextareaAutosize } from '@mui/base';
 import { globalStyles } from "../../../styles/global";
 import { styles } from '../../../styles/components/uploadLeavePolicy';
 
 export default function UploadLeavePolicy({
-    handleOpen,
     handleClose,
     open
 }: {

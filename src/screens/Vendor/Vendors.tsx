@@ -114,8 +114,8 @@ const Vendors = () => {
   useEffect(() => {
     dispatch(getVendors())
       .unwrap()
-      .then((response: any) => {})
-      .catch((error) => {});
+      .then((response: any) => { })
+      .catch((error) => { });
   }, []);
 
   useEffect(() => {
@@ -251,7 +251,9 @@ const Vendors = () => {
           />
         )}
       </Box>
-      <Paginations handlePageChange={handlePageChange} />
+      {vendors?.length > 0 &&
+        <Paginations handlePageChange={handlePageChange} />
+      }
     </Box>
   );
 };

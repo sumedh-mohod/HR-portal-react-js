@@ -1,19 +1,11 @@
 import React from "react";
 import { useFormik } from "formik";
-import {
-  Button,
-  Grid,
-  FormControl,
-  FormLabel,
-  TextField,
-  MenuItem,
-  Card, Box
-} from "@mui/material";
+import { Button, Grid, FormControl, FormLabel, TextField, MenuItem, Card, Box } from "@mui/material";
 import SaveIcon from '@mui/icons-material/Save';
-import { styles } from "../../styles/components/editCompany";
 import { editCompanyValidator } from "../../utils/validations/auth";
-import { useAppDispatch, useAppSelector } from "../../store/hooks";
+import { useAppDispatch } from "../../store/hooks";
 import { updateCompany } from "../../store/reducers/companies/companies";
+import { styles } from "../../styles/components/editCompany";
 const CompanyDetailsCard = () => {
   const dispatch = useAppDispatch();
   const {

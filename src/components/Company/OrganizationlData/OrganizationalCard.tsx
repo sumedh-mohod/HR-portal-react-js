@@ -1,21 +1,6 @@
-import Typography from "@mui/material/Typography";
-import { Box } from "@mui/system";
 import React from "react";
-import { globalStyles } from "../../../styles/global";
-import { styles } from "../../../styles/components/addCompany";
-import Grid from "@mui/material/Grid/Grid";
-import Card from "@mui/material/Card/Card";
+import { Box, Typography, Grid, Card } from "@mui/material";
 import DeleteIcon from "../../Icons/DeleteIcon";
-import {
-  Modal,
-  Paper,
-  Table,
-  TableBody,
-  TableCell,
-  TableContainer,
-  TableHead,
-  TableRow,
-} from "@mui/material";
 
 const OrganizationalCard = ({
   organasationlData,
@@ -24,11 +9,11 @@ const OrganizationalCard = ({
 }: {
   organasationlData: any;
   handleViewOpen: any;
-  handleCardData:any;
+  handleCardData: any;
 }) => {
- const handleDelet =()=>{
-  console.log("delet click")
- }
+  const handleDelete = () => {
+    console.log("delet click")
+  }
 
   return (
     <Box>
@@ -36,7 +21,7 @@ const OrganizationalCard = ({
         {organasationlData?.map((info: any, index: number) => (
           <Grid item xs={12} sm={12} md={6} lg={3} xl={3}>
             <Card
-            key={index}
+              key={index}
               variant="outlined"
               sx={{
                 height: "auto",
@@ -48,7 +33,7 @@ const OrganizationalCard = ({
                 mt: 2,
               }}
             >
-              <Box display="flex" alignItems="center" justifyContent="center" sx={{pt:3}}>
+              <Box display="flex" alignItems="center" justifyContent="center" sx={{ pt: 3 }}>
                 {info?.mainIcon}
               </Box>
 
@@ -63,12 +48,12 @@ const OrganizationalCard = ({
               >
                 <Box sx={{ display: "flex", justifyContent: "space-between" }}>
                   {info?.subIcon}
-                  <Typography variant="h6" sx={{ fontSize: "14px", ml: 1 }}  onClick={()=>{handleViewOpen();handleCardData(info.id)}}>
+                  <Typography variant="h6" sx={{ fontSize: "14px", ml: 1 }} onClick={() => { handleViewOpen(); handleCardData(info.id) }}>
                     {info?.File_name}
                   </Typography>
                 </Box>
                 <Box>
-                  <DeleteIcon/>
+                  <DeleteIcon onClick={handleDelete} />
                 </Box>
               </Box>
             </Card>
