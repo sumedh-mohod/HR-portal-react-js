@@ -6,10 +6,15 @@ import { styles } from '../../../styles/components/leaveCategoryTable';
 
 const LeaveCategoryTable = ({
     rows,
-    columns
+    columns,
+    handleOpen,
+    open
 }: {
     rows: any,
-    columns: any
+    columns: any,
+    handleOpen: any,
+    open: any,
+
 }) => {
     return (
         <Card sx={{ p: 3 }}>
@@ -30,6 +35,7 @@ const LeaveCategoryTable = ({
                         variant="contained"
                         startIcon={<AddIcon />}
                         {...styles.addBtn}
+                        onClick={handleOpen}
                     >
                         Add
                     </Button>
