@@ -19,7 +19,6 @@ import { useAppDispatch, useAppSelector } from "../../store/hooks";
 import Paginations from "../../components/HigherOrder/Paginations";
 import CustomizationButtons from "../../components/HigherOrder/CustomizationButtons";
 import Loader from "../../components/HigherOrder/Loader";
-import OrganizationList from "../../components/Company/OrganizationlData/OrganizationList";
 import OrganizationalCard from "../../components/Company/OrganizationlData/OrganizationalCard";
 import CollectionsIcon from "@mui/icons-material/Collections";
 import PdfIcon from "../../components/Icons/PdfIcon";
@@ -203,6 +202,7 @@ const OrganizationlData = () => {
             value={value}
             onChange={handleChange}
             aria-label="basic tabs example"
+            TabIndicatorProps={{ style: { background: "#F58634" } }}
           >
             <Tab {...styles.Tab} label="Certificates" {...a11yProps(0)} />
             <Tab

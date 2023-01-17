@@ -36,6 +36,7 @@ export const styles = {
       borderBottom: "1px solid #C5C7CD",
       p: 0,
       mt: 5,
+      
     },
   },
   Tab: {
