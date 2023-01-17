@@ -1,11 +1,6 @@
 import React, { useEffect, useState, useMemo } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
-import {
-  Typography,
-  Box,
-  Button,
-  Tab, Tabs
-} from "@mui/material";
+import { Typography, Box, Button, Tab, Tabs } from "@mui/material";
 import AddIcon from "@mui/icons-material/Add";
 import { globalStyles } from "../../styles/global";
 import { styles } from "../../styles/components/organizationData";
@@ -22,7 +17,7 @@ import SecurityPolicies from "../../components/Company/OrganizationlData/Securit
 import Processes from "../../components/Company/OrganizationlData/Processes";
 import DosAndDont from "../../components/Company/OrganizationlData/DosAndDont";
 
-const Data = [
+const Data: any = [
   {
     id: 1,
     mainIcon: <PdfIcon width={60} height={55} />,
@@ -36,7 +31,6 @@ const Data = [
     File_name: "Certificate 02.PDF",
   },
 ];
-
 let PageSize = 5;
 interface TabPanelProps {
   children?: React.ReactNode;
@@ -121,7 +115,7 @@ const OrganizationlData = () => {
   };
 
   const handleCardData = (currId: any) => {
-    const CardData: any = Data.find((id) => {
+    const CardData: any = Data.find((id: any) => {
       return currId == id.id;
     });
     setnewCardData(CardData);
@@ -189,7 +183,7 @@ const OrganizationlData = () => {
           <OrganizationalCard
             handleCardData={handleCardData}
             organasationlData={currentData}
-          // handleViewOpen={handleViewOpen}
+            // handleViewOpen={handleViewOpen}
           />
         </TabPanel>
         <TabPanel value={value} index={1}>
@@ -211,7 +205,7 @@ const OrganizationlData = () => {
         newCardData={newCardData}
       />
       <AddOrganisationData addOpen={addOpen} handleAddClose={handleAddClose} />
-      {currentData?.length > 0 && <Paginations handlePageChange={handlePageChange} />}
+      {Data?.length > 0 && <Paginations handlePageChange={handlePageChange} />}
     </Box>
   );
 };
