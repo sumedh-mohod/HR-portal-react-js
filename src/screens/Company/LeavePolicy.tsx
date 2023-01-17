@@ -7,6 +7,7 @@ import { GridColDef } from '@mui/x-data-grid'
 import UploadLeavePolicy from '../../components/Company/LeavePolicy/UploadLeavePolicy';
 import LeaveCategoryTable from '../../components/Company/LeavePolicy/LeaveCategoryTable';
 import LeavePolicyCard from '../../components/Company/LeavePolicy/LeavePolicyCard';
+import LeavePolicyModel from "../../components/Company/LeavePolicy/LeavePolicyModel";
 
 const columns: GridColDef[] = [
   {
@@ -79,6 +80,12 @@ const LeavePolicy = () => {
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
+
+
+  const [viewOpen, setViewOpen] = React.useState(false);
+  const handleViewOpen = () => setViewOpen(true);
+  const handleViewClose = () => setViewOpen(false);
+
   return (
     <Box>
       <Box {...styles.parentBox}>
@@ -86,14 +93,15 @@ const LeavePolicy = () => {
           Leave Policy
         </Typography>
       </Box>
-      <LeavePolicyCard handleOpen={handleOpen} />
+      <LeavePolicyCard handleViewOpen={handleViewOpen} />
       <Box {...styles.parentBox}>
         <Typography {...globalStyles.moduleTitle} variant="h5">
           Leave Category
         </Typography>
       </Box>
-      <LeaveCategoryTable rows={rows} columns={columns} />
+      <LeaveCategoryTable rows={rows} columns={columns} handleOpen={handleOpen} open={open} />
       <UploadLeavePolicy handleOpen={handleOpen} handleClose={handleClose} open={open} />
+      <LeavePolicyModel handleOpen={handleViewOpen} handleClose={handleViewClose} open={viewOpen} />
     </Box>
   )
 }

@@ -106,7 +106,8 @@ export default function UploadLeavePolicy({
                                 <Box
                                     sx={{ display: "flex", justifyContent: "flex-end" }}
                                 >
-                                    <Button {...styles.parentBoxCancleButton} variant="contained">
+                                    <Button {...styles.parentBoxCancleButton} variant="contained" onClick={handleClose}
+                                    >
                                         Cancle
                                     </Button>
                                     <Button
