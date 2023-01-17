@@ -6,6 +6,7 @@ import KeyboardArrowLeftIcon from "@mui/icons-material/KeyboardArrowLeft";
 import KeyboardArrowRightIcon from "@mui/icons-material/KeyboardArrowRight";
 
 import { styles } from "../../styles/components/paginations";
+import React from "react";
 
 const Paginations = (props: any) => {
   const { handlePageChange } = props;
