@@ -22,18 +22,16 @@ import SecurityPolicies from "../../components/Company/OrganizationlData/Securit
 import Processes from "../../components/Company/OrganizationlData/Processes";
 import DosAndDont from "../../components/Company/OrganizationlData/DosAndDont";
 
-
-
 const Data = [
   {
     id: 1,
-    mainIcon: <PdfIcon width={60} height={55}/>,
-    subIcon: <PdfIcon  width={30} height={25} />,
+    mainIcon: <PdfIcon width={60} height={55} />,
+    subIcon: <PdfIcon width={30} height={25} />,
     File_name: "Certificate 01.PDF",
   },
   {
     id: 2,
-    mainIcon: <WordIcon width={60} height={55}/>,
+    mainIcon: <WordIcon width={60} height={55} />,
     subIcon: <WordIcon width={30} height={25} />,
     File_name: "Certificate 02.PDF",
   },
@@ -74,29 +72,22 @@ function a11yProps(index: number) {
 }
 
 const OrganizationlData = () => {
-  const dispatch = useAppDispatch();
-  const navigate = useNavigate();
-  const [designView, setDesignView] = useState("grid");
-  const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
-  const [showColumns, setShowColumns] = useState(Data);
   const [currentPage, setCurrentPage] = useState(1);
   const [searchText, setSearchText] = useState("");
   const [currentData, setCurrentData] = useState<any>([]);
-  const openDropDown = Boolean(anchorEl);
   const [viewOpen, setViewOpen] = React.useState(false);
   const [addOpen, setAddOpen] = React.useState(false);
-  const handleViewOpen = () => setViewOpen(true);
+  const [value, setValue] = React.useState(0);
+  const [newCardData, setnewCardData] = useState();
+
+  // const handleViewOpen = () => setViewOpen(true);
   const handleViewClose = () => setViewOpen(false);
   const handleAddOpen = () => setAddOpen(true);
   const handleAddClose = () => setAddOpen(false);
-  const [value, setValue] = React.useState(0);
-  const [newCardData, setnewCardData] = useState();
+
   const handleChange = (event: React.SyntheticEvent, newValue: number) => {
     setValue(newValue);
   };
-
-  // const companyStore = useAppSelector((state) => state.companies);
-  // const { isLoadingRequest, companies } = companyStore;
 
   useEffect(() => {
     const firstPageIndex = (currentPage - 1) * PageSize;
@@ -129,16 +120,15 @@ const OrganizationlData = () => {
       setCurrentData(DataSliced);
     }
   };
-  const handleCardData =(currId:any)=>{
-    const CardData:any = Data.find((id)=>{
-       return currId == id.id
-    }); 
-    console.log("card data",CardData)
+
+  const handleCardData = (currId: any) => {
+    const CardData: any = Data.find((id) => {
+      return currId == id.id;
+    });
     setnewCardData(CardData);
- 
-  }
-  console.log("new card data",newCardData)
-  
+    setViewOpen(true);
+  };
+
   return (
     <Box sx={{ display: "flex", flexDirection: "column" }}>
       {/* <Loader isLoading={isLoadingRequest} /> */}
@@ -198,9 +188,9 @@ const OrganizationlData = () => {
         </Box>
         <TabPanel value={value} index={0}>
           <OrganizationalCard
-          handleCardData={handleCardData}
+            handleCardData={handleCardData}
             organasationlData={currentData}
-            handleViewOpen={handleViewOpen}
+            // handleViewOpen={handleViewOpen}
           />
         </TabPanel>
         <TabPanel value={value} index={1}>
