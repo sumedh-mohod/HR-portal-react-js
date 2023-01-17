@@ -10,7 +10,6 @@ export const styles = {
       p: 2,
       mt: 2,
       mb: 2,
-      cursor: "pointer",
     },
   },
   deleteIconBox: {
@@ -22,6 +21,7 @@ export const styles = {
       display: "flex",
       alignItems: "center",
       justifyContent: "center",
+      cursor: "pointer",
     },
   },
 };

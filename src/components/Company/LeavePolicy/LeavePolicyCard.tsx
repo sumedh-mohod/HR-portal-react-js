@@ -1,11 +1,8 @@
 import React from 'react'
-import Grid from '@mui/material/Grid'
-import Card from '@mui/material/Card/Card'
-import Typography from '@mui/material/Typography'
-import { Box } from '@mui/system'
-import { styles } from '../../../styles/components/LeavePolicyCard'
+import { Box, Typography, Card, Grid } from '@mui/material'
 import DeleteIcon from '../../Icons/DeleteIcon'
 import PdfIcon from '../../Icons/PdfIcon'
+import { styles } from '../../../styles/components/LeavePolicyCard'
 
 const LeavePolicyCard = ({
     handleViewOpen
@@ -13,7 +10,7 @@ const LeavePolicyCard = ({
 }: {
     handleViewOpen: any
 }) => {
-    const handleDelet = () => {
+    const handleDelete = () => {
         console.log("delete")
     }
     return (
@@ -32,7 +29,7 @@ const LeavePolicyCard = ({
                         <Box
                             {...styles.deleteIconBox}
                         >
-                            <DeleteIcon onClick={handleDelet} />
+                            <DeleteIcon onClick={handleDelete} fill={"#fff"} />
                         </Box>
                     </Grid>
                     <Grid item lg={12}
@@ -62,7 +59,7 @@ const LeavePolicyCard = ({
                                 height={23}
                             />
                             <Typography variant="h6"
-                                sx={{ fontSize: "14px", ml: 1 }}
+                                sx={{ fontSize: "14px", ml: 1, cursor: "pointer", }}
                                 onClick={handleViewOpen}
                             >
                                 Leave Policy.PDF

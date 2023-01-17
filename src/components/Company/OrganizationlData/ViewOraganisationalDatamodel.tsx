@@ -1,6 +1,5 @@
-import { Modal, Box } from "@mui/material";
-import Divider from "@mui/material/Divider";
-import Typography from "@mui/material/Typography";
+import React from "react";
+import { Modal, Box, Divider, Typography, } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
 import { styles } from "../../../styles/components/organizationData";
 

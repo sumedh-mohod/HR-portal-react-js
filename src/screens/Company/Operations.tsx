@@ -1,8 +1,7 @@
 import React from "react";
+import { useParams, useLocation } from "react-router-dom";
 import AddCompany from "../../components/Company/AddCompany";
 import EditCompany from "../../components/Company/EditCompany";
-
-import { useParams, useLocation } from "react-router-dom";
 import LeavePolicy from "./LeavePolicy";
 import OrganizationlData from "./OrganisationalData";
 

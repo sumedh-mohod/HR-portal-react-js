@@ -1,21 +1,11 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import { useFormik } from "formik";
 import { addCompanyValidator } from "../../utils/validations/auth";
-import {
-  Box,
-  Button,
-  Grid,
-  FormControl,
-  FormLabel,
-  TextField,
-  Typography,
-  MenuItem,
-  Card,
-} from "@mui/material";
-import { styles } from "../../styles/components/addCompany";
+import { Box, Button, Grid, FormControl, FormLabel, TextField, Typography, MenuItem, Card } from "@mui/material";
 import { useAppDispatch } from "../../store/hooks";
 import { addCompany } from "../../store/reducers/companies/companies";
-import { useNavigate } from "react-router-dom";
+import { styles } from "../../styles/components/addCompany";
 
 const AddCompany = () => {
   const dispatch = useAppDispatch();

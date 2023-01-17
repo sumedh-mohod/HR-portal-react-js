@@ -1,15 +1,18 @@
+import React from "react";
+import { Box, Typography, Grid, Card } from "@mui/material";
 import DeleteIcon from "../../Icons/DeleteIcon";
-import { Grid, Card, Typography, Box } from "@mui/material";
 
 const OrganizationalCard = ({
   organasationlData,
-  handleViewOpen,
   handleCardData,
 }: {
   organasationlData: any;
-  handleViewOpen: any;
   handleCardData: any;
 }) => {
+  const handleDelete = () => {
+    console.log("delet click")
+  }
+
   return (
     <Box>
       <Grid container spacing={2} sx={{ mt: 1 }}>
@@ -52,7 +55,7 @@ const OrganizationalCard = ({
                     variant="h6"
                     sx={{ fontSize: "14px", ml: 1, cursor: "pointer" }}
                     onClick={() => {
-                      handleViewOpen();
+                      // handleViewOpen();
                       handleCardData(info.id);
                     }}
                   >
