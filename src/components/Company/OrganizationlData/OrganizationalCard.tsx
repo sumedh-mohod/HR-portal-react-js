@@ -63,12 +63,12 @@ const OrganizationalCard = ({
               >
                 <Box sx={{ display: "flex", justifyContent: "space-between" }}>
                   {info?.subIcon}
-                  <Typography variant="h6" sx={{ fontSize: "14px", ml: 1 }}  onClick={()=>{handleViewOpen();handleCardData(info.id)}}>
+                  <Typography variant="h6" sx={{ fontSize: "14px", ml: 1,  cursor:"pointer" }}  onClick={()=>{handleViewOpen();handleCardData(info.id)}}>
                     {info?.File_name}
                   </Typography>
                 </Box>
-                <Box>
-                  <DeleteIcon/>
+                <Box sx={{cursor:"pointer"} }>
+                  <DeleteIcon fill={"#D82A2A"}/>
                 </Box>
               </Box>
             </Card>

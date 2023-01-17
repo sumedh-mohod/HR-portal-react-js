@@ -138,6 +138,8 @@ export const styles = {
       marginRight: "10px",
       fontfamily: "Montserrat",
       fontStyle: "normal",
+      cursor:"pointer"
+      
     },
   },
   parentBoxUploadButton: {
@@ -149,6 +151,7 @@ export const styles = {
       fontStyle: "normal",
       mt: 4,
       p: 1,
+    cursor:"pointer"
     },
   },
   selectFileButton: {
@@ -179,6 +182,7 @@ export const styles = {
       borderRadius: "5px",
       marginLeft: "10px",
       fontStyle: "normal",
+      cursor:"pointer"
     },
   },
 };
