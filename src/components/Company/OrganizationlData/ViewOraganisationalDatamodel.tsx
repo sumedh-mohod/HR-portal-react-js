@@ -1,10 +1,6 @@
-import { Modal, Box } from "@mui/material";
-import Divider from "@mui/material/Divider";
-import Typography from "@mui/material/Typography";
 import React from "react";
+import { Modal, Box, Divider, Typography, } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
-import PdfIcon from "../../Icons/PdfIcon";
-import { globalStyles } from "../../../styles/global";
 import { styles } from "../../../styles/components/organizationData";
 
 const ViewOraganisationalDatamodel = ({

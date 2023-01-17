@@ -1,11 +1,8 @@
 import React from 'react'
-import Grid from '@mui/material/Grid'
-import Card from '@mui/material/Card/Card'
-import Typography from '@mui/material/Typography'
-import { Box } from '@mui/system'
-import { styles } from '../../../styles/components/LeavePolicyCard'
+import { Box, Typography, Card, Grid } from '@mui/material'
 import DeleteIcon from '../../Icons/DeleteIcon'
 import PdfIcon from '../../Icons/PdfIcon'
+import { styles } from '../../../styles/components/LeavePolicyCard'
 
 const LeavePolicyCard = ({
     handleViewOpen

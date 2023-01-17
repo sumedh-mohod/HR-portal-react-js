@@ -76,8 +76,8 @@ const Projects = () => {
   useEffect(() => {
     dispatch(getProjects())
       .unwrap()
-      .then((response: any) => {})
-      .catch((error) => {});
+      .then((response: any) => { })
+      .catch((error) => { });
   }, [dispatch]);
 
   useEffect(() => {
@@ -213,7 +213,9 @@ const Projects = () => {
           />
         )}
       </Box>
-      <Paginations handlePageChange={handlePageChange} />
+      {projects?.length > 0 &&
+        <Paginations handlePageChange={handlePageChange} />
+      }
     </Box>
   );
 };
