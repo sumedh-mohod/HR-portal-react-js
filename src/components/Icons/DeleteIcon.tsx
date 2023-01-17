@@ -1,6 +1,6 @@
 import * as React from "react"
 
-const SvgComponent = (props:any) => (
+const DeleteIcon = (props:any) => (
   <svg
     width={16}
     height={18}
@@ -15,4 +15,4 @@ const SvgComponent = (props:any) => (
   </svg>
 )
 
-export default SvgComponent
+export default DeleteIcon
