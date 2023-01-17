@@ -104,6 +104,7 @@ export default function UploadLeavePolicy({
                                         {...styles.parentBoxSaveButton}
                                         variant="contained"
                                         type="submit"
+                                        onClick={handleClose}
                                     >
                                         Save
                                     </Button>

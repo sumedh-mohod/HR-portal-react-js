@@ -10,7 +10,7 @@ const LeavePolicyCard = ({
 }: {
     handleViewOpen: any
 }) => {
-    const handleDelet = () => {
+    const handleDelete = () => {
         console.log("delete")
     }
     return (
@@ -29,7 +29,7 @@ const LeavePolicyCard = ({
                         <Box
                             {...styles.deleteIconBox}
                         >
-                            <DeleteIcon onClick={handleDelet} />
+                            <DeleteIcon onClick={handleDelete} fill={"#fff"} />
                         </Box>
                     </Grid>
                     <Grid item lg={12}
@@ -59,7 +59,7 @@ const LeavePolicyCard = ({
                                 height={23}
                             />
                             <Typography variant="h6"
-                                sx={{ fontSize: "14px", ml: 1 }}
+                                sx={{ fontSize: "14px", ml: 1, cursor: "pointer", }}
                                 onClick={handleViewOpen}
                             >
                                 Leave Policy.PDF
