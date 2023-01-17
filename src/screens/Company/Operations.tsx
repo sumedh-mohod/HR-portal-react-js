@@ -9,26 +9,23 @@ const Operations = () => {
   let params = useParams();
 
   const { opration } = params;
-  return <>
 
-    {(() => {
-      switch (opration) {
-        case "add":
-          return (<AddCompany />)
-        case "edit":
-          return (<EditCompany />)
-        case "leavepolicy":
-          return (<LeavePolicy />)
-        case "organisationaldata":
-          return (<OrganizationlData />)
-        case "holiday":
-          return null
-        case "master":
-          return null
-        default:
-      }
-    })()}
-  </>
+  switch (opration) {
+    case "add":
+      return <AddCompany />;
+    case "edit":
+      return <EditCompany />;
+    case "leavepolicy":
+      return <LeavePolicy />;
+    case "organisationaldata":
+      return <OrganizationlData />;
+    case "holiday":
+      return null;
+    case "master":
+      return null;
+    default:
+      return null;
+  }
 };
 
 export default Operations;

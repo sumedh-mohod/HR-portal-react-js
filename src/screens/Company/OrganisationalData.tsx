@@ -4,7 +4,7 @@ import {
   Typography,
   Box,
   Button,
-  Tab,Tabs
+  Tab, Tabs
 } from "@mui/material";
 import AddIcon from "@mui/icons-material/Add";
 import { globalStyles } from "../../styles/global";
@@ -80,7 +80,6 @@ const OrganizationlData = () => {
   const [value, setValue] = React.useState(0);
   const [newCardData, setnewCardData] = useState();
 
-  const handleViewOpen = () => setViewOpen(true);
   const handleViewClose = () => setViewOpen(false);
   const handleAddOpen = () => setAddOpen(true);
   const handleAddClose = () => setAddOpen(false);
@@ -190,7 +189,7 @@ const OrganizationlData = () => {
           <OrganizationalCard
             handleCardData={handleCardData}
             organasationlData={currentData}
-            handleViewOpen={handleViewOpen}
+          // handleViewOpen={handleViewOpen}
           />
         </TabPanel>
         <TabPanel value={value} index={1}>
@@ -212,7 +211,7 @@ const OrganizationlData = () => {
         newCardData={newCardData}
       />
       <AddOrganisationData addOpen={addOpen} handleAddClose={handleAddClose} />
-      {currentData?.length >0 &&<Paginations handlePageChange={handlePageChange} />}
+      {currentData?.length > 0 && <Paginations handlePageChange={handlePageChange} />}
     </Box>
   );
 };

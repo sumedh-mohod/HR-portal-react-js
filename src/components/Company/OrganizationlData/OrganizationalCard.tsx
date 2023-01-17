@@ -4,11 +4,9 @@ import DeleteIcon from "../../Icons/DeleteIcon";
 
 const OrganizationalCard = ({
   organasationlData,
-  handleViewOpen,
   handleCardData,
 }: {
   organasationlData: any;
-  handleViewOpen: any;
   handleCardData: any;
 }) => {
   const handleDelete = () => {
@@ -57,7 +55,7 @@ const OrganizationalCard = ({
                     variant="h6"
                     sx={{ fontSize: "14px", ml: 1, cursor: "pointer" }}
                     onClick={() => {
-                      handleViewOpen();
+                      // handleViewOpen();
                       handleCardData(info.id);
                     }}
                   >
