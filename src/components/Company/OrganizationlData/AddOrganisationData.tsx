@@ -9,7 +9,7 @@ import Grid from "@mui/material/Grid";
 import FormLabel from "@mui/material/FormLabel/FormLabel";
 import TextField from "@mui/material/TextField";
 import FormControl from "@mui/material/FormControl/FormControl";
-import { TextareaAutosize } from "@mui/base";
+
 import { globalStyles } from "../../../styles/global";
 import { styles } from "../../../styles/components/organizationData";
 
@@ -129,6 +129,7 @@ export default function AddOrganisationData({
                     {...styles.parentBoxSaveButton}
                     variant="contained"
                     type="submit"
+                    onClick={handleAddClose}
                   >
                     Save
                   </Button>

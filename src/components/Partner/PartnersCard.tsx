@@ -2,8 +2,7 @@ import React from "react";
 import { Grid, Typography, Paper, Box, Card } from "@mui/material";
 import OrangeBitsIcon from "../Icons/OrangeBitsIcon";
 import { styles } from "../../styles/components/partnersList";
-import { globalStyles } from "../../styles/global";
-import AddIcon from "@mui/icons-material/Add";
+
 const PartnersListCard = ({
   partners,
   handlePartnerEditClick,

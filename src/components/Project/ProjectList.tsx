@@ -1,6 +1,6 @@
 import React from "react";
-import { DataGrid, GridToolbar, GridColDef } from "@mui/x-data-grid";
-import { Grid, Box, Card, Typography, Paper } from "@mui/material";
+import { DataGrid } from "@mui/x-data-grid";
+import { Grid, Card } from "@mui/material";
 
 const ProjectList = ({
     showColumns,
@@ -30,6 +30,9 @@ const ProjectList = ({
                         columns={showColumns}
                         hideFooterPagination={true}
                         hideFooter={true}
+                        disableColumnMenu={true}
+                        disableColumnFilter={true}
+                        disableColumnSelector={true}
                     />
                 </Grid>
             </Grid>

@@ -6,6 +6,7 @@ import CloseIcon from "@mui/icons-material/Close";
 import PdfIcon from "../../Icons/PdfIcon";
 import { globalStyles } from "../../../styles/global";
 import { styles } from "../../../styles/components/organizationData";
+
 const ViewOraganisationalDatamodel = ({
   handleViewClose,
   viewOpen,
@@ -50,7 +51,7 @@ const ViewOraganisationalDatamodel = ({
                 {newCardData?.File_name}
               </Typography>
             </Box>
-            <CloseIcon onClick={handleViewClose} />
+            <CloseIcon  sx={{cursor:"pointer"} }onClick={handleViewClose} />
           </Box>
 
           <Divider />
@@ -75,7 +76,7 @@ const ViewOraganisationalDatamodel = ({
                 fontSize: "12px",
                 letterSpacing: "0.2px",
                 color: "#000000",
-                pb: 5,
+                pb: 5,  
               }}
             >
               Preview will show here

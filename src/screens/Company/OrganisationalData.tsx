@@ -1,50 +1,37 @@
 import React, { useEffect, useState, useMemo } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import {
-  Grid,
   Typography,
   Box,
-  TextField,
   Button,
-  Menu,
-  MenuItem,
-  ListItem,
-  List,
+  Tab,Tabs
 } from "@mui/material";
-import SearchIcon from "@mui/icons-material/Search";
 import AddIcon from "@mui/icons-material/Add";
-import { GridColDef } from "@mui/x-data-grid";
 import { globalStyles } from "../../styles/global";
+import { styles } from "../../styles/components/organizationData";
 import { useAppDispatch, useAppSelector } from "../../store/hooks";
 import Paginations from "../../components/HigherOrder/Paginations";
-import CustomizationButtons from "../../components/HigherOrder/CustomizationButtons";
-import Loader from "../../components/HigherOrder/Loader";
-import OrganizationList from "../../components/Company/OrganizationlData/OrganizationList";
-import OrganizationalCard from "../../components/Company/OrganizationlData/OrganizationalCard";
-import CollectionsIcon from "@mui/icons-material/Collections";
+import Search from "../../components/HigherOrder/Search";
 import PdfIcon from "../../components/Icons/PdfIcon";
 import WordIcon from "../../components/Icons/WordIcon";
+import OrganizationalCard from "../../components/Company/OrganizationlData/OrganizationalCard";
 import ViewOraganisationalDatamodel from "../../components/Company/OrganizationlData/ViewOraganisationalDatamodel";
 import AddOrganisationData from "../../components/Company/OrganizationlData/AddOrganisationData";
-
-import Tabs from "@mui/material/Tabs";
-import Tab from "@mui/material/Tab";
 import InformationSecurity from "../../components/Company/OrganizationlData/InformationSecurity";
 import SecurityPolicies from "../../components/Company/OrganizationlData/SecurityPolicies";
 import Processes from "../../components/Company/OrganizationlData/Processes";
 import DosAndDont from "../../components/Company/OrganizationlData/DosAndDont";
-import { styles } from "../../styles/components/organizationData";
 
 const Data = [
   {
     id: 1,
-    mainIcon: <PdfIcon width={60} height={55}/>,
-    subIcon: <PdfIcon  width={30} height={25} />,
+    mainIcon: <PdfIcon width={60} height={55} />,
+    subIcon: <PdfIcon width={30} height={25} />,
     File_name: "Certificate 01.PDF",
   },
   {
     id: 2,
-    mainIcon: <WordIcon width={60} height={55}/>,
+    mainIcon: <WordIcon width={60} height={55} />,
     subIcon: <WordIcon width={30} height={25} />,
     File_name: "Certificate 02.PDF",
   },
@@ -85,29 +72,22 @@ function a11yProps(index: number) {
 }
 
 const OrganizationlData = () => {
-  const dispatch = useAppDispatch();
-  const navigate = useNavigate();
-  const [designView, setDesignView] = useState("grid");
-  const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
-  const [showColumns, setShowColumns] = useState(Data);
   const [currentPage, setCurrentPage] = useState(1);
   const [searchText, setSearchText] = useState("");
   const [currentData, setCurrentData] = useState<any>([]);
-  const openDropDown = Boolean(anchorEl);
   const [viewOpen, setViewOpen] = React.useState(false);
   const [addOpen, setAddOpen] = React.useState(false);
-  const handleViewOpen = () => setViewOpen(true);
+  const [value, setValue] = React.useState(0);
+  const [newCardData, setnewCardData] = useState();
+
+  // const handleViewOpen = () => setViewOpen(true);
   const handleViewClose = () => setViewOpen(false);
   const handleAddOpen = () => setAddOpen(true);
   const handleAddClose = () => setAddOpen(false);
-  const [value, setValue] = React.useState(0);
-  const [newCardData, setnewCardData] = useState();
+
   const handleChange = (event: React.SyntheticEvent, newValue: number) => {
     setValue(newValue);
   };
-
-  // const companyStore = useAppSelector((state) => state.companies);
-  // const { isLoadingRequest, companies } = companyStore;
 
   useEffect(() => {
     const firstPageIndex = (currentPage - 1) * PageSize;
@@ -136,21 +116,19 @@ const OrganizationlData = () => {
     } else {
       const firstPageIndex = (currentPage - 1) * PageSize;
       const lastPageIndex = firstPageIndex + PageSize;
-
       const DataSliced = Data?.slice(firstPageIndex, lastPageIndex);
       setCurrentData(DataSliced);
     }
   };
-  const handleCardData =(currId:any)=>{
-    const CardData:any = Data.find((id)=>{
-       return currId == id.id
-    }); 
-    console.log("card data",CardData)
+
+  const handleCardData = (currId: any) => {
+    const CardData: any = Data.find((id) => {
+      return currId == id.id;
+    });
     setnewCardData(CardData);
- 
-  }
-  console.log("new card data",newCardData)
-  
+    setViewOpen(true);
+  };
+
   return (
     <Box sx={{ display: "flex", flexDirection: "column" }}>
       {/* <Loader isLoading={isLoadingRequest} /> */}
@@ -179,23 +157,15 @@ const OrganizationlData = () => {
           >
             Add
           </Button>
-          <TextField
-            sx={{ ml: 2 }}
-            size="small"
-            id="standard-bare"
-            variant="outlined"
-            value={searchText}
-            onChange={handleSearchChange}
-            placeholder="Search Organisational Data..."
-            InputProps={{
-              startAdornment: <SearchIcon />,
-            }}
+          <Search
+            searchText={searchText}
+            handleSearchChange={handleSearchChange}
+            placeholder={"Organizational Data..."}
           />
         </Box>
       </Box>
 
-      {/* list */}
-
+      {/* Tabs */}
       <Box sx={{ width: "100%" }}>
         <Box>
           <Tabs
@@ -203,6 +173,7 @@ const OrganizationlData = () => {
             value={value}
             onChange={handleChange}
             aria-label="basic tabs example"
+            TabIndicatorProps={{ style: { background: "#F58634" } }}
           >
             <Tab {...styles.Tab} label="Certificates" {...a11yProps(0)} />
             <Tab
@@ -217,9 +188,9 @@ const OrganizationlData = () => {
         </Box>
         <TabPanel value={value} index={0}>
           <OrganizationalCard
-          handleCardData={handleCardData}
+            handleCardData={handleCardData}
             organasationlData={currentData}
-            handleViewOpen={handleViewOpen}
+            // handleViewOpen={handleViewOpen}
           />
         </TabPanel>
         <TabPanel value={value} index={1}>
@@ -241,7 +212,7 @@ const OrganizationlData = () => {
         newCardData={newCardData}
       />
       <AddOrganisationData addOpen={addOpen} handleAddClose={handleAddClose} />
-      <Paginations handlePageChange={handlePageChange} />
+      {currentData?.length >0 &&<Paginations handlePageChange={handlePageChange} />}
     </Box>
   );
 };

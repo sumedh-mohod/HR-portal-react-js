@@ -1,6 +1,6 @@
 import React, { useRef } from "react";
 import { useFormik } from "formik";
-// import { addEmployeeValidator } from "../utils/validations/auth";
+import { useNavigate } from "react-router-dom";
 import {
   Box,
   Button,
@@ -9,14 +9,13 @@ import {
   FormLabel,
   TextField,
   Typography,
-  MenuItem,
   Card,
 } from "@mui/material";
-import { styles } from "../../styles/components/addEmployee";
-import { useNavigate } from "react-router-dom";
-import { globalStyles } from "../../styles/global";
 import { useAppDispatch } from "../../store/hooks";
 import { addEmployee } from "../../store/reducers/employee/employees";
+import { globalStyles } from "../../styles/global";
+import { styles } from "../../styles/components/addEmployee";
+
 const AddEmployee = () => {
   const navigate = useNavigate();
     const dispatch = useAppDispatch();

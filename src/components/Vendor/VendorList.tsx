@@ -29,6 +29,9 @@ const VendorList = ({
                         columns={showColumns}
                         hideFooterPagination={true}
                         hideFooter={true}
+                        disableColumnMenu={true}
+                        disableColumnFilter={true}
+                        disableColumnSelector={true}
                     />
 
                 </Grid>
