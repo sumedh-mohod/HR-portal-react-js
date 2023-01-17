@@ -6,6 +6,7 @@ import CloseIcon from "@mui/icons-material/Close";
 import PdfIcon from "../../Icons/PdfIcon";
 import { globalStyles } from "../../../styles/global";
 import { styles } from "../../../styles/components/organizationData";
+
 const ViewOraganisationalDatamodel = ({
   handleViewClose,
   viewOpen,
