@@ -5,7 +5,7 @@ import SaveTickIcon from "../Icons/SaveTickIcon";
 import DeleteIcon from "../Icons/DeleteIcon";
 import AddIcon from "@mui/icons-material/Add";
 import EditIcon from "../../components/Icons/EditIcon";
-import { styles } from "../../styles/components/companyHolidayCard";
+import { styles } from "../../styles/screens/CompanyMaster";
 import { globalStyles } from "../../styles/global";
 
 const CompanyMaster = () => {
@@ -67,14 +67,7 @@ const CompanyMaster = () => {
                     <Button
                         variant="contained"
                         startIcon={<EditIcon />}
-                        sx={{
-                            background: "#F58634",
-                            borderRadius: "5px",
-                            mr: "10px",
-                            cursor: "pointer",
-                            fontSize: "14px",
-                            textTransform: "inherit",
-                        }}
+                        {...styles.editBtn}
                     >
                         Edit
                     </Button>
