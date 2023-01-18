@@ -1,5 +1,6 @@
 import React from "react";
 import { useFormik } from "formik";
+import { useNavigate } from "react-router-dom";
 import {
   FormControl,
   Box,
@@ -7,20 +8,18 @@ import {
   Grid,
   FormLabel,
   TextField,
-  Button,
-  InputAdornment,
   IconButton,
 } from "@mui/material";
 import Visibility from "@mui/icons-material/Visibility";
-import VisibilityOff from '@mui/icons-material/VisibilityOff';
-import OrangeBitsIcon from "../../components/Icons/OrangeBitsIcon";
+import VisibilityOff from "@mui/icons-material/VisibilityOff";
 import LoadingButton from "@mui/lab/LoadingButton";
+import OrangeBitsIcon from "../../components/Icons/OrangeBitsIcon";
+
 import { styles } from "../../styles/screens/Login";
 import { loginValidator } from "../../utils/validations/auth";
 import { useAppDispatch, useAppSelector } from "../../store/hooks";
 import { login } from "../../store/reducers/users/authentication";
 import { useAuth } from "../../context/auth";
-import { useNavigate } from "react-router-dom";
 import { globalStyles } from "../../styles/global";
 
 const Login = () => {
@@ -33,11 +32,13 @@ const Login = () => {
 
   const [showPassword, setShowPassword] = React.useState(false);
   const handleClickShowPassword = () => setShowPassword((show) => !show);
-  const handleMouseDownPassword = (event: React.MouseEvent<HTMLButtonElement>) => {
+  const handleMouseDownPassword = (
+    event: React.MouseEvent<HTMLButtonElement>
+  ) => {
     event.preventDefault();
   };
 
-  console.log("user", user)
+  console.log("user", user);
 
   const {
     handleBlur,
@@ -66,7 +67,7 @@ const Login = () => {
           });
           navigate("/companies");
         })
-        .catch((error) => { });
+        .catch((error) => {});
     },
   });
 
@@ -87,10 +88,7 @@ const Login = () => {
           <Grid md={12} lg={12}>
             <form onSubmit={handleSubmit}>
               <FormControl sx={{ mt: 5 }} fullWidth>
-                <FormLabel
-                  id="outlined-password"
-                  {...styles.textfieldLable}
-                >
+                <FormLabel id="outlined-password" {...styles.textfieldLable}>
                   Username
                 </FormLabel>
                 <TextField
@@ -108,7 +106,7 @@ const Login = () => {
                   {...styles.formTextfield}
                   InputProps={{
                     disableUnderline: true,
-                    style: { ...globalStyles.textField }
+                    style: { ...globalStyles.textField },
                   }}
                 />
               </FormControl>
@@ -122,7 +120,7 @@ const Login = () => {
                   size="small"
                   id="outlined-password"
                   variant="filled"
-                  type={showPassword ? 'text' : 'password'}
+                  type={showPassword ? "text" : "password"}
                   name="password"
                   placeholder="Password"
                   value={values.password}
@@ -173,7 +171,7 @@ const Login = () => {
           </Box>
         </Grid>
       </Grid>
-    </Box >
+    </Box>
   );
 };
 
