@@ -1,23 +1,10 @@
 import * as React from 'react';
-import Box from '@mui/material/Box';
-import Button from '@mui/material/Button';
-import Typography from '@mui/material/Typography';
-import Modal from '@mui/material/Modal';
-
-const style = {
-    position: 'absolute' as 'absolute',
-    top: '50%',
-    left: '50%',
-    transform: 'translate(-50%, -50%)',
-    width: 400,
-    bgcolor: 'background.paper',
-    border: '2px solid #000',
-    boxShadow: 24,
-    p: 4,
-};
+import { Box, Button, Grid, Typography, Modal, Divider, FormLabel, TextField, FormControl, TextareaAutosize } from '@mui/material';
+import CloseIcon from '@mui/icons-material/Close';
+import { globalStyles } from "../../../styles/global";
+import { styles } from '../../../styles/components/uploadLeavePolicy';
 
 export default function UploadLeavePolicy({
-    handleOpen,
     handleClose,
     open
 }: {
@@ -34,15 +21,99 @@ export default function UploadLeavePolicy({
                 aria-labelledby="modal-modal-title"
                 aria-describedby="modal-modal-description"
             >
-                <Box sx={style}>
-                    <Typography id="modal-modal-title" variant="h6" component="h2">
-                        Text in a modal
-                    </Typography>
-                    <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-                        Duis mollis, est non commodo luctus, nisi erat porttitor ligula.
-                    </Typography>
+                <Box {...styles.modalBox}>
+                    <Box
+                        sx={{ p: 2, display: "flex", justifyContent: "space-between", alignItems: "center" }}
+                    >
+                        <Typography id="modal-modal-title" variant="h6" component="h2"
+                            {...styles.textField}
+                        >
+                            Upload Leave Policy
+                        </Typography>
+                        <CloseIcon
+                            sx={{ cursor: "pointer" }}
+                            onClick={handleClose}
+                        />
+                    </Box>
+                    <Divider />
+                    <Box
+                        sx={{ p: 2 }}
+                    >
+                        <Grid container spacing={2} rowGap={3}>
+                            <Grid item xs={12} md={6} lg={6}>
+                                <FormControl fullWidth>
+                                    <FormLabel id="leaveType"
+                                        {...styles.textFieldlable}
+                                    >
+                                        Leave Type
+                                    </FormLabel>
+                                    <TextField
+
+                                        name="leaveType"
+                                        variant="filled"
+                                        size="small"
+                                        type={"text"}
+                                        InputProps={{
+                                            disableUnderline: true,
+                                            style: { ...globalStyles.textField }
+                                        }}
+                                    />
+                                </FormControl>
+                            </Grid>
+                            <Grid item xs={12} md={6} lg={6}>
+                                <FormControl fullWidth>
+                                    <FormLabel id="days"
+                                        {...styles.textFieldlable}
+                                    >
+                                        Days
+                                    </FormLabel>
+                                    <TextField
+                                        name="days"
+                                        variant="filled"
+                                        size="small"
+                                        type={"text"}
+                                        InputProps={{
+                                            disableUnderline: true,
+                                            style: { ...globalStyles.textField }
+                                        }}
+                                    />
+                                </FormControl>
+                            </Grid>
+                            <Grid item xs={12} md={12} lg={12}>
+                                <FormControl fullWidth>
+                                    <FormLabel id="description"
+                                        {...styles.textFieldlable}
+                                    >
+                                        Description
+                                    </FormLabel>
+                                    <TextareaAutosize
+                                        minRows={5}
+                                        maxRows={5}
+                                    />
+                                </FormControl>
+                            </Grid>
+                            <Grid item xs={12} md={12} lg={12}>
+                                <Box
+                                    sx={{ display: "flex", justifyContent: "flex-end" }}
+                                >
+                                    <Button {...styles.parentBoxCancleButton} variant="contained" onClick={handleClose}
+                                    >
+                                        Cancle
+                                    </Button>
+                                    <Button
+                                        {...styles.parentBoxSaveButton}
+                                        variant="contained"
+                                        type="submit"
+                                        onClick={handleClose}
+                                    >
+                                        Save
+                                    </Button>
+                                </Box>
+                            </Grid>
+                        </Grid>
+                    </Box>
                 </Box>
             </Modal>
-        </div>
+        </div >
     );
 }

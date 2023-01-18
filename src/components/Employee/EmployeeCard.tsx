@@ -1,11 +1,7 @@
 import React from "react";
-import { Grid, Typography, Paper, Box, Card } from "@mui/material";
+import { Grid, Typography, Box, Card } from "@mui/material";
 import OrangeBitsIcon from "../Icons/OrangeBitsIcon";
 import { styles } from "../../styles/screens/Employee";
-import { globalStyles } from "../../styles/global";
-import AddIcon from "@mui/icons-material/Add";
-// import Pagination from "@mui/material/Pagination/Pagination";
-// import Paginations from "../Paginations";
 
 const EmployeeCard = ({
   employee,
@@ -48,7 +44,6 @@ const EmployeeCard = ({
           </Grid>
         ))}
       </Grid>
-      {/* pagination */}
     </Box>
   );
 };

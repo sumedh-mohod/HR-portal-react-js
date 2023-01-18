@@ -1,4 +1,7 @@
+import React from "react";
 import { Route, Routes } from "react-router-dom";
+import { Box } from "@mui/material";
+
 import { useAppSelector } from "./store/hooks";
 
 //import sreens
@@ -6,20 +9,21 @@ import Login from "./screens/Authentication/Login";
 import Registration from "./screens/Authentication/Registration";
 import Dashboard from "./screens/Authentication/Dashboard";
 import Header from "./components/HigherOrder/Header";
-import { Box } from "@mui/material";
 
-import CompanyList from "./screens/Company/Companies";
-import Employee from "./screens/Employee/Employee";
-import ProjectsList from "./screens/Project/Projects";
-import CompanyAddEdit from "./screens/Company/ComapnyOperations";
-import NotFound from "./screens/Authentication/NotFound";
+import Companies from "./screens/Company/Companies";
+import Employees from "./screens/Employee/Employee";
+import Projects from "./screens/Project/Projects";
 import Partners from "./screens/Partner/Partners";
-import Logout from "./screens/Authentication/Logout";
+import Vendors from "./screens/Vendor/Vendors";
+
+import CompanyOperations from "./screens/Company/Operations";
 import EmployeeAddEdit from "./screens/Employee/EmployeeAddEdit";
 import ProjectAddEdit from "./screens/Project/ProjectAddEdit";
 import PartnerAddEdit from "./screens/Partner/PartnerAddEdit";
-import Vendors from "./screens/Vendor/Vendors";
 import VendorAddEdit from "./screens/Vendor/VendorAddEdit";
+
+import NotFound from "./screens/Authentication/NotFound";
+import Logout from "./screens/Authentication/Logout";
 
 import ProtectedRoute, {
   AuthRoute,
@@ -49,7 +53,7 @@ const App = () => {
   return (
     <Box sx={{ display: "flex" }}>
       <Routes>
-        {/* Different routes */}
+        {/* Authentication */}
         <Route
           path="/"
           element={<AuthRoute {...preLoginProps} outlet={<Login />} />}
@@ -58,9 +62,11 @@ const App = () => {
           path="/register"
           element={<AuthRoute {...preLoginProps} outlet={<Registration />} />}
         />
+
         <Route path="/logout" element={<Logout />} />
 
         <Route element={<Header />}>
+          {/* Dashboard */}
           <Route
             path="/dashboard"
             element={
@@ -70,6 +76,8 @@ const App = () => {
               />
             }
           />
+
+          {/* Partners */}
           <Route
             path="/partners"
             element={
@@ -88,12 +96,14 @@ const App = () => {
               />
             }
           />
+
+          {/* Companies */}
           <Route
             path="/companies"
             element={
               <ProtectedRoute
                 {...defaultProtectedRouteProps}
-                outlet={<CompanyList />}
+                outlet={<Companies />}
               />
             }
           />
@@ -102,16 +112,18 @@ const App = () => {
             element={
               <ProtectedRoute
                 {...defaultProtectedRouteProps}
-                outlet={<CompanyAddEdit />}
+                outlet={<CompanyOperations />}
               />
             }
           />
+
+          {/* Employees */}
           <Route
             path="/employees"
             element={
               <ProtectedRoute
                 {...defaultProtectedRouteProps}
-                outlet={<Employee />}
+                outlet={<Employees />}
               />
             }
           />
@@ -124,12 +136,14 @@ const App = () => {
               />
             }
           />
+
+          {/* Projects */}
           <Route
             path="/projects"
             element={
               <ProtectedRoute
                 {...defaultProtectedRouteProps}
-                outlet={<ProjectsList />}
+                outlet={<Projects />}
               />
             }
           />
@@ -142,6 +156,8 @@ const App = () => {
               />
             }
           />
+
+          {/* Vendors */}
           <Route
             path="/vendors"
             element={
@@ -161,6 +177,8 @@ const App = () => {
             }
           />
         </Route>
+
+        {/* Not found */}
         <Route path="*" element={<NotFound />} />
       </Routes>
     </Box>

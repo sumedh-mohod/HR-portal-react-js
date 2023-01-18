@@ -1,25 +1,18 @@
-import React, { useEffect, useState, useMemo } from "react";
-
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-
-import { Grid, Typography, Box, TextField, Button } from "@mui/material";
-import SearchIcon from "@mui/icons-material/Search";
-import AddIcon from "@mui/icons-material/Add";
-
+import { Typography, Box, Button } from "@mui/material";
 import { GridColDef } from "@mui/x-data-grid";
-import { Container } from "@mui/system";
-
-import { styles } from "../../styles/screens/CompanyList";
-import { globalStyles } from "../../styles/global";
-
-import { useAppDispatch, useAppSelector } from "../../store/hooks";
-import { getCompanies } from "../../store/reducers/companies/companies";
-
+import AddIcon from "@mui/icons-material/Add";
 import CompanyCard from "../../components/Company/CompanyCard";
 import CompaniesList from "../../components/Company/CompanyList";
 import Paginations from "../../components/HigherOrder/Paginations";
 import CustomizationButtons from "../../components/HigherOrder/CustomizationButtons";
 import Loader from "../../components/HigherOrder/Loader";
+import Search from "../../components/HigherOrder/Search";
+import { useAppDispatch, useAppSelector } from "../../store/hooks";
+import { getCompanies } from "../../store/reducers/companies/companies";
+import { globalStyles } from "../../styles/global";
+import { styles } from "../../styles/screens/CompanyList";
 
 const columns: GridColDef[] = [
   {
@@ -134,9 +127,9 @@ const CompanyList = () => {
 
   useEffect(() => {
     dispatch(getCompanies())
-       .unwrap()
-      .then((response: any) => {})
-      .catch((error) => {});
+      .unwrap()
+      .then((response: any) => { })
+      .catch((error) => { });
   }, []);
 
   const handleCompanyAddClick = () => {
@@ -171,7 +164,6 @@ const CompanyList = () => {
       return [...prevEl];
     });
   };
-
 
   const handlePageChange = (
     event: React.ChangeEvent<unknown>,
@@ -239,17 +231,10 @@ const CompanyList = () => {
             showColumns={showColumns}
           />
 
-          <TextField
-            sx={{ ml: 2 }}
-            size="small"
-            id="standard-bare"
-            variant="outlined"
-            value={searchText}
-            onChange={handleSearchChange}
-            placeholder="Search Companies..."
-            InputProps={{
-              startAdornment: <SearchIcon />,
-            }}
+          <Search
+            searchText={searchText}
+            handleSearchChange={handleSearchChange}
+            placeholder={"Companies..."}
           />
         </Box>
       </Box>
@@ -272,7 +257,9 @@ const CompanyList = () => {
           />
         )}
       </Box>
-      <Paginations handlePageChange={handlePageChange} />
+      {companies?.length > 0 &&
+        <Paginations handlePageChange={handlePageChange} />
+      }
     </Box>
   );
 };

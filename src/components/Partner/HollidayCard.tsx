@@ -1,7 +1,6 @@
 import React from 'react'
-import { Card, Grid, Typography } from '@mui/material'
-import { Box } from '@mui/system'
-import { styles } from '../../styles/components/hollidayDetailsCard'
+import {Box, Card, Grid, Typography } from '@mui/material';
+import { styles } from '../../styles/components/hollidayDetailsCard';
 
 const HollidayCard = () => {
     return (

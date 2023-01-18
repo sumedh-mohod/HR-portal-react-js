@@ -1,24 +1,18 @@
-import React, { useEffect, useState, useMemo } from "react";
-
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-
-import { Grid, Typography, Box, TextField, Button } from "@mui/material";
-import SearchIcon from "@mui/icons-material/Search";
-import AddIcon from "@mui/icons-material/Add";
-
+import { Typography, Box, Button } from "@mui/material";
 import { GridColDef } from "@mui/x-data-grid";
-
-import { styles } from "../../styles/screens/CompanyList";
-import { globalStyles } from "../../styles/global";
-
-import { useAppDispatch, useAppSelector } from "../../store/hooks";
-
+import AddIcon from "@mui/icons-material/Add";
 import VendorCard from "../../components/Vendor/VendorCard";
 import VendorList from "../../components/Vendor/VendorList";
 import Paginations from "../../components/HigherOrder/Paginations";
 import CustomizationButtons from "../../components/HigherOrder/CustomizationButtons";
 import Loader from "../../components/HigherOrder/Loader";
+import Search from "../../components/HigherOrder/Search";
 import { getVendors } from "../../store/reducers/vendors/vendors";
+import { useAppDispatch, useAppSelector } from "../../store/hooks";
+import { styles } from "../../styles/screens/CompanyList";
+import { globalStyles } from "../../styles/global";
 
 const columns: GridColDef[] = [
   {
@@ -110,18 +104,12 @@ const Vendors = () => {
 
   const vendorsStore = useAppSelector((state) => state.vendors);
   const { isLoadingRequest, vendors } = vendorsStore;
-  console.log("vendor response", vendors);
-  // const currentTableData = useMemo(() => {
-  //     const firstPageIndex = (currentPage - 1) * PageSize;
-  //     const lastPageIndex = firstPageIndex + PageSize;
-  //     return vendors?.slice(firstPageIndex, lastPageIndex);
-  // }, [currentPage, isLoadingRequest]);
 
   useEffect(() => {
     dispatch(getVendors())
       .unwrap()
-      .then((response: any) => {})
-      .catch((error) => {});
+      .then((response: any) => { })
+      .catch((error) => { });
   }, []);
 
   useEffect(() => {
@@ -231,17 +219,10 @@ const Vendors = () => {
             showColumns={showColumns}
           />
 
-          <TextField
-            sx={{ ml: 2 }}
-            size="small"
-            id="standard-bare"
-            variant="outlined"
-            placeholder="Search Vendors..."
-            value={searchText}
-            onChange={handleSearchChange}
-            InputProps={{
-              startAdornment: <SearchIcon />,
-            }}
+          <Search
+            searchText={searchText}
+            handleSearchChange={handleSearchChange}
+            placeholder={"Vendors..."}
           />
         </Box>
       </Box>
@@ -264,7 +245,9 @@ const Vendors = () => {
           />
         )}
       </Box>
-      <Paginations handlePageChange={handlePageChange} />
+      {vendors?.length > 0 &&
+        <Paginations handlePageChange={handlePageChange} />
+      }
     </Box>
   );
 };

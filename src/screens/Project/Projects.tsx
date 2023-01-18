@@ -1,19 +1,18 @@
-import React, { useEffect, useState, useMemo } from "react";
-import { Typography, Box, TextField } from "@mui/material";
+import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { Typography, Box,Button } from "@mui/material";
 import { GridColDef } from "@mui/x-data-grid";
 import AddIcon from "@mui/icons-material/Add";
-import SearchIcon from "@mui/icons-material/Search";
-import { useNavigate } from "react-router-dom";
-import { styles } from "../../styles/screens/ProjectList";
 import ProjectCard from "../../components/Project/ProjectCard";
-import Button from "@mui/material/Button";
-import { globalStyles } from "../../styles/global";
-import CustomizationButtons from "../../components/HigherOrder/CustomizationButtons";
-import Paginations from "../../components/HigherOrder/Paginations";
 import ProjectList from "../../components/Project/ProjectList";
+import CustomizationButtons from "../../components/HigherOrder/CustomizationButtons";
+import Loader from "../../components/HigherOrder/Loader";
+import Search from "../../components/HigherOrder/Search";
+import Paginations from "../../components/HigherOrder/Paginations";
 import { useAppDispatch, useAppSelector } from "../../store/hooks";
 import { getProjects } from "../../store/reducers/projects/projects";
-import Loader from "../../components/HigherOrder/Loader";
+import { globalStyles } from "../../styles/global";
+import { styles } from "../../styles/screens/ProjectList";
 
 const columns: GridColDef[] = [
   {
@@ -74,17 +73,11 @@ const Projects = () => {
   const projectsStore = useAppSelector((state) => state.projects);
   const { isLoadingRequest, projects } = projectsStore;
 
-  // const currentTableData = useMemo(() => {
-  //   const firstPageIndex = (currentPage - 1) * PageSize;
-  //   const lastPageIndex = firstPageIndex + PageSize;
-  //   return projects?.slice(firstPageIndex, lastPageIndex);
-  // }, [currentPage]);
-
   useEffect(() => {
     dispatch(getProjects())
       .unwrap()
-      .then((response: any) => {})
-      .catch((error) => {});
+      .then((response: any) => { })
+      .catch((error) => { });
   }, [dispatch]);
 
   useEffect(() => {
@@ -194,17 +187,10 @@ const Projects = () => {
             showColumns={showColumns}
           />
 
-          <TextField
-            sx={{ ml: 2 }}
-            size="small"
-            id="standard-bare"
-            variant="outlined"
-            placeholder="Search Projects..."
-            value={searchText}
-            onChange={handleSearchChange}
-            InputProps={{
-              startAdornment: <SearchIcon />,
-            }}
+          <Search
+            searchText={searchText}
+            handleSearchChange={handleSearchChange}
+            placeholder={"Projects..."}
           />
         </Box>
       </Box>
@@ -227,7 +213,9 @@ const Projects = () => {
           />
         )}
       </Box>
-      <Paginations handlePageChange={handlePageChange} />
+      {projects?.length > 0 &&
+        <Paginations handlePageChange={handlePageChange} />
+      }
     </Box>
   );
 };
