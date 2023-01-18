@@ -4,6 +4,7 @@ import AddCompany from "../../components/Company/AddCompany";
 import EditCompany from "../../components/Company/EditCompany";
 import LeavePolicy from "./LeavePolicy";
 import OrganizationlData from "./OrganisationalData";
+import Hollidays from "./Hollidays";
 
 const Operations = () => {
   let params = useParams();
@@ -20,7 +21,7 @@ const Operations = () => {
     case "organisationaldata":
       return <OrganizationlData />;
     case "holiday":
-      return null;
+      return <Hollidays />;
     case "master":
       return null;
     default:
