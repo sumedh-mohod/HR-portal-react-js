@@ -4,6 +4,7 @@ import AddCompany from "../../components/Company/AddCompany";
 import EditCompany from "../../components/Company/EditCompany";
 import LeavePolicy from "./LeavePolicy";
 import OrganizationlData from "./OrganisationalData";
+import CompanyMaster from "./CompanyMaster";
 import Hollidays from "./Hollidays";
 
 const Operations = () => {
@@ -23,7 +24,7 @@ const Operations = () => {
     case "holiday":
       return <Hollidays />;
     case "master":
-      return null;
+      return <CompanyMaster />;
     default:
       return null;
   }
