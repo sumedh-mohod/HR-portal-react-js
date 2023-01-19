@@ -26,9 +26,9 @@ const injectToken = (config: AxiosRequestConfig): AxiosRequestConfig => {
       const token = sessionStorage.getItem("access_token");
 
       if (token != null && config.headers) {
-        config.headers = {
-          Authorization: `Bearer ${token}`,
-        };
+        // config.headers = {
+        //   Authorization: `Bearer ${token}`,
+        // };
       }
     }
     return config;

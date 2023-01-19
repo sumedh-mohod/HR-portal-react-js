@@ -19,13 +19,17 @@ export const addCompany = createAsyncThunk(
 // update company action
 export const updateCompany = createAsyncThunk(
   actionTypes.UPDATE_COMPANY,
-  async (params: any) => {
+  async (params: any, { rejectWithValue }) => {
     //response of update company api
-    const response = {
-      updateCompany: true,
-    };
+    try {
+      const response = await axiosClient.get(`${RestfulUrls.Get_Companies}/${params.id}`);
+      console.log("response in get company", response);
+      return response.data;
+    } catch (error) {
+      return rejectWithValue("Something went wrong");
+    }
     //returned a response to reducer
-    return response;
+    // return response;
   }
 );
 
@@ -46,10 +50,27 @@ export const getCompanies = createAsyncThunk(
 // get company action
 export const getCompany = createAsyncThunk(
   actionTypes.GET_COMPANY,
+  async (params:any, { rejectWithValue }) => {
+ 
+    // response of get company api
+    try {
+      const response = await axiosClient.get(`${RestfulUrls.Get_Companies}/${params.id}`);
+      console.log("response in get company", response);
+      return response.data;
+    } catch (error) {
+      return rejectWithValue("Something went wrong");
+    }
+    //returned a response to reducer
+
+  }
+);
+// delete company action
+export const deleteCompany = createAsyncThunk(
+  actionTypes.DELETE_COMPANY,
   async (_, { rejectWithValue }) => {
-    //response of get company api
+    //response of delete company api
     const response = {
-      getCompany: true,
+      deleteCompany: true,
     };
     //returned a response to reducer
     return response;
@@ -81,6 +102,8 @@ const Companies = createSlice({
   },
   //async reducers
   extraReducers: (builder) => {
+    
+
     // ======================add company========================
     // reducer when api call is in progress
     builder.addCase(addCompany.pending, (state: StateI) => {
@@ -98,6 +121,8 @@ const Companies = createSlice({
       //state updated in rejected state
       state.isLoadingRequest = false;
     });
+
+
     // ======================update company========================
     builder.addCase(updateCompany.pending, (state: StateI) => {
       //state updated in pending state
@@ -114,6 +139,8 @@ const Companies = createSlice({
       //state updated in rejected state
       state.isLoadingRequest = false;
     });
+
+
     // ======================get companies========================
     builder.addCase(getCompanies.pending, (state: StateI) => {
       //state updated in pending state
@@ -133,26 +160,48 @@ const Companies = createSlice({
       state.isLoadingRequest = false;
       state.companies = undefined;
     });
-    // ======================get company========================
-    builder.addCase(getCompany.pending, (state: StateI) => {
+
+
+    // ======================delet company========================
+    builder.addCase(deleteCompany.pending, (state: StateI) => {
       //state updated in pending state
       state.isLoadingRequest = true;
       state.companies = undefined;
     });
     // reducer when api call is fulfilled
-    builder.addCase(getCompany.fulfilled, (state: StateI, action: any) => {
+    builder.addCase(deleteCompany.fulfilled, (state: StateI, action: any) => {
       //state updated in fulfilled state
-      state.companies = action.payload.data;
+      state.companies = action.payload;
       state.isLoadingRequest = false;
     });
     // reducer when api call is rejected
-    builder.addCase(getCompany.rejected, (state: StateI) => {
-      console.log("companylist REJECTED");
+    builder.addCase(deleteCompany.rejected, (state: StateI) => {
+      console.log("delete Company REJECTED");
       //state updated in rejected state
       state.isLoadingRequest = false;
       state.companies = undefined;
     });
-  },
+  
+  // ======================get company========================
+  builder.addCase(getCompany.pending, (state: StateI) => {
+    //state updated in pending state
+    state.isLoadingRequest = true;
+    state.companies = undefined;
+  });
+  // reducer when api call is fulfilled
+  builder.addCase(getCompany.fulfilled, (state: StateI, action: any) => {
+    //state updated in fulfilled state
+    state.companies = action.payload.data;
+    state.isLoadingRequest = false;
+  });
+  // reducer when api call is rejected
+  builder.addCase(getCompany.rejected, (state: StateI) => {
+    console.log("companylist REJECTED");
+    //state updated in rejected state
+    state.isLoadingRequest = false;
+    state.companies = undefined;
+  });
+},
 });
 
 export default Companies.reducer;

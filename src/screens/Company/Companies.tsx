@@ -116,12 +116,13 @@ const CompanyList = () => {
 
   const companyStore = useAppSelector((state) => state.companies);
   const { isLoadingRequest, companies } = companyStore;
+  console.log("companie",companies);
 
   useEffect(() => {
     const firstPageIndex = (currentPage - 1) * PageSize;
     const lastPageIndex = firstPageIndex + PageSize;
 
-    const DataSliced = companies?.slice(firstPageIndex, lastPageIndex);
+    const DataSliced = companies?.content?.slice(firstPageIndex, lastPageIndex);
     setCurrentData(DataSliced);
   }, [currentPage, isLoadingRequest]);
 
@@ -137,8 +138,9 @@ const CompanyList = () => {
   };
 
   const handleCompanyEditClick = (company: any) => {
-    navigate("/companies/edit", {
-      state: { company },
+    console.log("get company response",company)
+    navigate("/companies/details", {
+      state: { company },  
     });
   };
 
