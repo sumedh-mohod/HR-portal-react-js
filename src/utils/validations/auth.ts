@@ -62,3 +62,9 @@ export const addVendorValidator = Yup.object().shape({
   selectState: Yup.string().required("Please Select a valid state"),
   country: Yup.string().required("Please Select a valid country"),
 });
+
+// add holiday card validation
+
+export const addHolidayValidator = Yup.object().shape({
+  selectDate: Yup.date().required("Please Select a valid date "),
+});
