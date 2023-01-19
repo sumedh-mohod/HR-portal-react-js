@@ -1,12 +1,13 @@
 import React from "react";
 import { useFormik } from "formik";
 import { Box, Button, Grid, FormControl, FormLabel, TextField, Typography, Card, } from "@mui/material";
-import SaveTickIcon from "../Icons/SaveTickIcon";
-import DeleteIcon from "../Icons/DeleteIcon";
+
 import AddIcon from "@mui/icons-material/Add";
 import EditIcon from "../../components/Icons/EditIcon";
 import { styles } from "../../styles/screens/CompanyMaster";
 import { globalStyles } from "../../styles/global";
+import SaveTickIcon from "../../components/Icons/SaveTickIcon";
+import DeleteIcon from "../../components/Icons/DeleteIcon";
 
 const CompanyMaster = () => {
 
