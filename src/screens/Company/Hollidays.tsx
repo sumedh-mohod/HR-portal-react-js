@@ -96,7 +96,7 @@ const Hollidays = () => {
                 </Typography>
             </Box>
             <HolidayCard />
-            <Paginations handlePageChange={handlePageChange} />
+            {/* <Paginations handlePageChange={handlePageChange} /> */}
         </Box>
     )
 }
