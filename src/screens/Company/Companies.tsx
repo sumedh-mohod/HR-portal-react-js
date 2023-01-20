@@ -137,8 +137,8 @@ const CompanyList = () => {
     navigate("/companies/add");
   };
 
-  const handleCompanyEditClick = (company: any) => {
-    console.log("get company response",company)
+  const handleCompanyEditClick = (company: any,index:any) => {
+    // console.log("get company response",company)
     navigate("/companies/details", {
       state: { company },  
     });
@@ -259,7 +259,7 @@ const CompanyList = () => {
           />
         )}
       </Box>
-      {companies?.length > 0 &&
+      {companies?.content?.length > 0 &&
         <Paginations handlePageChange={handlePageChange} />
       }
     </Box>

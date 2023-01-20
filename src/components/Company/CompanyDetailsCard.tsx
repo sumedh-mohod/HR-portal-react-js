@@ -6,6 +6,7 @@ import { getCompany } from "../../store/reducers/companies/companies";
 import { styles } from "../../styles/components/editCompany";
 import Loader from "../HigherOrder/Loader";
 import EditIcon from "@mui/icons-material/Edit";
+
 interface CompanyDetailsCardInterface{
   data: any;
 }
@@ -13,33 +14,22 @@ const CompanyDetailsCard = (props:CompanyDetailsCardInterface) => {
   const {
     data
     } = props;
-    console.log("data in details card",data);
+  console.log("data in details card",data.id);
   const dispatch = useAppDispatch();
+
 const companyStore = useAppSelector((state) => state.companies);
 const { isLoadingRequest, companies } = companyStore;
-console.log("edit company",companies)
+console.log("details page company",companies)
 
-// useEffect(() => {
-//   dispatch(getCompany())
-//     .unwrap()
-//     .then((response: any) => { })
-//     .catch((error) => { });
-// }, []);
+useEffect(() => {
+  dispatch(getCompany(data))
+    .unwrap()
+    .then((response: any) => {
+      console.log("useeffect response",response.data)
+     })
+    .catch((error) => { });
+}, []);
 
-  const CompanyDetails = [
-    {
-      company: "Orangebits Software Technologies(India) Pvt. Ltd",
-      abbr: "ORNG123",
-      defaultCurrency: "Rupees",
-      domain: "orange.com",
-      dateofEstiblishment: "2 October, 2023",
-      addressLine1: "Enter Line 1",
-      addressLine2: "Enter Line 2",
-      country: "India",
-      state: "Maharshtra",
-      city: "Nagpur",
-    },
-  ];
   const [isEditing, setIsEditing] = useState(false);
   const [editBtn, setEditBtn] = useState(true);
   const [isHollidayEditing, setIsHollidayEditing] = useState(false);
@@ -95,12 +85,12 @@ console.log("edit company",companies)
                   <Typography {...styles.detailsTypography1}>City -</Typography>
                 </Grid>
                 <Grid item xs={12} md={10} lg={8}>
-                  <Typography {...styles.detailsTypography2}>{data.name}</Typography>
-                  <Typography {...styles.detailsTypography2}>{data.abbreviation}</Typography>
-                  <Typography {...styles.detailsTypography2}>{data.defaultCurrency}</Typography>
-                  <Typography {...styles.detailsTypography2}>{data.domain} </Typography>
-                  <Typography {...styles.detailsTypography2}>{data.dateOfIncorporation}</Typography>
-                  {data.companyAddresses.map((info:any)=>{
+                  <Typography {...styles.detailsTypography2}>{companies?.name}</Typography>
+                  <Typography {...styles.detailsTypography2}>{companies?.abbreviation}</Typography>
+                  <Typography {...styles.detailsTypography2}>{companies?.defaultCurrency}</Typography>
+                  <Typography {...styles.detailsTypography2}>{companies?.domain}</Typography>
+                  <Typography {...styles.detailsTypography2}>{companies?.dateOfIncorporation}</Typography>
+                  {companies?.companyAddresses?.map((info:any)=>{
                     return(
                       <>
                       <Typography {...styles.detailsTypography2}> {info.line1}</Typography>

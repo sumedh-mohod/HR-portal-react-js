@@ -6,13 +6,19 @@ import { RestfulUrls } from "../../restfulUrls";
 //add company action
 export const addCompany = createAsyncThunk(
   actionTypes.ADD_COMPANY,
-  async (params: any) => {
+  async (params: any,{ rejectWithValue }) => {
     //response of addcompany api
-    const response = {
-      addCompany: true,
-    };
+    try {
+      const response = await axiosClient.post(RestfulUrls.Add_Company,params);
+      console.log("response of add company", params);
+      console.log("response of add company", response);
+      return response.data;
+    
+    } catch (error) {
+      return rejectWithValue("Something went wrong");
+    }
     //returned a response to reducer
-    return response;
+    
   }
 );
 
@@ -22,8 +28,8 @@ export const updateCompany = createAsyncThunk(
   async (params: any, { rejectWithValue }) => {
     //response of update company api
     try {
-      const response = await axiosClient.get(`${RestfulUrls.Get_Companies}/${params.id}`);
-      console.log("response in get company", response);
+      const response = await axiosClient.put(`${RestfulUrls.Get_Companies}/${params.id}`);
+      console.log("response of update company", response);
       return response.data;
     } catch (error) {
       return rejectWithValue("Something went wrong");
@@ -40,7 +46,7 @@ export const getCompanies = createAsyncThunk(
     //response of getcompany
     try {
       const response = await axiosClient.get(RestfulUrls.Get_Companies);
-      console.log("response", response);
+      console.log("response of get companies", response);
       return response.data;
     } catch (error) {
       return rejectWithValue("Something went wrong");
@@ -55,7 +61,7 @@ export const getCompany = createAsyncThunk(
     // response of get company api
     try {
       const response = await axiosClient.get(`${RestfulUrls.Get_Companies}/${params.id}`);
-      console.log("response in get company", response);
+      console.log("response of get company", response.data);
       return response.data;
     } catch (error) {
       return rejectWithValue("Something went wrong");
@@ -132,7 +138,7 @@ const Companies = createSlice({
     builder.addCase(updateCompany.fulfilled, (state: StateI, action: any) => {
       //state updated in fulfilled state
       state.isLoadingRequest = false;
-      state.companies = action.payload;
+      state.companies = action.payload.data;
     });
     // reducer when api call is rejected
     builder.addCase(updateCompany.rejected, (state: StateI) => {
