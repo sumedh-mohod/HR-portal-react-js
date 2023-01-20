@@ -16,7 +16,6 @@ const headers: any = {
   Accept: "application/json",
   "Content-Type": "application/json; charset=utf-8",
   "Access-Control-Allow-Origin": "*",
-  'Access-Control-Allow-Credentials':true
 };
 
 // We can use the following function to inject the JWT token through an interceptor

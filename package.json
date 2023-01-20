@@ -51,13 +51,5 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  },
-  "devServer": {
-    "proxy": {
-      "/api/**": {
-        "target": "http://192.168.102.64",
-        "secure": false
-      }
-    }
   }
 }
