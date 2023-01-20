@@ -9,14 +9,10 @@ export const loginValidator = Yup.object().shape({
 
 export const editCompanyValidator = Yup.object().shape({
   company: Yup.string().required("Please enter a valid company"),
-  defaultLetterHead: Yup.string().required(
-    "Please enter a valid default letter head"
-  ),
   abbr: Yup.string().required("Please enter a valid abbr"),
   defaultCurrency: Yup.string().required(
     "Please enter a valid default currency"
   ),
-  country: Yup.string().required("Please Select a valid country"),
   dateOfEstablishment: Yup.date().required(
     "Please Select a valid date of establishment"
   ),
