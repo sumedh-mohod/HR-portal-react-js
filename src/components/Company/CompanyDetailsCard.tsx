@@ -6,6 +6,7 @@ import { getCompany } from "../../store/reducers/companies/companies";
 import { styles } from "../../styles/components/editCompany";
 import Loader from "../HigherOrder/Loader";
 import EditIcon from "@mui/icons-material/Edit";
+import CompanyAddressDetailsCard from "./CompanyAddressDetailsCard";
 interface CompanyDetailsCardInterface {
   data: any;
 }
@@ -49,10 +50,10 @@ const CompanyDetailsCard = (props: CompanyDetailsCardInterface) => {
   const EditHandle = () => {
     setIsEditing(true);
     setEditBtn(false);
-    navigate("/companies/edit")
+    navigate("/companies/edit");
   };
   return (
-    <Container sx={{ width: 1 }} >
+    <Container sx={{ width: 1 }}>
       {/* toggle card for details and edit form of company */}
       <Box {...styles.box}>
         <Typography variant="h5">Company 1</Typography>
@@ -99,7 +100,8 @@ const CompanyDetailsCard = (props: CompanyDetailsCardInterface) => {
             </Box>
           </Grid>
         </Card>
-      
+
+        {data?.companyAddresses?.map((info: any) => <CompanyAddressDetailsCard info={info} />)}
       </Box>
     </Container>
   );
