@@ -6,7 +6,15 @@ import { editCompanyValidator } from "../../utils/validations/auth";
 import { useAppDispatch } from "../../store/hooks";
 import { updateCompany } from "../../store/reducers/companies/companies";
 import { styles } from "../../styles/components/editCompany";
-const CompanyDetailsCard = () => {
+
+interface CompanyDetailsCardInterface{
+  data: any;
+}
+const CompanyDetailsCard = (props:CompanyDetailsCardInterface) => 
+  {
+    const {
+    data
+    } = props;
   const dispatch = useAppDispatch();
   const {
     handleBlur,
@@ -25,8 +33,8 @@ const CompanyDetailsCard = () => {
       taxID: "",
       defaultCurrency: "",
       domain: "",
-      country: "",
-      dateOfEstablishment: "",
+      country:"",
+      dateOfEstablishment:"",
     },
     validationSchema: editCompanyValidator,
     onSubmit: (values) => {
@@ -55,7 +63,7 @@ const CompanyDetailsCard = () => {
                   onChange={handleChange}
                   onBlur={handleBlur}
                   error={touched.company && errors.company ? true : false}
-                  helperText={touched.company && errors.company}
+                  // helperText={touched.company && errors.company}
                 />
               </FormControl>
             </Grid>
@@ -70,7 +78,7 @@ const CompanyDetailsCard = () => {
                   onChange={handleChange}
                   onBlur={handleBlur}
                   error={touched.abbr && errors.abbr ? true : false}
-                  helperText={touched.abbr && errors.abbr}
+                  // helperText={touched.abbr && errors.abbr}
                 />
               </FormControl>
             </Grid>
@@ -89,7 +97,7 @@ const CompanyDetailsCard = () => {
                       ? true
                       : false
                   }
-                  helperText={touched.defaultCurrency && errors.defaultCurrency}
+                  // helperText={touched.defaultCurrency && errors.defaultCurrency}
                 />
               </FormControl>
             </Grid>
@@ -118,7 +126,7 @@ const CompanyDetailsCard = () => {
                   onChange={handleChange}
                   onBlur={handleBlur}
                   error={touched.country && errors.country ? true : false}
-                  helperText={touched.country && errors.country}
+                  // helperText={touched.country && errors.country}
                 >
                   <MenuItem value="India">India</MenuItem>
                 </TextField>
@@ -142,9 +150,9 @@ const CompanyDetailsCard = () => {
                       ? true
                       : false
                   }
-                  helperText={
-                    touched.dateOfEstablishment && errors.dateOfEstablishment
-                  }
+                  // helperText={
+                  //   touched.dateOfEstablishment && errors.dateOfEstablishment
+                  // }
                 />
               </FormControl>
             </Grid>

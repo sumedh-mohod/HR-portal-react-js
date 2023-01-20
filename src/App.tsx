@@ -30,6 +30,7 @@ import ProtectedRoute, {
   ProtectedRouteProps,
   LoggedInUserProps,
 } from "./ProtectedRoute";
+import CompanyDetailsCard from "./components/Company/CompanyDetailsCard";
 
 const App = () => {
   const storeResponse: any = useAppSelector(
@@ -116,7 +117,7 @@ const App = () => {
               />
             }
           />
-
+         
           {/* Employees */}
           <Route
             path="/employees"

@@ -1,12 +1,22 @@
 import React, { useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { useLocation, useNavigate, useParams } from "react-router-dom";
 import { Box, Container, Typography, Button } from "@mui/material";
 import EditIcon from "@mui/icons-material/Edit";
 import CompanyDetailsCard from "./CompanyDetailsCard";
 import CompanyEditCard from "./CompanyEditCard";
 import { styles } from "../../styles/components/editCompany";
 
-const EditCompany = () => {
+interface EditCompanyInterface{
+  data: any;
+}
+
+const EditCompany = (props:EditCompanyInterface) => 
+  {
+    const {
+    data
+    } = props;
+    
+  console.log("data in edit company.tsx",data)
   let { params } = useParams();
   const [isEditing, setIsEditing] = useState(false);
   const [editBtn, setEditBtn] = useState(true);
@@ -25,20 +35,21 @@ const EditCompany = () => {
   const handleCancleEdit = () => {
     navigate(-1);
   }
+  
   return (
     <Container sx={{ width: 1 }} >
       {/* toggle card for details and edit form of company */}
       <Box {...styles.box}>
         <Typography variant="h5">Company 1</Typography>
         <Box>
-          {/* <Button
+          <Button
             {...styles.parentBoxCancelButton}
             variant="contained"
             onClick={handleCancleEdit}
           >
             Cancle
-          </Button> */}
-          {editBtn && (
+          </Button>
+         
             <Button
               {...styles.parentBoxButtonEdit}
               variant="contained"
@@ -47,10 +58,12 @@ const EditCompany = () => {
             >
               <EditIcon {...styles.icon} /> Edit
             </Button>
-          )}
+     
         </Box>
       </Box>
-      {isEditing ? <CompanyEditCard /> : <CompanyDetailsCard />}
+  <CompanyEditCard  data={data}/>
+      
+     
     </Container>
   );
 };
