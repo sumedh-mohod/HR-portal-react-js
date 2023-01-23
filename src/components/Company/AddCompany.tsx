@@ -2,7 +2,17 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useFormik } from "formik";
 import { addCompanyValidator } from "../../utils/validations/auth";
-import { Box, Button, Grid, FormControl, FormLabel, TextField, Typography, MenuItem, Card } from "@mui/material";
+import {
+  Box,
+  Button,
+  Grid,
+  FormControl,
+  FormLabel,
+  TextField,
+  Typography,
+  MenuItem,
+  Card,
+} from "@mui/material";
 import { useAppDispatch } from "../../store/hooks";
 import { addCompany } from "../../store/reducers/companies/companies";
 import { styles } from "../../styles/components/addCompany";
@@ -43,7 +53,7 @@ const AddCompany = () => {
           country: "",
           selectState: "",
           selectCity: "",
-          postalCode: ""
+          postalCode: "",
         },
       ],
     },
@@ -55,7 +65,7 @@ const AddCompany = () => {
         .then((response: any) => {
           console.log("response from addCompany file", response);
         })
-        .catch((error: any) => { });
+        .catch((error: any) => {});
     },
   });
 
@@ -91,7 +101,7 @@ const AddCompany = () => {
         country: "",
         selectState: "",
         selectCity: "",
-        postalCode: ""
+        postalCode: "",
       },
     ];
     setFieldValue("address", newAddresses);
@@ -121,7 +131,7 @@ const AddCompany = () => {
   // address
   const handleChangeAddressLine1 = (event: any, index: number) => {
     setFieldValue(`address.${index}.addressLine1`, event.target.value);
-    console.log("address line1", event.target.value)
+    console.log("address line1", event.target.value);
   };
 
   const handleChangeAddressLine2 = (event: any, index: number) => {
@@ -150,10 +160,7 @@ const AddCompany = () => {
     <Box>
       <form onSubmit={handleSubmit}>
         <Box {...styles.parentBox}>
-          <Typography
-            variant="h5"
-            {...globalStyles.moduleTitle}
-          >
+          <Typography variant="h5" {...globalStyles.moduleTitle}>
             Add Company
           </Typography>
           <Box>
@@ -384,16 +391,13 @@ const AddCompany = () => {
         {values.address.map((address, index) => (
           <>
             <Box {...styles.parentBox}>
-              <Typography
-                variant="h5"
-                {...globalStyles.moduleTitle}
-              >
+              <Typography variant="h5" {...globalStyles.moduleTitle}>
                 Address 1
               </Typography>
               <Box
                 {...styles.taxCloseClickIconBox}
                 onClick={() => {
-                  handleRemoveAddress(index)
+                  handleRemoveAddress(index);
                 }}
               >
                 <DeleteIcon fill={"white"} />
@@ -413,7 +417,11 @@ const AddCompany = () => {
                         variant="filled"
                         size="small"
                         type={"text"}
-                        value={(values.address && values.address[index].addressLine1) || ""}
+                        value={
+                          (values.address &&
+                            values.address[index].addressLine1) ||
+                          ""
+                        }
                         onChange={(event) => {
                           handleChangeAddressLine1(event, index);
                         }}
@@ -435,7 +443,11 @@ const AddCompany = () => {
                         size="small"
                         type={"text"}
                         name="addressLine2"
-                        value={(values.address && values.address[index].addressLine2) || ""}
+                        value={
+                          (values.address &&
+                            values.address[index].addressLine2) ||
+                          ""
+                        }
                         onChange={(event) => {
                           handleChangeAddressLine2(event, index);
                         }}
@@ -444,8 +456,8 @@ const AddCompany = () => {
                           disableUnderline: true,
                           style: { ...globalStyles.textField },
                         }}
-                      // error={touched.abbr && errors.abbr ? true : false}
-                      // helperText={touched.abbr && errors.abbr}
+                        // error={touched.abbr && errors.abbr ? true : false}
+                        // helperText={touched.abbr && errors.abbr}
                       />
                     </FormControl>
                   </Grid>
@@ -460,7 +472,10 @@ const AddCompany = () => {
                         variant="filled"
                         size="small"
                         id="country"
-                        value={(values.address && values.address[index].country) || ""}
+                        value={
+                          (values.address && values.address[index].country) ||
+                          ""
+                        }
                         onChange={(event) => {
                           handleChangeCountry(event, index);
                         }}
@@ -478,7 +493,10 @@ const AddCompany = () => {
                   </Grid>
                   <Grid item xs={12} md={6} lg={3}>
                     <FormControl fullWidth>
-                      <FormLabel id="selectState" {...globalStyles.textFieldLabel}>
+                      <FormLabel
+                        id="selectState"
+                        {...globalStyles.textFieldLabel}
+                      >
                         Select state*
                       </FormLabel>
                       <TextField
@@ -487,7 +505,11 @@ const AddCompany = () => {
                         variant="filled"
                         size="small"
                         id="selectState"
-                        value={(values.address && values.address[index].selectState) || ""}
+                        value={
+                          (values.address &&
+                            values.address[index].selectState) ||
+                          ""
+                        }
                         onChange={(event) => {
                           handleChangeSelectState(event, index);
                         }}
@@ -507,7 +529,10 @@ const AddCompany = () => {
                   </Grid>
                   <Grid item xs={12} md={6} lg={3}>
                     <FormControl fullWidth>
-                      <FormLabel id="selectCity" {...globalStyles.textFieldLabel}>
+                      <FormLabel
+                        id="selectCity"
+                        {...globalStyles.textFieldLabel}
+                      >
                         Select City*
                       </FormLabel>
                       <TextField
@@ -516,7 +541,11 @@ const AddCompany = () => {
                         variant="filled"
                         size="small"
                         id="selectCity"
-                        value={(values.address && values.address[index].selectCity) || ""}
+                        value={
+                          (values.address &&
+                            values.address[index].selectCity) ||
+                          ""
+                        }
                         onChange={(event) => {
                           handleChangeSelectCity(event, index);
                         }}
@@ -542,7 +571,11 @@ const AddCompany = () => {
                         size="small"
                         type="text"
                         name="postalCode"
-                        value={(values.address && values.address[index].postalCode) || ""}
+                        value={
+                          (values.address &&
+                            values.address[index].postalCode) ||
+                          ""
+                        }
                         onChange={(event) => {
                           handleChangePostalCode(event, index);
                         }}

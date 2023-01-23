@@ -1,16 +1,26 @@
 import React, { useRef } from "react";
-import { Box, Button, Typography, Modal, Divider, Grid, FormLabel, TextField, FormControl } from "@mui/material";
+import {
+  Box,
+  Button,
+  Typography,
+  Modal,
+  Divider,
+  Grid,
+  FormLabel,
+  TextField,
+  FormControl,
+} from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
 import { globalStyles } from "../../../styles/global";
 import { styles } from "../../../styles/components/organizationData";
 
-export default function AddOrganisationData({
+const AddOrganisationData = ({
   handleAddClose,
   addOpen,
 }: {
   handleAddClose: any;
   addOpen: any;
-}) {
+}) => {
   const inputRef: any = useRef(null);
   const handleClick = () => {
     // open file input box on click of other element
@@ -132,4 +142,6 @@ export default function AddOrganisationData({
       </Modal>
     </div>
   );
-}
+};
+
+export default AddOrganisationData;

@@ -106,7 +106,7 @@ const EditCompany = (props: EditCompanyInterface) => {
 
   const handleSubmitTaxes = (index: number) => { };
 
-  console.log("data in edit company.tsx", data)
+  console.log("data in edit company.tsx", data);
   let { params } = useParams();
   const [isEditing, setIsEditing] = useState(false);
   const [editBtn, setEditBtn] = useState(true);
@@ -114,20 +114,23 @@ const EditCompany = (props: EditCompanyInterface) => {
   const [editHollidayBtn, setEditHollidayBtn] = useState(true);
 
   const navigate = useNavigate();
+
   const EditHandle = () => {
     setIsEditing(true);
     setEditBtn(false);
   };
+  
   const EditHollidayHandle = () => {
     setIsHollidayEditing(true);
     setEditHollidayBtn(false);
   };
+
   const handleCancleEdit = () => {
     navigate(-1);
-  }
+  };
 
   return (
-    <Container sx={{ width: 1 }} >
+    <Container sx={{ width: 1 }}>
       {/* toggle card for details and edit form of company */}
       <form onSubmit={handleSubmit}>
         <Box {...styles.box}>
