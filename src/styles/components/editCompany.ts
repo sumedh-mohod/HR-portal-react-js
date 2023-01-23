@@ -1,6 +1,13 @@
 export const styles = {
   // edit Company screen
   box: { sx: { mt: 5, display: "flex", justifyContent: "space-between" } },
+  parentBox: {
+    sx: {
+      display: "flex",
+      justifyContent: "space-between",
+      mt: 2,
+    },
+  },
   parentBoxButtonEdit: {
     sx: {
       backgroundColor: "#F58634",
@@ -23,6 +30,19 @@ export const styles = {
   },
   icon: {
     sx: { pr: 1, fontSize: "inheit" },
+  },
+
+  taxCloseClickIconBox: {
+    sx: {
+      width: "48px",
+      height: "48px",
+      borderRadius: "5px",
+      backgroundColor: "#D82A2A",
+      display: "flex",
+      justifyContent: "center",
+      alignItems: "center",
+      cursor: "pointer",
+    },
   },
 
   // company details card
@@ -64,6 +84,16 @@ export const styles = {
       padding: "12px 25px",
     },
   },
+  addressAddBtn: {
+    sx: {
+      background: "#F58634",
+      borderRadius: "5px",
+      mr: "10px",
+      cursor: "pointer",
+      fontSize: "14px",
+      textTransform: "inherit",
+    },
+  },
   gridItemSaveButton1: {
     sx: {
       mt: 3,
@@ -92,6 +122,13 @@ export const styles = {
       width: "100%",
       size: "large",
       py: "12px",
+    },
+  },
+  card: {
+    sx: {
+      mt: 3,
+      mb: 3,
+      p: 5,
     },
   },
 };
