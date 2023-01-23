@@ -11,101 +11,45 @@ import { globalStyles } from "../../styles/global";
 
 interface CompanyDetailsCardInterface {
   data: any,
-  submitRef: any
+  values: any,
+  setFieldValue:any,
+  handleSubmit:any,
+  handleChange:any,
+  handleBlur:any,
+  errors:any,
+  touched:any,
+  handleAddAddress:any,
+  handleRemoveAddress:any,
+  handleChangeAddressLine1:any,
+  handleChangeAddressLine2:any,
+  handleChangeCountry:any,
+  handleChangeSelectState:any,
+  handleChangeSelectCity:any,
+  handleChangePostalCode:any,
+  handleSubmitTaxes:any
 }
 const CompanyDetailsCard = (props: CompanyDetailsCardInterface) => {
   const {
     data,
-    submitRef
-  } = props;
-  const dispatch = useAppDispatch();
-  const {
-    handleBlur,
-    handleChange,
+    values,
     setFieldValue,
     handleSubmit,
-    values,
+    handleChange,
+    handleBlur,
     errors,
     touched,
-  } = useFormik({
-    enableReinitialize: true,
-    initialValues: {
-      company: "",
-      abbr: "",
-      defaultCurrency: "",
-      domain: "",
-      dateOfEstablishment: "",
-      address: [
-        {
-          addressLine1: "",
-          addressLine2: "",
-          country: "",
-          selectState: "",
-          selectCity: "",
-          postalCode: ""
-        },
-      ],
-    },
-    validationSchema: editCompanyValidator,
-    onSubmit: (values) => {
-      console.log("values", values);
-      dispatch(updateCompany(values))
-        .unwrap()
-        .then((response: any) => {
-          console.log("response from edit Company file", response)
-        })
-        .catch((error: any) => { });
-    },
-  });
+    handleAddAddress,
+    handleRemoveAddress,
+    handleChangeAddressLine1,
+    handleChangeAddressLine2,
+    handleChangeCountry,
+    handleChangeSelectState,
+    handleChangeSelectCity,
+    handleChangePostalCode,
+    handleSubmitTaxes
+  } = props;
+ 
 
-  const handleAddAddress = () => {
-    const newAddresses = [
-      ...values.address,
-      {
-        addressLine1: "",
-        addressLine2: "",
-        country: "",
-        selectState: "",
-        selectCity: "",
-        postalCode: ""
-      },
-    ];
-    setFieldValue("address", newAddresses);
-  };
-
-  const handleRemoveAddress = (index: number) => {
-    const newAddresses = [...values.address];
-    newAddresses.splice(index, 1);
-    setFieldValue("address", newAddresses);
-  };
-
-  // address
-  const handleChangeAddressLine1 = (event: any, index: number) => {
-    setFieldValue(`address.${index}.addressLine1`, event.target.value);
-    console.log("address line1", event.target.value)
-  };
-
-  const handleChangeAddressLine2 = (event: any, index: number) => {
-    setFieldValue(`address.${index}.addressLine2`, event.target.value);
-  };
-
-  const handleChangeCountry = (event: any, index: number) => {
-    setFieldValue(`address.${index}.country`, event.target.value);
-  };
-
-  const handleChangeSelectState = (event: any, index: number) => {
-    setFieldValue(`address.${index}.selectState`, event.target.value);
-  };
-
-  const handleChangeSelectCity = (event: any, index: number) => {
-    setFieldValue(`address.${index}.selectCity`, event.target.value);
-  };
-
-  const handleChangePostalCode = (event: any, index: number) => {
-    setFieldValue(`address.${index}.postalCode`, event.target.value);
-  };
-
-  const handleSubmitTaxes = (index: number) => { };
   return (
     <Box>
       <form onSubmit={handleSubmit}>
@@ -218,10 +162,9 @@ const CompanyDetailsCard = (props: CompanyDetailsCardInterface) => {
             </Grid>
           </Grid>
           {/* invisible button call submit from parents save button */}
-          <button ref={submitRef} type="submit" style={{ display: 'none' }} />
         </Card>
         {/* address */}
-        {values.address.map((address, index) => (
+        {values.address.map((address:any, index:any) => (
           <>
             <Box {...styles.parentBox}>
               <Typography
@@ -394,21 +337,21 @@ const CompanyDetailsCard = (props: CompanyDetailsCardInterface) => {
                       />
                     </FormControl>
                   </Grid>
-                  <Grid item xs={12} md={6} lg={12}>
-                    {values.address.length - 1 === index ? (
-                      <Button
-                        variant="contained"
-                        onClick={handleAddAddress}
-                        startIcon={<AddIcon />}
-                        {...styles.addressAddBtn}
-                      >
-                        Add
-                      </Button>
-                    ) : null}
-                  </Grid>
                 </>
               </Grid>
             </Card>
+            <Grid item xs={12} md={6} lg={12}>
+              {values.address.length - 1 === index ? (
+                <Button
+                  variant="contained"
+                  onClick={handleAddAddress}
+                  startIcon={<AddIcon />}
+                  {...styles.addressAddBtn}
+                >
+                  Add
+                </Button>
+              ) : null}
+            </Grid>
           </>
         ))}
       </form>
