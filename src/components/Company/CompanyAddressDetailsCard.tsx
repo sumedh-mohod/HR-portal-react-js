@@ -22,7 +22,7 @@ const CompanyAddressDetailsCard = (
                   Address Line 1 -
                 </Typography>
                 <Typography {...styles.detailsTypography2}>
-                  {info.line1}
+                  {info?.line1}
                 </Typography>
               </Box>
               <Box {...styles.typographyBox}>
@@ -30,7 +30,7 @@ const CompanyAddressDetailsCard = (
                   Address Line 2 -
                 </Typography>
                 <Typography {...styles.detailsTypography2}>
-                  {info.line2}
+                  {info?.line2}
                 </Typography>
               </Box>
               <Box {...styles.typographyBox}>
@@ -38,19 +38,19 @@ const CompanyAddressDetailsCard = (
                   Country -
                 </Typography>
                 <Typography {...styles.detailsTypography2}>
-                  {info.country}
+                  {info?.country}
                 </Typography>
               </Box>
               <Box {...styles.typographyBox}>
                 <Typography {...styles.detailsTypography1}>State -</Typography>
                 <Typography {...styles.detailsTypography2}>
-                  {info.state}
+                  {info?.state}
                 </Typography>
               </Box>
               <Box {...styles.typographyBox}>
                 <Typography {...styles.detailsTypography1}>City -</Typography>
                 <Typography {...styles.detailsTypography2}>
-                  {info.city}
+                  {info?.city}
                 </Typography>
               </Box>
               <Box {...styles.typographyBox}>
@@ -58,7 +58,7 @@ const CompanyAddressDetailsCard = (
                   Postal Code -
                 </Typography>
                 <Typography {...styles.detailsTypography2}>
-                  {info.postalCode}
+                  {info?.postalCode}
                 </Typography>
               </Box>
             </Grid>
