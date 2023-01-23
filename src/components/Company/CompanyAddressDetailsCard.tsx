@@ -7,7 +7,7 @@ interface CompanyAddressDetailsCardInterface {
 }
 const CompanyAddressDetailsCard = (props: CompanyAddressDetailsCardInterface) => {
     const { info } = props;
-    console.log("info", info);
+    // console.log("info", info);
     return (
         <Box>
             <Typography variant="h5">Address 1</Typography>
@@ -23,12 +23,12 @@ const CompanyAddressDetailsCard = (props: CompanyAddressDetailsCardInterface) =>
                             <Typography {...styles.detailsTypography1}>Postal Code -</Typography>
                         </Grid>
                         <Grid item xs={12} md={10} lg={8}>
-                            <Typography {...styles.detailsTypography2}> {info.line1}</Typography>
-                            <Typography {...styles.detailsTypography2}> {info.line2} </Typography>
-                            <Typography {...styles.detailsTypography2}> {info.country} </Typography>
-                            <Typography {...styles.detailsTypography2}> {info.state} </Typography>
-                            <Typography {...styles.detailsTypography2}> {info.city} </Typography>
-                            <Typography {...styles.detailsTypography2}> {info.postalCode} </Typography>
+                            <Typography {...styles.detailsTypography2}> {info.line1 === null ? "-":info?.line1}</Typography>
+                            <Typography {...styles.detailsTypography2}> {info.line2  === null ? "-":info?.line2} </Typography>
+                            <Typography {...styles.detailsTypography2}> {info.country  === null ? "-":info?.country} </Typography>
+                            <Typography {...styles.detailsTypography2}> {info.state  === null ? "-":info?.state} </Typography>
+                            <Typography {...styles.detailsTypography2}> {info.city  === null ? "-":info?.city} </Typography>
+                            <Typography {...styles.detailsTypography2}> {info.postalCode  === null ? "-":info?.postalCode} </Typography>
                         </Grid>
                     </Box>
                 </Grid>

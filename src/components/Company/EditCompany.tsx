@@ -15,7 +15,8 @@ const EditCompany = (props: EditCompanyInterface) => {
     data
   } = props;
 
-  console.log("data in edit company.tsx", data)
+  console.log("data in edit company.tsx", data);
+  
   let { params } = useParams();
   const [isEditing, setIsEditing] = useState(false);
   const [editBtn, setEditBtn] = useState(true);

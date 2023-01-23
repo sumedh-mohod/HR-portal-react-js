@@ -1,11 +1,11 @@
-import React from "react";
+import React,{useEffect} from "react";
 import { useFormik } from "formik";
 import { Button, Grid, FormControl, FormLabel, TextField, MenuItem, Card, Box, Typography } from "@mui/material";
 import DeleteIcon from "../Icons/DeleteIcon";
 import AddIcon from "@mui/icons-material/Add";
+import { useAppDispatch, useAppSelector } from "../../store/hooks";
 import { editCompanyValidator } from "../../utils/validations/auth";
-import { useAppDispatch } from "../../store/hooks";
-import { updateCompany } from "../../store/reducers/companies/companies";
+import { getCompany, updateCompany } from "../../store/reducers/companies/companies";
 import { styles } from "../../styles/components/editCompany";
 import { globalStyles } from "../../styles/global";
 
@@ -18,7 +18,20 @@ const CompanyDetailsCard = (props: CompanyDetailsCardInterface) => {
     data,
     submitRef
   } = props;
+
   const dispatch = useAppDispatch();
+  const companyStore = useAppSelector((state) => state.companies);
+  const { isLoadingRequest, companies } = companyStore;
+  console.log("company data from companyEditCard.tsx", companies)
+
+useEffect(() => {
+  dispatch(getCompany(companies))
+    .unwrap()
+    .then((response: any) => {
+      console.log("useeffect response from companyEditCard.tsx",response.data);
+     })
+    .catch((error) => { });
+}, []);
   const {
     handleBlur,
     handleChange,
@@ -30,19 +43,19 @@ const CompanyDetailsCard = (props: CompanyDetailsCardInterface) => {
   } = useFormik({
     enableReinitialize: true,
     initialValues: {
-      company: "",
-      abbr: "",
-      defaultCurrency: "",
-      domain: "",
-      dateOfEstablishment: "",
+      company:companies?.name,
+      abbr: companies?.abbreviation,
+      defaultCurrency:companies?.defaultCurrency ,
+      domain:companies?.domain,
+      dateOfEstablishment: companies?.dateOfIncorporation,
       address: [
         {
-          addressLine1: "",
-          addressLine2: "",
-          country: "",
-          selectState: "",
-          selectCity: "",
-          postalCode: ""
+          addressLine1:"",
+          addressLine2:"",
+          country:"" ,
+          selectState:  "",
+          selectCity:  "",
+          postalCode:  ""
         },
       ],
     },
@@ -52,7 +65,7 @@ const CompanyDetailsCard = (props: CompanyDetailsCardInterface) => {
       dispatch(updateCompany(values))
         .unwrap()
         .then((response: any) => {
-          console.log("response from edit Company file", response)
+          console.log("response from edit companyEditCard file", response.data)
         })
         .catch((error: any) => { });
     },
@@ -122,7 +135,7 @@ const CompanyDetailsCard = (props: CompanyDetailsCardInterface) => {
                   onChange={handleChange}
                   onBlur={handleBlur}
                   error={touched.company && errors.company ? true : false}
-                  helperText={touched.company && errors.company}
+                  // helperText={touched.company && errors.company}
                   InputProps={{
                     disableUnderline: true,
                     style: { ...globalStyles.textField },
@@ -141,7 +154,7 @@ const CompanyDetailsCard = (props: CompanyDetailsCardInterface) => {
                   onChange={handleChange}
                   onBlur={handleBlur}
                   error={touched.abbr && errors.abbr ? true : false}
-                  helperText={touched.abbr && errors.abbr}
+                  // helperText={touched.abbr && errors.abbr}
                   InputProps={{
                     disableUnderline: true,
                     style: { ...globalStyles.textField },
@@ -164,7 +177,7 @@ const CompanyDetailsCard = (props: CompanyDetailsCardInterface) => {
                       ? true
                       : false
                   }
-                  helperText={touched.defaultCurrency && errors.defaultCurrency}
+                  // helperText={touched.defaultCurrency && errors.defaultCurrency}
                   InputProps={{
                     disableUnderline: true,
                     style: { ...globalStyles.textField },
@@ -206,9 +219,9 @@ const CompanyDetailsCard = (props: CompanyDetailsCardInterface) => {
                       ? true
                       : false
                   }
-                  helperText={
-                    touched.dateOfEstablishment && errors.dateOfEstablishment
-                  }
+                  // helperText={
+                  //   touched.dateOfEstablishment && errors.dateOfEstablishment
+                  // }
                   InputProps={{
                     disableUnderline: true,
                     style: { ...globalStyles.textField },
@@ -221,14 +234,14 @@ const CompanyDetailsCard = (props: CompanyDetailsCardInterface) => {
           <button ref={submitRef} type="submit" style={{ display: 'none' }} />
         </Card>
         {/* address */}
-        {values.address.map((address, index) => (
+        {companies?.companyAddresses?.map((address:any, index:any) => (
           <>
             <Box {...styles.parentBox}>
               <Typography
                 variant="h5"
                 {...globalStyles.moduleTitle}
               >
-                Address 1
+                Address {index+1}
               </Typography>
               <Box
                 {...styles.taxCloseClickIconBox}
@@ -253,7 +266,7 @@ const CompanyDetailsCard = (props: CompanyDetailsCardInterface) => {
                         variant="filled"
                         size="small"
                         type={"text"}
-                        value={(values.address && values.address[index].addressLine1) || ""}
+                        value={(companies?.companyAddresses && companies?.companyAddresses[index].line1) || ""}
                         onChange={(event) => {
                           handleChangeAddressLine1(event, index);
                         }}
@@ -275,7 +288,7 @@ const CompanyDetailsCard = (props: CompanyDetailsCardInterface) => {
                         size="small"
                         type={"text"}
                         name="addressLine2"
-                        value={(values.address && values.address[index].addressLine2) || ""}
+                        value={(companies?.companyAddresses && companies?.companyAddresses[index].line2) || ""}
                         onChange={(event) => {
                           handleChangeAddressLine2(event, index);
                         }}
@@ -300,7 +313,7 @@ const CompanyDetailsCard = (props: CompanyDetailsCardInterface) => {
                         variant="filled"
                         size="small"
                         id="country"
-                        value={(values.address && values.address[index].country) || ""}
+                        value={(companies?.companyAddresses && companies?.companyAddresses[index].country) || ""}
                         onChange={(event) => {
                           handleChangeCountry(event, index);
                         }}
@@ -312,7 +325,7 @@ const CompanyDetailsCard = (props: CompanyDetailsCardInterface) => {
                           style: { ...globalStyles.textField },
                         }}
                       >
-                        <MenuItem value="India">India</MenuItem>
+                        <MenuItem value="india">india</MenuItem>
                       </TextField>
                     </FormControl>
                   </Grid>
@@ -327,7 +340,7 @@ const CompanyDetailsCard = (props: CompanyDetailsCardInterface) => {
                         variant="filled"
                         size="small"
                         id="selectState"
-                        value={(values.address && values.address[index].selectState) || ""}
+                        value={(companies?.companyAddresses && companies?.companyAddresses[index].state)|| ""}
                         onChange={(event) => {
                           handleChangeSelectState(event, index);
                         }}
@@ -341,7 +354,7 @@ const CompanyDetailsCard = (props: CompanyDetailsCardInterface) => {
                           style: { ...globalStyles.textField },
                         }}
                       >
-                        <MenuItem value="Maharastra">Maharastra</MenuItem>
+                        <MenuItem value="maharastra">maharastra</MenuItem>
                       </TextField>
                     </FormControl>
                   </Grid>
@@ -356,7 +369,7 @@ const CompanyDetailsCard = (props: CompanyDetailsCardInterface) => {
                         variant="filled"
                         size="small"
                         id="selectCity"
-                        value={(values.address && values.address[index].selectCity) || ""}
+                        value={(companies?.companyAddresses && companies?.companyAddresses[index].city) || ""}
                         onChange={(event) => {
                           handleChangeSelectCity(event, index);
                         }}
@@ -369,6 +382,7 @@ const CompanyDetailsCard = (props: CompanyDetailsCardInterface) => {
                         }}
                       >
                         <MenuItem value="Nagpur">Nagpur</MenuItem>
+                        <MenuItem value="chndrapur">chndrapur</MenuItem>
                       </TextField>
                     </FormControl>
                   </Grid>
@@ -382,7 +396,7 @@ const CompanyDetailsCard = (props: CompanyDetailsCardInterface) => {
                         size="small"
                         type="text"
                         name="postalCode"
-                        value={(values.address && values.address[index].postalCode) || ""}
+                        value={(companies?.companyAddresses && companies?.companyAddresses[index].postalCode) || ""}
                         onChange={(event) => {
                           handleChangePostalCode(event, index);
                         }}

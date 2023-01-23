@@ -116,7 +116,7 @@ const CompanyList = () => {
 
   const companyStore = useAppSelector((state) => state.companies);
   const { isLoadingRequest, companies } = companyStore;
-  console.log("companie",companies);
+  console.log("companie data from company.tsx",companies);
 
   useEffect(() => {
     const firstPageIndex = (currentPage - 1) * PageSize;

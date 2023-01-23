@@ -18,13 +18,13 @@ const CompanyDetailsCard = (props: CompanyDetailsCardInterface) => {
   const dispatch = useAppDispatch();
   const companyStore = useAppSelector((state) => state.companies);
   const { isLoadingRequest, companies } = companyStore;
-  console.log("edit company", companies)
+  console.log("company data from companyDetailsCard.tsx", companies)
 
 useEffect(() => {
   dispatch(getCompany(data))
     .unwrap()
     .then((response: any) => {
-      console.log("useeffect response",response.data)
+      console.log("useeffect response from companyDetailsCard.tsx",response.data);
      })
     .catch((error) => { });
 }, []);
@@ -79,17 +79,17 @@ useEffect(() => {
                 <Typography {...styles.detailsTypography1}>Date of Estiblishment -</Typography>
               </Grid>
               <Grid item xs={12} md={10} lg={8}>
-                <Typography {...styles.detailsTypography2}>{data.name}</Typography>
-                <Typography {...styles.detailsTypography2}>{data.abbreviation}</Typography>
-                <Typography {...styles.detailsTypography2}>{data.defaultCurrency}</Typography>
-                <Typography {...styles.detailsTypography2}>{data.domain} </Typography>
-                <Typography {...styles.detailsTypography2}>{data.dateOfIncorporation}</Typography>
+                <Typography {...styles.detailsTypography2}>{companies?.name === null ? "-":companies?.name}</Typography>
+                <Typography {...styles.detailsTypography2}>{companies?.abbreviation=== null ? "-":companies?.abbreviation}</Typography>
+                <Typography {...styles.detailsTypography2}>{companies?.defaultCurrency === null ? "-":companies?.defaultCurrency}</Typography>
+                <Typography {...styles.detailsTypography2}>{companies?.domain === null ?  "-":companies?.domain} </Typography>
+                <Typography {...styles.detailsTypography2}>{companies?.dateOfIncorporation === null ? "-":companies?.dateOfIncorporation}</Typography>
               </Grid>
             </Box>
           </Grid>
         </Card>
 
-        {data?.companyAddresses?.map((info: any) => <CompanyAddressDetailsCard info={info} />)}
+        {companies?.companyAddresses?.map((info: any) => <CompanyAddressDetailsCard info={info} />)}
       </Box>
     </Container>
   );
