@@ -17,16 +17,19 @@ const CompanyDetailsCard = (props: CompanyDetailsCardInterface) => {
   const companyStore = useAppSelector((state) => state.companies);
 
   const { isLoadingRequest, companies } = companyStore;
-  console.log("company data from companyDetailsCard.tsx", companies)
+  console.log("company data from companyDetailsCard.tsx", companies);
 
-useEffect(() => {
-  dispatch(getCompany(data))
-    .unwrap()
-    .then((response: any) => {
-      console.log("useeffect response from companyDetailsCard.tsx",response.data);
-     })
-    .catch((error) => { });
-}, []);
+  useEffect(() => {
+    dispatch(getCompany(data))
+      .unwrap()
+      .then((response: any) => {
+        console.log(
+          "useeffect response from companyDetailsCard.tsx",
+          response.data
+        );
+      })
+      .catch((error) => {});
+  }, []);
 
   // const [isEditing, setIsEditing] = useState(false);
   const [editBtn, setEditBtn] = useState(true);
@@ -37,7 +40,7 @@ useEffect(() => {
     setEditBtn(false);
     navigate("/companies/edit");
   };
-  
+
   return (
     <Container sx={{ width: 1 }}>
       {/* toggle card for details and edit form of company */}
@@ -69,31 +72,53 @@ useEffect(() => {
         <Card sx={{ mt: 3, mb: 3, p: 5 }}>
           <Grid container spacing={3}>
             <Box {...styles.detailsParentBox}>
-              <Grid item xs={12} md={2} lg={4}>
-                <Typography {...styles.detailsTypography1}>
-                  Company -
-                </Typography>
-                <Typography {...styles.detailsTypography1}>Abbr -</Typography>
-                <Typography {...styles.detailsTypography1}>
-                  Default Currency -
-                </Typography>
-                <Typography {...styles.detailsTypography1}>Domain -</Typography>
-                <Typography {...styles.detailsTypography1}>
-                  Date of Estiblishment -
-                </Typography>
-              </Grid>
-              <Grid item xs={12} md={10} lg={8}>
-                <Typography {...styles.detailsTypography2}>{companies?.name === null ? "-":companies?.name}</Typography>
-                <Typography {...styles.detailsTypography2}>{companies?.abbreviation=== null ? "-":companies?.abbreviation}</Typography>
-                <Typography {...styles.detailsTypography2}>{companies?.defaultCurrency === null ? "-":companies?.defaultCurrency}</Typography>
-                <Typography {...styles.detailsTypography2}>{companies?.domain === null ?  "-":companies?.domain} </Typography>
-                <Typography {...styles.detailsTypography2}>{companies?.dateOfIncorporation === null ? "-":companies?.dateOfIncorporation}</Typography>
+              <Grid item xs={12} md={12} lg={12}>
+                <Box {...styles.typographyBox}>
+                  <Typography {...styles.detailsTypography1}>
+                    Company -
+                  </Typography>
+                  <Typography {...styles.detailsTypography2}>
+                    {companies?.name}
+                  </Typography>
+                </Box>
+                <Box {...styles.typographyBox}>
+                  <Typography {...styles.detailsTypography1}>Abbr -</Typography>
+                  <Typography {...styles.detailsTypography2}>
+                    {companies?.abbreviation}
+                  </Typography>
+                </Box>
+                <Box {...styles.typographyBox}>
+                  <Typography {...styles.detailsTypography1}>
+                    Default Currency -
+                  </Typography>
+                  <Typography {...styles.detailsTypography2}>
+                    {companies?.defaultCurrency}
+                  </Typography>
+                </Box>
+                <Box {...styles.typographyBox}>
+                  <Typography {...styles.detailsTypography1}>
+                    Domain -
+                  </Typography>
+                  <Typography {...styles.detailsTypography2}>
+                    {companies?.domain}{" "}
+                  </Typography>
+                </Box>
+                <Box {...styles.typographyBox}>
+                  <Typography {...styles.detailsTypography1}>
+                    Date of Estiblishment -
+                  </Typography>
+                  <Typography {...styles.detailsTypography2}>
+                    {companies?.dateOfIncorporation}
+                  </Typography>
+                </Box>
               </Grid>
             </Box>
           </Grid>
         </Card>
 
-        {companies?.companyAddresses?.map((info: any) => <CompanyAddressDetailsCard info={info} />)}
+        {companies?.companyAddresses?.map((info: any) => (
+          <CompanyAddressDetailsCard info={info} />
+        ))}
       </Box>
     </Container>
   );

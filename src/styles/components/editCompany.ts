@@ -53,11 +53,16 @@ export const styles = {
   detailsParentSubBox: {
     sx: { textAlign: "left", mx: 1 },
   },
+
+  typographyBox:{
+    sx:{display:"flex"}
+  },
+
   detailsTypography1: {
-    sx: { mt: 2, color: "#515151", fontSize: "14px" },
+    sx: { m: 1,mt:1 ,color: "#515151", fontSize: "14px" },
   },
   detailsTypography2: {
-    sx: { mt: 2, color: "# #515151;", fontSize: "14px" },
+    sx: { m: 1,mt:1, color: "# #515151;", fontSize: "14px" },
   },
   // edit company from card
   companySaveButton: {
