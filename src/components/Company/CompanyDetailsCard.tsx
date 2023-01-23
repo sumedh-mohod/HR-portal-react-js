@@ -6,20 +6,19 @@ import { getCompany } from "../../store/reducers/companies/companies";
 import { styles } from "../../styles/components/editCompany";
 import Loader from "../HigherOrder/Loader";
 import EditIcon from "@mui/icons-material/Edit";
-
-interface CompanyDetailsCardInterface{
+import CompanyAddressDetailsCard from "./CompanyAddressDetailsCard";
+interface CompanyDetailsCardInterface {
   data: any;
 }
-const CompanyDetailsCard = (props:CompanyDetailsCardInterface) => {
+const CompanyDetailsCard = (props: CompanyDetailsCardInterface) => {
   const {
     data
-    } = props;
-  console.log("data in details card",data.id);
+  } = props;
+  console.log("data in details card", data);
   const dispatch = useAppDispatch();
-
-const companyStore = useAppSelector((state) => state.companies);
-const { isLoadingRequest, companies } = companyStore;
-console.log("details page company",companies)
+  const companyStore = useAppSelector((state) => state.companies);
+  const { isLoadingRequest, companies } = companyStore;
+  console.log("edit company", companies)
 
 useEffect(() => {
   dispatch(getCompany(data))
@@ -71,77 +70,26 @@ useEffect(() => {
         <Loader isLoading={isLoadingRequest} />
         <Card sx={{ mt: 3, mb: 3, p: 5 }}>
           <Grid container spacing={3}>
-            <Box {...styles.detailsParentBox}>
+            <Box {...styles.detailsParentBox} >
               <Grid item xs={12} md={2} lg={4}>
-                <Typography {...styles.detailsTypography1}>
-                  Company -
-                </Typography>
+                <Typography {...styles.detailsTypography1}>Company -</Typography>
                 <Typography {...styles.detailsTypography1}>Abbr -</Typography>
-                <Typography {...styles.detailsTypography1}>
-                  Default Currency -
-                </Typography>
+                <Typography {...styles.detailsTypography1}>Default Currency -</Typography>
                 <Typography {...styles.detailsTypography1}>Domain -</Typography>
-                <Typography {...styles.detailsTypography1}>
-                  Date of Estiblishment -
-                </Typography>
-                <Typography {...styles.detailsTypography1}>
-                  Address Line 1 -
-                </Typography>
-                <Typography {...styles.detailsTypography1}>
-                  Address Line 2 -
-                </Typography>
-                <Typography {...styles.detailsTypography1}>
-                  Country -
-                </Typography>
-                <Typography {...styles.detailsTypography1}>State -</Typography>
-                <Typography {...styles.detailsTypography1}>City -</Typography>
+                <Typography {...styles.detailsTypography1}>Date of Estiblishment -</Typography>
               </Grid>
               <Grid item xs={12} md={10} lg={8}>
-                <Typography {...styles.detailsTypography2}>
-                  {data.name}
-                </Typography>
-                <Typography {...styles.detailsTypography2}>
-                  {data.abbreviation}
-                </Typography>
-                <Typography {...styles.detailsTypography2}>
-                  {data.defaultCurrency}
-                </Typography>
-                <Typography {...styles.detailsTypography2}>
-                  {data.domain}{" "}
-                </Typography>
-                <Typography {...styles.detailsTypography2}>
-                  {data.dateOfIncorporation}
-                </Typography>
-                {data?.companyAddresses.map((info: any) => {
-                  return (
-                    <>
-                      <Typography {...styles.detailsTypography2}>
-                        {" "}
-                        {info.line1}
-                      </Typography>
-                      <Typography {...styles.detailsTypography2}>
-                        {" "}
-                        {info.line2}{" "}
-                      </Typography>
-                      <Typography {...styles.detailsTypography2}>
-                        {" "}
-                        {info.country}{" "}
-                      </Typography>
-                      <Typography {...styles.detailsTypography2}>
-                        {" "}
-                        {info.state}{" "}
-                      </Typography>
-                      <Typography {...styles.detailsTypography2}>
-                        {" "}
-                        {info.city}{" "}
-                      </Typography>
-                    </>
-                  );
-                })}
+                <Typography {...styles.detailsTypography2}>{data.name}</Typography>
+                <Typography {...styles.detailsTypography2}>{data.abbreviation}</Typography>
+                <Typography {...styles.detailsTypography2}>{data.defaultCurrency}</Typography>
+                <Typography {...styles.detailsTypography2}>{data.domain} </Typography>
+                <Typography {...styles.detailsTypography2}>{data.dateOfIncorporation}</Typography>
               </Grid>
             </Box>
           </Grid>
         </Card>
+
+        {data?.companyAddresses?.map((info: any) => <CompanyAddressDetailsCard info={info} />)}
       </Box>
     </Container>
   );
