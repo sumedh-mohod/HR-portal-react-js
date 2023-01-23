@@ -20,27 +20,15 @@ const CompanyDetailsCard = (props: CompanyDetailsCardInterface) => {
   const { isLoadingRequest, companies } = companyStore;
   console.log("edit company", companies)
 
-  // useEffect(() => {
-  //   dispatch(getCompany())
-  //     .unwrap()
-  //     .then((response: any) => { })
-  //     .catch((error) => { });
-  // }, []);
+useEffect(() => {
+  dispatch(getCompany(data))
+    .unwrap()
+    .then((response: any) => {
+      console.log("useeffect response",response.data)
+     })
+    .catch((error) => { });
+}, []);
 
-  const CompanyDetails = [
-    {
-      company: "Orangebits Software Technologies(India) Pvt. Ltd",
-      abbr: "ORNG123",
-      defaultCurrency: "Rupees",
-      domain: "orange.com",
-      dateofEstiblishment: "2 October, 2023",
-      addressLine1: "Enter Line 1",
-      addressLine2: "Enter Line 2",
-      country: "India",
-      state: "Maharshtra",
-      city: "Nagpur",
-    },
-  ];
   const [isEditing, setIsEditing] = useState(false);
   const [editBtn, setEditBtn] = useState(true);
   const [isHollidayEditing, setIsHollidayEditing] = useState(false);

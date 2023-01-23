@@ -15,7 +15,7 @@ enum StatusCode {
 const headers: any = {
   Accept: "application/json",
   "Content-Type": "application/json; charset=utf-8",
-  // "Access-Control-Allow-Origin": "*",
+  "Access-Control-Allow-Origin": "*",
 };
 
 // We can use the following function to inject the JWT token through an interceptor
@@ -26,9 +26,9 @@ const injectToken = (config: AxiosRequestConfig): AxiosRequestConfig => {
       const token = sessionStorage.getItem("access_token");
 
       if (token != null && config.headers) {
-        // config.headers = {
-        //   Authorization: `Bearer ${token}`,
-        // };
+        config.headers = {
+          // Authorization: `Bearer ${token}`,
+        };
       }
     }
     return config;

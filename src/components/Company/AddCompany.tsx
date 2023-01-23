@@ -51,7 +51,7 @@ const AddCompany = () => {
     onSubmit: (values) => {
       console.log("values", values);
       dispatch(addCompany(values))
-        .unwrap()
+      .unwrap()
         .then((response: any) => {
           console.log("response from addCompany file", response);
         })
