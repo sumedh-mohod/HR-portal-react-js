@@ -11,9 +11,7 @@ interface EditCompanyInterface {
 }
 
 const EditCompany = (props: EditCompanyInterface) => {
-  const {
-    data
-  } = props;
+  const { data } = props;
 
   console.log("data in edit company.tsx", data);
   
@@ -23,23 +21,26 @@ const EditCompany = (props: EditCompanyInterface) => {
   const [isHollidayEditing, setIsHollidayEditing] = useState(false);
   const [editHollidayBtn, setEditHollidayBtn] = useState(true);
 
-  const submitRef:any = useRef();
+  const submitRef: any = useRef();
 
   const navigate = useNavigate();
+
   const EditHandle = () => {
     setIsEditing(true);
     setEditBtn(false);
   };
+  
   const EditHollidayHandle = () => {
     setIsHollidayEditing(true);
     setEditHollidayBtn(false);
   };
+
   const handleCancleEdit = () => {
     navigate(-1);
-  }
+  };
 
   return (
-    <Container sx={{ width: 1 }} >
+    <Container sx={{ width: 1 }}>
       {/* toggle card for details and edit form of company */}
       <Box {...styles.box}>
         <Typography variant="h5">Company 1</Typography>
@@ -60,12 +61,9 @@ const EditCompany = (props: EditCompanyInterface) => {
           >
             Save
           </Button>
-
         </Box>
       </Box>
       <CompanyEditCard data={data} submitRef={submitRef} />
-
-
     </Container>
   );
 };

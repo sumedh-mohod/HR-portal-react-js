@@ -6,19 +6,17 @@ import { RestfulUrls } from "../../restfulUrls";
 //add company action
 export const addCompany = createAsyncThunk(
   actionTypes.ADD_COMPANY,
-  async (params: any,{ rejectWithValue }) => {
+  async (params: any, { rejectWithValue }) => {
     //response of addcompany api
     try {
-      const response = await axiosClient.post(RestfulUrls.Add_Company,params);
+      const response = await axiosClient.post(RestfulUrls.Add_Company, params);
       console.log("response of add company", params);
       console.log("response of add company", response);
       return response.data;
-    
     } catch (error) {
       return rejectWithValue("Something went wrong");
     }
     //returned a response to reducer
-    
   }
 );
 
@@ -59,7 +57,9 @@ export const getCompany = createAsyncThunk(
   async (params: any, { rejectWithValue }) => {
     // response of get company api
     try {
-      const response = await axiosClient.get(`${RestfulUrls.Get_Companies}/${params.id}`);
+      const response = await axiosClient.get(
+        `${RestfulUrls.Get_Companies}/${params.id}`
+      );
       console.log("response of get company", response.data);
       return response.data;
     } catch (error) {

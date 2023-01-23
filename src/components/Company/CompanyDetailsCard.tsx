@@ -11,12 +11,11 @@ interface CompanyDetailsCardInterface {
   data: any;
 }
 const CompanyDetailsCard = (props: CompanyDetailsCardInterface) => {
-  const {
-    data
-  } = props;
-  console.log("data in details card", data);
+  const { data } = props;
+
   const dispatch = useAppDispatch();
   const companyStore = useAppSelector((state) => state.companies);
+
   const { isLoadingRequest, companies } = companyStore;
   console.log("company data from companyDetailsCard.tsx", companies)
 
@@ -29,17 +28,16 @@ useEffect(() => {
     .catch((error) => { });
 }, []);
 
-  const [isEditing, setIsEditing] = useState(false);
+  // const [isEditing, setIsEditing] = useState(false);
   const [editBtn, setEditBtn] = useState(true);
-  const [isHollidayEditing, setIsHollidayEditing] = useState(false);
-  const [editHollidayBtn, setEditHollidayBtn] = useState(true);
 
   const navigate = useNavigate();
   const EditHandle = () => {
-    setIsEditing(true);
+    // setIsEditing(true);
     setEditBtn(false);
     navigate("/companies/edit");
   };
+  
   return (
     <Container sx={{ width: 1 }}>
       {/* toggle card for details and edit form of company */}
@@ -70,13 +68,19 @@ useEffect(() => {
         <Loader isLoading={isLoadingRequest} />
         <Card sx={{ mt: 3, mb: 3, p: 5 }}>
           <Grid container spacing={3}>
-            <Box {...styles.detailsParentBox} >
+            <Box {...styles.detailsParentBox}>
               <Grid item xs={12} md={2} lg={4}>
-                <Typography {...styles.detailsTypography1}>Company -</Typography>
+                <Typography {...styles.detailsTypography1}>
+                  Company -
+                </Typography>
                 <Typography {...styles.detailsTypography1}>Abbr -</Typography>
-                <Typography {...styles.detailsTypography1}>Default Currency -</Typography>
+                <Typography {...styles.detailsTypography1}>
+                  Default Currency -
+                </Typography>
                 <Typography {...styles.detailsTypography1}>Domain -</Typography>
-                <Typography {...styles.detailsTypography1}>Date of Estiblishment -</Typography>
+                <Typography {...styles.detailsTypography1}>
+                  Date of Estiblishment -
+                </Typography>
               </Grid>
               <Grid item xs={12} md={10} lg={8}>
                 <Typography {...styles.detailsTypography2}>{companies?.name === null ? "-":companies?.name}</Typography>

@@ -1,6 +1,15 @@
 import React from "react";
 import { useFormik } from "formik";
-import { Box, Button, Grid, FormControl, FormLabel, TextField, Typography, Card, } from "@mui/material";
+import {
+  Box,
+  Button,
+  Grid,
+  FormControl,
+  FormLabel,
+  TextField,
+  Typography,
+  Card,
+} from "@mui/material";
 import SaveTickIcon from "../Icons/SaveTickIcon";
 import AddIcon from "@mui/icons-material/Add";
 import DeleteIcon from "../Icons/DeleteIcon";
@@ -11,7 +20,6 @@ import { globalStyles } from "../../styles/global";
 let PageSize = 5;
 
 const HolidayCard = () => {
-
   const {
     handleBlur,
     handleChange,
@@ -33,9 +41,9 @@ const HolidayCard = () => {
     },
     validationSchema: addHolidayValidator,
     onSubmit: (values) => {
-      console.log("value", values)
-    }
-  })
+      console.log("value", values);
+    },
+  });
 
   const handleAddHoliday = () => {
     const newHoliday = [
@@ -54,7 +62,7 @@ const HolidayCard = () => {
     setFieldValue("holiday", newHoliday);
   };
 
-  const handleSubmitHoliday = (index: number) => { };
+  const handleSubmitHoliday = (index: number) => {};
 
   return (
     <Box>
@@ -65,7 +73,12 @@ const HolidayCard = () => {
               <>
                 <Grid item xs={12} md={6} lg={3}>
                   <FormControl fullWidth>
-                    <FormLabel id="holidayname" {...globalStyles.textFieldLabel}>Holiday Name</FormLabel>
+                    <FormLabel
+                      id="holidayname"
+                      {...globalStyles.textFieldLabel}
+                    >
+                      Holiday Name
+                    </FormLabel>
                     <TextField
                       name="holidayname"
                       variant="filled"
@@ -79,7 +92,9 @@ const HolidayCard = () => {
                 </Grid>
                 <Grid item xs={12} md={6} lg={3}>
                   <FormControl fullWidth>
-                    <FormLabel id="selectDate" {...globalStyles.textFieldLabel}>Select Date*</FormLabel>
+                    <FormLabel id="selectDate" {...globalStyles.textFieldLabel}>
+                      Select Date*
+                    </FormLabel>
                     <TextField
                       type="date"
                       name="selectDate"
@@ -96,11 +111,32 @@ const HolidayCard = () => {
                   </FormControl>
                 </Grid>
                 <Grid item xs={12} md={6} lg={6} {...styles.gridItem}>
-                  <Box sx={{ width: "48px", height: "48px", borderRadius: "5px", backgroundColor: "#0FBD35", display: "flex", justifyContent: "center", alignItems: "center", mr: 3, cursor: "pointer" }}
+                  <Box
+                    sx={{
+                      width: "48px",
+                      height: "48px",
+                      borderRadius: "5px",
+                      backgroundColor: "#0FBD35",
+                      display: "flex",
+                      justifyContent: "center",
+                      alignItems: "center",
+                      mr: 3,
+                      cursor: "pointer",
+                    }}
                   >
                     <SaveTickIcon />
                   </Box>
-                  <Box sx={{ width: "48px", height: "48px", borderRadius: "5px", backgroundColor: "#D82A2A", display: "flex", justifyContent: "center", alignItems: "center", cursor: "pointer" }}
+                  <Box
+                    sx={{
+                      width: "48px",
+                      height: "48px",
+                      borderRadius: "5px",
+                      backgroundColor: "#D82A2A",
+                      display: "flex",
+                      justifyContent: "center",
+                      alignItems: "center",
+                      cursor: "pointer",
+                    }}
                     onClick={() => {
                       handleRemoveHoliday(index);
                     }}

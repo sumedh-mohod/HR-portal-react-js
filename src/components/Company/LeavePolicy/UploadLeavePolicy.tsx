@@ -15,14 +15,14 @@ import CloseIcon from "@mui/icons-material/Close";
 import { globalStyles } from "../../../styles/global";
 import { styles } from "../../../styles/components/uploadLeavePolicy";
 
-export default function UploadLeavePolicy({
+const UploadLeavePolicy = ({
   handleClose,
   open,
 }: {
   handleOpen: any;
   handleClose: any;
   open: any;
-}) {
+}) => {
   return (
     <div>
       <Modal
@@ -120,4 +120,6 @@ export default function UploadLeavePolicy({
       </Modal>
     </div>
   );
-}
+};
+
+export default UploadLeavePolicy;
