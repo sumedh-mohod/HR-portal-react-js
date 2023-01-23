@@ -1,5 +1,4 @@
 import React from "react";
-import { useFormik } from "formik";
 import {
   Button,
   Grid,
@@ -13,30 +12,28 @@ import {
 } from "@mui/material";
 import DeleteIcon from "../Icons/DeleteIcon";
 import AddIcon from "@mui/icons-material/Add";
-import { editCompanyValidator } from "../../utils/validations/auth";
-import { useAppDispatch } from "../../store/hooks";
-import { updateCompany } from "../../store/reducers/companies/companies";
 import { styles } from "../../styles/components/editCompany";
 import { globalStyles } from "../../styles/global";
 
 interface CompanyDetailsCardInterface {
   data: any,
   values: any,
-  setFieldValue:any,
-  handleSubmit:any,
-  handleChange:any,
-  handleBlur:any,
-  errors:any,
-  touched:any,
-  handleAddAddress:any,
-  handleRemoveAddress:any,
-  handleChangeAddressLine1:any,
-  handleChangeAddressLine2:any,
-  handleChangeCountry:any,
-  handleChangeSelectState:any,
-  handleChangeSelectCity:any,
-  handleChangePostalCode:any,
-  handleSubmitTaxes:any
+  setFieldValue: any,
+  handleSubmit: any,
+  handleChange: any,
+  handleBlur: any,
+  errors: any,
+  touched: any,
+  handleAddAddress: any,
+  handleRemoveAddress: any,
+  handleChangeAddressLine1: any,
+  handleChangeAddressLine2: any,
+  handleChangeCountry: any,
+  handleChangeSelectState: any,
+  handleChangeSelectCity: any,
+  handleChangePostalCode: any,
+  handleSubmitTaxes: any,
+  companies: any
 }
 
 const CompanyDetailsCard = (props: CompanyDetailsCardInterface) => {
@@ -57,9 +54,10 @@ const CompanyDetailsCard = (props: CompanyDetailsCardInterface) => {
     handleChangeSelectState,
     handleChangeSelectCity,
     handleChangePostalCode,
-    handleSubmitTaxes
+    handleSubmitTaxes,
+    companies
   } = props;
- 
+
 
   return (
     <Box>
@@ -79,7 +77,7 @@ const CompanyDetailsCard = (props: CompanyDetailsCardInterface) => {
                   onChange={handleChange}
                   onBlur={handleBlur}
                   error={touched.company && errors.company ? true : false}
-                  helperText={touched.company && errors.company}
+                  // helperText={touched.company && errors.company}
                   InputProps={{
                     disableUnderline: true,
                     style: { ...globalStyles.textField },
@@ -100,7 +98,7 @@ const CompanyDetailsCard = (props: CompanyDetailsCardInterface) => {
                   onChange={handleChange}
                   onBlur={handleBlur}
                   error={touched.abbr && errors.abbr ? true : false}
-                  helperText={touched.abbr && errors.abbr}
+                  // helperText={touched.abbr && errors.abbr}
                   InputProps={{
                     disableUnderline: true,
                     style: { ...globalStyles.textField },
@@ -128,7 +126,7 @@ const CompanyDetailsCard = (props: CompanyDetailsCardInterface) => {
                       ? true
                       : false
                   }
-                  helperText={touched.defaultCurrency && errors.defaultCurrency}
+                  // helperText={touched.defaultCurrency && errors.defaultCurrency}
                   InputProps={{
                     disableUnderline: true,
                     style: { ...globalStyles.textField },
@@ -175,9 +173,9 @@ const CompanyDetailsCard = (props: CompanyDetailsCardInterface) => {
                       ? true
                       : false
                   }
-                  helperText={
-                    touched.dateOfEstablishment && errors.dateOfEstablishment
-                  }
+                  // helperText={
+                  //   touched.dateOfEstablishment && errors.dateOfEstablishment
+                  // }
                   InputProps={{
                     disableUnderline: true,
                     style: { ...globalStyles.textField },
@@ -189,11 +187,14 @@ const CompanyDetailsCard = (props: CompanyDetailsCardInterface) => {
           {/* invisible button call submit from parents save button */}
         </Card>
         {/* address */}
-        {values.address.map((address:any, index:any) => (
+        {companies?.companyAddresses?.map((address: any, index: any) => (
           <>
             <Box {...styles.parentBox}>
-              <Typography variant="h5" {...globalStyles.moduleTitle}>
-                Address 1
+              <Typography
+                variant="h5"
+                {...globalStyles.moduleTitle}
+              >
+                Address {index + 1}
               </Typography>
               <Box
                 {...styles.taxCloseClickIconBox}
@@ -221,11 +222,7 @@ const CompanyDetailsCard = (props: CompanyDetailsCardInterface) => {
                         variant="filled"
                         size="small"
                         type={"text"}
-                        value={
-                          (values.address &&
-                            values.address[index].addressLine1) ||
-                          ""
-                        }
+                        value={(companies?.companyAddresses && companies?.companyAddresses[index].line1) || ""}
                         onChange={(event) => {
                           handleChangeAddressLine1(event, index);
                         }}
@@ -250,11 +247,7 @@ const CompanyDetailsCard = (props: CompanyDetailsCardInterface) => {
                         size="small"
                         type={"text"}
                         name="addressLine2"
-                        value={
-                          (values.address &&
-                            values.address[index].addressLine2) ||
-                          ""
-                        }
+                        value={(companies?.companyAddresses && companies?.companyAddresses[index].line2) || ""}
                         onChange={(event) => {
                           handleChangeAddressLine2(event, index);
                         }}
@@ -263,8 +256,8 @@ const CompanyDetailsCard = (props: CompanyDetailsCardInterface) => {
                           disableUnderline: true,
                           style: { ...globalStyles.textField },
                         }}
-                        // error={touched.abbr && errors.abbr ? true : false}
-                        // helperText={touched.abbr && errors.abbr}
+                      // error={touched.abbr && errors.abbr ? true : false}
+                      // helperText={touched.abbr && errors.abbr}
                       />
                     </FormControl>
                   </Grid>
@@ -279,10 +272,7 @@ const CompanyDetailsCard = (props: CompanyDetailsCardInterface) => {
                         variant="filled"
                         size="small"
                         id="country"
-                        value={
-                          (values.address && values.address[index].country) ||
-                          ""
-                        }
+                        value={(companies?.companyAddresses && companies?.companyAddresses[index].country) || ""}
                         onChange={(event) => {
                           handleChangeCountry(event, index);
                         }}
@@ -294,7 +284,7 @@ const CompanyDetailsCard = (props: CompanyDetailsCardInterface) => {
                           style: { ...globalStyles.textField },
                         }}
                       >
-                        <MenuItem value="India">India</MenuItem>
+                        <MenuItem value="india">india</MenuItem>
                       </TextField>
                     </FormControl>
                   </Grid>
@@ -312,11 +302,7 @@ const CompanyDetailsCard = (props: CompanyDetailsCardInterface) => {
                         variant="filled"
                         size="small"
                         id="selectState"
-                        value={
-                          (values.address &&
-                            values.address[index].selectState) ||
-                          ""
-                        }
+                        value={(companies?.companyAddresses && companies?.companyAddresses[index].state) || ""}
                         onChange={(event) => {
                           handleChangeSelectState(event, index);
                         }}
@@ -330,7 +316,7 @@ const CompanyDetailsCard = (props: CompanyDetailsCardInterface) => {
                           style: { ...globalStyles.textField },
                         }}
                       >
-                        <MenuItem value="Maharastra">Maharastra</MenuItem>
+                        <MenuItem value="maharastra">maharastra</MenuItem>
                       </TextField>
                     </FormControl>
                   </Grid>
@@ -348,11 +334,7 @@ const CompanyDetailsCard = (props: CompanyDetailsCardInterface) => {
                         variant="filled"
                         size="small"
                         id="selectCity"
-                        value={
-                          (values.address &&
-                            values.address[index].selectCity) ||
-                          ""
-                        }
+                        value={(companies?.companyAddresses && companies?.companyAddresses[index].city) || ""}
                         onChange={(event) => {
                           handleChangeSelectCity(event, index);
                         }}
@@ -365,6 +347,8 @@ const CompanyDetailsCard = (props: CompanyDetailsCardInterface) => {
                         }}
                       >
                         <MenuItem value="Nagpur">Nagpur</MenuItem>
+                        <MenuItem value="chndrapur">chndrapur</MenuItem>
+                        <MenuItem value="pune">pune</MenuItem>
                       </TextField>
                     </FormControl>
                   </Grid>
@@ -381,11 +365,7 @@ const CompanyDetailsCard = (props: CompanyDetailsCardInterface) => {
                         size="small"
                         type="text"
                         name="postalCode"
-                        value={
-                          (values.address &&
-                            values.address[index].postalCode) ||
-                          ""
-                        }
+                        value={(companies?.companyAddresses && companies?.companyAddresses[index].postalCode) || ""}
                         onChange={(event) => {
                           handleChangePostalCode(event, index);
                         }}

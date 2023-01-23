@@ -107,6 +107,7 @@ const EditCompany = (props: EditCompanyInterface) => {
   const handleSubmitTaxes = (index: number) => { };
 
   console.log("data in edit company.tsx", data);
+  
   let { params } = useParams();
   const [isEditing, setIsEditing] = useState(false);
   const [editBtn, setEditBtn] = useState(true);

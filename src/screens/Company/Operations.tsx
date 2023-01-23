@@ -18,7 +18,7 @@ const Operations = () => {
     case "add":
       return <AddCompany />;
     case "edit":
-      return <EditCompany data={location?.state?.company} />;
+      return <EditCompany data={location?.state} />;
     case "details":
       return <CompanyDetailsCard data={location?.state?.company} />;
     case "leavepolicy":
