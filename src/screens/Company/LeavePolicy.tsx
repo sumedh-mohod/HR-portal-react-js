@@ -1,9 +1,9 @@
 import React from "react";
 import { Box, Typography } from "@mui/material";
-import { GridColDef } from '@mui/x-data-grid'
-import UploadLeavePolicy from '../../components/Company/LeavePolicy/UploadLeavePolicy';
-import LeaveCategoryTable from '../../components/Company/LeavePolicy/LeaveCategoryTable';
-import LeavePolicyCard from '../../components/Company/LeavePolicy/LeavePolicyCard';
+import { GridColDef } from "@mui/x-data-grid";
+import UploadLeavePolicy from "../../components/Company/LeavePolicy/UploadLeavePolicy";
+import LeaveCategoryTable from "../../components/Company/LeavePolicy/LeaveCategoryTable";
+import LeavePolicyCard from "../../components/Company/LeavePolicy/LeavePolicyCard";
 import LeavePolicyModel from "../../components/Company/LeavePolicy/LeavePolicyModel";
 import { globalStyles } from "../../styles/global";
 import { styles } from "../../styles/screens/LeavePolicy";
@@ -80,7 +80,6 @@ const LeavePolicy = () => {
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
 
-
   const [viewOpen, setViewOpen] = React.useState(false);
   const handleViewOpen = () => setViewOpen(true);
   const handleViewClose = () => setViewOpen(false);
@@ -98,11 +97,25 @@ const LeavePolicy = () => {
           Leave Category
         </Typography>
       </Box>
-      <LeaveCategoryTable rows={rows} columns={columns} handleOpen={handleOpen} open={open} />
-      <UploadLeavePolicy handleOpen={handleOpen} handleClose={handleClose} open={open} />
-      <LeavePolicyModel handleOpen={handleViewOpen} handleClose={handleViewClose} open={viewOpen} />
+      
+      <LeaveCategoryTable
+        rows={rows}
+        columns={columns}
+        handleOpen={handleOpen}
+        open={open}
+      />
+      <UploadLeavePolicy
+        handleOpen={handleOpen}
+        handleClose={handleClose}
+        open={open}
+      />
+      <LeavePolicyModel
+        handleOpen={handleViewOpen}
+        handleClose={handleViewClose}
+        open={viewOpen}
+      />
     </Box>
-  )
-}
+  );
+};
 
 export default LeavePolicy;

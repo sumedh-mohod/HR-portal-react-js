@@ -10,8 +10,8 @@ const OrganizationalCard = ({
   handleCardData: any;
 }) => {
   const handleDelete = () => {
-    console.log("delet click")
-  }
+    console.log("delet click");
+  };
 
   return (
     <Box>

@@ -1,6 +1,16 @@
 import React from "react";
 import { useFormik } from "formik";
-import { Button, Grid, FormControl, FormLabel, TextField, MenuItem, Card, Box, Typography } from "@mui/material";
+import {
+  Button,
+  Grid,
+  FormControl,
+  FormLabel,
+  TextField,
+  MenuItem,
+  Card,
+  Box,
+  Typography,
+} from "@mui/material";
 import DeleteIcon from "../Icons/DeleteIcon";
 import AddIcon from "@mui/icons-material/Add";
 import { editCompanyValidator } from "../../utils/validations/auth";
@@ -10,14 +20,12 @@ import { styles } from "../../styles/components/editCompany";
 import { globalStyles } from "../../styles/global";
 
 interface CompanyDetailsCardInterface {
-  data: any,
-  submitRef: any
+  data: any;
+  submitRef: any;
 }
+
 const CompanyDetailsCard = (props: CompanyDetailsCardInterface) => {
-  const {
-    data,
-    submitRef
-  } = props;
+  const { data, submitRef } = props;
   const dispatch = useAppDispatch();
   const {
     handleBlur,
@@ -42,7 +50,7 @@ const CompanyDetailsCard = (props: CompanyDetailsCardInterface) => {
           country: "",
           selectState: "",
           selectCity: "",
-          postalCode: ""
+          postalCode: "",
         },
       ],
     },
@@ -52,9 +60,9 @@ const CompanyDetailsCard = (props: CompanyDetailsCardInterface) => {
       dispatch(updateCompany(values))
         .unwrap()
         .then((response: any) => {
-          console.log("response from edit Company file", response)
+          console.log("response from edit Company file", response);
         })
-        .catch((error: any) => { });
+        .catch((error: any) => {});
     },
   });
 
@@ -67,7 +75,7 @@ const CompanyDetailsCard = (props: CompanyDetailsCardInterface) => {
         country: "",
         selectState: "",
         selectCity: "",
-        postalCode: ""
+        postalCode: "",
       },
     ];
     setFieldValue("address", newAddresses);
@@ -82,7 +90,7 @@ const CompanyDetailsCard = (props: CompanyDetailsCardInterface) => {
   // address
   const handleChangeAddressLine1 = (event: any, index: number) => {
     setFieldValue(`address.${index}.addressLine1`, event.target.value);
-    console.log("address line1", event.target.value)
+    console.log("address line1", event.target.value);
   };
 
   const handleChangeAddressLine2 = (event: any, index: number) => {
@@ -105,15 +113,17 @@ const CompanyDetailsCard = (props: CompanyDetailsCardInterface) => {
     setFieldValue(`address.${index}.postalCode`, event.target.value);
   };
 
-  const handleSubmitTaxes = (index: number) => { };
+  const handleSubmitTaxes = (index: number) => {};
   return (
     <Box>
       <form onSubmit={handleSubmit}>
         <Card sx={{ mt: 3, mb: 3, p: 5 }}>
-          <Grid container spacing={2} >
+          <Grid container spacing={2}>
             <Grid item xs={12} md={6} lg={3}>
               <FormControl fullWidth>
-                <FormLabel id="company" {...globalStyles.textFieldLabel}>Company*</FormLabel>
+                <FormLabel id="company" {...globalStyles.textFieldLabel}>
+                  Company*
+                </FormLabel>
                 <TextField
                   name="company"
                   variant="filled"
@@ -132,7 +142,9 @@ const CompanyDetailsCard = (props: CompanyDetailsCardInterface) => {
             </Grid>
             <Grid item xs={12} md={6} lg={3}>
               <FormControl fullWidth>
-                <FormLabel id="abbr" {...globalStyles.textFieldLabel}>Abbr*</FormLabel>
+                <FormLabel id="abbr" {...globalStyles.textFieldLabel}>
+                  Abbr*
+                </FormLabel>
                 <TextField
                   name="abbr"
                   variant="filled"
@@ -151,7 +163,12 @@ const CompanyDetailsCard = (props: CompanyDetailsCardInterface) => {
             </Grid>
             <Grid item xs={12} md={6} lg={3}>
               <FormControl fullWidth>
-                <FormLabel id="defaultCurrency" {...globalStyles.textFieldLabel}>Default Currency*</FormLabel>
+                <FormLabel
+                  id="defaultCurrency"
+                  {...globalStyles.textFieldLabel}
+                >
+                  Default Currency*
+                </FormLabel>
                 <TextField
                   name="defaultCurrency"
                   variant="filled"
@@ -174,7 +191,9 @@ const CompanyDetailsCard = (props: CompanyDetailsCardInterface) => {
             </Grid>
             <Grid item xs={12} md={6} lg={3}>
               <FormControl fullWidth {...globalStyles.textFieldLabel}>
-                <FormLabel id="domain" {...globalStyles.textFieldLabel}>Domain</FormLabel>
+                <FormLabel id="domain" {...globalStyles.textFieldLabel}>
+                  Domain
+                </FormLabel>
                 <TextField
                   name="domain"
                   variant="filled"
@@ -190,7 +209,10 @@ const CompanyDetailsCard = (props: CompanyDetailsCardInterface) => {
             </Grid>
             <Grid item xs={12} md={6} lg={3}>
               <FormControl fullWidth>
-                <FormLabel id="dateOfEstablishment" {...globalStyles.textFieldLabel}>
+                <FormLabel
+                  id="dateOfEstablishment"
+                  {...globalStyles.textFieldLabel}
+                >
                   Date of Establishment*
                 </FormLabel>
                 <TextField
@@ -218,22 +240,19 @@ const CompanyDetailsCard = (props: CompanyDetailsCardInterface) => {
             </Grid>
           </Grid>
           {/* invisible button call submit from parents save button */}
-          <button ref={submitRef} type="submit" style={{ display: 'none' }} />
+          <button ref={submitRef} type="submit" style={{ display: "none" }} />
         </Card>
         {/* address */}
         {values.address.map((address, index) => (
           <>
             <Box {...styles.parentBox}>
-              <Typography
-                variant="h5"
-                {...globalStyles.moduleTitle}
-              >
+              <Typography variant="h5" {...globalStyles.moduleTitle}>
                 Address 1
               </Typography>
               <Box
                 {...styles.taxCloseClickIconBox}
                 onClick={() => {
-                  handleRemoveAddress(index)
+                  handleRemoveAddress(index);
                 }}
               >
                 <DeleteIcon fill={"white"} />
@@ -245,7 +264,10 @@ const CompanyDetailsCard = (props: CompanyDetailsCardInterface) => {
                 <>
                   <Grid item xs={12} md={6} lg={3}>
                     <FormControl fullWidth>
-                      <FormLabel id="addressLine1" {...globalStyles.textFieldLabel}>
+                      <FormLabel
+                        id="addressLine1"
+                        {...globalStyles.textFieldLabel}
+                      >
                         Address Line 1
                       </FormLabel>
                       <TextField
@@ -253,7 +275,11 @@ const CompanyDetailsCard = (props: CompanyDetailsCardInterface) => {
                         variant="filled"
                         size="small"
                         type={"text"}
-                        value={(values.address && values.address[index].addressLine1) || ""}
+                        value={
+                          (values.address &&
+                            values.address[index].addressLine1) ||
+                          ""
+                        }
                         onChange={(event) => {
                           handleChangeAddressLine1(event, index);
                         }}
@@ -267,7 +293,10 @@ const CompanyDetailsCard = (props: CompanyDetailsCardInterface) => {
                   </Grid>
                   <Grid item xs={12} md={6} lg={3}>
                     <FormControl fullWidth>
-                      <FormLabel id="addressLine2" {...globalStyles.textFieldLabel}>
+                      <FormLabel
+                        id="addressLine2"
+                        {...globalStyles.textFieldLabel}
+                      >
                         Address Line 2
                       </FormLabel>
                       <TextField
@@ -275,7 +304,11 @@ const CompanyDetailsCard = (props: CompanyDetailsCardInterface) => {
                         size="small"
                         type={"text"}
                         name="addressLine2"
-                        value={(values.address && values.address[index].addressLine2) || ""}
+                        value={
+                          (values.address &&
+                            values.address[index].addressLine2) ||
+                          ""
+                        }
                         onChange={(event) => {
                           handleChangeAddressLine2(event, index);
                         }}
@@ -284,8 +317,8 @@ const CompanyDetailsCard = (props: CompanyDetailsCardInterface) => {
                           disableUnderline: true,
                           style: { ...globalStyles.textField },
                         }}
-                      // error={touched.abbr && errors.abbr ? true : false}
-                      // helperText={touched.abbr && errors.abbr}
+                        // error={touched.abbr && errors.abbr ? true : false}
+                        // helperText={touched.abbr && errors.abbr}
                       />
                     </FormControl>
                   </Grid>
@@ -300,7 +333,10 @@ const CompanyDetailsCard = (props: CompanyDetailsCardInterface) => {
                         variant="filled"
                         size="small"
                         id="country"
-                        value={(values.address && values.address[index].country) || ""}
+                        value={
+                          (values.address && values.address[index].country) ||
+                          ""
+                        }
                         onChange={(event) => {
                           handleChangeCountry(event, index);
                         }}
@@ -318,7 +354,10 @@ const CompanyDetailsCard = (props: CompanyDetailsCardInterface) => {
                   </Grid>
                   <Grid item xs={12} md={6} lg={3}>
                     <FormControl fullWidth>
-                      <FormLabel id="selectState" {...globalStyles.textFieldLabel}>
+                      <FormLabel
+                        id="selectState"
+                        {...globalStyles.textFieldLabel}
+                      >
                         Select state*
                       </FormLabel>
                       <TextField
@@ -327,7 +366,11 @@ const CompanyDetailsCard = (props: CompanyDetailsCardInterface) => {
                         variant="filled"
                         size="small"
                         id="selectState"
-                        value={(values.address && values.address[index].selectState) || ""}
+                        value={
+                          (values.address &&
+                            values.address[index].selectState) ||
+                          ""
+                        }
                         onChange={(event) => {
                           handleChangeSelectState(event, index);
                         }}
@@ -347,7 +390,10 @@ const CompanyDetailsCard = (props: CompanyDetailsCardInterface) => {
                   </Grid>
                   <Grid item xs={12} md={6} lg={3}>
                     <FormControl fullWidth>
-                      <FormLabel id="selectCity" {...globalStyles.textFieldLabel}>
+                      <FormLabel
+                        id="selectCity"
+                        {...globalStyles.textFieldLabel}
+                      >
                         Select City*
                       </FormLabel>
                       <TextField
@@ -356,7 +402,11 @@ const CompanyDetailsCard = (props: CompanyDetailsCardInterface) => {
                         variant="filled"
                         size="small"
                         id="selectCity"
-                        value={(values.address && values.address[index].selectCity) || ""}
+                        value={
+                          (values.address &&
+                            values.address[index].selectCity) ||
+                          ""
+                        }
                         onChange={(event) => {
                           handleChangeSelectCity(event, index);
                         }}
@@ -374,7 +424,10 @@ const CompanyDetailsCard = (props: CompanyDetailsCardInterface) => {
                   </Grid>
                   <Grid item xs={12} md={6} lg={3}>
                     <FormControl fullWidth>
-                      <FormLabel id="postalCode" {...globalStyles.textFieldLabel}>
+                      <FormLabel
+                        id="postalCode"
+                        {...globalStyles.textFieldLabel}
+                      >
                         Postal Code
                       </FormLabel>
                       <TextField
@@ -382,7 +435,11 @@ const CompanyDetailsCard = (props: CompanyDetailsCardInterface) => {
                         size="small"
                         type="text"
                         name="postalCode"
-                        value={(values.address && values.address[index].postalCode) || ""}
+                        value={
+                          (values.address &&
+                            values.address[index].postalCode) ||
+                          ""
+                        }
                         onChange={(event) => {
                           handleChangePostalCode(event, index);
                         }}

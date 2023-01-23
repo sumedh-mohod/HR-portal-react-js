@@ -116,7 +116,6 @@ const CompanyList = () => {
 
   const companyStore = useAppSelector((state) => state.companies);
   const { isLoadingRequest, companies } = companyStore;
-  console.log("companie",companies);
 
   useEffect(() => {
     const firstPageIndex = (currentPage - 1) * PageSize;
@@ -129,18 +128,18 @@ const CompanyList = () => {
   useEffect(() => {
     dispatch(getCompanies())
       .unwrap()
-      .then((response: any) => { })
-      .catch((error) => { });
+      .then((response: any) => {})
+      .catch((error) => {});
   }, []);
 
   const handleCompanyAddClick = () => {
     navigate("/companies/add");
   };
 
-  const handleCompanyEditClick = (company: any,index:any) => {
+  const handleCompanyEditClick = (company: any, index: any) => {
     // console.log("get company response",company)
     navigate("/companies/details", {
-      state: { company },  
+      state: { company },
     });
   };
 
@@ -259,9 +258,9 @@ const CompanyList = () => {
           />
         )}
       </Box>
-      {companies?.content?.length > 0 &&
+      {companies?.content?.length > 0 && (
         <Paginations handlePageChange={handlePageChange} />
-      }
+      )}
     </Box>
   );
 };
