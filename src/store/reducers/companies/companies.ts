@@ -26,10 +26,7 @@ export const updateCompany = createAsyncThunk(
   async (params: any, { rejectWithValue }) => {
     //response of update company api
     try {
-      const response = await axiosClient.put(
-        `${RestfulUrls.Get_Companies}/${params.id}`,
-        params
-      );
+      const response = await axiosClient.put(`${RestfulUrls.Get_Companies}/${params.id}`,params);
       console.log("response of update company", response);
       return response.data;
     } catch (error) {
@@ -74,15 +71,17 @@ export const getCompany = createAsyncThunk(
 // delete company action
 export const deleteCompany = createAsyncThunk(
   actionTypes.DELETE_COMPANY,
-  async (_, { rejectWithValue }) => {
+  async (params:any, { rejectWithValue }) => {
     //response of delete company api
-    const response = {
-      deleteCompany: true,
-    };
-    //returned a response to reducer
-    return response;
-  }
-);
+    try {
+      const response = await axiosClient.delete(`${RestfulUrls.Get_Companies}/${params.id}`);
+      console.log("response of delet company", response.data);
+      return response.data;
+    } catch (error) {
+      return rejectWithValue("Something went wrong");
+    }
+  });
+
 // inteface for redux state
 export interface StateI {
   companies?: any; // company with details
