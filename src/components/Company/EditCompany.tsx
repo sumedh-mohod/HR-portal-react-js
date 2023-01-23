@@ -1,11 +1,14 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { useFormik } from "formik";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
 import { Box, Container, Typography, Button } from "@mui/material";
 import { editCompanyValidator } from "../../utils/validations/auth";
 import CompanyEditCard from "./CompanyEditCard";
-import { useAppDispatch } from "../../store/hooks";
-import { updateCompany } from "../../store/reducers/companies/companies";
+import { useAppDispatch, useAppSelector } from "../../store/hooks";
+import {
+  getCompany,
+  updateCompany,
+} from "../../store/reducers/companies/companies";
 import { styles } from "../../styles/components/editCompany";
 import { globalStyles } from "../../styles/global";
 
@@ -14,10 +17,24 @@ interface EditCompanyInterface {
 }
 
 const EditCompany = (props: EditCompanyInterface) => {
-  const {
-    data
-  } = props;
+  const { data } = props;
   const dispatch = useAppDispatch();
+  const companyStore = useAppSelector((state) => state.companies);
+  const { isLoadingRequest, companies } = companyStore;
+  console.log("company data from companyEditCard.tsx", companies);
+
+  useEffect(() => {
+    dispatch(getCompany(companies))
+      .unwrap()
+      .then((response: any) => {
+        console.log(
+          "useeffect response from companyEditCard.tsx",
+          response.data
+        );
+      })
+      .catch((error) => { });
+  }, []);
+
   const {
     handleBlur,
     handleChange,
@@ -29,11 +46,12 @@ const EditCompany = (props: EditCompanyInterface) => {
   } = useFormik({
     enableReinitialize: true,
     initialValues: {
-      company: "",
-      abbr: "",
-      defaultCurrency: "",
-      domain: "",
-      dateOfEstablishment: "",
+      company: companies?.name,
+      abbr: companies?.abbreviation,
+      defaultCurrency: companies?.defaultCurrency,
+      domain: companies?.domain,
+      dateOfEstablishment: companies?.dateOfIncorporation,
+
       address: [
         {
           addressLine1: "",
@@ -41,7 +59,7 @@ const EditCompany = (props: EditCompanyInterface) => {
           country: "",
           selectState: "",
           selectCity: "",
-          postalCode: ""
+          postalCode: "",
         },
       ],
     },
@@ -51,7 +69,7 @@ const EditCompany = (props: EditCompanyInterface) => {
       dispatch(updateCompany(values))
         .unwrap()
         .then((response: any) => {
-          console.log("response from edit Company file", response)
+          console.log("response from edit Company file", response);
         })
         .catch((error: any) => { });
     },
@@ -66,7 +84,7 @@ const EditCompany = (props: EditCompanyInterface) => {
         country: "",
         selectState: "",
         selectCity: "",
-        postalCode: ""
+        postalCode: "",
       },
     ];
     setFieldValue("address", newAddresses);
@@ -81,7 +99,7 @@ const EditCompany = (props: EditCompanyInterface) => {
   // address
   const handleChangeAddressLine1 = (event: any, index: number) => {
     setFieldValue(`address.${index}.addressLine1`, event.target.value);
-    console.log("address line1", event.target.value)
+    console.log("address line1", event.target.value);
   };
 
   const handleChangeAddressLine2 = (event: any, index: number) => {
@@ -107,7 +125,7 @@ const EditCompany = (props: EditCompanyInterface) => {
   const handleSubmitTaxes = (index: number) => { };
 
   console.log("data in edit company.tsx", data);
-  
+
   let { params } = useParams();
   const [isEditing, setIsEditing] = useState(false);
   const [editBtn, setEditBtn] = useState(true);
@@ -120,7 +138,7 @@ const EditCompany = (props: EditCompanyInterface) => {
     setIsEditing(true);
     setEditBtn(false);
   };
-  
+
   const EditHollidayHandle = () => {
     setIsHollidayEditing(true);
     setEditHollidayBtn(false);
@@ -135,7 +153,9 @@ const EditCompany = (props: EditCompanyInterface) => {
       {/* toggle card for details and edit form of company */}
       <form onSubmit={handleSubmit}>
         <Box {...styles.box}>
-          <Typography variant="h5" {...globalStyles.moduleTitle}>Company 1</Typography>
+          <Typography variant="h5" {...globalStyles.moduleTitle}>
+            Company 1
+          </Typography>
           <Box>
             <Button
               {...styles.parentBoxCancelButton}
@@ -151,7 +171,6 @@ const EditCompany = (props: EditCompanyInterface) => {
             >
               Save
             </Button>
-
           </Box>
         </Box>
         <CompanyEditCard
@@ -172,6 +191,7 @@ const EditCompany = (props: EditCompanyInterface) => {
           handleChangeSelectCity={handleChangeSelectCity}
           handleChangePostalCode={handleChangePostalCode}
           handleSubmitTaxes={handleSubmitTaxes}
+          companies={companies}
         />
       </form>
     </Container>
