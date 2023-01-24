@@ -65,7 +65,7 @@ const AddCompany = () => {
         .then((response: any) => {
           console.log("response from addCompany file", response);
         })
-        .catch((error: any) => {});
+        .catch((error: any) => { });
     },
   });
 
@@ -91,6 +91,23 @@ const AddCompany = () => {
     setTaxes(newTaxes);
   };
   console.log("taxes", taxes);
+  const handleChangeTaxName = (event: any, index: number) => {
+    // setFieldValue(`taxes.${index}.name`, event.target.value);
+    // setTaxes(() => {
+    //   return [
+    //     ...taxes,
+    //     { [`taxes.${index}.name`]: event.target.value }
+    //   ]
+    // })
+  };
+
+  const handleChangeTaxValue = (event: any, index: number) => {
+    // setFieldValue(`taxes.${index}.value`, event.target.value);
+    // setTaxes([...taxes, {
+    //   value: event.target.value
+    // }]);
+    // console.log("event", event.target.value);
+  };
 
   const handleAddAddress = () => {
     const newAddresses = [
@@ -117,15 +134,6 @@ const AddCompany = () => {
     const newAddresses = [...values.address];
     newAddresses.splice(index, 1);
     setFieldValue("address", newAddresses);
-  };
-
-  const handleChangeTaxes = (event: any, index: number) => {
-    // setFieldValue(`taxes.${index}.name`, event.target.value);
-    // newTaxes[`taxes.${index}.name`] = event.target.value;
-  };
-
-  const handleChangeTaxValue = (event: any, index: number) => {
-    setFieldValue(`taxes.${index}.value`, event.target.value);
   };
 
   // address
@@ -313,7 +321,7 @@ const AddCompany = () => {
         </Box>
         <Card {...styles.card}>
           <Grid container columnSpacing={3} rowGap={3}>
-            {taxes.map((tax, index) => (
+            {taxes?.map((tax, index) => (
               <>
                 <Grid item xs={12} md={6} lg={3}>
                   <FormControl fullWidth>
@@ -324,13 +332,14 @@ const AddCompany = () => {
                       variant="filled"
                       size="small"
                       type={"text"}
+                      name="name"
                       InputProps={{
                         disableUnderline: true,
                         style: { ...globalStyles.textField },
                       }}
                       value={(taxes && taxes[index].name) || ""}
                       onChange={(event) => {
-                        handleChangeTaxes(event, index);
+                        handleChangeTaxName(event, index);
                       }}
                       onBlur={handleBlur}
                     />
@@ -345,13 +354,14 @@ const AddCompany = () => {
                       variant="filled"
                       size="small"
                       type={"text"}
+                      name="value"
                       value={(taxes && taxes[index].value) || ""}
                       InputProps={{
                         disableUnderline: true,
                         style: { ...globalStyles.textField },
                       }}
                       onChange={(event) => {
-                        handleChangeTaxes(event, index);
+                        handleChangeTaxValue(event, index);
                       }}
                     />
                   </FormControl>
@@ -456,8 +466,8 @@ const AddCompany = () => {
                           disableUnderline: true,
                           style: { ...globalStyles.textField },
                         }}
-                        // error={touched.abbr && errors.abbr ? true : false}
-                        // helperText={touched.abbr && errors.abbr}
+                      // error={touched.abbr && errors.abbr ? true : false}
+                      // helperText={touched.abbr && errors.abbr}
                       />
                     </FormControl>
                   </Grid>
