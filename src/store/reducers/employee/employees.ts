@@ -6,26 +6,33 @@ import { RestfulUrls } from "../../restfulUrls";
 //add employee action
 export const addEmployee = createAsyncThunk(
   actionTypes.ADD_EMPLOYEE,
-  async (params: any) => {
+  async (params: any, { rejectWithValue }) => {
     //response of addproject api
-    const response = {
-      addEmployee: true,
-    };
-    //returned a response to reducer
-    return response;
+    try {
+      const response = await axiosClient.post(RestfulUrls.Add_Employee, params);
+      console.log("response of add employee", params);
+      console.log("response of add employee", response);
+      return response.data;
+    } catch (error) {
+      return rejectWithValue("Something went wrong");
+    }
   }
 );
 
 // update employee action
 export const updateEmployee = createAsyncThunk(
   actionTypes.UPDATE_EMPLOYEE,
-  async (params: any) => {
+  async (params: any, { rejectWithValue }) => {
     //response of update employee api
-    const response = {
-      updateEmployee: true,
-    };
+    try {
+      const response = await axiosClient.put(`${RestfulUrls.Get_Employees}/${params.id}`,params);
+      console.log("response of update employee", response);
+      return response.data;
+    } catch (error) {
+      return rejectWithValue("Something went wrong");
+    }
     //returned a response to reducer
-    return response;
+    // return response;
   }
 );
 
@@ -34,94 +41,117 @@ export const getEmployees = createAsyncThunk(
   actionTypes.GET_EMPLOYEES,
   async (_, { rejectWithValue }) => {
     //response of getEmployees
-    const response = [
-      {
-        id: 1,
-        employee_name: "Nikhil Thaware",
-        EmployeeId: "ORNG123456",
-        Designation: "Senior Consultant",
-        Technology: "IOS Developer, Swift",
-      },
-      {
-        id: 2,
-        employee_name: "Nikhil Thaware",
-        EmployeeId: "ORNG123456",
-        Designation: "Senior Consultant",
-        Technology: "IOS Developer, Swift",
-      },
-      {
-        id: 3,
-        employee_name: "Nikhil Thaware",
-        EmployeeId: "ORNG123456",
-        Designation: "Senior Consultant",
-        Technology: "IOS Developer, Swift",
-      },
-      {
-        id: 4,
-        employee_name: "Nikhil Thaware",
-        EmployeeId: "ORNG123456",
-        Designation: "Senior Consultant",
-        Technology: "IOS Developer, Swift",
-      },
-      {
-        id: 5,
-        employee_name: "Nikhil Thaware",
-        EmployeeId: "ORNG123456",
-        Designation: "Senior Consultant",
-        Technology: "IOS Developer, Swift",
-      },
-      {
-        id: 6,
-        employee_name: "Nikhil Thaware",
-        EmployeeId: "ORNG123456",
-        Designation: "Senior Consultant",
-        Technology: "IOS Developer, Swift",
-      },
-      {
-        id: 7,
-        employee_name: "Nikhil Thaware",
-        EmployeeId: "ORNG123456",
-        Designation: "Senior Consultant",
-        Technology: "IOS Developer, Swift",
-      },
-      {
-        id: 8,
-        employee_name: "kajal Nimje",
-        EmployeeId: "ORNG123456",
-        Designation: "Senior Consultant",
-        Technology: "IOS Developer, Swift",
-      },
-      {
-        id: 9,
-        employee_name: "Nikhil Thaware",
-        EmployeeId: "ORNG123456",
-        Designation: "Senior Consultant",
-        Technology: "IOS Developer, Swift",
-      },
-      {
-        id: 10,
-        employee_name: "Nikhil Thaware",
-        EmployeeId: "ORNG123456",
-        Designation: "Senior Consultant",
-        Technology: "IOS Developer, Swift",
-      },
-    ];
+    // const response = [
+    //   {
+    //     id: 1,
+    //     employee_name: "Nikhil Thaware",
+    //     EmployeeId: "ORNG123456",
+    //     Designation: "Senior Consultant",
+    //     Technology: "IOS Developer, Swift",
+    //   },
+    //   {
+    //     id: 2,
+    //     employee_name: "Nikhil Thaware",
+    //     EmployeeId: "ORNG123456",
+    //     Designation: "Senior Consultant",
+    //     Technology: "IOS Developer, Swift",
+    //   },
+    //   {
+    //     id: 3,
+    //     employee_name: "Nikhil Thaware",
+    //     EmployeeId: "ORNG123456",
+    //     Designation: "Senior Consultant",
+    //     Technology: "IOS Developer, Swift",
+    //   },
+    //   {
+    //     id: 4,
+    //     employee_name: "Nikhil Thaware",
+    //     EmployeeId: "ORNG123456",
+    //     Designation: "Senior Consultant",
+    //     Technology: "IOS Developer, Swift",
+    //   },
+    //   {
+    //     id: 5,
+    //     employee_name: "Nikhil Thaware",
+    //     EmployeeId: "ORNG123456",
+    //     Designation: "Senior Consultant",
+    //     Technology: "IOS Developer, Swift",
+    //   },
+    //   {
+    //     id: 6,
+    //     employee_name: "Nikhil Thaware",
+    //     EmployeeId: "ORNG123456",
+    //     Designation: "Senior Consultant",
+    //     Technology: "IOS Developer, Swift",
+    //   },
+    //   {
+    //     id: 7,
+    //     employee_name: "Nikhil Thaware",
+    //     EmployeeId: "ORNG123456",
+    //     Designation: "Senior Consultant",
+    //     Technology: "IOS Developer, Swift",
+    //   },
+    //   {
+    //     id: 8,
+    //     employee_name: "kajal Nimje",
+    //     EmployeeId: "ORNG123456",
+    //     Designation: "Senior Consultant",
+    //     Technology: "IOS Developer, Swift",
+    //   },
+    //   {
+    //     id: 9,
+    //     employee_name: "Nikhil Thaware",
+    //     EmployeeId: "ORNG123456",
+    //     Designation: "Senior Consultant",
+    //     Technology: "IOS Developer, Swift",
+    //   },
+    //   {
+    //     id: 10,
+    //     employee_name: "Nikhil Thaware",
+    //     EmployeeId: "ORNG123456",
+    //     Designation: "Senior Consultant",
+    //     Technology: "IOS Developer, Swift",
+    //   },
+    // ];
+    try {
+      const response = await axiosClient.get(RestfulUrls.Get_Employees);
+      console.log("response of get employees", response);
+      return response.data;
+    } catch (error) {
+      return rejectWithValue("Something went wrong");
+    }
     //returned a response to reducer
-    return response;
+    // return response;
   }
 );
 // get project action
 export const getEmployee = createAsyncThunk(
   actionTypes.GET_EMPLOYEE,
-  async (_, { rejectWithValue }) => {
+  async (params, { rejectWithValue }) => {
     //response of get project api
-    const response = {
-      getEmployee: true,
-    };
-    //returned a response to reducer
-    return response;
+    try {
+      const response = await axiosClient.get(`${RestfulUrls.Get_Employees}/${params}`
+      );
+      console.log("response of get employe", response.data);
+      return response.data;
+    } catch (error) {
+      return rejectWithValue("Something went wrong");
+    }
+    //returned a response to reducer 
   }
 );
+export const deleteEmployee = createAsyncThunk(
+  actionTypes.DELETE_EMPLOYEE,
+  async (params:any, { rejectWithValue }) => {
+    //response of delete company api
+    try {
+      const response = await axiosClient.delete(`${RestfulUrls.Get_Employees}/${params.id}`);
+      console.log("response of delet employee", response.data);
+      return response.data;
+    } catch (error) {
+      return rejectWithValue("Something went wrong");
+    }
+  });
 // inteface for redux state
 export interface StateI {
   employees?: any; // company with details
