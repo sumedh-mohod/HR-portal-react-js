@@ -41,87 +41,87 @@ export const getEmployees = createAsyncThunk(
   actionTypes.GET_EMPLOYEES,
   async (_, { rejectWithValue }) => {
     //response of getEmployees
-    // const response = [
-    //   {
-    //     id: 1,
-    //     employee_name: "Nikhil Thaware",
-    //     EmployeeId: "ORNG123456",
-    //     Designation: "Senior Consultant",
-    //     Technology: "IOS Developer, Swift",
-    //   },
-    //   {
-    //     id: 2,
-    //     employee_name: "Nikhil Thaware",
-    //     EmployeeId: "ORNG123456",
-    //     Designation: "Senior Consultant",
-    //     Technology: "IOS Developer, Swift",
-    //   },
-    //   {
-    //     id: 3,
-    //     employee_name: "Nikhil Thaware",
-    //     EmployeeId: "ORNG123456",
-    //     Designation: "Senior Consultant",
-    //     Technology: "IOS Developer, Swift",
-    //   },
-    //   {
-    //     id: 4,
-    //     employee_name: "Nikhil Thaware",
-    //     EmployeeId: "ORNG123456",
-    //     Designation: "Senior Consultant",
-    //     Technology: "IOS Developer, Swift",
-    //   },
-    //   {
-    //     id: 5,
-    //     employee_name: "Nikhil Thaware",
-    //     EmployeeId: "ORNG123456",
-    //     Designation: "Senior Consultant",
-    //     Technology: "IOS Developer, Swift",
-    //   },
-    //   {
-    //     id: 6,
-    //     employee_name: "Nikhil Thaware",
-    //     EmployeeId: "ORNG123456",
-    //     Designation: "Senior Consultant",
-    //     Technology: "IOS Developer, Swift",
-    //   },
-    //   {
-    //     id: 7,
-    //     employee_name: "Nikhil Thaware",
-    //     EmployeeId: "ORNG123456",
-    //     Designation: "Senior Consultant",
-    //     Technology: "IOS Developer, Swift",
-    //   },
-    //   {
-    //     id: 8,
-    //     employee_name: "kajal Nimje",
-    //     EmployeeId: "ORNG123456",
-    //     Designation: "Senior Consultant",
-    //     Technology: "IOS Developer, Swift",
-    //   },
-    //   {
-    //     id: 9,
-    //     employee_name: "Nikhil Thaware",
-    //     EmployeeId: "ORNG123456",
-    //     Designation: "Senior Consultant",
-    //     Technology: "IOS Developer, Swift",
-    //   },
-    //   {
-    //     id: 10,
-    //     employee_name: "Nikhil Thaware",
-    //     EmployeeId: "ORNG123456",
-    //     Designation: "Senior Consultant",
-    //     Technology: "IOS Developer, Swift",
-    //   },
-    // ];
-    try {
-      const response = await axiosClient.get(RestfulUrls.Get_Employees);
-      console.log("response of get employees", response);
-      return response.data;
-    } catch (error) {
-      return rejectWithValue("Something went wrong");
-    }
+    const response = [
+      {
+        id: 1,
+        employee_name: "Nikhil Thaware",
+        EmployeeId: "ORNG123456",
+        Designation: "Senior Consultant",
+        Technology: "IOS Developer, Swift",
+      },
+      {
+        id: 2,
+        employee_name: "Nikhil Thaware",
+        EmployeeId: "ORNG123456",
+        Designation: "Senior Consultant",
+        Technology: "IOS Developer, Swift",
+      },
+      {
+        id: 3,
+        employee_name: "Nikhil Thaware",
+        EmployeeId: "ORNG123456",
+        Designation: "Senior Consultant",
+        Technology: "IOS Developer, Swift",
+      },
+      {
+        id: 4,
+        employee_name: "Nikhil Thaware",
+        EmployeeId: "ORNG123456",
+        Designation: "Senior Consultant",
+        Technology: "IOS Developer, Swift",
+      },
+      {
+        id: 5,
+        employee_name: "Nikhil Thaware",
+        EmployeeId: "ORNG123456",
+        Designation: "Senior Consultant",
+        Technology: "IOS Developer, Swift",
+      },
+      {
+        id: 6,
+        employee_name: "Nikhil Thaware",
+        EmployeeId: "ORNG123456",
+        Designation: "Senior Consultant",
+        Technology: "IOS Developer, Swift",
+      },
+      {
+        id: 7,
+        employee_name: "Nikhil Thaware",
+        EmployeeId: "ORNG123456",
+        Designation: "Senior Consultant",
+        Technology: "IOS Developer, Swift",
+      },
+      {
+        id: 8,
+        employee_name: "kajal Nimje",
+        EmployeeId: "ORNG123456",
+        Designation: "Senior Consultant",
+        Technology: "IOS Developer, Swift",
+      },
+      {
+        id: 9,
+        employee_name: "Nikhil Thaware",
+        EmployeeId: "ORNG123456",
+        Designation: "Senior Consultant",
+        Technology: "IOS Developer, Swift",
+      },
+      {
+        id: 10,
+        employee_name: "Nikhil Thaware",
+        EmployeeId: "ORNG123456",
+        Designation: "Senior Consultant",
+        Technology: "IOS Developer, Swift",
+      },
+    ];
+    // try {
+    //   const response = await axiosClient.get(RestfulUrls.Get_Employees);
+    //   console.log("response of get employees", response);
+    //   return response.data;
+    // } catch (error) {
+    //   return rejectWithValue("Something went wrong");
+    // }
     //returned a response to reducer
-    // return response;
+    return response;
   }
 );
 // get project action
