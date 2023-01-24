@@ -70,9 +70,11 @@ const Employee = () => {
   const [showColumns, setShowColumns] = useState(columns);
   const [searchText, setSearchText] = useState("");
   const [currentData, setCurrentData] = useState<any>([]);
+  
   const employeesStore = useAppSelector((state) => state.employees);
   const { isLoadingRequest, employees } = employeesStore;
   console.log("employees data from employee.tsx",employees);
+
   useEffect(() => {
     dispatch(getEmployees())
       .unwrap()
