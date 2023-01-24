@@ -6,106 +6,135 @@ import { RestfulUrls } from "../../restfulUrls";
 //add partner action
 export const addPartner = createAsyncThunk(
   actionTypes.ADD_PARTNER,
-  async (params: any) => {
-    //response of addpartner api
-    const response = {
-      addPartner: true,
-    };
+  async (params: any, { rejectWithValue }) => {
+    try {
+      const response = await axiosClient.post(RestfulUrls.Get_Partners, params);
+      console.log("response of add partner", params);
+      console.log("response of add partner", response);
+      return response.data;
+    } catch (error) {
+      return rejectWithValue("Something went wrong");
+    }
     //returned a response to reducer
-    return response;
   }
 );
 // update partrner action
 export const updatePartner = createAsyncThunk(
   actionTypes.UPDATE_PARTNER,
-  async (params: any) => {
+  async (params: any, { rejectWithValue }) => {
     //response of update partner api
-    const response = {
-      updatePartner: true,
-    };
+    try {
+      const response = await axiosClient.put(`${RestfulUrls.Get_Partners}/${params.id}`,params);
+      console.log("response of update partner", response);
+      return response.data;
+    } catch (error) {
+      return rejectWithValue("Something went wrong");
+    }
     //returned a response to reducer
-    return response;
   }
 );
 // get patners action
 export const getPartners = createAsyncThunk(
   actionTypes.GET_PARTNERS,
-  async () => {
+  async (_, { rejectWithValue }) => {
     //response of patners api
-    const response = [
-      { id: 1,
-        company_name: "Google",
-        project_count: 3,
-        employee_count: 200,
-        defaultCurrency: "Rupees",
-        country: "India",
-        description:
-          "Plot No 10, Chintamani, Near Antarbharti Ashram, Dhangarpura, Khamla Rd, Nagpur, Maharashtra 440015",
-      },
-      { id: 2,
-        company_name: "Microsoft",
-        project_count: 4,
-        employee_count: 220,
-        defaultCurrency: "Riyal",
-        country: "Saudi Arab",
-        description:
-          "Plot No 10, Chintamani, Near Antarbharti Ashram, Dhangarpura, Khamla Rd, Nagpur, Maharashtra 440015",
-      },
-      { id: 3,
-        company_name: "Tesla",
-        project_count: 2,
-        employee_count: 150,
-        defaultCurrency: "Dollar",
-        country: "UK",
-        description:
-          "Plot No 10, Chintamani, Near Antarbharti Ashram, Dhangarpura, Khamla Rd, Nagpur, Maharashtra 440015",
-      },
-      {id: 4,
-        company_name: "Twitter",
-        project_count: 1,
-        employee_count: 870,
-        defaultCurrency: "Rupees",
-        country: "India",
-        description:
-          "Plot No 10, Chintamani, Near Antarbharti Ashram, Dhangarpura, Khamla Rd, Nagpur, Maharashtra 440015",
-      },
-      { id: 5,
-        company_name: "Orangebits",
-        project_count: 3,
-        employee_count: 250,
-        defaultCurrency: "Rupees",
-        country: "India",
-        description:
-          "Plot No 10, Chintamani, Near Antarbharti Ashram, Dhangarpura, Khamla Rd, Nagpur, Maharashtra 440015",
-      },
-      {id: 6,
-        company_name: "E-Zest",
-        project_count: 4,
-        employee_count: 100,
-        defaultCurrency: "Rupees",
-        country: "India",
-        description:
-          "Plot No 10, Chintamani, Near Antarbharti Ashram, Dhangarpura, Khamla Rd, Nagpur, Maharashtra 440015",
-      },
+    // const response = [
+    //   { id: 1,
+    //     company_name: "Google",
+    //     project_count: 3,
+    //     employee_count: 200,
+    //     defaultCurrency: "Rupees",
+    //     country: "India",
+    //     description:
+    //       "Plot No 10, Chintamani, Near Antarbharti Ashram, Dhangarpura, Khamla Rd, Nagpur, Maharashtra 440015",
+    //   },
+    //   { id: 2,
+    //     company_name: "Microsoft",
+    //     project_count: 4,
+    //     employee_count: 220,
+    //     defaultCurrency: "Riyal",
+    //     country: "Saudi Arab",
+    //     description:
+    //       "Plot No 10, Chintamani, Near Antarbharti Ashram, Dhangarpura, Khamla Rd, Nagpur, Maharashtra 440015",
+    //   },
+    //   { id: 3,
+    //     company_name: "Tesla",
+    //     project_count: 2,
+    //     employee_count: 150,
+    //     defaultCurrency: "Dollar",
+    //     country: "UK",
+    //     description:
+    //       "Plot No 10, Chintamani, Near Antarbharti Ashram, Dhangarpura, Khamla Rd, Nagpur, Maharashtra 440015",
+    //   },
+    //   {id: 4,
+    //     company_name: "Twitter",
+    //     project_count: 1,
+    //     employee_count: 870,
+    //     defaultCurrency: "Rupees",
+    //     country: "India",
+    //     description:
+    //       "Plot No 10, Chintamani, Near Antarbharti Ashram, Dhangarpura, Khamla Rd, Nagpur, Maharashtra 440015",
+    //   },
+    //   { id: 5,
+    //     company_name: "Orangebits",
+    //     project_count: 3,
+    //     employee_count: 250,
+    //     defaultCurrency: "Rupees",
+    //     country: "India",
+    //     description:
+    //       "Plot No 10, Chintamani, Near Antarbharti Ashram, Dhangarpura, Khamla Rd, Nagpur, Maharashtra 440015",
+    //   },
+    //   {id: 6,
+    //     company_name: "E-Zest",
+    //     project_count: 4,
+    //     employee_count: 100,
+    //     defaultCurrency: "Rupees",
+    //     country: "India",
+    //     description:
+    //       "Plot No 10, Chintamani, Near Antarbharti Ashram, Dhangarpura, Khamla Rd, Nagpur, Maharashtra 440015",
+    //   },
      
-    ];
+    // ];
+    try {
+      const response = await axiosClient.get(RestfulUrls.Get_Partners);
+      console.log("response of get partners", response);
+      return response.data;
+    } catch (error) {
+      return rejectWithValue("Something went wrong");
+    }
     //returned a response to reducer
-    return response;
   }
 );
 // get partner action
 export const getPartner = createAsyncThunk(
   actionTypes.GET_PARTNER,
-  async (_, { rejectWithValue }) => {
+  async (params, { rejectWithValue }) => {
     //response of get company api
-    const response = {
-      getPartner: true,
-    };
+    try {
+      const response = await axiosClient.get(`${RestfulUrls.Get_Companies}/${params}`
+      );
+      console.log("response of get partrner", response.data);
+      return response.data;
+    } catch (error) {
+      return rejectWithValue("Something went wrong");
+    }
     //returned a response to reducer
-    return response;
   }
 );
 
+// delete company action
+export const deletePartner = createAsyncThunk(
+  actionTypes.DELETE_PARTNER,
+  async (params:any, { rejectWithValue }) => {
+    //response of delete partner api
+    try {
+      const response = await axiosClient.delete(`${RestfulUrls.Get_Partners}/${params.id}`);
+      console.log("response of delete partner", response.data);
+      return response.data;
+    } catch (error) {
+      return rejectWithValue("Something went wrong");
+    }
+  });
 // inteface for redux state
 export interface StateI {
   partners?: any; // company with details
