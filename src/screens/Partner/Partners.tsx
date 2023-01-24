@@ -53,6 +53,7 @@ const Partners = () => {
 
   const partnersStore = useAppSelector((state) => state.partners);
   const { isLoadingRequest, partners } = partnersStore;
+  console.log("partners data from partner.tsx",partners);
 
   const navigate = useNavigate();
 
@@ -67,12 +68,14 @@ const Partners = () => {
     const firstPageIndex = (currentPage - 1) * PageSize;
     const lastPageIndex = firstPageIndex + PageSize;
 
-    const DataSliced = partners?.slice(firstPageIndex, lastPageIndex);
+    const DataSliced = partners?.content?.slice(firstPageIndex, lastPageIndex);
     setCurrentData(DataSliced);
   }, [currentPage, isLoadingRequest]);
 
-  const handlePartnerEditClick = () => {
-    navigate("/partners/edit");
+  const handlePartnerEditClick = (partner: any, index: any) => {
+    navigate("/partners/edit", {
+      state: { partner },
+    });
   };
   const handlePartnerAddClick = () => {
     navigate("/partners/add");
