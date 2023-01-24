@@ -17,12 +17,13 @@ import { useAppDispatch } from "../../store/hooks";
 import { addEmployee } from "../../store/reducers/employee/employees";
 import { globalStyles } from "../../styles/global";
 import { styles } from "../../styles/components/editEmployee";
-import BasicDetails from "./BasicDetails";
-import EmploymentHistory from "./EmploymentHistory";
-import DocumentsPersonal from "./DocumentsPersonal";
-import DocumentsCompany from "./DocumentsCompany";
-import ContactInformation from "./ContactInformation";
-import EmergencyInformation from "./EmergencyInformation";
+import BasicDetails from "./Tabs/BasicDetails";
+import EmploymentHistory from "./Tabs/EmploymentHistory";
+import DocumentsPersonal from "./Tabs/DocumentsPersonal";
+import DocumentsCompany from "./Tabs/DocumentsCompany";
+import ContactInformation from "./Tabs/ContactInformation";
+import EmergencyInformation from "./Tabs/EmergencyInformation";
+
 
 const EditEmployee = () => {
   const [value, setValue] = React.useState(0);
@@ -94,13 +95,13 @@ function a11yProps(index: number) {
           <EmploymentHistory/>
         </TabPanel>
         <TabPanel value={value} index={2}>
-          <DocumentsPersonal />
+          <DocumentsPersonal/>
         </TabPanel>
         <TabPanel value={value} index={3}>
           <DocumentsCompany/>
         </TabPanel>
         <TabPanel value={value} index={4}>
-          <ContactInformation />
+          <ContactInformation/>
         </TabPanel>
         <TabPanel value={value} index={5}>
           <EmergencyInformation />
