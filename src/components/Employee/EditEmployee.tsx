@@ -17,12 +17,12 @@ import { useAppDispatch } from "../../store/hooks";
 import { addEmployee } from "../../store/reducers/employee/employees";
 import { globalStyles } from "../../styles/global";
 import { styles } from "../../styles/components/editEmployee";
-import BasicDetails from "../../components/Employee/Tabs Pages/BasicDetails";
-import EmploymentHistory from "../../components/Employee/Tabs Pages/EmploymentHistory";
-import DocumentsPersonal from "../../components/Employee/Tabs Pages/DocumentsPersonal";
-import DocumentsCompany from "../../components/Employee/Tabs Pages/DocumentsCompany";
-import ContactInformation from "../../components/Employee/Tabs Pages/ContactInformation";
-import EmergencyInformation from "../../components/Employee/Tabs Pages/EmergencyInformation";
+import BasicDetails from "./Tabs Pages/BasicDetails";
+import EmploymentHistory from "./Tabs Pages/EmploymentHistory";
+import DocumentsPersonal from "./Tabs Pages/DocumentsPersonal";
+import DocumentsCompany from "./Tabs Pages/DocumentsCompany";
+import ContactInformation from "./Tabs Pages/ContactInformation";
+import EmergencyInformation from "./Tabs Pages/EmergencyInformation";
 
 
 const EditEmployee = () => {

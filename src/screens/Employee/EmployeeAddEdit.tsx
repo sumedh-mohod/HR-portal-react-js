@@ -1,7 +1,7 @@
 import React from 'react'
 import { useParams, useLocation } from "react-router-dom";
 import AddEmployee from '../../components/Employee/AddEmployee';
-import EditEmployee from './EditEmployee';
+import EditEmployee from '../../components/Employee/EditEmployee';
 
 const EmployeeAddEdit = () => {
     let params = useParams();
