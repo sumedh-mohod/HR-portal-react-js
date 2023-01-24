@@ -11,7 +11,8 @@ import {
   TextField,
   Typography,
   Card,
-  Tab, Tabs
+  Tab, Tabs,
+  Container
 } from "@mui/material";
 import { useAppDispatch } from "../../store/hooks";
 import { addEmployee } from "../../store/reducers/employee/employees";
@@ -65,6 +66,7 @@ function a11yProps(index: number) {
 }
 
   return (
+ 
     <Box>
         {/* header Box */}
         <Box {...styles.parentBox}>
@@ -109,6 +111,7 @@ function a11yProps(index: number) {
       </Box>
        
     </Box>
+   
   );
 };
 
