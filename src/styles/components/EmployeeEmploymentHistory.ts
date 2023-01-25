@@ -51,8 +51,8 @@ export const styles = {
   },
   deleteIconBox: {
     sx: {
-      width: "38px",
-      height: "38px",
+      width: "40px",
+      height: "40px",
       borderRadius: "5px",
       backgroundColor: "#D82A2A",
       display: "flex",
@@ -66,7 +66,7 @@ export const styles = {
       marginLeft: "20px",
       justifyContent: "center",
       alignItems: "center",
-      height: "48px",
+      height: "40px",
       paddingLeft: "15px",
       paddingRight: "15px",
       border: "2px dashed #C0C0C0",
