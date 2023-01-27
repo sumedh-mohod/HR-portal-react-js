@@ -9,14 +9,10 @@ export const loginValidator = Yup.object().shape({
 
 export const editCompanyValidator = Yup.object().shape({
   company: Yup.string().required("Please enter a valid company"),
-  defaultLetterHead: Yup.string().required(
-    "Please enter a valid default letter head"
-  ),
   abbr: Yup.string().required("Please enter a valid abbr"),
   defaultCurrency: Yup.string().required(
     "Please enter a valid default currency"
   ),
-  country: Yup.string().required("Please Select a valid country"),
   dateOfEstablishment: Yup.date().required(
     "Please Select a valid date of establishment"
   ),
@@ -25,18 +21,11 @@ export const editCompanyValidator = Yup.object().shape({
 
 export const addCompanyValidator = Yup.object().shape({
   company: Yup.string().required("Please enter a valid company"),
-  defaultLetterHead: Yup.string().required(
-    "Please enter a valid default letter head"
-  ),
   abbr: Yup.string().required("Please enter a valid abbr"),
   defaultCurrency: Yup.string().required(
     "Please enter a valid default currency"
   ),
-  country: Yup.string().required("Please Select a valid country"),
-  dateOfEstablishment: Yup.date().required(
-    "Please Select a valid date of establishment"
-  ),
-  address: Yup.string().required("Please enter a valid address"),
+  domain: Yup.string().required("Please enter a valid domain"),
 });
 
 // add partner validation
@@ -61,4 +50,10 @@ export const addVendorValidator = Yup.object().shape({
   selectCity: Yup.string().required("Please Select a valid city"),
   selectState: Yup.string().required("Please Select a valid state"),
   country: Yup.string().required("Please Select a valid country"),
+});
+
+// add holiday card validation
+
+export const addHolidayValidator = Yup.object().shape({
+  selectDate: Yup.date().required("Please Select a valid date "),
 });

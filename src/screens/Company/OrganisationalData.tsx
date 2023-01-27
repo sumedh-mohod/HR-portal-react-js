@@ -16,6 +16,7 @@ import InformationSecurity from "../../components/Company/OrganizationlData/Info
 import SecurityPolicies from "../../components/Company/OrganizationlData/SecurityPolicies";
 import Processes from "../../components/Company/OrganizationlData/Processes";
 import DosAndDont from "../../components/Company/OrganizationlData/DosAndDont";
+import ConfirmationModal from "../../components/HigherOrder/ConfirmationModal";
 
 const Data: any = [
   {
@@ -70,6 +71,7 @@ const OrganizationlData = () => {
   const [searchText, setSearchText] = useState("");
   const [currentData, setCurrentData] = useState<any>([]);
   const [viewOpen, setViewOpen] = React.useState(false);
+  const [confimationModal, setConfimationModal] = useState(false);
   const [addOpen, setAddOpen] = React.useState(false);
   const [value, setValue] = React.useState(0);
   const [newCardData, setnewCardData] = useState();
@@ -78,8 +80,9 @@ const OrganizationlData = () => {
   const handleAddOpen = () => setAddOpen(true);
   const handleAddClose = () => setAddOpen(false);
 
-  const handleChange = (event: React.SyntheticEvent, newValue: number) => {
+  const handleTabChange = (event: React.SyntheticEvent, newValue: number) => {
     setValue(newValue);
+    // setConfimationModal(true);
   };
 
   useEffect(() => {
@@ -120,6 +123,14 @@ const OrganizationlData = () => {
     });
     setnewCardData(CardData);
     setViewOpen(true);
+  };
+
+  const handleConfirmationModal = () => {
+    setConfimationModal(false);
+  };
+
+  const handleCancelModal = () => {
+    setConfimationModal(false);
   };
 
   return (
@@ -164,7 +175,7 @@ const OrganizationlData = () => {
           <Tabs
             {...styles.Tabs}
             value={value}
-            onChange={handleChange}
+            onChange={handleTabChange}
             aria-label="basic tabs example"
             TabIndicatorProps={{ style: { background: "#F58634" } }}
           >
@@ -206,6 +217,15 @@ const OrganizationlData = () => {
       />
       <AddOrganisationData addOpen={addOpen} handleAddClose={handleAddClose} />
       {Data?.length > 0 && <Paginations handlePageChange={handlePageChange} />}
+      <ConfirmationModal
+        open={confimationModal}
+        handleConfirm={handleConfirmationModal}
+        handleCancel={handleCancelModal}
+        title={"Please confirm"}
+        message={
+          "You have not saved your changes, Please save your changes or Discard your chanages."
+        }
+      />
     </Box>
   );
 };

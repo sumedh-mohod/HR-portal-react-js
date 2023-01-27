@@ -1,9 +1,9 @@
-import background from "../../assets/images/LoginBackground.svg";
+import LoginBackground from "../../assets/images/LoginBackground.svg";
 
 export const styles = {
   parentBox: {
     sx: {
-      backgroundImage: `url(${background})`,
+      backgroundImage: `url(${LoginBackground})`,
       backgroundPosition: "center",
       backgroundSize: "cover",
       width: "100vw",

@@ -1,58 +1,126 @@
-import React from "react";
-import { Box, Grid, Typography, Card } from "@mui/material";
+import React, { useEffect, useState } from "react";
+import { useLocation, useNavigate, useParams } from "react-router-dom";
+import { Box, Grid, Typography, Card, Container, Button } from "@mui/material";
+import { useAppDispatch, useAppSelector } from "../../store/hooks";
+import { getCompany } from "../../store/reducers/companies/companies";
 import { styles } from "../../styles/components/editCompany";
-const CompanyDetailsCard = () => {
-  const CompanyDetails = [
-    {
-      company: "Orangebits Software Technologies(India) Pvt. Ltd",
-      abbr: "ORNG123",
-      defaultCurrency: "Rupees",
-      domain: "orange.com",
-      dateofEstiblishment: "2 October, 2023",
-      addressLine1: "Enter Line 1",
-      addressLine2: "Enter Line 2",
-      country: "India",
-      state: "Maharshtra",
-      city: "Nagpur",
-    },
-  ];
+import Loader from "../HigherOrder/Loader";
+import EditIcon from "@mui/icons-material/Edit";
+import CompanyAddressDetailsCard from "./CompanyAddressDetailsCard";
+interface CompanyDetailsCardInterface {
+  data: any;
+}
+const CompanyDetailsCard = (props: CompanyDetailsCardInterface) => {
+  const { data } = props;
+
+  const dispatch = useAppDispatch();
+  const companyStore = useAppSelector((state) => state.companies);
+
+  const { isLoadingRequest, companies } = companyStore;
+  console.log("company data from companyDetailsCard.tsx", companies);
+
+  useEffect(() => {
+    dispatch(getCompany(data))
+      .unwrap()
+      .then((response: any) => {
+        console.log(
+          "useeffect response from companyDetailsCard.tsx",
+          response.data
+        );
+      })
+      .catch((error) => {});
+  }, []);
+
+  // const [isEditing, setIsEditing] = useState(false);
+  const [editBtn, setEditBtn] = useState(true);
+
+  const navigate = useNavigate();
+  const EditHandle = () => {
+    // setIsEditing(true);
+    setEditBtn(false);
+    navigate("/companies/edit");
+  };
+
   return (
-    <Box>
-      <Card sx={{ mt: 3, mb: 3, p: 5 }}>
-        <Grid container spacing={3}>
-          {CompanyDetails.map((item) => {
-            return (
-              <Box {...styles.detailsParentBox} >
-                <Grid item xs={12} md={2} lg={4}>
-                  <Typography {...styles.detailsTypography1}>Company -</Typography>
+    <Container sx={{ width: 1 }}>
+      {/* toggle card for details and edit form of company */}
+      <Box {...styles.box}>
+        <Typography variant="h5">Company 1</Typography>
+        <Box>
+          {/* <Button
+            {...styles.parentBoxCancelButton}
+            variant="contained"
+            onClick={handleCancleEdit}
+          >
+            Cancle
+          </Button> */}
+          {editBtn && (
+            <Button
+              {...styles.parentBoxButtonEdit}
+              variant="contained"
+              type="submit"
+              onClick={EditHandle}
+            >
+              <EditIcon {...styles.icon} /> Edit
+            </Button>
+          )}
+        </Box>
+      </Box>
+
+      <Box>
+        <Loader isLoading={isLoadingRequest} />
+        <Card sx={{ mt: 3, mb: 3, p: 5 }}>
+          <Grid container spacing={3}>
+            <Box {...styles.detailsParentBox}>
+              <Grid item xs={12} md={12} lg={12}>
+                <Box {...styles.typographyBox}>
+                  <Typography {...styles.detailsTypography1}>
+                    Company -
+                  </Typography>
+                  <Typography {...styles.detailsTypography2}>
+                    {companies?.name}
+                  </Typography>
+                </Box>
+                <Box {...styles.typographyBox}>
                   <Typography {...styles.detailsTypography1}>Abbr -</Typography>
-                  <Typography {...styles.detailsTypography1}>Default Currency -</Typography>
-                  <Typography {...styles.detailsTypography1}>Domain -</Typography>
-                  <Typography {...styles.detailsTypography1}>Date of Estiblishment -</Typography>
-                  <Typography {...styles.detailsTypography1}>Address Line 1 -</Typography>
-                  <Typography {...styles.detailsTypography1}>Address Line 2 -</Typography>
-                  <Typography {...styles.detailsTypography1}>Country -</Typography>
-                  <Typography {...styles.detailsTypography1}>State -</Typography>
-                  <Typography {...styles.detailsTypography1}>City -</Typography>
-                </Grid>
-                <Grid item xs={12} md={10} lg={8}>
-                  <Typography {...styles.detailsTypography2}>{item.company}</Typography>
-                  <Typography {...styles.detailsTypography2}>{item.abbr}</Typography>
-                  <Typography {...styles.detailsTypography2}>{item.defaultCurrency}</Typography>
-                  <Typography {...styles.detailsTypography2}>{item.domain} </Typography>
-                  <Typography {...styles.detailsTypography2}>{item.dateofEstiblishment}</Typography>
-                  <Typography {...styles.detailsTypography2}> {item.addressLine1} </Typography>
-                  <Typography {...styles.detailsTypography2}> {item.addressLine2} </Typography>
-                  <Typography {...styles.detailsTypography2}> {item.country} </Typography>
-                  <Typography {...styles.detailsTypography2}> {item.state} </Typography>
-                  <Typography {...styles.detailsTypography2}> {item.city} </Typography>
-                </Grid>
-              </Box>
-            );
-          })}
-        </Grid>
-      </Card>
-    </Box>
+                  <Typography {...styles.detailsTypography2}>
+                    {companies?.abbreviation}
+                  </Typography>
+                </Box>
+                <Box {...styles.typographyBox}>
+                  <Typography {...styles.detailsTypography1}>
+                    Default Currency -
+                  </Typography>
+                  <Typography {...styles.detailsTypography2}>
+                    {companies?.defaultCurrency}
+                  </Typography>
+                </Box>
+                <Box {...styles.typographyBox}>
+                  <Typography {...styles.detailsTypography1}>
+                    Domain -
+                  </Typography>
+                  <Typography {...styles.detailsTypography2}>
+                    {companies?.domain}{" "}
+                  </Typography>
+                </Box>
+                <Box {...styles.typographyBox}>
+                  <Typography {...styles.detailsTypography1}>
+                    Date of Estiblishment -
+                  </Typography>
+                  <Typography {...styles.detailsTypography2}>
+                    {companies?.dateOfIncorporation}
+                  </Typography>
+                </Box>
+              </Grid>
+            </Box>
+          </Grid>
+        </Card>
+
+        {companies?.companyAddresses?.map((info: any) => (
+          <CompanyAddressDetailsCard info={info} />
+        ))}
+      </Box>
+    </Container>
   );
 };
 

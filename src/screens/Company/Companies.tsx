@@ -116,28 +116,30 @@ const CompanyList = () => {
 
   const companyStore = useAppSelector((state) => state.companies);
   const { isLoadingRequest, companies } = companyStore;
+  console.log("companie data from company.tsx",companies);
 
   useEffect(() => {
     const firstPageIndex = (currentPage - 1) * PageSize;
     const lastPageIndex = firstPageIndex + PageSize;
 
-    const DataSliced = companies?.slice(firstPageIndex, lastPageIndex);
+    const DataSliced = companies?.content?.slice(firstPageIndex, lastPageIndex);
     setCurrentData(DataSliced);
   }, [currentPage, isLoadingRequest]);
 
   useEffect(() => {
     dispatch(getCompanies())
       .unwrap()
-      .then((response: any) => { })
-      .catch((error) => { });
+      .then((response: any) => {})
+      .catch((error) => {});
   }, []);
 
   const handleCompanyAddClick = () => {
     navigate("/companies/add");
   };
 
-  const handleCompanyEditClick = (company: any) => {
-    navigate("/companies/edit", {
+  const handleCompanyEditClick = (company: any, index: any) => {
+    // console.log("get company response",company)
+    navigate("/companies/details", {
       state: { company },
     });
   };
@@ -257,9 +259,9 @@ const CompanyList = () => {
           />
         )}
       </Box>
-      {companies?.length > 0 &&
+      {companies?.content?.length > 0 && (
         <Paginations handlePageChange={handlePageChange} />
-      }
+      )}
     </Box>
   );
 };
