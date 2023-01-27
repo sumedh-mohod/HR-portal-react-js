@@ -125,6 +125,20 @@ const AddProject = () => {
     );
   };
 
+  const handleRemoveOrangebits = (index: number) => {
+    console.log("delet orangebits");
+    const newPointsofContactOrangebits = [...values.pointsofContactOrangebits];
+    newPointsofContactOrangebits.splice(index, 1);
+    setFieldValue("pointsofContactOrangebits", newPointsofContactOrangebits);
+  };
+
+  const handleRemovePartners = (index: number) => {
+    console.log("delet partners");
+    const newPointsofContactPartners = [...values.pointsofContactPartners];
+    newPointsofContactPartners.splice(index, 1);
+    setFieldValue("pointsofContactPartners", newPointsofContactPartners);
+  };
+
   const inputRef: any = useRef(null);
   const handleClick = () => {
     // open file input box on click of other element
@@ -385,7 +399,12 @@ const AddProject = () => {
                   <Grid item xs={12} md={6} lg={3}>
                     <Box sx={{ display: "flex", justifyContent: "baseline" }}>
                       <CheckIcon {...styles.checkIcon} />
-                      <CloseIcon {...styles.closeIcon} />
+                      <CloseIcon
+                        {...styles.closeIcon}
+                        onClick={() => {
+                          handleRemoveOrangebits(index);
+                        }}
+                      />
                       {values.pointsofContactOrangebits.length - 1 === index ? (
                         <Button
                           {...styles.addButton}
@@ -501,7 +520,12 @@ const AddProject = () => {
                   <Grid item xs={12} md={6} lg={3}>
                     <Box sx={{ display: "flex", justifyContent: "baseline" }}>
                       <CheckIcon {...styles.checkIcon} />
-                      <CloseIcon {...styles.closeIcon} />
+                      <CloseIcon
+                        {...styles.closeIcon}
+                        onClick={() => {
+                          handleRemovePartners(index);
+                        }}
+                      />
                       {values.pointsofContactPartners.length - 1 === index ? (
                         <Button
                           {...styles.addButton}
