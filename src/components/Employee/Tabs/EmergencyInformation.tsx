@@ -1,11 +1,13 @@
-import React from 'react'
-
+import React from "react";
+import { Box, Typography, Card, Grid, Divider } from "@mui/material";
+import EmergencyInformationCard from "./EmergencyInformationCard";
 const EmergencyInformation = () => {
   return (
-    <div>
-      <h1>EmergencyInformation</h1>
-    </div>
-  )
-}
+    <Box>
+      <EmergencyInformationCard title={1} />
+      <EmergencyInformationCard title={2}/>
+    </Box>
+  );
+};
 
-export default EmergencyInformation
+export default EmergencyInformation;
