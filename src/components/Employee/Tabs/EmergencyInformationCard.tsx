@@ -1,6 +1,5 @@
-import React, { useRef } from "react";
+import React, { useState } from "react";
 import { useFormik } from "formik";
-import { useNavigate } from "react-router-dom";
 import EditIcon from "@mui/icons-material/Edit";
 import {
   Box,
@@ -13,7 +12,6 @@ import {
   Card,
   MenuItem,
 } from "@mui/material";
-import { useAppDispatch } from "store/hooks";
 import { globalStyles } from "styles/global";
 import { styles } from "styles/components/employeeEmergencyInformations";
 
@@ -21,8 +19,7 @@ interface EmergencyInformationCardInterface {
   title: any;
 }
 const EmergencyInformationCard = (props: EmergencyInformationCardInterface) => {
-  const navigate = useNavigate();
-  const dispatch = useAppDispatch();
+  const [isEditing, setIsEditing] = useState(true);
   const {
     handleBlur,
     handleChange,
@@ -49,47 +46,39 @@ const EmergencyInformationCard = (props: EmergencyInformationCardInterface) => {
       console.log("values of emergency contact", values);
     },
   });
-  const inputRef: any = useRef(null);
-  const handleClick = () => {
-    // open file input box on click of other element
-    inputRef.current.click();
-  };
-  const handleFileChange = (event: any) => {
-    const fileObj = event.target.files && event.target.files[0];
-    if (fileObj) {
-      setFieldValue("logo", fileObj.name);
-    }
-    //  reset file input
-    event.target.value = null;
-    //  can still access file object here
-    console.log(fileObj);
-    console.log(fileObj.name);
-  };
-  // cancle butn click
-  const handleCancle = () => {
-    navigate(-1);
-  };
+
+  const EditHandle = () => {
+    setIsEditing(false);
+  }
   return (
     <Box>
       <form onSubmit={handleSubmit}>
-        {/* header Box */}
-        <Box {...styles.parentBox}>
-          <Typography variant="h5" {...styles.moduleTitle}>
-            Emergency Contact {props.title}
-          </Typography>
-          <Box>
-            <Button
-              {...styles.parentBoxEditButton}
-              variant="contained"
-              type="submit"
-              // onClick={EditHandle}
-            >
-              <EditIcon {...styles.icon} /> Edit
-            </Button>
-          </Box>
-        </Box>
         {/* form fields started */}
-        <Card sx={{ mt: 3, mb: 3, p: 5 }}>
+        <Card {...styles.contactInformationCard}>
+          {/* header Box */}
+          <Box {...styles.parentBox}>
+            <Typography variant="h5" {...styles.moduleTitle}>
+              Emergency Contact {props.title}
+            </Typography>
+            <Box>
+              {isEditing ? (<Button
+                {...styles.parentBoxEditButton}
+                variant="contained"
+                type="submit"
+                onClick={EditHandle}
+              >
+                <EditIcon {...styles.icon} /> Edit
+              </Button>) :
+                (<Button
+                  {...styles.parentBoxSaveButton}
+                  variant="contained"
+                  type="submit"
+                >
+                  Save
+                </Button>)
+              }
+            </Box>
+          </Box>
           <Grid container columnSpacing={3} rowGap={3}>
             {/* Contact Person Name */}
             <Grid item xs={12} md={6} lg={3}>
@@ -105,6 +94,7 @@ const EmergencyInformationCard = (props: EmergencyInformationCardInterface) => {
                   value={values.contactPersonName}
                   onChange={handleChange}
                   onBlur={handleBlur}
+                  disabled={isEditing}
                   error={
                     touched.contactPersonName && errors.contactPersonName
                       ? true
@@ -140,6 +130,7 @@ const EmergencyInformationCard = (props: EmergencyInformationCardInterface) => {
                   value={values.emergencyNumber}
                   onChange={handleChange}
                   onBlur={handleBlur}
+                  disabled={isEditing}
                   error={
                     touched.emergencyNumber && errors.emergencyNumber
                       ? true
@@ -172,6 +163,7 @@ const EmergencyInformationCard = (props: EmergencyInformationCardInterface) => {
                   name="emailId"
                   value={values.emailId}
                   onChange={handleChange}
+                  disabled={isEditing}
                   InputProps={{
                     disableUnderline: true,
                     style: { ...globalStyles.textField },
@@ -192,11 +184,9 @@ const EmergencyInformationCard = (props: EmergencyInformationCardInterface) => {
                   size="small"
                   type={"text"}
                   value={values.addressLine1}
-                  // onChange={(event) => {
-                  //   handleChangeAddressLine1(event, index);
-                  // }}
                   onChange={handleChange}
                   onBlur={handleBlur}
+                  disabled={isEditing}
                   InputProps={{
                     disableUnderline: true,
                     style: { ...globalStyles.textField },
@@ -216,17 +206,15 @@ const EmergencyInformationCard = (props: EmergencyInformationCardInterface) => {
                   type={"text"}
                   name="addressLine2"
                   value={values.addressLine2}
-                  // onChange={(event) => {
-                  //   handleChangeAddressLine2(event, index);
-                  // }}
                   onChange={handleChange}
                   onBlur={handleBlur}
+                  disabled={isEditing}
                   InputProps={{
                     disableUnderline: true,
                     style: { ...globalStyles.textField },
                   }}
-                  // error={touched.abbr && errors.abbr ? true : false}
-                  // helperText={touched.abbr && errors.abbr}
+                // error={touched.abbr && errors.abbr ? true : false}
+                // helperText={touched.abbr && errors.abbr}
                 />
               </FormControl>
             </Grid>
@@ -243,12 +231,9 @@ const EmergencyInformationCard = (props: EmergencyInformationCardInterface) => {
                   size="small"
                   id="country"
                   value={values.country}
-                  // onChange={(event) => {
-                  //   handleChangeCountry(event, index);
-                  // }}
-
                   onChange={handleChange}
                   onBlur={handleBlur}
+                  disabled={isEditing}
                   // error={touched.country && errors.country ? true : false}
                   // helperText={touched.country && errors.country}
                   InputProps={{
@@ -273,11 +258,9 @@ const EmergencyInformationCard = (props: EmergencyInformationCardInterface) => {
                   size="small"
                   id="selectState"
                   value={values.selectState}
-                  // onChange={(event) => {
-                  //   handleChangeSelectState(event, index);
-                  // }}
                   onChange={handleChange}
                   onBlur={handleBlur}
+                  disabled={isEditing}
                   // error={
                   //   touched.selectState && errors.selectState ? true : false
                   // }
@@ -304,11 +287,9 @@ const EmergencyInformationCard = (props: EmergencyInformationCardInterface) => {
                   size="small"
                   id="selectCity"
                   value={values.selectCity}
-                  // onChange={(event) => {
-                  //   handleChangeSelectCity(event, index);
-                  // }}
                   onBlur={handleBlur}
                   onChange={handleChange}
+                  disabled={isEditing}
                   // error={touched.selectCity && errors.selectCity ? true : false}
                   // helperText={touched.selectCity && errors.selectCity}
                   InputProps={{
@@ -332,11 +313,9 @@ const EmergencyInformationCard = (props: EmergencyInformationCardInterface) => {
                   type="text"
                   name="postalCode"
                   value={values.postalCode}
-                  // onChange={(event) => {
-                  //   handleChangePostalCode(event, index);
-                  // }}
                   onBlur={handleBlur}
                   onChange={handleChange}
+                  disabled={isEditing}
                   InputProps={{
                     disableUnderline: true,
                     style: { ...globalStyles.textField },

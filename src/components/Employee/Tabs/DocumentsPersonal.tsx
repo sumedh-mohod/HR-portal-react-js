@@ -1,7 +1,8 @@
 import React from "react";
-import { Box, Typography, Card, Grid, Divider } from "@mui/material";
+import { Box, Typography, Grid } from "@mui/material";
 import DocumentsPersonalCard from "components/Employee/Tabs/DocumentsPersonalCard";
 import { styles } from "styles/components/employeeDocumentPersonalCard";
+
 const DocumentsPersonal = () => {
   return (
     <Box>

@@ -16,6 +16,7 @@ import { styles } from "styles/components/ContactInformationEmployee";
 import EmployeeEditIcon from "components/Icons/EmployeeEditIcon";
 
 const ContactInformation = () => {
+  const [isEditing, setIsEditing] = useState(true);
   const {
     handleBlur,
     handleChange,
@@ -50,6 +51,10 @@ const ContactInformation = () => {
     },
   });
 
+  const EditHandle = () => {
+    setIsEditing(false);
+  }
+
   return (
     <Box>
       <form onSubmit={handleSubmit}>
@@ -60,15 +65,23 @@ const ContactInformation = () => {
               Contact Details
             </Typography>
             <Box>
-              <Button
+              {isEditing ? (<Button
                 {...styles.contactDetailsBtn}
                 variant="contained"
                 type="submit"
-                // onClick={EditHandle}
+                onClick={EditHandle}
               >
                 <EmployeeEditIcon />
                 <Typography sx={{ ml: 1 }}>Edit</Typography>
-              </Button>
+              </Button>) :
+                (<Button
+                  {...styles.parentBoxSaveButton}
+                  variant="contained"
+                  type="submit"
+                >
+                  Save
+                </Button>)
+              }
             </Box>
           </Box>
           <Grid container columnSpacing={3} rowGap={3}>
@@ -85,6 +98,7 @@ const ContactInformation = () => {
                   value={values.primaryNumber}
                   onChange={handleChange}
                   onBlur={handleBlur}
+                  disabled={isEditing}
                   InputProps={{
                     disableUnderline: true,
                     style: { ...globalStyles.textField },
@@ -108,6 +122,7 @@ const ContactInformation = () => {
                   value={values.secondaryNumber}
                   onChange={handleChange}
                   onBlur={handleBlur}
+                  disabled={isEditing}
                   InputProps={{
                     disableUnderline: true,
                     style: { ...globalStyles.textField },
@@ -128,6 +143,7 @@ const ContactInformation = () => {
                   value={values.emailID}
                   onChange={handleChange}
                   onBlur={handleBlur}
+                  disabled={isEditing}
                   InputProps={{
                     disableUnderline: true,
                     style: { ...globalStyles.textField },
@@ -151,6 +167,7 @@ const ContactInformation = () => {
                   value={values.secondaryEmailID}
                   onChange={handleChange}
                   onBlur={handleBlur}
+                  disabled={isEditing}
                   InputProps={{
                     disableUnderline: true,
                     style: { ...globalStyles.textField },
@@ -182,6 +199,7 @@ const ContactInformation = () => {
                   value={values.permanent_address_addressLine1}
                   onChange={handleChange}
                   onBlur={handleBlur}
+                  disabled={isEditing}
                   InputProps={{
                     disableUnderline: true,
                     style: { ...globalStyles.textField },
@@ -205,12 +223,11 @@ const ContactInformation = () => {
                   value={values.permanent_address_addressLine2}
                   onChange={handleChange}
                   onBlur={handleBlur}
+                  disabled={isEditing}
                   InputProps={{
                     disableUnderline: true,
                     style: { ...globalStyles.textField },
                   }}
-                  // error={touched.abbr && errors.abbr ? true : false}
-                  // helperText={touched.abbr && errors.abbr}
                 />
               </FormControl>
             </Grid>
@@ -231,6 +248,7 @@ const ContactInformation = () => {
                   value={values.permanent_address_country}
                   onChange={handleChange}
                   onBlur={handleBlur}
+                  disabled={isEditing}
                   // error={touched.country && errors.country ? true : false}
                   // helperText={touched.country && errors.country}
                   InputProps={{
@@ -259,6 +277,7 @@ const ContactInformation = () => {
                   value={values.permanent_address_selectState}
                   onChange={handleChange}
                   onBlur={handleBlur}
+                  disabled={isEditing}
                   // error={
                   //   touched.selectState && errors.selectState ? true : false
                   // }
@@ -286,6 +305,7 @@ const ContactInformation = () => {
                   value={values.permanent_address_selectCity}
                   onChange={handleChange}
                   onBlur={handleBlur}
+                  disabled={isEditing}
                   // error={touched.selectCity && errors.selectCity ? true : false}
                   // helperText={touched.selectCity && errors.selectCity}
                   InputProps={{
@@ -313,6 +333,7 @@ const ContactInformation = () => {
                   value={values.permanent_address_postalCode}
                   onChange={handleChange}
                   onBlur={handleBlur}
+                  disabled={isEditing}
                   InputProps={{
                     disableUnderline: true,
                     style: { ...globalStyles.textField },
@@ -344,6 +365,7 @@ const ContactInformation = () => {
                   value={values.communication_address_addressLine1}
                   onChange={handleChange}
                   onBlur={handleBlur}
+                  disabled={isEditing}
                   InputProps={{
                     disableUnderline: true,
                     style: { ...globalStyles.textField },
@@ -367,12 +389,11 @@ const ContactInformation = () => {
                   value={values.communication_address_addressLine2}
                   onChange={handleChange}
                   onBlur={handleBlur}
+                  disabled={isEditing}
                   InputProps={{
                     disableUnderline: true,
                     style: { ...globalStyles.textField },
                   }}
-                  // error={touched.abbr && errors.abbr ? true : false}
-                  // helperText={touched.abbr && errors.abbr}
                 />
               </FormControl>
             </Grid>
@@ -393,6 +414,7 @@ const ContactInformation = () => {
                   value={values.communication_address_country}
                   onChange={handleChange}
                   onBlur={handleBlur}
+                  disabled={isEditing}
                   // error={touched.country && errors.country ? true : false}
                   // helperText={touched.country && errors.country}
                   InputProps={{
@@ -421,6 +443,7 @@ const ContactInformation = () => {
                   value={values.communication_address_selectState}
                   onChange={handleChange}
                   onBlur={handleBlur}
+                  disabled={isEditing}
                   // error={
                   //   touched.selectState && errors.selectState ? true : false
                   // }
@@ -451,6 +474,7 @@ const ContactInformation = () => {
                   value={values.communication_address_selectCity}
                   onChange={handleChange}
                   onBlur={handleBlur}
+                  disabled={isEditing}
                   // error={touched.selectCity && errors.selectCity ? true : false}
                   // helperText={touched.selectCity && errors.selectCity}
                   InputProps={{
@@ -478,6 +502,7 @@ const ContactInformation = () => {
                   value={values.communication_address_postalCode}
                   onChange={handleChange}
                   onBlur={handleBlur}
+                  disabled={isEditing}
                   InputProps={{
                     disableUnderline: true,
                     style: { ...globalStyles.textField },

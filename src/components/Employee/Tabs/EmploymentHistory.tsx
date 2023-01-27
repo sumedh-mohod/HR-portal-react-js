@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
 import { useFormik } from "formik";
 import { useNavigate } from "react-router-dom";
 import EditIcon from "@mui/icons-material/Edit";
@@ -18,6 +18,7 @@ import { globalStyles } from "styles/global";
 import { styles } from "styles/components/EmployeeEmploymentHistory";
 import DeleteIcon from "components/Icons/DeleteIcon";
 const EmploymentHistory = () => {
+  const [isEditing, setIsEditing] = useState(true);
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
   const {
@@ -45,26 +46,7 @@ const EmploymentHistory = () => {
       console.log("values of employment History", values);
     },
   });
-  const inputRef: any = useRef(null);
-  const handleClick = () => {
-    // open file input box on click of other element
-    inputRef.current.click();
-  };
-  const handleFileChange = (event: any) => {
-    const fileObj = event.target.files && event.target.files[0];
-    if (fileObj) {
-      setFieldValue("logo", fileObj.name);
-    }
-    //  reset file input
-    event.target.value = null;
-    //  can still access file object here
-    console.log(fileObj);
-    console.log(fileObj.name);
-  };
-  // cancle butn click
-  const handleCancle = () => {
-    navigate(-1);
-  };
+
   const handleEmploymentHistoryAdd = () => {
     console.log("add");
     const newemploymentHistory = [
@@ -101,29 +83,41 @@ const EmploymentHistory = () => {
     setFieldValue(`employmentHistory.${index}.designation`, event.target.value);
   };
 
+  const EditHandle = () => {
+    setIsEditing(false);
+  }
+
   return (
     <Box>
       <form onSubmit={handleSubmit}>
-        {/* header Box */}
-        <Box {...styles.parentBox}>
-          <Typography variant="h5" {...styles.moduleTitle}>
-            Employee History
-          </Typography>
-          <Box>
-            <Button
-              {...styles.parentBoxEditButton}
-              variant="contained"
-              type="submit"
-              // onClick={EditHandle}
-            >
-              <EditIcon {...styles.icon} /> Edit
-            </Button>
+        <Card {...styles.contactInformationCard}>
+          {/* header Box */}
+          <Box {...styles.parentBox}>
+            <Typography variant="h5" {...styles.moduleTitle}>
+              Employee History
+            </Typography>
+            <Box>
+              {isEditing ? (<Button
+                {...styles.parentBoxEditButton}
+                variant="contained"
+                type="submit"
+                onClick={EditHandle}
+              >
+                <EditIcon {...styles.icon} /> Edit
+              </Button>) :
+                (<Button
+                  {...styles.parentBoxSaveButton}
+                  variant="contained"
+                  type="submit"
+                >
+                  Save
+                </Button>)
+              }
+            </Box>
           </Box>
-        </Box>
-        {/* form fields started */}
-        {values.employmentHistory.map((employmentHistory, index) => (
-          <>
-            <Card sx={{ mt: 3, mb: 3, p: 5 }}>
+          {/* form fields started */}
+          {values.employmentHistory.map((employmentHistory, index) => (
+            <>
               <Grid container columnSpacing={3} rowGap={3}>
                 {/* Employer Name */}
                 <Grid item xs={12} md={6} lg={3}>
@@ -145,6 +139,7 @@ const EmploymentHistory = () => {
                         handleChangeEmployerName(event, index);
                       }}
                       onBlur={handleBlur}
+                      disabled={isEditing}
                       // error={
                       //   touched.EmployerName && errors.EmployerName ? true : false
                       // }
@@ -179,6 +174,7 @@ const EmploymentHistory = () => {
                       onChange={(event) => {
                         handleChangeStartDate(event, index);
                       }}
+                      disabled={isEditing}
                       InputProps={{
                         disableUnderline: true,
                         style: { ...globalStyles.textField },
@@ -203,6 +199,7 @@ const EmploymentHistory = () => {
                       onChange={(event) => {
                         handleChangeEndDate(event, index);
                       }}
+                      disabled={isEditing}
                       InputProps={{
                         disableUnderline: true,
                         style: { ...globalStyles.textField },
@@ -230,6 +227,7 @@ const EmploymentHistory = () => {
                       onChange={(event) => {
                         handleChangeDesignation(event, index);
                       }}
+                      disabled={isEditing}
                       InputProps={{
                         disableUnderline: true,
                         style: { ...globalStyles.textField },
@@ -264,9 +262,9 @@ const EmploymentHistory = () => {
                   </Box>
                 </Grid>
               </Grid>
-            </Card>
-          </>
-        ))}
+            </>
+          ))}
+        </Card>
       </form>
     </Box>
   );

@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
 import { useFormik } from "formik";
 import { useNavigate } from "react-router-dom";
 import EditIcon from "@mui/icons-material/Edit";
@@ -17,6 +17,7 @@ import { globalStyles } from "styles/global";
 import { styles } from "styles/components/EmployeeBasicDetails";
 
 const BasicDetails = () => {
+  const [isEditing, setIsEditing] = useState(true);
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
   const {
@@ -59,31 +60,38 @@ const BasicDetails = () => {
     console.log(fileObj);
     console.log(fileObj.name);
   };
-  // cancle butn click
-  const handleCancle = () => {
-    navigate(-1);
-  };
+
+  const EditHandle = () => {
+    setIsEditing(false);
+  }
   return (
     <Box>
       <form onSubmit={handleSubmit}>
-        {/* header Box */}
-        <Box {...styles.parentBox}>
-          <Typography variant="h5" {...styles.moduleTitle}>
-            Personal Details
-          </Typography>
-          <Box>
-            <Button
-              {...styles.parentBoxEditButton}
-              variant="contained"
-              type="submit"
-              // onClick={EditHandle}
-            >
-              <EditIcon {...styles.icon} /> Edit
-            </Button>
-          </Box>
-        </Box>
         {/* form fields started */}
-        <Card sx={{ mt: 3, mb: 3, p: 5 }}>
+        <Card {...styles.contactInformationCard}>
+          {/* header Box */}
+          <Box {...styles.parentBox}>
+            <Typography variant="h5" {...styles.moduleTitle}>
+              Personal Details
+            </Typography>
+            <Box>
+              {isEditing ? (<Button
+                {...styles.parentBoxEditButton}
+                variant="contained"
+                onClick={EditHandle}
+              >
+                <EditIcon {...styles.icon} /> Edit
+              </Button>) :
+                (<Button
+                  {...styles.parentBoxSaveButton}
+                  variant="contained"
+                  type="submit"
+                >
+                  Save
+                </Button>)
+              }
+            </Box>
+          </Box>
           <Grid container columnSpacing={3} rowGap={3}>
             {/* uplaod Logo */}
             <Grid item xs={12} md={6} lg={3}>
@@ -97,6 +105,7 @@ const BasicDetails = () => {
                   ref={inputRef}
                   type="file"
                   onChange={handleFileChange}
+                  disabled={isEditing}
                 />
                 <TextField
                   variant="filled"
@@ -104,6 +113,7 @@ const BasicDetails = () => {
                   value={values.logo}
                   onChange={handleFileChange}
                   onBlur={handleBlur}
+                  disabled={isEditing}
                   error={touched.logo && errors.logo ? true : false}
                   helperText={touched.logo && errors.logo}
                   {...styles.logoTextfield}
@@ -138,6 +148,7 @@ const BasicDetails = () => {
                   value={values.DisplayName}
                   onChange={handleChange}
                   onBlur={handleBlur}
+                  disabled={isEditing}
                   error={
                     touched.DisplayName && errors.DisplayName ? true : false
                   }
@@ -168,6 +179,7 @@ const BasicDetails = () => {
                   name="firstName"
                   value={values.firstName}
                   onChange={handleChange}
+                  disabled={isEditing}
                   InputProps={{
                     disableUnderline: true,
                     style: { ...globalStyles.textField },
@@ -188,6 +200,7 @@ const BasicDetails = () => {
                   name="lastName"
                   value={values.lastName}
                   onChange={handleChange}
+                  disabled={isEditing}
                   InputProps={{
                     disableUnderline: true,
                     style: { ...globalStyles.textField },
@@ -208,6 +221,7 @@ const BasicDetails = () => {
                   name="employeeId"
                   value={values.employeeId}
                   onChange={handleChange}
+                  disabled={isEditing}
                   InputProps={{
                     disableUnderline: true,
                     style: { ...globalStyles.textField },
@@ -228,6 +242,7 @@ const BasicDetails = () => {
                   name="designation"
                   value={values.designation}
                   onChange={handleChange}
+                  disabled={isEditing}
                   InputProps={{
                     disableUnderline: true,
                     style: { ...globalStyles.textField },
@@ -248,6 +263,7 @@ const BasicDetails = () => {
                   name="emailId"
                   value={values.emailId}
                   onChange={handleChange}
+                  disabled={isEditing}
                   InputProps={{
                     disableUnderline: true,
                     style: { ...globalStyles.textField },

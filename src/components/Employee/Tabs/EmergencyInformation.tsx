@@ -1,5 +1,5 @@
 import React from "react";
-import { Box, Typography, Card, Grid, Divider } from "@mui/material";
+import { Box } from "@mui/material";
 import EmergencyInformationCard from "components/Employee/Tabs/EmergencyInformationCard";
 const EmergencyInformation = () => {
   return (
