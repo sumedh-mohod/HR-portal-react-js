@@ -1,16 +1,13 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { useFormik } from "formik";
-import { useLocation, useNavigate, useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { Box, Container, Typography, Button } from "@mui/material";
-import { editCompanyValidator } from "../../utils/validations/auth";
-import CompanyEditCard from "./CompanyEditCard";
-import { useAppDispatch, useAppSelector } from "../../store/hooks";
-import {
-  getCompany,
-  updateCompany,
-} from "../../store/reducers/companies/companies";
-import { styles } from "../../styles/components/editCompany";
-import { globalStyles } from "../../styles/global";
+import { editCompanyValidator } from "utils/validations/auth";
+import CompanyEditCard from "components/Company/CompanyEditCard";
+import { useAppDispatch, useAppSelector } from "store/hooks";
+import { getCompany, updateCompany } from "store/reducers/companies/companies";
+import { styles } from "styles/components/editCompany";
+import { globalStyles } from "styles/global";
 
 interface EditCompanyInterface {
   data: any;
@@ -32,7 +29,7 @@ const EditCompany = (props: EditCompanyInterface) => {
           response.data
         );
       })
-      .catch((error) => { });
+      .catch((error) => {});
   }, []);
 
   const {
@@ -71,7 +68,7 @@ const EditCompany = (props: EditCompanyInterface) => {
         .then((response: any) => {
           console.log("response from edit Company file", response);
         })
-        .catch((error: any) => { });
+        .catch((error: any) => {});
     },
   });
 
@@ -122,7 +119,7 @@ const EditCompany = (props: EditCompanyInterface) => {
     setFieldValue(`address.${index}.postalCode`, event.target.value);
   };
 
-  const handleSubmitTaxes = (index: number) => { };
+  const handleSubmitTaxes = (index: number) => {};
 
   console.log("data in edit company.tsx", data);
 

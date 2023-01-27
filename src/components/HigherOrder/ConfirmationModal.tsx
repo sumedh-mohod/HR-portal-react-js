@@ -1,7 +1,5 @@
 import React from "react";
 import {
-  Box,
-  Typography,
   Dialog,
   Button,
   DialogActions,

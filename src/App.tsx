@@ -1,36 +1,34 @@
-import React from "react";
 import { Route, Routes } from "react-router-dom";
 import { Box } from "@mui/material";
 
-import { useAppSelector } from "./store/hooks";
+import { useAppSelector } from "store/hooks";
 
 //import sreens
-import Login from "./screens/Authentication/Login";
-import Registration from "./screens/Authentication/Registration";
-import Dashboard from "./screens/Authentication/Dashboard";
-import Header from "./components/HigherOrder/Header";
+import Login from "screens/Authentication/Login";
+import Registration from "screens/Authentication/Registration";
+import Dashboard from "screens/Authentication/Dashboard";
+import Header from "components/HigherOrder/Header";
 
-import Companies from "./screens/Company/Companies";
-import Employees from "./screens/Employee/Employee";
-import Projects from "./screens/Project/Projects";
-import Partners from "./screens/Partner/Partners";
-import Vendors from "./screens/Vendor/Vendors";
+import Companies from "screens/Company/Companies";
+import Employees from "screens/Employee/Employee";
+import Projects from "screens/Project/Projects";
+import Partners from "screens/Partner/Partners";
+import Vendors from "screens/Vendor/Vendors";
 
-import CompanyOperations from "./screens/Company/Operations";
-import EmployeeAddEdit from "./screens/Employee/EmployeeAddEdit";
-import ProjectAddEdit from "./screens/Project/ProjectAddEdit";
-import PartnerAddEdit from "./screens/Partner/PartnerAddEdit";
-import VendorAddEdit from "./screens/Vendor/VendorAddEdit";
+import CompanyOperations from "screens/Company/Operations";
+import EmployeeAddEdit from "screens/Employee/EmployeeAddEdit";
+import ProjectAddEdit from "screens/Project/ProjectAddEdit";
+import PartnerAddEdit from "screens/Partner/PartnerAddEdit";
+import VendorAddEdit from "screens/Vendor/VendorAddEdit";
 
-import NotFound from "./screens/Authentication/NotFound";
-import Logout from "./screens/Authentication/Logout";
+import NotFound from "screens/Authentication/NotFound";
+import Logout from "screens/Authentication/Logout";
 
 import ProtectedRoute, {
   AuthRoute,
   ProtectedRouteProps,
   LoggedInUserProps,
 } from "./ProtectedRoute";
-import CompanyDetailsCard from "./components/Company/CompanyDetailsCard";
 
 const App = () => {
   const storeResponse: any = useAppSelector(
@@ -117,7 +115,7 @@ const App = () => {
               />
             }
           />
-         
+
           {/* Employees */}
           <Route
             path="/employees"

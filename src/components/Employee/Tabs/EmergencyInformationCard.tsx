@@ -12,8 +12,8 @@ import {
   Card,
   MenuItem,
 } from "@mui/material";
-import { globalStyles } from "../../../styles/global";
-import { styles } from "../../../styles/components/employeeEmergencyInformations";
+import { globalStyles } from "styles/global";
+import { styles } from "styles/components/employeeEmergencyInformations";
 
 interface EmergencyInformationCardInterface {
   title: any;

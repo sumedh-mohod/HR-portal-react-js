@@ -11,11 +11,10 @@ import {
   Typography,
 } from "@mui/material";
 import AddIcon from "@mui/icons-material/Add";
-import HolidayCard from "../../components/Company/HolidayCard";
-import Search from "../../components/HigherOrder/Search";
-import { globalStyles } from "../../styles/global";
-import { styles } from "../../styles/screens/CompanyList";
-import Paginations from "../../components/HigherOrder/Paginations";
+import HolidayCard from "components/Company/HolidayCard";
+import Search from "components/HigherOrder/Search";
+import { globalStyles } from "styles/global";
+import { styles } from "styles/screens/CompanyList";
 
 let PageSize = 5;
 
@@ -37,7 +36,7 @@ const Hollidays = () => {
   ) => {
     setCurrentPage(value);
   };
-  
+
   return (
     <Box sx={{ display: "flex", flexDirection: "column" }}>
       <Box {...styles.companyTitleBox}>

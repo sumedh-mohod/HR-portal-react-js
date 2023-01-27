@@ -1,7 +1,7 @@
 import React from "react";
 import { Modal, Box, Divider, Typography } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
-import { styles } from "../../../styles/components/organizationData";
+import { styles } from "styles/components/organizationData";
 
 const ViewOraganisationalDatamodel = ({
   handleViewClose,

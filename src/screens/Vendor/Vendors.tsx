@@ -3,16 +3,16 @@ import { useNavigate } from "react-router-dom";
 import { Typography, Box, Button } from "@mui/material";
 import { GridColDef } from "@mui/x-data-grid";
 import AddIcon from "@mui/icons-material/Add";
-import VendorCard from "../../components/Vendor/VendorCard";
-import VendorList from "../../components/Vendor/VendorList";
-import Paginations from "../../components/HigherOrder/Paginations";
-import CustomizationButtons from "../../components/HigherOrder/CustomizationButtons";
-import Loader from "../../components/HigherOrder/Loader";
-import Search from "../../components/HigherOrder/Search";
-import { getVendors } from "../../store/reducers/vendors/vendors";
-import { useAppDispatch, useAppSelector } from "../../store/hooks";
-import { styles } from "../../styles/screens/CompanyList";
-import { globalStyles } from "../../styles/global";
+import VendorCard from "components/Vendor/VendorCard";
+import VendorList from "components/Vendor/VendorList";
+import Paginations from "components/HigherOrder/Paginations";
+import CustomizationButtons from "components/HigherOrder/CustomizationButtons";
+import Loader from "components/HigherOrder/Loader";
+import Search from "components/HigherOrder/Search";
+import { getVendors } from "store/reducers/vendors/vendors";
+import { useAppDispatch, useAppSelector } from "store/hooks";
+import { styles } from "styles/screens/CompanyList";
+import { globalStyles } from "styles/global";
 
 const columns: GridColDef[] = [
   {
@@ -108,8 +108,8 @@ const Vendors = () => {
   useEffect(() => {
     dispatch(getVendors())
       .unwrap()
-      .then((response: any) => { })
-      .catch((error) => { });
+      .then((response: any) => {})
+      .catch((error) => {});
   }, []);
 
   useEffect(() => {
@@ -245,9 +245,9 @@ const Vendors = () => {
           />
         )}
       </Box>
-      {vendors?.length > 0 &&
+      {vendors?.length > 0 && (
         <Paginations handlePageChange={handlePageChange} />
-      }
+      )}
     </Box>
   );
 };

@@ -10,10 +10,10 @@ import {
   Box,
   Typography,
 } from "@mui/material";
-import DeleteIcon from "../Icons/DeleteIcon";
+import DeleteIcon from "components/Icons/DeleteIcon";
 import AddIcon from "@mui/icons-material/Add";
-import { styles } from "../../styles/components/editCompany";
-import { globalStyles } from "../../styles/global";
+import { styles } from "styles/components/editCompany";
+import { globalStyles } from "styles/global";
 
 interface CompanyDetailsCardInterface {
   data: any,

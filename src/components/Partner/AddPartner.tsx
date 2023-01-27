@@ -1,6 +1,6 @@
 import React, { useRef } from "react";
 import { useFormik } from "formik";
-import { addPartnerValidator } from "../../utils/validations/auth";
+import { addPartnerValidator } from "utils/validations/auth";
 import { useNavigate } from "react-router-dom";
 import {
   Box,
@@ -16,10 +16,10 @@ import {
 import CheckIcon from "@mui/icons-material/Check";
 import CloseIcon from "@mui/icons-material/Close";
 import AddIcon from "@mui/icons-material/Add";
-import { useAppDispatch } from "../../store/hooks";
-import { addPartner } from "../../store/reducers/partners/partners";
-import { globalStyles } from "../../styles/global";
-import { styles } from "../../styles/components/addPartner";
+import { useAppDispatch } from "store/hooks";
+import { addPartner } from "store/reducers/partners/partners";
+import { globalStyles } from "styles/global";
+import { styles } from "styles/components/addPartner";
 
 const AddPartner = () => {
   const dispatch = useAppDispatch();
@@ -60,7 +60,7 @@ const AddPartner = () => {
         .then((response: any) => {
           console.log("response from add partner file", response);
         })
-        .catch((error: any) => { });
+        .catch((error: any) => {});
     },
   });
 
@@ -112,7 +112,7 @@ const AddPartner = () => {
     setFieldValue(`taxes.${index}.value`, event.target.value);
   };
 
-  const handleSubmitTaxes = (index: number) => { };
+  const handleSubmitTaxes = (index: number) => {};
 
   return (
     <Box>
@@ -224,9 +224,9 @@ const AddPartner = () => {
                     disableUnderline: true,
                     style: { ...globalStyles.textField },
                   }}
-                //   onBlur={handleBlur}
-                //   error={touched.addressLine1 && errors.addressLine1 ? true : false}
-                //   helperText={touched.addressLine1 && errors.addressLine1}
+                  //   onBlur={handleBlur}
+                  //   error={touched.addressLine1 && errors.addressLine1 ? true : false}
+                  //   helperText={touched.addressLine1 && errors.addressLine1}
                 />
               </FormControl>
             </Grid>
@@ -247,9 +247,9 @@ const AddPartner = () => {
                     disableUnderline: true,
                     style: { ...globalStyles.textField },
                   }}
-                //   onBlur={handleBlur}
-                //   error={touched.addressLine2 && errors.addressLine2 ? true : false}
-                //   helperText={touched.addressLine2 && errors.addressLine2}
+                  //   onBlur={handleBlur}
+                  //   error={touched.addressLine2 && errors.addressLine2 ? true : false}
+                  //   helperText={touched.addressLine2 && errors.addressLine2}
                 />
               </FormControl>
             </Grid>
@@ -350,9 +350,9 @@ const AddPartner = () => {
                     disableUnderline: true,
                     style: { ...globalStyles.textField },
                   }}
-                //   onBlur={handleBlur}
-                //   error={touched.postalCode && errors.postalCode ? true : false}
-                //   helperText={touched.postalCode && errors.postalCode}
+                  //   onBlur={handleBlur}
+                  //   error={touched.postalCode && errors.postalCode ? true : false}
+                  //   helperText={touched.postalCode && errors.postalCode}
                 />
               </FormControl>
             </Grid>
@@ -374,9 +374,9 @@ const AddPartner = () => {
                     disableUnderline: true,
                     style: { ...globalStyles.textField },
                   }}
-                // onBlur={handleBlur}
-                // error={touched.taxID && errors.taxID ? true : false}
-                // helperText={touched.taxID && errors.taxID}
+                  // onBlur={handleBlur}
+                  // error={touched.taxID && errors.taxID ? true : false}
+                  // helperText={touched.taxID && errors.taxID}
                 />
               </FormControl>
             </Grid>

@@ -12,9 +12,9 @@ import {
   Typography,
   Card,
 } from "@mui/material";
-import { useAppDispatch } from "../../../store/hooks";
-import { globalStyles } from "../../../styles/global";
-import { styles } from "../../../styles/components/EmployeeBasicDetails";
+import { useAppDispatch } from "store/hooks";
+import { globalStyles } from "styles/global";
+import { styles } from "styles/components/EmployeeBasicDetails";
 
 const BasicDetails = () => {
   const [isEditing, setIsEditing] = useState(true);

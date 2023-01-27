@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
 import { Box, Grid, Typography, Card, Container, Button } from "@mui/material";
-import { useAppDispatch, useAppSelector } from "../../store/hooks";
-import { getCompany } from "../../store/reducers/companies/companies";
-import { styles } from "../../styles/components/editCompany";
-import Loader from "../HigherOrder/Loader";
+import { useAppDispatch, useAppSelector } from "store/hooks";
+import { getCompany } from "store/reducers/companies/companies";
+import { styles } from "styles/components/editCompany";
+import Loader from "components/HigherOrder/Loader";
 import EditIcon from "@mui/icons-material/Edit";
-import CompanyAddressDetailsCard from "./CompanyAddressDetailsCard";
+import CompanyAddressDetailsCard from "components/Company/CompanyAddressDetailsCard";
 interface CompanyDetailsCardInterface {
   data: any;
 }

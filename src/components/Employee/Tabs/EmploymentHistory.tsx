@@ -13,10 +13,10 @@ import {
   Typography,
   Card,
 } from "@mui/material";
-import { useAppDispatch } from "../../../store/hooks";
-import { globalStyles } from "../../../styles/global";
-import { styles } from "../../../styles/components/EmployeeEmploymentHistory";
-import DeleteIcon from "../../Icons/DeleteIcon";
+import { useAppDispatch } from "store/hooks";
+import { globalStyles } from "styles/global";
+import { styles } from "styles/components/EmployeeEmploymentHistory";
+import DeleteIcon from "components/Icons/DeleteIcon";
 const EmploymentHistory = () => {
   const [isEditing, setIsEditing] = useState(true);
   const navigate = useNavigate();

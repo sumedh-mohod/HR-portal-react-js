@@ -6,9 +6,9 @@ import { BrowserRouter } from "react-router-dom";
 import { Provider } from "react-redux";
 
 import reportWebVitals from "./reportWebVitals";
-import { store } from "./store/store";
+import { store } from "store/store";
 import App from "./App";
-import AuthContextProvider from "./context/auth";
+import AuthContextProvider from "context/auth";
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
