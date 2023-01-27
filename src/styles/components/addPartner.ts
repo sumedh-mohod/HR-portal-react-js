@@ -30,36 +30,49 @@ export const styles = {
     },
   },
 
-  checkIcon: {
+  gridItem: {
     sx: {
-      width: "30px",
-      height: "30px",
-      margin: "30px 20px",
-      color: "white",
-      background: "#0FBD35",
+      display: "flex",
+      justifyContent: "flex-start",
+      alignItems: "center",
+      mt: 1,
+      pt: 2,
+    },
+  },
+
+  taxRightClickIconBox: {
+    sx: {
+      width: "48px",
+      height: "48px",
       borderRadius: "5px",
+      backgroundColor: "#0FBD35",
+      display: "flex",
+      justifyContent: "center",
+      alignItems: "center",
+      mr: 3,
       cursor: "pointer",
     },
   },
-  closeIcon: {
+  taxCloseClickIconBox: {
     sx: {
-      width: "30px",
-      height: "30px",
-      margin: "30px 20px",
-      color: "white",
-      background: "#D82A2A;",
+      width: "48px",
+      height: "48px",
       borderRadius: "5px",
+      backgroundColor: "#D82A2A",
+      display: "flex",
+      justifyContent: "center",
+      alignItems: "center",
       cursor: "pointer",
     },
   },
   addButton: {
     sx: {
-      margin: "30px 20px",
-      // display: "flex",
+      marginLeft: "20px",
       justifyContent: "center",
       alignItems: "center",
-      // minHeight: "200px",
-      // maxHeight: "218px",
+      height: "48px",
+      paddingLeft: "15px",
+      paddingRight: "15px",
       border: "2px dashed #C0C0C0",
       boxShadow: "none",
       color: "#1C1B1F",
