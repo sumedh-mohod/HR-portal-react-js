@@ -1,5 +1,4 @@
-import React,{useEffect} from "react";
-import { useFormik } from "formik";
+import React from "react";
 import {
   Button,
   Grid,
@@ -13,123 +12,53 @@ import {
 } from "@mui/material";
 import DeleteIcon from "../Icons/DeleteIcon";
 import AddIcon from "@mui/icons-material/Add";
-import { useAppDispatch, useAppSelector } from "../../store/hooks";
-import { editCompanyValidator } from "../../utils/validations/auth";
-import { getCompany, updateCompany } from "../../store/reducers/companies/companies";
 import { styles } from "../../styles/components/editCompany";
 import { globalStyles } from "../../styles/global";
 
 interface CompanyDetailsCardInterface {
-  data: any;
-  submitRef: any;
+  data: any,
+  values: any,
+  setFieldValue: any,
+  handleSubmit: any,
+  handleChange: any,
+  handleBlur: any,
+  errors: any,
+  touched: any,
+  handleAddAddress: any,
+  handleRemoveAddress: any,
+  handleChangeAddressLine1: any,
+  handleChangeAddressLine2: any,
+  handleChangeCountry: any,
+  handleChangeSelectState: any,
+  handleChangeSelectCity: any,
+  handleChangePostalCode: any,
+  handleSubmitTaxes: any,
+  companies: any
 }
 
 const CompanyDetailsCard = (props: CompanyDetailsCardInterface) => {
   const {
     data,
-    submitRef
-  } = props;
-
-  const dispatch = useAppDispatch();
-  const companyStore = useAppSelector((state) => state.companies);
-  const { isLoadingRequest, companies } = companyStore;
-  console.log("company data from companyEditCard.tsx", companies)
-
-useEffect(() => {
-  dispatch(getCompany(companies))
-    .unwrap()
-    .then((response: any) => {
-      console.log("useeffect response from companyEditCard.tsx",response.data);
-     })
-    .catch((error) => { });
-}, []);
-  const {
-    handleBlur,
-    handleChange,
+    values,
     setFieldValue,
     handleSubmit,
-    values,
+    handleChange,
+    handleBlur,
     errors,
     touched,
-  } = useFormik({
-    enableReinitialize: true,
-    initialValues: {
-      company:companies?.name,
-      abbr: companies?.abbreviation,
-      defaultCurrency:companies?.defaultCurrency ,
-      domain:companies?.domain,
-      dateOfEstablishment: companies?.dateOfIncorporation,
-      address: [
-        {
-          addressLine1:"",
-          addressLine2:"",
-          country:"" ,
-          selectState:  "",
-          selectCity:  "",
-          postalCode:  ""
-        },
-      ],
-    },
-    validationSchema: editCompanyValidator,
-    onSubmit: (values) => {
-      console.log("values", values);
-      dispatch(updateCompany(values))
-        .unwrap()
-        .then((response: any) => {
-          console.log("response from edit companyEditCard file", response.data)
-        })
-        .catch((error: any) => {});
-    },
-  });
+    handleAddAddress,
+    handleRemoveAddress,
+    handleChangeAddressLine1,
+    handleChangeAddressLine2,
+    handleChangeCountry,
+    handleChangeSelectState,
+    handleChangeSelectCity,
+    handleChangePostalCode,
+    handleSubmitTaxes,
+    companies
+  } = props;
 
-  const handleAddAddress = () => {
-    const newAddresses = [
-      ...values.address,
-      {
-        addressLine1: "",
-        addressLine2: "",
-        country: "",
-        selectState: "",
-        selectCity: "",
-        postalCode: "",
-      },
-    ];
-    setFieldValue("address", newAddresses);
-  };
 
-  const handleRemoveAddress = (index: number) => {
-    const newAddresses = [...values.address];
-    newAddresses.splice(index, 1);
-    setFieldValue("address", newAddresses);
-  };
-
-  // address
-  const handleChangeAddressLine1 = (event: any, index: number) => {
-    setFieldValue(`address.${index}.addressLine1`, event.target.value);
-    console.log("address line1", event.target.value);
-  };
-
-  const handleChangeAddressLine2 = (event: any, index: number) => {
-    setFieldValue(`address.${index}.addressLine2`, event.target.value);
-  };
-
-  const handleChangeCountry = (event: any, index: number) => {
-    setFieldValue(`address.${index}.country`, event.target.value);
-  };
-
-  const handleChangeSelectState = (event: any, index: number) => {
-    setFieldValue(`address.${index}.selectState`, event.target.value);
-  };
-
-  const handleChangeSelectCity = (event: any, index: number) => {
-    setFieldValue(`address.${index}.selectCity`, event.target.value);
-  };
-
-  const handleChangePostalCode = (event: any, index: number) => {
-    setFieldValue(`address.${index}.postalCode`, event.target.value);
-  };
-
-  const handleSubmitTaxes = (index: number) => {};
   return (
     <Box>
       <form onSubmit={handleSubmit}>
@@ -256,17 +185,16 @@ useEffect(() => {
             </Grid>
           </Grid>
           {/* invisible button call submit from parents save button */}
-          <button ref={submitRef} type="submit" style={{ display: "none" }} />
         </Card>
         {/* address */}
-        {companies?.companyAddresses?.map((address:any, index:any) => (
+        {companies?.companyAddresses?.map((address: any, index: any) => (
           <>
             <Box {...styles.parentBox}>
               <Typography
                 variant="h5"
                 {...globalStyles.moduleTitle}
               >
-                Address {index+1}
+                Address {index + 1}
               </Typography>
               <Box
                 {...styles.taxCloseClickIconBox}
@@ -328,8 +256,8 @@ useEffect(() => {
                           disableUnderline: true,
                           style: { ...globalStyles.textField },
                         }}
-                        // error={touched.abbr && errors.abbr ? true : false}
-                        // helperText={touched.abbr && errors.abbr}
+                      // error={touched.abbr && errors.abbr ? true : false}
+                      // helperText={touched.abbr && errors.abbr}
                       />
                     </FormControl>
                   </Grid>
@@ -374,7 +302,7 @@ useEffect(() => {
                         variant="filled"
                         size="small"
                         id="selectState"
-                        value={(companies?.companyAddresses && companies?.companyAddresses[index].state)|| ""}
+                        value={(companies?.companyAddresses && companies?.companyAddresses[index].state) || ""}
                         onChange={(event) => {
                           handleChangeSelectState(event, index);
                         }}
@@ -420,6 +348,7 @@ useEffect(() => {
                       >
                         <MenuItem value="Nagpur">Nagpur</MenuItem>
                         <MenuItem value="chndrapur">chndrapur</MenuItem>
+                        <MenuItem value="pune">pune</MenuItem>
                       </TextField>
                     </FormControl>
                   </Grid>
@@ -448,21 +377,21 @@ useEffect(() => {
                       />
                     </FormControl>
                   </Grid>
-                  <Grid item xs={12} md={6} lg={12}>
-                    {values.address.length - 1 === index ? (
-                      <Button
-                        variant="contained"
-                        onClick={handleAddAddress}
-                        startIcon={<AddIcon />}
-                        {...styles.addressAddBtn}
-                      >
-                        Add
-                      </Button>
-                    ) : null}
-                  </Grid>
                 </>
               </Grid>
             </Card>
+            <Grid item xs={12} md={6} lg={12}>
+              {values.address.length - 1 === index ? (
+                <Button
+                  variant="contained"
+                  onClick={handleAddAddress}
+                  startIcon={<AddIcon />}
+                  {...styles.addressAddBtn}
+                >
+                  Add
+                </Button>
+              ) : null}
+            </Grid>
           </>
         ))}
       </form>

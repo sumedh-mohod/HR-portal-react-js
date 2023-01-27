@@ -36,6 +36,12 @@ const AddCompany = () => {
 
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
+  const [taxes, setTaxes] = useState([
+    {
+      name: "",
+      value: "",
+    },
+  ]);
   const {
     handleBlur,
     handleChange,
@@ -52,12 +58,6 @@ const AddCompany = () => {
       defaultCurrency: "",
       domain: "",
       dateOfEstablishment: "",
-      taxes: [
-        {
-          name: "",
-          value: "",
-        },
-      ],
       address: [
         {
           addressLine1: "",
@@ -76,9 +76,13 @@ const AddCompany = () => {
         .then((response: any) => {
           console.log("response from addCompany file", response);
         })
-        .catch((error: any) => {});
+        .catch((error: any) => { });
     },
   });
+
+  const handleSubmitTaxes = (index: number) => {
+    console.log("submit taxes");
+  }
 
   // cancle butn click
   const handleCancle = () => {
@@ -104,13 +108,33 @@ const AddCompany = () => {
 
   const handleAddTaxes = () => {
     const newTaxes = [
-      ...values.taxes,
+      ...taxes,
       {
         name: "",
         value: "",
       },
     ];
-    setFieldValue("taxes", newTaxes);
+    // setFieldValue("taxes", newTaxes);
+    console.log("new Taxes", newTaxes);
+    setTaxes(newTaxes);
+  };
+  console.log("taxes", taxes);
+  const handleChangeTaxName = (event: any, index: number) => {
+    // setFieldValue(`taxes.${index}.name`, event.target.value);
+    // setTaxes(() => {
+    //   return [
+    //     ...taxes,
+    //     { [`taxes.${index}.name`]: event.target.value }
+    //   ]
+    // })
+  };
+
+  const handleChangeTaxValue = (event: any, index: number) => {
+    // setFieldValue(`taxes.${index}.value`, event.target.value);
+    // setTaxes([...taxes, {
+    //   value: event.target.value
+    // }]);
+    // console.log("event", event.target.value);
   };
   console.log("values", values);
 
@@ -130,23 +154,15 @@ const AddCompany = () => {
   };
 
   const handleRemoveTaxes = (index: number) => {
-    const newTaxes = [...values.taxes];
+    const newTaxes = [...taxes];
     newTaxes.splice(index, 1);
-    setFieldValue("taxes", newTaxes);
+    setTaxes(newTaxes);
   };
 
   const handleRemoveAddress = (index: number) => {
     const newAddresses = [...values.address];
     newAddresses.splice(index, 1);
     setFieldValue("address", newAddresses);
-  };
-
-  const handleChangeTaxName = (event: any, index: number) => {
-    setFieldValue(`taxes.${index}.name`, event.target.value);
-  };
-
-  const handleChangeTaxValue = (event: any, index: number) => {
-    setFieldValue(`taxes.${index}.value`, event.target.value);
   };
 
   // address
@@ -175,7 +191,7 @@ const AddCompany = () => {
     setFieldValue(`address.${index}.postalCode`, event.target.value);
   };
 
-  const handleSubmitTaxes = (index: number) => {};
+  // const handleSubmitTaxes = (index: number) => { };
 
   return (
     <Box>
@@ -334,7 +350,7 @@ const AddCompany = () => {
         </Box>
         <Card {...styles.card}>
           <Grid container columnSpacing={3} rowGap={3}>
-            {values.taxes.map((tax, index) => (
+            {taxes?.map((tax, index) => (
               <>
                 <Grid item xs={12} md={6} lg={3}>
                   <FormControl fullWidth>
@@ -345,11 +361,12 @@ const AddCompany = () => {
                       variant="filled"
                       size="small"
                       type={"text"}
+                      name="name"
                       InputProps={{
                         disableUnderline: true,
                         style: { ...globalStyles.textField },
                       }}
-                      value={(values.taxes && values.taxes[index].name) || ""}
+                      value={(taxes && taxes[index].name) || ""}
                       onChange={(event) => {
                         handleChangeTaxName(event, index);
                       }}
@@ -366,7 +383,8 @@ const AddCompany = () => {
                       variant="filled"
                       size="small"
                       type={"text"}
-                      value={(values.taxes && values.taxes[index].value) || ""}
+                      name="value"
+                      value={(taxes && taxes[index].value) || ""}
                       InputProps={{
                         disableUnderline: true,
                         style: { ...globalStyles.textField },
@@ -395,7 +413,7 @@ const AddCompany = () => {
                     <DeleteIcon fill={"white"} />
                   </Box>
                   <Box>
-                    {values.taxes.length - 1 === index ? (
+                    {taxes.length - 1 === index ? (
                       <Button {...styles.addButton} onClick={handleAddTaxes}>
                         <AddIcon fontSize="small" {...styles.addIcon} />
                         <Typography sx={{ fontSize: "small" }}>Add</Typography>
@@ -477,8 +495,8 @@ const AddCompany = () => {
                           disableUnderline: true,
                           style: { ...globalStyles.textField },
                         }}
-                        // error={touched.abbr && errors.abbr ? true : false}
-                        // helperText={touched.abbr && errors.abbr}
+                      // error={touched.abbr && errors.abbr ? true : false}
+                      // helperText={touched.abbr && errors.abbr}
                       />
                     </FormControl>
                   </Grid>
@@ -608,21 +626,21 @@ const AddCompany = () => {
                       />
                     </FormControl>
                   </Grid>
-                  <Grid item xs={12} md={6} lg={12}>
-                    {values.address.length - 1 === index ? (
-                      <Button
-                        variant="contained"
-                        onClick={handleAddAddress}
-                        startIcon={<AddIcon />}
-                        {...styles.addressAddBtn}
-                      >
-                        Add
-                      </Button>
-                    ) : null}
-                  </Grid>
                 </>
               </Grid>
             </Card>
+            <Grid item xs={12} md={6} lg={12}>
+              {values.address.length - 1 === index ? (
+                <Button
+                  variant="contained"
+                  onClick={handleAddAddress}
+                  startIcon={<AddIcon />}
+                  {...styles.addressAddBtn}
+                >
+                  Add
+                </Button>
+              ) : null}
+            </Grid>
           </>
         ))}
       </form>
