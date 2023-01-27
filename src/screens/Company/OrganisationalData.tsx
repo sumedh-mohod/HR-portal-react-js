@@ -82,7 +82,7 @@ const OrganizationlData = () => {
 
   const handleTabChange = (event: React.SyntheticEvent, newValue: number) => {
     setValue(newValue);
-    setConfimationModal(true);
+    // setConfimationModal(true);
   };
 
   useEffect(() => {
@@ -125,7 +125,11 @@ const OrganizationlData = () => {
     setViewOpen(true);
   };
 
-  const handleCloseConfirmationModal = () => {
+  const handleConfirmationModal = () => {
+    setConfimationModal(false);
+  };
+
+  const handleCancelModal = () => {
     setConfimationModal(false);
   };
 
@@ -215,7 +219,8 @@ const OrganizationlData = () => {
       {Data?.length > 0 && <Paginations handlePageChange={handlePageChange} />}
       <ConfirmationModal
         open={confimationModal}
-        handleClose={handleCloseConfirmationModal}
+        handleConfirm={handleConfirmationModal}
+        handleCancel={handleCancelModal}
         title={"Please confirm"}
         message={
           "You have not saved your changes, Please save your changes or Discard your chanages."

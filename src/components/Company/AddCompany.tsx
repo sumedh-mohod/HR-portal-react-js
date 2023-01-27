@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useFormik } from "formik";
 import { addCompanyValidator } from "../../utils/validations/auth";
@@ -20,8 +20,20 @@ import { globalStyles } from "../../styles/global";
 import SaveTickIcon from "../Icons/SaveTickIcon";
 import DeleteIcon from "../Icons/DeleteIcon";
 import AddIcon from "@mui/icons-material/Add";
+import ConfirmationModal from "../HigherOrder/ConfirmationModal";
+
+const isObjectEmpty = (obj: any) => {
+  for (let propName in obj) {
+    if (obj[propName] === "" || Object.keys(obj[propName]).length === 0) {
+      return true;
+    }
+  }
+  return false;
+};
 
 const AddCompany = () => {
+  const [confimationModal, setConfimationModal] = useState(false);
+
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
   const {
@@ -59,7 +71,6 @@ const AddCompany = () => {
     },
     validationSchema: addCompanyValidator,
     onSubmit: (values) => {
-      console.log("values", values);
       dispatch(addCompany(values))
         .unwrap()
         .then((response: any) => {
@@ -71,7 +82,24 @@ const AddCompany = () => {
 
   // cancle butn click
   const handleCancle = () => {
+    const isEmpty = Object.values(values).every((x) => x === null || x === "");
+
+    console.log("isEmpty", isEmpty);
+
+    if (isEmpty) {
+      navigate(-1);
+    } else {
+      setConfimationModal(true);
+    }
+  };
+
+  const handleConfirmationModal = () => {
+    setConfimationModal(false);
     navigate(-1);
+  };
+
+  const handleCancelModal = () => {
+    setConfimationModal(false);
   };
 
   const handleAddTaxes = () => {
@@ -84,6 +112,7 @@ const AddCompany = () => {
     ];
     setFieldValue("taxes", newTaxes);
   };
+  console.log("values", values);
 
   const handleAddAddress = () => {
     const newAddresses = [
@@ -597,6 +626,15 @@ const AddCompany = () => {
           </>
         ))}
       </form>
+      <ConfirmationModal
+        open={confimationModal}
+        handleConfirm={handleConfirmationModal}
+        handleCancel={handleCancelModal}
+        title={"Please confirm"}
+        message={
+          "You have not saved your changes, Please save your changes or Discard your chanages."
+        }
+      />
     </Box>
   );
 };

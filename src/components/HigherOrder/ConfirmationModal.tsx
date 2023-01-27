@@ -12,18 +12,18 @@ import {
 
 interface ConfirmationModalInterface {
   open: boolean;
-  handleClose: () => void;
+  handleConfirm: () => void;
+  handleCancel: () => void;
   title: string;
   message: string;
 }
 
 const ConfirmationModal = (props: ConfirmationModalInterface) => {
-  const { open, handleClose, title, message } = props;
+  const { open, handleConfirm, handleCancel, title, message } = props;
 
   return (
     <Dialog
       open={open}
-    //   onClose={handleClose}
       aria-labelledby="alert-dialog-title"
       aria-describedby="modal-modal-description"
     >
@@ -34,8 +34,8 @@ const ConfirmationModal = (props: ConfirmationModalInterface) => {
         </DialogContentText>
       </DialogContent>
       <DialogActions>
-        <Button onClick={handleClose}>Cancel</Button>
-        <Button onClick={handleClose} autoFocus>
+        <Button onClick={handleCancel}>Cancel</Button>
+        <Button onClick={handleConfirm} autoFocus>
           Confirrm
         </Button>
       </DialogActions>
