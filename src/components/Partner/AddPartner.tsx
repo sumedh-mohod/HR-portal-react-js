@@ -20,6 +20,8 @@ import { useAppDispatch } from "../../store/hooks";
 import { addPartner } from "../../store/reducers/partners/partners";
 import { globalStyles } from "../../styles/global";
 import { styles } from "../../styles/components/addPartner";
+import SaveTickIcon from "../Icons/SaveTickIcon";
+import DeleteIcon from "../Icons/DeleteIcon";
 
 const AddPartner = () => {
   const dispatch = useAppDispatch();
@@ -48,6 +50,20 @@ const AddPartner = () => {
         {
           name: "",
           value: "",
+        },
+      ],
+      contactsOrangebits: [
+        {
+          name: "",
+          emailId: "",
+          contactNo: ""
+        },
+      ],
+      contactPartners: [
+        {
+          name: "",
+          emailId: "",
+          contactNo: ""
         },
       ],
       id: "",
@@ -113,6 +129,73 @@ const AddPartner = () => {
   };
 
   const handleSubmitTaxes = (index: number) => { };
+
+  // add point of contacts orangebist
+  const handleAddContactsOrangebits = () => {
+    const newContactsOrangebits = [
+      ...values.contactsOrangebits,
+      {
+        name: "",
+        emailId: "",
+        contactNo: ""
+      },
+    ];
+    setFieldValue("contactsOrangebits", newContactsOrangebits);
+  };
+
+  const handleRemoveContactsOrangebits = (index: number) => {
+    const newContactsOrangebits = [...values.contactsOrangebits];
+    newContactsOrangebits.splice(index, 1);
+    setFieldValue("contactsOrangebits", newContactsOrangebits);
+  };
+
+  const handleChangeContactsOrangebitsName = (event: any, index: number) => {
+    setFieldValue(`contactsOrangebits.${index}.name`, event.target.value);
+  };
+
+  const handleChangeContactsOrangebitsEmailId = (event: any, index: number) => {
+    setFieldValue(`contactsOrangebits.${index}.emailId`, event.target.value);
+  };
+
+  const handleChangeContactsOrangebitsContactNo = (event: any, index: number) => {
+    setFieldValue(`contactsOrangebits.${index}.contactNo`, event.target.value);
+  };
+
+  const handleSubmitContactsOrangebits = (index: number) => { };
+
+  // point of contacts partner
+
+  const handleAddContactPartners = () => {
+    const newContactPartners = [
+      ...values.contactPartners,
+      {
+        name: "",
+        emailId: "",
+        contactNo: ""
+      },
+    ];
+    setFieldValue("contactPartners", newContactPartners);
+  };
+
+  const handleRemoveContactPartners = (index: number) => {
+    const newContactPartners = [...values.contactPartners];
+    newContactPartners.splice(index, 1);
+    setFieldValue("contactPartners", newContactPartners);
+  };
+
+  const handleChangeContactPartnersName = (event: any, index: number) => {
+    setFieldValue(`contactPartners.${index}.name`, event.target.value);
+  };
+
+  const handleChangeContactPartnersEmailId = (event: any, index: number) => {
+    setFieldValue(`contactPartners.${index}.emailId`, event.target.value);
+  };
+
+  const handleChangeContactPartnerscontactNo = (event: any, index: number) => {
+    setFieldValue(`contactPartners.${index}.contactNo`, event.target.value);
+  };
+
+  const handleSubmitContactPartners = (index: number) => { };
 
   return (
     <Box>
@@ -471,64 +554,66 @@ const AddPartner = () => {
       </Box>
       <Card {...styles.card}>
         <Grid container columnSpacing={3} rowGap={3}>
-          {/* name */}
-          <Grid item xs={12} md={6} lg={3}>
-            <FormControl fullWidth>
-              <FormLabel id="name" {...globalStyles.textFieldLabel}>
-                Name
-              </FormLabel>
-              <TextField
-                variant="filled"
-                size="small"
-                type={"text"}
-                name="name"
-                InputProps={{
-                  disableUnderline: true,
-                  style: { ...globalStyles.textField },
-                }}
-              />
-            </FormControl>
-          </Grid>
+          {values.contactsOrangebits.map((contactsOrangebit, index) => (
+            <>
+              {/* name */}
+              <Grid item xs={12} md={6} lg={3}>
+                <FormControl fullWidth>
+                  <FormLabel id="name" {...globalStyles.textFieldLabel}>
+                    Name
+                  </FormLabel>
+                  <TextField
+                    variant="filled"
+                    size="small"
+                    type={"text"}
+                    name="name"
+                    InputProps={{
+                      disableUnderline: true,
+                      style: { ...globalStyles.textField },
+                    }}
+                  />
+                </FormControl>
+              </Grid>
 
-          {/* email id */}
-          <Grid item xs={12} md={6} lg={3}>
-            <FormControl fullWidth>
-              <FormLabel id="email_id" {...globalStyles.textFieldLabel}>
-                Email id
-              </FormLabel>
-              <TextField
-                variant="filled"
-                size="small"
-                type={"email"}
-                name="email_id"
-                InputProps={{
-                  disableUnderline: true,
-                  style: { ...globalStyles.textField },
-                }}
-              />
-            </FormControl>
-          </Grid>
+              {/* email id */}
+              <Grid item xs={12} md={6} lg={3}>
+                <FormControl fullWidth>
+                  <FormLabel id="email_id" {...globalStyles.textFieldLabel}>
+                    Email id
+                  </FormLabel>
+                  <TextField
+                    variant="filled"
+                    size="small"
+                    type={"email"}
+                    name="email_id"
+                    InputProps={{
+                      disableUnderline: true,
+                      style: { ...globalStyles.textField },
+                    }}
+                  />
+                </FormControl>
+              </Grid>
 
-          {/* contact no */}
-          <Grid item xs={12} md={6} lg={3}>
-            <FormControl fullWidth>
-              <FormLabel id="contact" {...globalStyles.textFieldLabel}>
-                Contact
-              </FormLabel>
-              <TextField
-                variant="filled"
-                size="small"
-                type={"phone"}
-                name="contact"
-                InputProps={{
-                  disableUnderline: true,
-                  style: { ...globalStyles.textField },
-                }}
-              />
-            </FormControl>
-          </Grid>
-          {/* buttons add or remove */}
-          <Grid item xs={12} md={6} lg={3}>
+              {/* contact no */}
+              <Grid item xs={12} md={6} lg={3}>
+                <FormControl fullWidth>
+                  <FormLabel id="contact" {...globalStyles.textFieldLabel}>
+                    Contact
+                  </FormLabel>
+                  <TextField
+                    variant="filled"
+                    size="small"
+                    type={"phone"}
+                    name="contact"
+                    InputProps={{
+                      disableUnderline: true,
+                      style: { ...globalStyles.textField },
+                    }}
+                  />
+                </FormControl>
+              </Grid>
+              {/* buttons add or remove */}
+              {/* <Grid item xs={12} md={6} lg={3}>
             <Box sx={{ display: "flex", justifyContent: "baseline" }}>
               <CheckIcon {...styles.checkIcon} />
               <CloseIcon {...styles.closeIcon} />
@@ -537,7 +622,35 @@ const AddPartner = () => {
                 <Typography sx={{ fontSize: "small" }}>Add</Typography>
               </Button>
             </Box>
-          </Grid>
+          </Grid> */}
+              <Grid item xs={12} md={6} lg={6} {...styles.gridItem}>
+                <Box
+                  {...styles.taxRightClickIconBox}
+                  onClick={() => {
+                    handleSubmitTaxes(index);
+                  }}
+                >
+                  <SaveTickIcon />
+                </Box>
+                <Box
+                  {...styles.taxCloseClickIconBox}
+                  onClick={() => {
+                    handleRemoveTaxes(index);
+                  }}
+                >
+                  <DeleteIcon fill={"white"} />
+                </Box>
+                <Box>
+                  {contactsOrangebits?.length - 1 === index ? (
+                    <Button {...styles.addButton} onClick={handleAddContactsOrangebits}>
+                      <AddIcon fontSize="small" {...styles.addIcon} />
+                      <Typography sx={{ fontSize: "small" }}>Add</Typography>
+                    </Button>
+                  ) : null}
+                </Box>
+              </Grid>
+            </>
+          ))}
         </Grid>
       </Card>
 
@@ -605,7 +718,7 @@ const AddPartner = () => {
             </FormControl>
           </Grid>
           {/* buttons add or remove */}
-          <Grid item xs={12} md={6} lg={3}>
+          {/* <Grid item xs={12} md={6} lg={3}>
             <Box sx={{ display: "flex", justifyContent: "baseline" }}>
               <CheckIcon {...styles.checkIcon} />
               <CloseIcon {...styles.closeIcon} />
@@ -613,6 +726,32 @@ const AddPartner = () => {
                 <AddIcon fontSize="small" {...styles.addIcon} />
                 <Typography sx={{ fontSize: "small" }}>Add</Typography>
               </Button>
+            </Box>
+          </Grid> */}
+          <Grid item xs={12} md={6} lg={6} {...styles.gridItem}>
+            <Box
+              {...styles.taxRightClickIconBox}
+              onClick={() => {
+                // handleSubmitTaxes(index);
+              }}
+            >
+              <SaveTickIcon />
+            </Box>
+            <Box
+              {...styles.taxCloseClickIconBox}
+              onClick={() => {
+                // handleRemoveTaxes(index);
+              }}
+            >
+              <DeleteIcon fill={"white"} />
+            </Box>
+            <Box>
+              {taxes.length - 1 === index ? (
+                <Button {...styles.addButton} onClick={handleAddTaxes}>
+                  <AddIcon fontSize="small" {...styles.addIcon} />
+                  <Typography sx={{ fontSize: "small" }}>Add</Typography>
+                </Button>
+              ) : null}
             </Box>
           </Grid>
         </Grid>
