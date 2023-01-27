@@ -1,9 +1,18 @@
 export const styles = {
+  contactInformationCard: {
+    sx: {
+      mt: 3,
+      mb: 3,
+      p: 5,
+      pt: 2,
+    },
+  },
   parentBox: {
     sx: {
       display: "flex",
       justifyContent: "space-between",
       mt: 2,
+      mb: 3,
     },
   },
   moduleTitle: {
@@ -14,6 +23,7 @@ export const styles = {
       fontStyle: "normal",
       color: "#F58634",
       lineHeight: "27px",
+      mt: 1,
     },
   },
   parentBoxEditButton: {
@@ -25,6 +35,15 @@ export const styles = {
       fontStyle: "normal",
       color: "#515151",
       textTransform: "inherit",
+    },
+  },
+  parentBoxSaveButton: {
+    sx: {
+      fontfamily: "Montserrat",
+      backgroundColor: "#F58634",
+      borderRadius: "5px",
+      marginLeft: "10px",
+      fontStyle: "normal",
     },
   },
   icon: {
