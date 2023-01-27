@@ -1,12 +1,13 @@
 import { configureStore } from "@reduxjs/toolkit";
 
 //import all the reducers
-import authentication from "./reducers/users/authentication";
-import companies from "./reducers/companies/companies";
-import partners from "./reducers/partners/partners";
-import projects from "./reducers/projects/projects";
-import vendors from "./reducers/vendors/vendors";
-import employees from "./reducers/employee/employees";
+import authentication from "store/reducers/users/authentication";
+import companies from "store/reducers/companies/companies";
+import partners from "store/reducers/partners/partners";
+import projects from "store/reducers/projects/projects";
+import vendors from "store/reducers/vendors/vendors";
+import employees from "store/reducers/employee/employees";
+
 //store configuration
 export const store = configureStore({
   reducer: {
@@ -15,7 +16,7 @@ export const store = configureStore({
     companies: companies,
     partners: partners,
     projects: projects,
-    employees:employees,
+    employees: employees,
     vendors: vendors,
   },
   //enable dev tools for development env

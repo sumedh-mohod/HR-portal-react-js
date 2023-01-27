@@ -1,7 +1,7 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { actionTypes } from "../../actionTypes";
-import { axiosClient } from "../../axiosClient";
-import { RestfulUrls } from "../../restfulUrls";
+import { actionTypes } from "store/actionTypes";
+import { axiosClient } from "store/axiosClient";
+import { RestfulUrls } from "store/restfulUrls";
 
 //add vendor action
 export const addVendor = createAsyncThunk(
@@ -261,7 +261,7 @@ const Vendors = createSlice({
   },
   //async reducers
   extraReducers: (builder) => {
-      // ======================add Vendor ========================
+    // ======================add Vendor ========================
     // reducer when api call is in progress
     builder.addCase(addVendor.pending, (state: StateI) => {
       //state updated in pending state

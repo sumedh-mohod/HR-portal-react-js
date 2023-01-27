@@ -1,14 +1,14 @@
-import React from 'react'
+import React from "react";
 import { useParams, useLocation } from "react-router-dom";
-import AddEmployee from '../../components/Employee/AddEmployee';
-import EditEmployee from '../../components/Employee/EditEmployee';
+import AddEmployee from "components/Employee/AddEmployee";
+import EditEmployee from "components/Employee/EditEmployee";
 
 const EmployeeAddEdit = () => {
-    let params = useParams();
-    let location = useLocation();
+  let params = useParams();
+  let location = useLocation();
 
-    const { opration } = params;
-    return <>{opration === "add" ? <AddEmployee /> : <EditEmployee/>}</>;
-}
+  const { opration } = params;
+  return <>{opration === "add" ? <AddEmployee /> : <EditEmployee />}</>;
+};
 
-export default EmployeeAddEdit
+export default EmployeeAddEdit;

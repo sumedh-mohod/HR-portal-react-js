@@ -3,16 +3,16 @@ import { useNavigate } from "react-router-dom";
 import { Box, Typography, Button } from "@mui/material";
 import { GridColDef } from "@mui/x-data-grid";
 import AddIcon from "@mui/icons-material/Add";
-import EmployeeCard from "../../components/Employee/EmployeeCard";
-import EmployeeList from "../../components/Employee/EmployeeList";
-import Loader from "../../components/HigherOrder/Loader";
-import Search from "../../components/HigherOrder/Search";
-import CustomizationButtons from "../../components/HigherOrder/CustomizationButtons";
-import Paginations from "../../components/HigherOrder/Paginations";
-import { useAppDispatch, useAppSelector } from "../../store/hooks";
-import { getEmployees } from "../../store/reducers/employee/employees";
-import { globalStyles } from "../../styles/global";
-import { styles } from "../../styles/screens/Employee";
+import EmployeeCard from "components/Employee/EmployeeCard";
+import EmployeeList from "components/Employee/EmployeeList";
+import Loader from "components/HigherOrder/Loader";
+import Search from "components/HigherOrder/Search";
+import CustomizationButtons from "components/HigherOrder/CustomizationButtons";
+import Paginations from "components/HigherOrder/Paginations";
+import { useAppDispatch, useAppSelector } from "store/hooks";
+import { getEmployees } from "store/reducers/employee/employees";
+import { globalStyles } from "styles/global";
+import { styles } from "styles/screens/Employee";
 
 // colums data
 const columns: GridColDef[] = [
@@ -70,16 +70,16 @@ const Employee = () => {
   const [showColumns, setShowColumns] = useState(columns);
   const [searchText, setSearchText] = useState("");
   const [currentData, setCurrentData] = useState<any>([]);
-  
+
   const employeesStore = useAppSelector((state) => state.employees);
   const { isLoadingRequest, employees } = employeesStore;
-  console.log("employees data from employee.tsx",employees);
+  console.log("employees data from employee.tsx", employees);
 
   useEffect(() => {
     dispatch(getEmployees())
       .unwrap()
-      .then((response: any) => { })
-      .catch((error: any) => { });
+      .then((response: any) => {})
+      .catch((error: any) => {});
   }, []);
 
   useEffect(() => {
@@ -213,9 +213,9 @@ const Employee = () => {
           />
         )}
       </Box>
-      {employees?.length > 0 &&
+      {employees?.length > 0 && (
         <Paginations handlePageChange={handlePageChange} />
-      }
+      )}
     </Box>
   );
 };

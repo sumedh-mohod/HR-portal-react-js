@@ -1,22 +1,20 @@
 import React, { useEffect, useState, useMemo } from "react";
-import { NavLink, useNavigate } from "react-router-dom";
 import { Typography, Box, Button, Tab, Tabs } from "@mui/material";
 import AddIcon from "@mui/icons-material/Add";
-import { globalStyles } from "../../styles/global";
-import { styles } from "../../styles/components/organizationData";
-import { useAppDispatch, useAppSelector } from "../../store/hooks";
-import Paginations from "../../components/HigherOrder/Paginations";
-import Search from "../../components/HigherOrder/Search";
-import PdfIcon from "../../components/Icons/PdfIcon";
-import WordIcon from "../../components/Icons/WordIcon";
-import OrganizationalCard from "../../components/Company/OrganizationlData/OrganizationalCard";
-import ViewOraganisationalDatamodel from "../../components/Company/OrganizationlData/ViewOraganisationalDatamodel";
-import AddOrganisationData from "../../components/Company/OrganizationlData/AddOrganisationData";
-import InformationSecurity from "../../components/Company/OrganizationlData/InformationSecurity";
-import SecurityPolicies from "../../components/Company/OrganizationlData/SecurityPolicies";
-import Processes from "../../components/Company/OrganizationlData/Processes";
-import DosAndDont from "../../components/Company/OrganizationlData/DosAndDont";
-import ConfirmationModal from "../../components/HigherOrder/ConfirmationModal";
+import { globalStyles } from "styles/global";
+import { styles } from "styles/components/organizationData";
+import Paginations from "components/HigherOrder/Paginations";
+import Search from "components/HigherOrder/Search";
+import PdfIcon from "components/Icons/PdfIcon";
+import WordIcon from "components/Icons/WordIcon";
+import OrganizationalCard from "components/Company/OrganizationlData/OrganizationalCard";
+import ViewOraganisationalDatamodel from "components/Company/OrganizationlData/ViewOraganisationalDatamodel";
+import AddOrganisationData from "components/Company/OrganizationlData/AddOrganisationData";
+import InformationSecurity from "components/Company/OrganizationlData/InformationSecurity";
+import SecurityPolicies from "components/Company/OrganizationlData/SecurityPolicies";
+import Processes from "components/Company/OrganizationlData/Processes";
+import DosAndDont from "components/Company/OrganizationlData/DosAndDont";
+import ConfirmationModal from "components/HigherOrder/ConfirmationModal";
 
 const Data: any = [
   {

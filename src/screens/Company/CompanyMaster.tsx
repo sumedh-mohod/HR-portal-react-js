@@ -12,11 +12,11 @@ import {
 } from "@mui/material";
 
 import AddIcon from "@mui/icons-material/Add";
-import EditIcon from "../../components/Icons/EditIcon";
-import { styles } from "../../styles/screens/CompanyMaster";
-import { globalStyles } from "../../styles/global";
-import SaveTickIcon from "../../components/Icons/SaveTickIcon";
-import DeleteIcon from "../../components/Icons/DeleteIcon";
+import EditIcon from "components/Icons/EditIcon";
+import { styles } from "styles/screens/CompanyMaster";
+import { globalStyles } from "styles/global";
+import SaveTickIcon from "components/Icons/SaveTickIcon";
+import DeleteIcon from "components/Icons/DeleteIcon";
 
 const CompanyMaster = () => {
   const {

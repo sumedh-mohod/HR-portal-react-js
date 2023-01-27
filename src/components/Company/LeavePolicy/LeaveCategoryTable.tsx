@@ -2,7 +2,7 @@ import React from "react";
 import { Button, Card, Grid } from "@mui/material";
 import { DataGrid } from "@mui/x-data-grid";
 import AddIcon from "@mui/icons-material/Add";
-import { styles } from "../../../styles/components/leaveCategoryTable";
+import { styles } from "styles/components/leaveCategoryTable";
 
 const LeaveCategoryTable = ({
   rows,
