@@ -1,6 +1,5 @@
-import React from "react";
 import { Card, Grid, Typography, Box } from "@mui/material";
-import { styles } from "../../styles/components/editCompany";
+import { styles } from "styles/components/editCompany";
 
 interface CompanyAddressDetailsCardInterface {
   info: any;

@@ -17,9 +17,9 @@ import { styled } from "@mui/material/styles";
 import NotificationsIcon from "@mui/icons-material/Notifications";
 import MenuIcon from "@mui/icons-material/Menu";
 
-import { styles } from "../../styles/components/header";
-import Breadcrumb from "./BreadCrumb";
-import SideBar from "./SideBar";
+import { styles } from "styles/components/header";
+import Breadcrumb from "components/HigherOrder/BreadCrumb";
+import SideBar from "components/HigherOrder/SideBar";
 
 const drawerWidth = 240;
 

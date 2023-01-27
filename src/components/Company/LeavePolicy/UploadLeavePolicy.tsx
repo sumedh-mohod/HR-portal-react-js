@@ -12,8 +12,8 @@ import {
   TextareaAutosize,
 } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
-import { globalStyles } from "../../../styles/global";
-import { styles } from "../../../styles/components/uploadLeavePolicy";
+import { globalStyles } from "styles/global";
+import { styles } from "styles/components/uploadLeavePolicy";
 
 const UploadLeavePolicy = ({
   handleClose,

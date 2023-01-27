@@ -2,7 +2,7 @@ import React from "react";
 import { Outlet } from "react-router-dom";
 import { Box } from "@mui/material";
 
-import TopBar from "./TopBar";
+import TopBar from "components/HigherOrder/TopBar";
 
 const Header = (props: any) => {
   return (

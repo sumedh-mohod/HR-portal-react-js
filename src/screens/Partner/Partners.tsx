@@ -3,16 +3,17 @@ import { useNavigate } from "react-router-dom";
 import { GridColDef } from "@mui/x-data-grid";
 import { Box, Typography, Button } from "@mui/material";
 import AddIcon from "@mui/icons-material/Add";
-import PartnersCard from "../../components/Partner/PartnersCard";
-import PartnersList from "../../components/Partner/PartnersList";
-import CustomizationButtons from "../../components/HigherOrder/CustomizationButtons";
-import Paginations from "../../components/HigherOrder/Paginations";
-import Loader from "../../components/HigherOrder/Loader";
-import Search from "../../components/HigherOrder/Search";
-import { useAppDispatch, useAppSelector } from "../../store/hooks";
-import { getPartners } from "../../store/reducers/partners/partners";
-import { globalStyles } from "../../styles/global";
-import { styles } from "../../styles/screens/Partners";
+import PartnersCard from "components/Partner/PartnersCard";
+import PartnersList from "components/Partner/PartnersList";
+import CustomizationButtons from "components/HigherOrder/CustomizationButtons";
+import Paginations from "components/HigherOrder/Paginations";
+import Loader from "components/HigherOrder/Loader";
+import Search from "components/HigherOrder/Search";
+import { useAppDispatch, useAppSelector } from "store/hooks";
+import { getPartners } from "store/reducers/partners/partners";
+import { globalStyles } from "styles/global";
+import { styles } from "styles/screens/Partners";
+
 const columns: GridColDef[] = [
   {
     field: "id",
@@ -53,15 +54,15 @@ const Partners = () => {
 
   const partnersStore = useAppSelector((state) => state.partners);
   const { isLoadingRequest, partners } = partnersStore;
-  console.log("partners data from partner.tsx",partners);
+  console.log("partners data from partner.tsx", partners);
 
   const navigate = useNavigate();
 
   useEffect(() => {
     dispatch(getPartners())
       .unwrap()
-      .then((response: any) => { })
-      .catch((error: any) => { });
+      .then((response: any) => {})
+      .catch((error: any) => {});
   }, [dispatch]);
 
   useEffect(() => {
@@ -128,7 +129,6 @@ const Partners = () => {
       setCurrentData(DataSliced);
     }
   };
-
 
   return (
     <Box sx={{ display: "flex", flexDirection: "column" }}>
@@ -199,9 +199,9 @@ const Partners = () => {
           />
         )}
       </Box>
-      {partners?.length > 0 &&
+      {partners?.length > 0 && (
         <Paginations handlePageChange={handlePageChange} />
-      }
+      )}
     </Box>
   );
 };

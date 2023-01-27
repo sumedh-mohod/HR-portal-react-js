@@ -1,7 +1,7 @@
 import React, { useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import { useFormik } from "formik";
-import { addVendorValidator } from "../../utils/validations/auth";
+import { addVendorValidator } from "utils/validations/auth";
 import {
   Box,
   Button,
@@ -16,10 +16,11 @@ import {
 import CheckIcon from "@mui/icons-material/Check";
 import CloseIcon from "@mui/icons-material/Close";
 import AddIcon from "@mui/icons-material/Add";
-import { useAppDispatch } from "../../store/hooks";
-import { addVendor } from "../../store/reducers/vendors/vendors";
-import { globalStyles } from "../../styles/global";
-import { styles } from "../../styles/components/addVendor";
+import { useAppDispatch } from "store/hooks";
+import { addVendor } from "store/reducers/vendors/vendors";
+import { globalStyles } from "styles/global";
+import { styles } from "styles/components/addVendor";
+
 const AddVendor = () => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();

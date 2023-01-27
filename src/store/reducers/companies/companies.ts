@@ -1,7 +1,7 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { actionTypes } from "../../actionTypes";
-import { axiosClient } from "../../axiosClient";
-import { RestfulUrls } from "../../restfulUrls";
+import { actionTypes } from "store/actionTypes";
+import { axiosClient } from "store/axiosClient";
+import { RestfulUrls } from "store/restfulUrls";
 
 //add company action
 export const addCompany = createAsyncThunk(
@@ -26,7 +26,10 @@ export const updateCompany = createAsyncThunk(
   async (params: any, { rejectWithValue }) => {
     //response of update company api
     try {
-      const response = await axiosClient.put(`${RestfulUrls.Get_Companies}/${params.id}`,params);
+      const response = await axiosClient.put(
+        `${RestfulUrls.Get_Companies}/${params.id}`,
+        params
+      );
       console.log("response of update company", response);
       return response.data;
     } catch (error) {
@@ -71,16 +74,19 @@ export const getCompany = createAsyncThunk(
 // delete company action
 export const deleteCompany = createAsyncThunk(
   actionTypes.DELETE_COMPANY,
-  async (params:any, { rejectWithValue }) => {
+  async (params: any, { rejectWithValue }) => {
     //response of delete company api
     try {
-      const response = await axiosClient.delete(`${RestfulUrls.Get_Companies}/${params.id}`);
+      const response = await axiosClient.delete(
+        `${RestfulUrls.Get_Companies}/${params.id}`
+      );
       console.log("response of delet company", response.data);
       return response.data;
     } catch (error) {
       return rejectWithValue("Something went wrong");
     }
-  });
+  }
+);
 
 // inteface for redux state
 export interface StateI {

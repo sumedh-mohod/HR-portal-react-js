@@ -1,18 +1,18 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { Typography, Box,Button } from "@mui/material";
+import { Typography, Box, Button } from "@mui/material";
 import { GridColDef } from "@mui/x-data-grid";
 import AddIcon from "@mui/icons-material/Add";
-import ProjectCard from "../../components/Project/ProjectCard";
-import ProjectList from "../../components/Project/ProjectList";
-import CustomizationButtons from "../../components/HigherOrder/CustomizationButtons";
-import Loader from "../../components/HigherOrder/Loader";
-import Search from "../../components/HigherOrder/Search";
-import Paginations from "../../components/HigherOrder/Paginations";
-import { useAppDispatch, useAppSelector } from "../../store/hooks";
-import { getProjects } from "../../store/reducers/projects/projects";
-import { globalStyles } from "../../styles/global";
-import { styles } from "../../styles/screens/ProjectList";
+import ProjectCard from "components/Project/ProjectCard";
+import ProjectList from "components/Project/ProjectList";
+import CustomizationButtons from "components/HigherOrder/CustomizationButtons";
+import Loader from "components/HigherOrder/Loader";
+import Search from "components/HigherOrder/Search";
+import Paginations from "components/HigherOrder/Paginations";
+import { useAppDispatch, useAppSelector } from "store/hooks";
+import { getProjects } from "store/reducers/projects/projects";
+import { globalStyles } from "styles/global";
+import { styles } from "styles/screens/ProjectList";
 
 const columns: GridColDef[] = [
   {
@@ -76,8 +76,8 @@ const Projects = () => {
   useEffect(() => {
     dispatch(getProjects())
       .unwrap()
-      .then((response: any) => { })
-      .catch((error) => { });
+      .then((response: any) => {})
+      .catch((error) => {});
   }, [dispatch]);
 
   useEffect(() => {
@@ -213,9 +213,9 @@ const Projects = () => {
           />
         )}
       </Box>
-      {projects?.length > 0 &&
+      {projects?.length > 0 && (
         <Paginations handlePageChange={handlePageChange} />
-      }
+      )}
     </Box>
   );
 };
