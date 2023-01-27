@@ -67,12 +67,12 @@ export const styles = {
   },
   addButton: {
     sx: {
-      margin: "30px 20px",
-      // display: "flex",
+      marginLeft: "20px",
       justifyContent: "center",
       alignItems: "center",
-      // minHeight: "200px",
-      // maxHeight: "218px",
+      height: "48px",
+      paddingLeft: "15px",
+      paddingRight: "15px",
       border: "2px dashed #C0C0C0",
       boxShadow: "none",
       color: "#1C1B1F",
