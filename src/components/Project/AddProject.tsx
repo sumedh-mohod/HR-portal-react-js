@@ -11,14 +11,18 @@ import {
   TextField,
   Typography,
   Card,
+  MenuItem,
 } from "@mui/material";
+import CheckIcon from "@mui/icons-material/Check";
+import CloseIcon from "@mui/icons-material/Close";
+import AddIcon from "@mui/icons-material/Add";
 import { useAppDispatch } from "../../store/hooks";
 import { addProject } from "../../store/reducers/projects/projects";
 import { globalStyles } from "../../styles/global";
 import { styles } from "../../styles/components/addProject";
 const AddProject = () => {
   const navigate = useNavigate();
-    const dispatch = useAppDispatch();
+  const dispatch = useAppDispatch();
   const {
     handleBlur,
     handleChange,
@@ -34,22 +38,91 @@ const AddProject = () => {
       name: "",
       startDate: "",
       endDate: "",
-      pointofContactPartrner1: "",
-      pointofContactPartrner2: "",
-      pointofContactPartrner3: "",
+      selectPartner: "",
+      pointsofContactOrangebits: [
+        {
+          name: "",
+          email_id: "",
+          contact: "",
+        },
+      ],
+      pointsofContactPartners: [
+        {
+          partners_name: "",
+          partners_email_id: "",
+          partners_contact: "",
+        },
+      ],
     },
+
     validationSchema: addProjectValidator,
     onSubmit: (values) => {
       console.log("values of add project", values);
-      dispatch(addProject(values))
-        .unwrap()
-        .then((response: any) => {
-          console.log("response from add partner file", response);
-        })
-        .catch((error: any) => { });
     },
-    },
-  );
+  });
+
+  const handleAddPointsofContactOrangebits = () => {
+    const newpointsofContactOrangebits = [
+      ...values.pointsofContactOrangebits,
+      {
+        name: "",
+        email_id: "",
+        contact: "",
+      },
+    ];
+    setFieldValue("pointsofContactOrangebits", newpointsofContactOrangebits);
+  };
+  const handleAddPointsofContactPartners = () => {
+    console.log("points of contact partners");
+    const newPointsofContactPartners = [
+      ...values.pointsofContactPartners,
+      {
+        partners_name: "",
+        partners_email_id: "",
+        partners_contact: "",
+      },
+    ];
+    setFieldValue("pointsofContactPartners", newPointsofContactPartners);
+  };
+
+  const handleChangeOrangebitsName = (event: any, index: number) => {
+    setFieldValue(
+      `pointsofContactOrangebits.${index}.name`,
+      event.target.value
+    );
+  };
+  const handleChangeOrangebitsEmail = (event: any, index: number) => {
+    setFieldValue(
+      `pointsofContactOrangebits.${index}.email_id`,
+      event.target.value
+    );
+  };
+  const handleChangeOrangebitsContact = (event: any, index: number) => {
+    setFieldValue(
+      `pointsofContactOrangebits.${index}.contact`,
+      event.target.value
+    );
+  };
+
+  const handleChangePartnersName = (event: any, index: number) => {
+    setFieldValue(
+      `pointsofContactPartners.${index}.partners_name`,
+      event.target.value
+    );
+    console.log("partners_name", event.target.value);
+  };
+  const handleChangePartnersEmail = (event: any, index: number) => {
+    setFieldValue(
+      `pointsofContactPartners.${index}.partners_email_id`,
+      event.target.value
+    );
+  };
+  const handleChangePartnersContact = (event: any, index: number) => {
+    setFieldValue(
+      `pointsofContactPartners.${index}.partners_contact`,
+      event.target.value
+    );
+  };
 
   const inputRef: any = useRef(null);
   const handleClick = () => {
@@ -81,7 +154,11 @@ const AddProject = () => {
         <Box {...styles.parentBox}>
           <Typography variant="h5">Add Project</Typography>
           <Box>
-            <Button {...styles.parentBoxCancleButton} variant="contained" onClick={handleCancle}>
+            <Button
+              {...styles.parentBoxCancleButton}
+              variant="contained"
+              onClick={handleCancle}
+            >
               Cancle
             </Button>
             <Button
@@ -149,7 +226,7 @@ const AddProject = () => {
                   helperText={touched.name && errors.name}
                   InputProps={{
                     disableUnderline: true,
-                    style: { ...globalStyles.textField }
+                    style: { ...globalStyles.textField },
                   }}
                 />
               </FormControl>
@@ -167,7 +244,7 @@ const AddProject = () => {
                   onChange={handleChange}
                   InputProps={{
                     disableUnderline: true,
-                    style: { ...globalStyles.textField }
+                    style: { ...globalStyles.textField },
                   }}
                 />
               </FormControl>
@@ -185,72 +262,262 @@ const AddProject = () => {
                   onChange={handleChange}
                   InputProps={{
                     disableUnderline: true,
-                    style: { ...globalStyles.textField }
+                    style: { ...globalStyles.textField },
                   }}
                 />
               </FormControl>
             </Grid>
-            {/* Point of Contact Partrner 1  */}
+            {/* select Partner*/}
             <Grid item xs={12} md={6} lg={3}>
               <FormControl fullWidth>
-                <FormLabel id="pointofContactPartrner1">
-                  Point of Contact Partrner 1
-                </FormLabel>
+                <FormLabel id="selectPartner">Select Partner</FormLabel>
                 <TextField
+                  select
                   variant="filled"
                   size="small"
-                  type={"text"}
-                  name="pointofContactPartrner1"
-                  value={values.pointofContactPartrner1}
+                  type="date"
+                  name="selectPartner"
+                  value={values.selectPartner}
                   onChange={handleChange}
                   InputProps={{
                     disableUnderline: true,
-                    style: { ...globalStyles.textField }
+                    style: { ...globalStyles.textField },
                   }}
-                />
-              </FormControl>
-            </Grid>
-            {/* Point of Contact Partrner 2 */}
-            <Grid item xs={12} md={6} lg={3}>
-              <FormControl fullWidth>
-                <FormLabel id="pointofContactPartrner2">
-                  Point of Contact Partrner 2
-                </FormLabel>
-                <TextField
-                  variant="filled"
-                  size="small"
-                  type={"text"}
-                  name="pointofContactPartrner2"
-                  value={values.pointofContactPartrner2}
-                  onChange={handleChange}
-                  InputProps={{
-                    disableUnderline: true,
-                    style: { ...globalStyles.textField }
-                  }}
-                />
-              </FormControl>
-            </Grid>
-            {/* Point of Contact Partrner 3 */}
-            <Grid item xs={12} md={6} lg={3}>
-              <FormControl fullWidth>
-                <FormLabel id="pointofContactPartrner3">
-                  Point of Contact Partrner 3
-                </FormLabel>
-                <TextField
-                  variant="filled"
-                  size="small"
-                  type={"text"}
-                  name="pointofContactPartrner3"
-                  value={values.pointofContactPartrner3}
-                  onChange={handleChange}
-                  InputProps={{
-                    disableUnderline: true,
-                    style: { ...globalStyles.textField }
-                  }}
-                />
+                >
+                  <MenuItem value="India">HP</MenuItem>
+                </TextField>
               </FormControl>
             </Grid>
           </Grid>
+        </Card>
+        {/*========== point of contact orangebits================*/}
+        <Box {...styles.parentBox}>
+          <Typography {...globalStyles.moduleTitle} variant="h5">
+            Points of contact orangebits
+          </Typography>
+        </Box>
+        <Card {...styles.card}>
+          {values.pointsofContactOrangebits.map(
+            (pointsofContactOrangebits, index) => (
+              <>
+                <Grid container columnSpacing={3} rowGap={3}>
+                  {/* name */}
+                  <Grid item xs={12} md={6} lg={3}>
+                    <FormControl fullWidth>
+                      <FormLabel id="name" {...globalStyles.textFieldLabel}>
+                        Name
+                      </FormLabel>
+                      <TextField
+                        variant="filled"
+                        size="small"
+                        type={"text"}
+                        name="name"
+                        InputProps={{
+                          disableUnderline: true,
+                          style: { ...globalStyles.textField },
+                        }}
+                        value={
+                          (values.pointsofContactOrangebits &&
+                            values.pointsofContactOrangebits[index].name) ||
+                          ""
+                        }
+                        onChange={(event) => {
+                          handleChangeOrangebitsName(event, index);
+                        }}
+                      />
+                    </FormControl>
+                  </Grid>
+
+                  {/* email id */}
+                  <Grid item xs={12} md={6} lg={3}>
+                    <FormControl fullWidth>
+                      <FormLabel id="email_id" {...globalStyles.textFieldLabel}>
+                        Email id
+                      </FormLabel>
+                      <TextField
+                        variant="filled"
+                        size="small"
+                        type={"email"}
+                        name="email_id"
+                        InputProps={{
+                          disableUnderline: true,
+                          style: { ...globalStyles.textField },
+                        }}
+                        value={
+                          (values.pointsofContactOrangebits &&
+                            values.pointsofContactOrangebits[index].email_id) ||
+                          ""
+                        }
+                        onChange={(event) => {
+                          handleChangeOrangebitsEmail(event, index);
+                        }}
+                      />
+                    </FormControl>
+                  </Grid>
+                  {/* contact no */}
+                  <Grid item xs={12} md={6} lg={3}>
+                    <FormControl fullWidth>
+                      <FormLabel id="contact" {...globalStyles.textFieldLabel}>
+                        Contact
+                      </FormLabel>
+                      <TextField
+                        variant="filled"
+                        size="small"
+                        type={"phone"}
+                        name="contact"
+                        InputProps={{
+                          disableUnderline: true,
+                          style: { ...globalStyles.textField },
+                        }}
+                        value={
+                          (values.pointsofContactOrangebits &&
+                            values.pointsofContactOrangebits[index].contact) ||
+                          ""
+                        }
+                        onChange={(event) => {
+                          handleChangeOrangebitsContact(event, index);
+                        }}
+                      />
+                    </FormControl>
+                  </Grid>
+                  {/* buttons add or remove */}
+                  <Grid item xs={12} md={6} lg={3}>
+                    <Box sx={{ display: "flex", justifyContent: "baseline" }}>
+                      <CheckIcon {...styles.checkIcon} />
+                      <CloseIcon {...styles.closeIcon} />
+                      {values.pointsofContactOrangebits.length - 1 === index ? (
+                        <Button
+                          {...styles.addButton}
+                          onClick={handleAddPointsofContactOrangebits}
+                        >
+                          <AddIcon fontSize="small" {...styles.addIcon} />
+                          <Typography sx={{ fontSize: "small" }}>
+                            Add
+                          </Typography>
+                        </Button>
+                      ) : null}
+                    </Box>
+                  </Grid>
+                </Grid>
+                <Grid />
+              </>
+            )
+          )}
+        </Card>
+
+        {/* ==============point of contact partner=============== */}
+        <Box {...styles.parentBox}>
+          <Typography {...globalStyles.moduleTitle} variant="h5">
+            Points of contact partner{" "}
+          </Typography>
+        </Box>
+        <Card {...styles.card}>
+          {values.pointsofContactPartners.map(
+            (pointsofContactPartners, index) => (
+              <>
+                <Grid container columnSpacing={3} rowGap={3}>
+                  {/* name */}
+                  <Grid item xs={12} md={6} lg={3}>
+                    <FormControl fullWidth>
+                      <FormLabel id="name" {...globalStyles.textFieldLabel}>
+                        Name
+                      </FormLabel>
+                      <TextField
+                        variant="filled"
+                        size="small"
+                        type={"text"}
+                        name="partners_name"
+                        InputProps={{
+                          disableUnderline: true,
+                          style: { ...globalStyles.textField },
+                        }}
+                        value={
+                          (values.pointsofContactPartners &&
+                            values.pointsofContactPartners[index]
+                              .partners_name) ||
+                          ""
+                        }
+                        onChange={(event) => {
+                          handleChangePartnersName(event, index);
+                        }}
+                      />
+                    </FormControl>
+                  </Grid>
+
+                  {/* email id */}
+                  <Grid item xs={12} md={6} lg={3}>
+                    <FormControl fullWidth>
+                      <FormLabel id="email_id" {...globalStyles.textFieldLabel}>
+                        Email id
+                      </FormLabel>
+                      <TextField
+                        variant="filled"
+                        size="small"
+                        name="partners_email_id"
+                        InputProps={{
+                          disableUnderline: true,
+                          style: { ...globalStyles.textField },
+                        }}
+                        value={
+                          (values.pointsofContactPartners &&
+                            values.pointsofContactPartners[index]
+                              .partners_email_id) ||
+                          ""
+                        }
+                        onChange={(event) => {
+                          handleChangePartnersEmail(event, index);
+                        }}
+                      />
+                    </FormControl>
+                  </Grid>
+                  {/* contact no */}
+                  <Grid item xs={12} md={6} lg={3}>
+                    <FormControl fullWidth>
+                      <FormLabel id="contact" {...globalStyles.textFieldLabel}>
+                        Contact
+                      </FormLabel>
+                      <TextField
+                        variant="filled"
+                        size="small"
+                        name="partners_contact"
+                        InputProps={{
+                          disableUnderline: true,
+                          style: { ...globalStyles.textField },
+                        }}
+                        value={
+                          (values.pointsofContactPartners &&
+                            values.pointsofContactPartners[index]
+                              .partners_contact) ||
+                          ""
+                        }
+                        onChange={(event) => {
+                          handleChangePartnersContact(event, index);
+                        }}
+                      />
+                    </FormControl>
+                  </Grid>
+                  {/* buttons add or remove */}
+                  <Grid item xs={12} md={6} lg={3}>
+                    <Box sx={{ display: "flex", justifyContent: "baseline" }}>
+                      <CheckIcon {...styles.checkIcon} />
+                      <CloseIcon {...styles.closeIcon} />
+                      {values.pointsofContactPartners.length - 1 === index ? (
+                        <Button
+                          {...styles.addButton}
+                          onClick={handleAddPointsofContactPartners}
+                        >
+                          <AddIcon fontSize="small" {...styles.addIcon} />
+                          <Typography sx={{ fontSize: "small" }}>
+                            Add
+                          </Typography>
+                        </Button>
+                      ) : null}
+                    </Box>
+                  </Grid>
+                </Grid>
+              </>
+            )
+          )}
         </Card>
       </form>
     </Box>
