@@ -1,8 +1,8 @@
 import React from "react";
 import { Box, Typography, Card, Grid, Divider } from "@mui/material";
-import DeleteIcon from "../../Icons/DeleteIcon";
-import { styles } from "../../../styles/components/employeeDocumentPersonalCard";
-import PdfIcon from "../../Icons/PdfIcon";
+import DeleteIcon from "components/Icons/DeleteIcon";
+import { styles } from "styles/components/employeeDocumentPersonalCard";
+import PdfIcon from "components/Icons/PdfIcon";
 interface DocumentsPersonalCardInterface {
   pdfTitle: any;
 }
@@ -22,7 +22,7 @@ const DocumentsPersonalCard = (props: DocumentsPersonalCardInterface) => {
                 </Typography>
               </Box>
               <Box {...styles.deleteIconBox}>
-              <DeleteIcon fill={"#D82A2A"} />
+                <DeleteIcon fill={"#D82A2A"} />
               </Box>
             </Box>
           </Box>

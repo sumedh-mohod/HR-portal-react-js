@@ -1,8 +1,8 @@
 import React from "react";
 import { Box, Typography, Card, Grid } from "@mui/material";
-import DeleteIcon from "../../Icons/DeleteIcon";
-import PdfIcon from "../../Icons/PdfIcon";
-import { styles } from "../../../styles/components/LeavePolicyCard";
+import DeleteIcon from "components/Icons/DeleteIcon";
+import PdfIcon from "components/Icons/PdfIcon";
+import { styles } from "styles/components/LeavePolicyCard";
 
 const LeavePolicyCard = ({ handleViewOpen }: { handleViewOpen: any }) => {
   const handleDelete = () => {

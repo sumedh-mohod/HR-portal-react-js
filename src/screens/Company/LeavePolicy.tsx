@@ -1,12 +1,12 @@
 import React from "react";
 import { Box, Typography } from "@mui/material";
 import { GridColDef } from "@mui/x-data-grid";
-import UploadLeavePolicy from "../../components/Company/LeavePolicy/UploadLeavePolicy";
-import LeaveCategoryTable from "../../components/Company/LeavePolicy/LeaveCategoryTable";
-import LeavePolicyCard from "../../components/Company/LeavePolicy/LeavePolicyCard";
-import LeavePolicyModel from "../../components/Company/LeavePolicy/LeavePolicyModel";
-import { globalStyles } from "../../styles/global";
-import { styles } from "../../styles/screens/LeavePolicy";
+import UploadLeavePolicy from "components/Company/LeavePolicy/UploadLeavePolicy";
+import LeaveCategoryTable from "components/Company/LeavePolicy/LeaveCategoryTable";
+import LeavePolicyCard from "components/Company/LeavePolicy/LeavePolicyCard";
+import LeavePolicyModel from "components/Company/LeavePolicy/LeavePolicyModel";
+import { globalStyles } from "styles/global";
+import { styles } from "styles/screens/LeavePolicy";
 
 const columns: GridColDef[] = [
   {
@@ -97,7 +97,7 @@ const LeavePolicy = () => {
           Leave Category
         </Typography>
       </Box>
-      
+
       <LeaveCategoryTable
         rows={rows}
         columns={columns}

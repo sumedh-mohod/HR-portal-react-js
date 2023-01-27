@@ -1,4 +1,4 @@
-import LoginBackground from "../../assets/images/LoginBackground.svg";
+import LoginBackground from "assets/images/LoginBackground.svg";
 
 export const styles = {
   parentBox: {

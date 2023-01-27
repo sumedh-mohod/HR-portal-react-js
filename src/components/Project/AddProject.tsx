@@ -1,7 +1,7 @@
 import React, { useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import { useFormik } from "formik";
-import { addProjectValidator } from "../../utils/validations/auth";
+import { addProjectValidator } from "utils/validations/auth";
 import {
   Box,
   Button,
@@ -12,13 +12,14 @@ import {
   Typography,
   Card,
 } from "@mui/material";
-import { useAppDispatch } from "../../store/hooks";
-import { addProject } from "../../store/reducers/projects/projects";
-import { globalStyles } from "../../styles/global";
-import { styles } from "../../styles/components/addProject";
+import { useAppDispatch } from "store/hooks";
+import { addProject } from "store/reducers/projects/projects";
+import { globalStyles } from "styles/global";
+import { styles } from "styles/components/addProject";
+
 const AddProject = () => {
   const navigate = useNavigate();
-    const dispatch = useAppDispatch();
+  const dispatch = useAppDispatch();
   const {
     handleBlur,
     handleChange,
@@ -46,10 +47,9 @@ const AddProject = () => {
         .then((response: any) => {
           console.log("response from add partner file", response);
         })
-        .catch((error: any) => { });
+        .catch((error: any) => {});
     },
-    },
-  );
+  });
 
   const inputRef: any = useRef(null);
   const handleClick = () => {
@@ -81,7 +81,11 @@ const AddProject = () => {
         <Box {...styles.parentBox}>
           <Typography variant="h5">Add Project</Typography>
           <Box>
-            <Button {...styles.parentBoxCancleButton} variant="contained" onClick={handleCancle}>
+            <Button
+              {...styles.parentBoxCancleButton}
+              variant="contained"
+              onClick={handleCancle}
+            >
               Cancle
             </Button>
             <Button
@@ -149,7 +153,7 @@ const AddProject = () => {
                   helperText={touched.name && errors.name}
                   InputProps={{
                     disableUnderline: true,
-                    style: { ...globalStyles.textField }
+                    style: { ...globalStyles.textField },
                   }}
                 />
               </FormControl>
@@ -167,7 +171,7 @@ const AddProject = () => {
                   onChange={handleChange}
                   InputProps={{
                     disableUnderline: true,
-                    style: { ...globalStyles.textField }
+                    style: { ...globalStyles.textField },
                   }}
                 />
               </FormControl>
@@ -185,7 +189,7 @@ const AddProject = () => {
                   onChange={handleChange}
                   InputProps={{
                     disableUnderline: true,
-                    style: { ...globalStyles.textField }
+                    style: { ...globalStyles.textField },
                   }}
                 />
               </FormControl>
@@ -205,7 +209,7 @@ const AddProject = () => {
                   onChange={handleChange}
                   InputProps={{
                     disableUnderline: true,
-                    style: { ...globalStyles.textField }
+                    style: { ...globalStyles.textField },
                   }}
                 />
               </FormControl>
@@ -225,7 +229,7 @@ const AddProject = () => {
                   onChange={handleChange}
                   InputProps={{
                     disableUnderline: true,
-                    style: { ...globalStyles.textField }
+                    style: { ...globalStyles.textField },
                   }}
                 />
               </FormControl>
@@ -245,7 +249,7 @@ const AddProject = () => {
                   onChange={handleChange}
                   InputProps={{
                     disableUnderline: true,
-                    style: { ...globalStyles.textField }
+                    style: { ...globalStyles.textField },
                   }}
                 />
               </FormControl>

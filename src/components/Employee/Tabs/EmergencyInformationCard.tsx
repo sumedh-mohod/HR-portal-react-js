@@ -13,9 +13,9 @@ import {
   Card,
   MenuItem,
 } from "@mui/material";
-import { useAppDispatch } from "../../../store/hooks";
-import { globalStyles } from "../../../styles/global";
-import { styles } from "../../../styles/components/employeeEmergencyInformations";
+import { useAppDispatch } from "store/hooks";
+import { globalStyles } from "styles/global";
+import { styles } from "styles/components/employeeEmergencyInformations";
 
 interface EmergencyInformationCardInterface {
   title: any;

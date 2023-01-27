@@ -1,7 +1,7 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { actionTypes } from "../../actionTypes";
-import { axiosClient } from "../../axiosClient";
-import { RestfulUrls } from "../../restfulUrls";
+import { actionTypes } from "store/actionTypes";
+import { axiosClient } from "store/axiosClient";
+import { RestfulUrls } from "store/restfulUrls";
 
 //add project action
 export const addProject = createAsyncThunk(
