@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { actionTypes } from "../../actionTypes";
+import { actionTypes } from "store/actionTypes";
 
 //login action
 export const login = createAsyncThunk(

@@ -10,12 +10,12 @@ import {
   Typography,
   Card,
 } from "@mui/material";
-import SaveTickIcon from "../Icons/SaveTickIcon";
+import SaveTickIcon from "components/Icons/SaveTickIcon";
 import AddIcon from "@mui/icons-material/Add";
-import DeleteIcon from "../Icons/DeleteIcon";
-import { addHolidayValidator } from "../../utils/validations/auth";
-import { styles } from "../../styles/components/companyHolidayCard";
-import { globalStyles } from "../../styles/global";
+import DeleteIcon from "components/Icons/DeleteIcon";
+import { addHolidayValidator } from "utils/validations/auth";
+import { styles } from "styles/components/companyHolidayCard";
+import { globalStyles } from "styles/global";
 
 let PageSize = 5;
 

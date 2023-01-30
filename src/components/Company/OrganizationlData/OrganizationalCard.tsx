@@ -1,6 +1,6 @@
 import React from "react";
 import { Box, Typography, Grid, Card } from "@mui/material";
-import DeleteIcon from "../../Icons/DeleteIcon";
+import DeleteIcon from "components/Icons/DeleteIcon";
 
 const OrganizationalCard = ({
   organasationlData,

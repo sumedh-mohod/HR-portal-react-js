@@ -1,12 +1,12 @@
 import React from "react";
 import { useParams, useLocation } from "react-router-dom";
-import AddCompany from "../../components/Company/AddCompany";
-import EditCompany from "../../components/Company/EditCompany";
-import LeavePolicy from "./LeavePolicy";
-import OrganizationlData from "./OrganisationalData";
-import CompanyMaster from "./CompanyMaster";
-import Hollidays from "./Hollidays";
-import CompanyDetailsCard from "../../components/Company/CompanyDetailsCard";
+import AddCompany from "components/Company/AddCompany";
+import EditCompany from "components/Company/EditCompany";
+import LeavePolicy from "screens/Company/LeavePolicy";
+import OrganizationlData from "screens/Company/OrganisationalData";
+import CompanyMaster from "screens/Company/CompanyMaster";
+import Hollidays from "screens/Company/Hollidays";
+import CompanyDetailsCard from "components/Company/CompanyDetailsCard";
 
 const Operations = () => {
   let params = useParams();

@@ -11,8 +11,8 @@ import {
   FormControl,
 } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
-import { globalStyles } from "../../../styles/global";
-import { styles } from "../../../styles/components/organizationData";
+import { globalStyles } from "styles/global";
+import { styles } from "styles/components/organizationData";
 
 const AddOrganisationData = ({
   handleAddClose,

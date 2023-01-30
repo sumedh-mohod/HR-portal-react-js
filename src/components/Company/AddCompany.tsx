@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useFormik } from "formik";
-import { addCompanyValidator } from "../../utils/validations/auth";
+import { addCompanyValidator } from "utils/validations/auth";
 import {
   Box,
   Button,
@@ -13,14 +13,14 @@ import {
   MenuItem,
   Card,
 } from "@mui/material";
-import { useAppDispatch } from "../../store/hooks";
-import { addCompany } from "../../store/reducers/companies/companies";
-import { styles } from "../../styles/components/addCompany";
-import { globalStyles } from "../../styles/global";
-import SaveTickIcon from "../Icons/SaveTickIcon";
-import DeleteIcon from "../Icons/DeleteIcon";
+import { useAppDispatch } from "store/hooks";
+import { addCompany } from "store/reducers/companies/companies";
+import { styles } from "styles/components/addCompany";
+import { globalStyles } from "styles/global";
+import SaveTickIcon from "components/Icons/SaveTickIcon";
+import DeleteIcon from "components/Icons/DeleteIcon";
 import AddIcon from "@mui/icons-material/Add";
-import ConfirmationModal from "../HigherOrder/ConfirmationModal";
+import ConfirmationModal from "components/HigherOrder/ConfirmationModal";
 
 const isObjectEmpty = (obj: any) => {
   for (let propName in obj) {
@@ -76,13 +76,13 @@ const AddCompany = () => {
         .then((response: any) => {
           console.log("response from addCompany file", response);
         })
-        .catch((error: any) => { });
+        .catch((error: any) => {});
     },
   });
 
   const handleSubmitTaxes = (index: number) => {
     console.log("submit taxes");
-  }
+  };
 
   // cancle butn click
   const handleCancle = () => {
@@ -495,8 +495,8 @@ const AddCompany = () => {
                           disableUnderline: true,
                           style: { ...globalStyles.textField },
                         }}
-                      // error={touched.abbr && errors.abbr ? true : false}
-                      // helperText={touched.abbr && errors.abbr}
+                        // error={touched.abbr && errors.abbr ? true : false}
+                        // helperText={touched.abbr && errors.abbr}
                       />
                     </FormControl>
                   </Grid>

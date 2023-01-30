@@ -11,12 +11,12 @@ import {
   MenuItem,
   Card,
 } from "@mui/material";
-import EditIcon from "../../Icons/EditIcon";
-import { globalStyles } from "../../../styles/global";
-import { styles } from "../../../styles/components/ContactInformationEmployee";
-import EmployeeEditIcon from "../../Icons/EmployeeEditIcon";
+import { globalStyles } from "styles/global";
+import { styles } from "styles/components/ContactInformationEmployee";
+import EmployeeEditIcon from "components/Icons/EmployeeEditIcon";
 
 const ContactInformation = () => {
+  const [isEditing, setIsEditing] = useState(true);
   const {
     handleBlur,
     handleChange,
@@ -47,33 +47,41 @@ const ContactInformation = () => {
     },
     // validationSchema: addCompanyValidator,
     onSubmit: (values) => {
-      console.log("values", values)
+      console.log("values", values);
     },
   });
+
+  const EditHandle = () => {
+    setIsEditing(false);
+  }
 
   return (
     <Box>
       <form onSubmit={handleSubmit}>
         {/* addresess */}
-        <Card  {...styles.contactInformationCard}>
-          <Box
-            {...styles.contactTitleBox}
-          >
-            <Typography variant="h5"
-              {...styles.contactTitle}
-            >
+        <Card {...styles.contactInformationCard}>
+          <Box {...styles.contactTitleBox}>
+            <Typography variant="h5" {...styles.contactTitle}>
               Contact Details
             </Typography>
             <Box>
-              <Button
+              {isEditing ? (<Button
                 {...styles.contactDetailsBtn}
                 variant="contained"
                 type="submit"
-              // onClick={EditHandle}
+                onClick={EditHandle}
               >
                 <EmployeeEditIcon />
                 <Typography sx={{ ml: 1 }}>Edit</Typography>
-              </Button>
+              </Button>) :
+                (<Button
+                  {...styles.parentBoxSaveButton}
+                  variant="contained"
+                  type="submit"
+                >
+                  Save
+                </Button>)
+              }
             </Box>
           </Box>
           <Grid container columnSpacing={3} rowGap={3}>
@@ -90,6 +98,7 @@ const ContactInformation = () => {
                   value={values.primaryNumber}
                   onChange={handleChange}
                   onBlur={handleBlur}
+                  disabled={isEditing}
                   InputProps={{
                     disableUnderline: true,
                     style: { ...globalStyles.textField },
@@ -99,7 +108,10 @@ const ContactInformation = () => {
             </Grid>
             <Grid item xs={12} md={6} lg={3}>
               <FormControl fullWidth>
-                <FormLabel id="secondaryNumber"  {...globalStyles.textFieldLabel}>
+                <FormLabel
+                  id="secondaryNumber"
+                  {...globalStyles.textFieldLabel}
+                >
                   Secondary Number
                 </FormLabel>
                 <TextField
@@ -110,6 +122,7 @@ const ContactInformation = () => {
                   value={values.secondaryNumber}
                   onChange={handleChange}
                   onBlur={handleBlur}
+                  disabled={isEditing}
                   InputProps={{
                     disableUnderline: true,
                     style: { ...globalStyles.textField },
@@ -119,7 +132,7 @@ const ContactInformation = () => {
             </Grid>
             <Grid item xs={12} md={6} lg={3}>
               <FormControl fullWidth>
-                <FormLabel id="emailID"  {...globalStyles.textFieldLabel}>
+                <FormLabel id="emailID" {...globalStyles.textFieldLabel}>
                   Email ID
                 </FormLabel>
                 <TextField
@@ -130,6 +143,7 @@ const ContactInformation = () => {
                   value={values.emailID}
                   onChange={handleChange}
                   onBlur={handleBlur}
+                  disabled={isEditing}
                   InputProps={{
                     disableUnderline: true,
                     style: { ...globalStyles.textField },
@@ -139,7 +153,10 @@ const ContactInformation = () => {
             </Grid>
             <Grid item xs={12} md={6} lg={3}>
               <FormControl fullWidth>
-                <FormLabel id="secondaryEmailID"  {...globalStyles.textFieldLabel}>
+                <FormLabel
+                  id="secondaryEmailID"
+                  {...globalStyles.textFieldLabel}
+                >
                   Secondary Email ID
                 </FormLabel>
                 <TextField
@@ -150,6 +167,7 @@ const ContactInformation = () => {
                   value={values.secondaryEmailID}
                   onChange={handleChange}
                   onBlur={handleBlur}
+                  disabled={isEditing}
                   InputProps={{
                     disableUnderline: true,
                     style: { ...globalStyles.textField },
@@ -158,21 +176,19 @@ const ContactInformation = () => {
               </FormControl>
             </Grid>
           </Grid>
-          <Box
-            {...styles.contactTitleBox}
-          >
-            <Typography variant="h5"
-              {...styles.contactTitleAddress}
-            >
+          <Box {...styles.contactTitleBox}>
+            <Typography variant="h5" {...styles.contactTitleAddress}>
               Permanent Address
             </Typography>
-            <Box>
-            </Box>
+            <Box></Box>
           </Box>
           <Grid container columnSpacing={3} rowGap={3}>
             <Grid item xs={12} md={6} lg={3}>
               <FormControl fullWidth>
-                <FormLabel id="permanent_address_addressLine1"  {...globalStyles.textFieldLabel}>
+                <FormLabel
+                  id="permanent_address_addressLine1"
+                  {...globalStyles.textFieldLabel}
+                >
                   Address Line 1
                 </FormLabel>
                 <TextField
@@ -183,6 +199,7 @@ const ContactInformation = () => {
                   value={values.permanent_address_addressLine1}
                   onChange={handleChange}
                   onBlur={handleBlur}
+                  disabled={isEditing}
                   InputProps={{
                     disableUnderline: true,
                     style: { ...globalStyles.textField },
@@ -192,7 +209,10 @@ const ContactInformation = () => {
             </Grid>
             <Grid item xs={12} md={6} lg={3}>
               <FormControl fullWidth>
-                <FormLabel id="permanent_address_addressLine2"  {...globalStyles.textFieldLabel}>
+                <FormLabel
+                  id="permanent_address_addressLine2"
+                  {...globalStyles.textFieldLabel}
+                >
                   Address Line 2
                 </FormLabel>
                 <TextField
@@ -203,18 +223,20 @@ const ContactInformation = () => {
                   value={values.permanent_address_addressLine2}
                   onChange={handleChange}
                   onBlur={handleBlur}
+                  disabled={isEditing}
                   InputProps={{
                     disableUnderline: true,
                     style: { ...globalStyles.textField },
                   }}
-                // error={touched.abbr && errors.abbr ? true : false}
-                // helperText={touched.abbr && errors.abbr}
                 />
               </FormControl>
             </Grid>
             <Grid item xs={12} md={6} lg={3}>
               <FormControl fullWidth>
-                <FormLabel id="permanent_address_country" {...globalStyles.textFieldLabel}>
+                <FormLabel
+                  id="permanent_address_country"
+                  {...globalStyles.textFieldLabel}
+                >
                   Country*
                 </FormLabel>
                 <TextField
@@ -226,6 +248,7 @@ const ContactInformation = () => {
                   value={values.permanent_address_country}
                   onChange={handleChange}
                   onBlur={handleBlur}
+                  disabled={isEditing}
                   // error={touched.country && errors.country ? true : false}
                   // helperText={touched.country && errors.country}
                   InputProps={{
@@ -254,6 +277,7 @@ const ContactInformation = () => {
                   value={values.permanent_address_selectState}
                   onChange={handleChange}
                   onBlur={handleBlur}
+                  disabled={isEditing}
                   // error={
                   //   touched.selectState && errors.selectState ? true : false
                   // }
@@ -269,10 +293,7 @@ const ContactInformation = () => {
             </Grid>
             <Grid item xs={12} md={6} lg={3}>
               <FormControl fullWidth>
-                <FormLabel
-                  id="selectCity"
-                  {...globalStyles.textFieldLabel}
-                >
+                <FormLabel id="selectCity" {...globalStyles.textFieldLabel}>
                   Select City*
                 </FormLabel>
                 <TextField
@@ -284,6 +305,7 @@ const ContactInformation = () => {
                   value={values.permanent_address_selectCity}
                   onChange={handleChange}
                   onBlur={handleBlur}
+                  disabled={isEditing}
                   // error={touched.selectCity && errors.selectCity ? true : false}
                   // helperText={touched.selectCity && errors.selectCity}
                   InputProps={{
@@ -297,7 +319,10 @@ const ContactInformation = () => {
             </Grid>
             <Grid item xs={12} md={6} lg={3}>
               <FormControl fullWidth>
-                <FormLabel id="permanent_address_postalCode"  {...globalStyles.textFieldLabel}>
+                <FormLabel
+                  id="permanent_address_postalCode"
+                  {...globalStyles.textFieldLabel}
+                >
                   Postal Code
                 </FormLabel>
                 <TextField
@@ -308,6 +333,7 @@ const ContactInformation = () => {
                   value={values.permanent_address_postalCode}
                   onChange={handleChange}
                   onBlur={handleBlur}
+                  disabled={isEditing}
                   InputProps={{
                     disableUnderline: true,
                     style: { ...globalStyles.textField },
@@ -316,21 +342,19 @@ const ContactInformation = () => {
               </FormControl>
             </Grid>
           </Grid>
-          <Box
-            {...styles.contactTitleBox}
-          >
-            <Typography variant="h5"
-              {...styles.contactTitleAddress}
-            >
+          <Box {...styles.contactTitleBox}>
+            <Typography variant="h5" {...styles.contactTitleAddress}>
               Communication Address
             </Typography>
-            <Box>
-            </Box>
+            <Box></Box>
           </Box>
           <Grid container columnSpacing={3} rowGap={3}>
             <Grid item xs={12} md={6} lg={3}>
               <FormControl fullWidth>
-                <FormLabel id="communication_address_addressLine1"  {...globalStyles.textFieldLabel}>
+                <FormLabel
+                  id="communication_address_addressLine1"
+                  {...globalStyles.textFieldLabel}
+                >
                   Address Line 1
                 </FormLabel>
                 <TextField
@@ -341,6 +365,7 @@ const ContactInformation = () => {
                   value={values.communication_address_addressLine1}
                   onChange={handleChange}
                   onBlur={handleBlur}
+                  disabled={isEditing}
                   InputProps={{
                     disableUnderline: true,
                     style: { ...globalStyles.textField },
@@ -350,7 +375,10 @@ const ContactInformation = () => {
             </Grid>
             <Grid item xs={12} md={6} lg={3}>
               <FormControl fullWidth>
-                <FormLabel id="communication_address_addressLine2"  {...globalStyles.textFieldLabel}>
+                <FormLabel
+                  id="communication_address_addressLine2"
+                  {...globalStyles.textFieldLabel}
+                >
                   Address Line 2
                 </FormLabel>
                 <TextField
@@ -361,18 +389,20 @@ const ContactInformation = () => {
                   value={values.communication_address_addressLine2}
                   onChange={handleChange}
                   onBlur={handleBlur}
+                  disabled={isEditing}
                   InputProps={{
                     disableUnderline: true,
                     style: { ...globalStyles.textField },
                   }}
-                // error={touched.abbr && errors.abbr ? true : false}
-                // helperText={touched.abbr && errors.abbr}
                 />
               </FormControl>
             </Grid>
             <Grid item xs={12} md={6} lg={3}>
               <FormControl fullWidth>
-                <FormLabel id="communication_address_country" {...globalStyles.textFieldLabel}>
+                <FormLabel
+                  id="communication_address_country"
+                  {...globalStyles.textFieldLabel}
+                >
                   Country*
                 </FormLabel>
                 <TextField
@@ -384,6 +414,7 @@ const ContactInformation = () => {
                   value={values.communication_address_country}
                   onChange={handleChange}
                   onBlur={handleBlur}
+                  disabled={isEditing}
                   // error={touched.country && errors.country ? true : false}
                   // helperText={touched.country && errors.country}
                   InputProps={{
@@ -412,6 +443,7 @@ const ContactInformation = () => {
                   value={values.communication_address_selectState}
                   onChange={handleChange}
                   onBlur={handleBlur}
+                  disabled={isEditing}
                   // error={
                   //   touched.selectState && errors.selectState ? true : false
                   // }
@@ -442,6 +474,7 @@ const ContactInformation = () => {
                   value={values.communication_address_selectCity}
                   onChange={handleChange}
                   onBlur={handleBlur}
+                  disabled={isEditing}
                   // error={touched.selectCity && errors.selectCity ? true : false}
                   // helperText={touched.selectCity && errors.selectCity}
                   InputProps={{
@@ -455,7 +488,10 @@ const ContactInformation = () => {
             </Grid>
             <Grid item xs={12} md={6} lg={3}>
               <FormControl fullWidth>
-                <FormLabel id="communication_address_postalCode"  {...globalStyles.textFieldLabel}>
+                <FormLabel
+                  id="communication_address_postalCode"
+                  {...globalStyles.textFieldLabel}
+                >
                   Postal Code
                 </FormLabel>
                 <TextField
@@ -466,6 +502,7 @@ const ContactInformation = () => {
                   value={values.communication_address_postalCode}
                   onChange={handleChange}
                   onBlur={handleBlur}
+                  disabled={isEditing}
                   InputProps={{
                     disableUnderline: true,
                     style: { ...globalStyles.textField },
@@ -476,7 +513,7 @@ const ContactInformation = () => {
           </Grid>
         </Card>
       </form>
-    </Box >
+    </Box>
   );
 };
 

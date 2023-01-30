@@ -1,13 +1,13 @@
-import Company from "../../components/Icons/Company";
-import Accounting from "../../components/Icons/Accounting";
-import Training from "../../components/Icons/Training";
-import Assets from "../../components/Icons/Assets";
-import Partners from "../../components/Icons/Partners";
-import Project from "../../components/Icons/Project";
-import Employee from "../../components/Icons/Employee";
-import Settings from "../../components/Icons/Settings";
-import Vendors from "../../components/Icons/Vendors";
-import Recruitment from "../../components/Icons/Recruitment";
+import Company from "components/Icons/Company";
+import Accounting from "components/Icons/Accounting";
+import Training from "components/Icons/Training";
+import Assets from "components/Icons/Assets";
+import Partners from "components/Icons/Partners";
+import Project from "components/Icons/Project";
+import Employee from "components/Icons/Employee";
+import Settings from "components/Icons/Settings";
+import Vendors from "components/Icons/Vendors";
+import Recruitment from "components/Icons/Recruitment";
 
 export const Menus: any = [
   {

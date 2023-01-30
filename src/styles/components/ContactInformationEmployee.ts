@@ -47,4 +47,13 @@ export const styles = {
       textTransform: "inherit",
     },
   },
+  parentBoxSaveButton: {
+    sx: {
+      fontfamily: "Montserrat",
+      backgroundColor: "#F58634",
+      borderRadius: "5px",
+      marginLeft: "10px",
+      fontStyle: "normal",
+    },
+  },
 };
