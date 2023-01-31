@@ -37,7 +37,7 @@ export const styles = {
   vendorDescription: {
     sx: {
       fontSize: "14px",
-      fontWeight: "lighter",
+      fontWeight: "normal",
       fontFamily: "Montserrat",
       color: "#252733",
     },

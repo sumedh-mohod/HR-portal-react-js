@@ -59,7 +59,7 @@ const CompanyMaster = () => {
     setFieldValue("designation", newDesignation);
   };
 
-  const handleSubmitDesignation = (index: number) => {};
+  const handleSubmitDesignation = (index: number) => { };
 
   return (
     <Box>
@@ -129,19 +129,25 @@ const CompanyMaster = () => {
                 </Grid>
                 <Grid item xs={12} md={6} lg={6} {...styles.gridItem}>
                   <Box
-                    sx={{
-                      width: "48px",
-                      height: "48px",
-                      borderRadius: "5px",
-                      backgroundColor: "#0FBD35",
-                      display: "flex",
-                      justifyContent: "center",
-                      alignItems: "center",
-                      mr: 3,
-                      cursor: "pointer",
-                    }}
+
                   >
-                    <SaveTickIcon />
+                    <Button
+                      sx={{
+                        width: "48px",
+                        height: "48px",
+                        borderRadius: "5px",
+                        backgroundColor: "#0FBD35",
+                        display: "flex",
+                        justifyContent: "center",
+                        alignItems: "center",
+                        mr: 3,
+                        cursor: "pointer",
+                      }}
+                      type="submit"
+                    >
+
+                      <SaveTickIcon />
+                    </Button>
                   </Box>
                   <Box
                     sx={{

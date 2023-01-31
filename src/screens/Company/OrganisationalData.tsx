@@ -104,7 +104,7 @@ const OrganizationlData = () => {
 
     if (SearchText.length > 0) {
       const newFilter = Data.filter((value: any) =>
-        value.file_name.toLowerCase().includes(SearchText.toLowerCase())
+        value.file_name?.toLowerCase()?.includes(SearchText?.toLowerCase())
       );
       setCurrentData(newFilter);
     } else {
@@ -192,7 +192,7 @@ const OrganizationlData = () => {
           <OrganizationalCard
             handleCardData={handleCardData}
             organasationlData={currentData}
-            // handleViewOpen={handleViewOpen}
+          // handleViewOpen={handleViewOpen}
           />
         </TabPanel>
         <TabPanel value={value} index={1}>

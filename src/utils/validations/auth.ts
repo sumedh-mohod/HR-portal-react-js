@@ -52,6 +52,11 @@ export const addVendorValidator = Yup.object().shape({
   country: Yup.string().required("Please Select a valid country"),
 });
 
+// add vendor employee
+export const addEmployeeValidator = Yup.object().shape({
+  DisplayName: Yup.string().required("Please enter a valid vendor name"),
+});
+
 // add holiday card validation
 
 export const addHolidayValidator = Yup.object().shape({
