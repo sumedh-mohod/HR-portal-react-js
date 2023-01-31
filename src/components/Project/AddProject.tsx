@@ -20,6 +20,8 @@ import { useAppDispatch } from "store/hooks";
 import { addProject } from "store/reducers/projects/projects";
 import { globalStyles } from "styles/global";
 import { styles } from "styles/components/addProject";
+import SaveTickIcon from "components/Icons/SaveTickIcon";
+import DeleteIcon from "components/Icons/DeleteIcon";
 
 const AddProject = () => {
   const navigate = useNavigate();
@@ -396,15 +398,24 @@ const AddProject = () => {
                     </FormControl>
                   </Grid>
                   {/* buttons add or remove */}
-                  <Grid item xs={12} md={6} lg={3}>
-                    <Box sx={{ display: "flex", justifyContent: "baseline" }}>
-                      <CheckIcon {...styles.checkIcon} />
-                      <CloseIcon
-                        {...styles.closeIcon}
-                        onClick={() => {
-                          handleRemoveOrangebits(index);
-                        }}
-                      />
+                  <Grid item xs={12} md={6} lg={3} {...styles.gridItem} >
+                    <Box
+                      {...styles.RightClickIconBox}
+                      // onClick={() => {
+                      //   handleRemoveOrangebits(index);
+                      // }}
+                    >
+                      <SaveTickIcon />
+                    </Box>
+                    <Box
+                      {...styles.CloseClickIconBox}
+                      onClick={() => {
+                        handleRemoveOrangebits(index);
+                      }}
+                    >
+                      <DeleteIcon fill={"white"} />
+                    </Box>
+                    <Box>
                       {values.pointsofContactOrangebits.length - 1 === index ? (
                         <Button
                           {...styles.addButton}
@@ -517,15 +528,24 @@ const AddProject = () => {
                     </FormControl>
                   </Grid>
                   {/* buttons add or remove */}
-                  <Grid item xs={12} md={6} lg={3}>
-                    <Box sx={{ display: "flex", justifyContent: "baseline" }}>
-                      <CheckIcon {...styles.checkIcon} />
-                      <CloseIcon
-                        {...styles.closeIcon}
-                        onClick={() => {
-                          handleRemovePartners(index);
-                        }}
-                      />
+                  <Grid item xs={12} md={6} lg={3} {...styles.gridItem}>
+                    <Box
+                      {...styles.RightClickIconBox}
+                      // onClick={() => {
+                      //   handleRemoveOrangebits(index);
+                      // }}
+                    >
+                      <SaveTickIcon />
+                    </Box>
+                    <Box
+                      {...styles.CloseClickIconBox}
+                      onClick={() => {
+                        handleRemovePartners(index);
+                      }}
+                    >
+                      <DeleteIcon fill={"white"} />
+                    </Box>
+                    <Box>
                       {values.pointsofContactPartners.length - 1 === index ? (
                         <Button
                           {...styles.addButton}
