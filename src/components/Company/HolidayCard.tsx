@@ -64,20 +64,28 @@ const HolidayCard = () => {
   };
 
   const handleRemoveHoliday = (index: number) => {
-    const newHoliday = [...values.holiday];
+    const newHoliday = [...holidays];
     newHoliday.splice(index, 1);
-    setFieldValue("holiday", newHoliday);
+    setHolidays(newHoliday);
   };
 
   const handleChangeHolidayName = (event: any, index: number) => {
-    setFieldValue(`holiday.${index}.holidayName`, event.target.value);
+    let changedName = event.target.value;
+    let newHoliday = [...holidays];
+    newHoliday[index].holidayName = changedName;
+    setHolidays(newHoliday);
   };
 
   const handleChangeSelectDate = (event: any, index: number) => {
-    setFieldValue(`holiday.${index}.selectDate`, event.target.value);
+    let changedDate = event.target.value;
+    let newHoliday = [...holidays];
+    newHoliday[index].selectDate = changedDate;
+    setHolidays(newHoliday);
   };
 
-  const handleSubmitHoliday = (index: number) => { };
+  const handleSubmitHoliday = (index: number) => {
+    console.log("holidays data", holidays);
+  };
 
   return (
     <Box>
@@ -98,7 +106,7 @@ const HolidayCard = () => {
                       name="holidayName"
                       variant="filled"
                       size="small"
-                      value={(values.holiday && values.holiday[index].holidayName) || ""}
+                      value={(holidays && holidays[index].holidayName) || ""}
                       onChange={(event) => {
                         handleChangeHolidayName(event, index);
                       }}
@@ -119,7 +127,7 @@ const HolidayCard = () => {
                       name="selectDate"
                       variant="filled"
                       size="small"
-                      value={(values.holiday && values.holiday[index].selectDate) || ""}
+                      value={(holidays && holidays[index].selectDate) || ""}
                       onChange={(event) => {
                         handleChangeSelectDate(event, index);
                       }}
