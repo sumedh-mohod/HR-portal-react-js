@@ -76,7 +76,7 @@ const AddCompany = () => {
         .then((response: any) => {
           console.log("response from addCompany file", response);
         })
-        .catch((error: any) => {});
+        .catch((error: any) => { });
     },
   });
 
@@ -495,8 +495,8 @@ const AddCompany = () => {
                           disableUnderline: true,
                           style: { ...globalStyles.textField },
                         }}
-                        // error={touched.abbr && errors.abbr ? true : false}
-                        // helperText={touched.abbr && errors.abbr}
+                      // error={touched.abbr && errors.abbr ? true : false}
+                      // helperText={touched.abbr && errors.abbr}
                       />
                     </FormControl>
                   </Grid>

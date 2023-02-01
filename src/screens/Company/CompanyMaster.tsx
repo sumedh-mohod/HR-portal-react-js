@@ -53,13 +53,21 @@ const CompanyMaster = () => {
     setFieldValue("designation", newDesignation);
   };
 
+  const handleChangeDesignationName = (event: any, index: number) => {
+    setFieldValue(`designation.${index}.designationName`, event.target.value);
+    console.log("address line1", event.target.value);
+  };
+
+  const handleChangeDescription = (event: any, index: number) => {
+    setFieldValue(`designation.${index}.description`, event.target.value);
+    console.log("address line1", event.target.value);
+  };
+
   const handleRemoveDesignation = (index: number) => {
     const newDesignation = [...values.designation];
     newDesignation.splice(index, 1);
     setFieldValue("designation", newDesignation);
   };
-
-  const handleSubmitDesignation = (index: number) => { };
 
   return (
     <Box>
@@ -83,9 +91,9 @@ const CompanyMaster = () => {
         </Box>
       </Box>
       <Card sx={{ mt: 3, mb: 3, p: 5 }}>
-        <form>
+        <form onSubmit={handleSubmit}>
           <Grid container columnSpacing={3} rowGap={3}>
-            {values.designation.map((designation, index) => (
+            {values.designation.map((designation: any, index: any) => (
               <>
                 <Grid item xs={12} md={6} lg={3}>
                   <FormControl fullWidth>
@@ -99,6 +107,10 @@ const CompanyMaster = () => {
                       name="designationName"
                       variant="filled"
                       size="small"
+                      value={(values.designation && values.designation[index].designationName) || ""}
+                      onChange={(event) => {
+                        handleChangeDesignationName(event, index);
+                      }}
                       InputProps={{
                         disableUnderline: true,
                         style: { ...globalStyles.textField },
@@ -118,8 +130,10 @@ const CompanyMaster = () => {
                       name="description"
                       variant="filled"
                       size="small"
-                      onChange={handleChange}
-                      onBlur={handleBlur}
+                      value={(values.designation && values.designation[index].description) || ""}
+                      onChange={(event) => {
+                        handleChangeDescription(event, index);
+                      }}
                       InputProps={{
                         disableUnderline: true,
                         style: { ...globalStyles.textField },
@@ -129,23 +143,22 @@ const CompanyMaster = () => {
                 </Grid>
                 <Grid item xs={12} md={6} lg={6} {...styles.gridItem}>
                   <Box
-
+                    sx={{
+                      width: "48px",
+                      height: "48px",
+                      borderRadius: "5px",
+                      backgroundColor: "#0FBD35",
+                      display: "flex",
+                      justifyContent: "center",
+                      alignItems: "center",
+                      mr: 3,
+                      cursor: "pointer",
+                    }}
                   >
                     <Button
-                      sx={{
-                        width: "48px",
-                        height: "48px",
-                        borderRadius: "5px",
-                        backgroundColor: "#0FBD35",
-                        display: "flex",
-                        justifyContent: "center",
-                        alignItems: "center",
-                        mr: 3,
-                        cursor: "pointer",
-                      }}
+                      sx={{ width: "100%", height: "100%" }}
                       type="submit"
                     >
-
                       <SaveTickIcon />
                     </Button>
                   </Box>

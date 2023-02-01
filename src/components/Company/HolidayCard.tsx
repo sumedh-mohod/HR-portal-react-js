@@ -39,7 +39,7 @@ const HolidayCard = () => {
       ],
       id: "",
     },
-    validationSchema: addHolidayValidator,
+    // validationSchema: addHolidayValidator,
     onSubmit: (values) => {
       console.log("value", values);
     },
@@ -49,7 +49,7 @@ const HolidayCard = () => {
     const newHoliday = [
       ...values.holiday,
       {
-        holidayname: "",
+        holidayName: "",
         selectDate: "",
       },
     ];
@@ -62,27 +62,39 @@ const HolidayCard = () => {
     setFieldValue("holiday", newHoliday);
   };
 
-  const handleSubmitHoliday = (index: number) => {};
+  const handleChangeHolidayName = (event: any, index: number) => {
+    setFieldValue(`holiday.${index}.holidayName`, event.target.value);
+  };
+
+  const handleChangeSelectDate = (event: any, index: number) => {
+    setFieldValue(`holiday.${index}.selectDate`, event.target.value);
+  };
+
+  const handleSubmitHoliday = (index: number) => { };
 
   return (
     <Box>
       <Card sx={{ mt: 3, mb: 3, p: 5 }}>
-        <form>
+        <form onSubmit={handleSubmit}>
           <Grid container columnSpacing={3} rowGap={3}>
             {values.holiday.map((holiday, index) => (
               <>
                 <Grid item xs={12} md={6} lg={3}>
                   <FormControl fullWidth>
                     <FormLabel
-                      id="holidayname"
+                      id="holidayName"
                       {...globalStyles.textFieldLabel}
                     >
                       Holiday Name
                     </FormLabel>
                     <TextField
-                      name="holidayname"
+                      name="holidayName"
                       variant="filled"
                       size="small"
+                      value={(values.holiday && values.holiday[index].holidayName) || ""}
+                      onChange={(event) => {
+                        handleChangeHolidayName(event, index);
+                      }}
                       InputProps={{
                         disableUnderline: true,
                         style: { ...globalStyles.textField },
@@ -100,8 +112,10 @@ const HolidayCard = () => {
                       name="selectDate"
                       variant="filled"
                       size="small"
-                      // value={values.holiday.selectDate}
-                      onChange={handleChange}
+                      value={(values.holiday && values.holiday[index].selectDate) || ""}
+                      onChange={(event) => {
+                        handleChangeSelectDate(event, index);
+                      }}
                       onBlur={handleBlur}
                       InputProps={{
                         disableUnderline: true,
@@ -124,7 +138,12 @@ const HolidayCard = () => {
                       cursor: "pointer",
                     }}
                   >
-                    <SaveTickIcon />
+                    <Button
+                      sx={{ width: "100%", height: "100%" }}
+                      type="submit"
+                    >
+                      <SaveTickIcon />
+                    </Button>
                   </Box>
                   <Box
                     sx={{
