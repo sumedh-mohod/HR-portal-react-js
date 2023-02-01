@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { useFormik } from "formik";
 import {
   Box,
@@ -20,6 +20,13 @@ import { globalStyles } from "styles/global";
 let PageSize = 5;
 
 const HolidayCard = () => {
+  const [holidays, setHolidays] = useState([
+    {
+      holidayName: "",
+      selectDate: "",
+    },
+  ],);
+
   const {
     handleBlur,
     handleChange,
@@ -47,13 +54,13 @@ const HolidayCard = () => {
 
   const handleAddHoliday = () => {
     const newHoliday = [
-      ...values.holiday,
+      ...holidays,
       {
         holidayName: "",
         selectDate: "",
       },
     ];
-    setFieldValue("holiday", newHoliday);
+    setHolidays(newHoliday);
   };
 
   const handleRemoveHoliday = (index: number) => {
@@ -77,7 +84,7 @@ const HolidayCard = () => {
       <Card sx={{ mt: 3, mb: 3, p: 5 }}>
         <form onSubmit={handleSubmit}>
           <Grid container columnSpacing={3} rowGap={3}>
-            {values.holiday.map((holiday, index) => (
+            {holidays.map((holiday, index: any) => (
               <>
                 <Grid item xs={12} md={6} lg={3}>
                   <FormControl fullWidth>
@@ -163,7 +170,7 @@ const HolidayCard = () => {
                     <DeleteIcon fill={"white"} />
                   </Box>
                   <Box>
-                    {values.holiday.length - 1 === index ? (
+                    {holidays.length - 1 === index ? (
                       <Button {...styles.addButton} onClick={handleAddHoliday}>
                         <AddIcon fontSize="small" {...styles.addIcon} />
                         <Typography sx={{ fontSize: "small" }}>Add</Typography>
