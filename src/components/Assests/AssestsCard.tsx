@@ -6,18 +6,21 @@ import { useNavigate } from "react-router-dom";
 
 const AssestsCard = ({
   Assets,
+ 
   handleAssetsEditClick,
   handleAssetsAddClick,
+  HandleQr
+
+
 }: {
   Assets: any;
+  open:any
   handleAssetsEditClick: any;
   handleAssetsAddClick: any;
+  HandleQr:any
+
 }) => {
   const navigate = useNavigate();
-  const HandleQr = (assets: any, index: any) => {
-    console.log("qr click values", assets);
-    navigate("/assests")
-  };
   return (
     <Box>
       <Grid container spacing={2} sx={{ mt: 1 }}>
@@ -25,7 +28,7 @@ const AssestsCard = ({
           <Grid item xs={12} md={3} lg={3}>
             <Card
               elevation={3}
-              onClick={() => handleAssetsEditClick(asset)}
+              // onClick={() => handleAssetsEditClick(asset)}
               {...styles.assetsCard}
               key={index}
             >
@@ -46,7 +49,7 @@ const AssestsCard = ({
                   </Typography>
                 </Typography>
                 <Typography {...styles.assetsDescription}>
-                  Description:{" "}
+                  Description:
                   <Typography {...styles.assetsDescriptionValue}>
                     {asset.description}
                   </Typography>

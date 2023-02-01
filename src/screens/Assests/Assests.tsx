@@ -14,116 +14,124 @@ import AssetsList from "components/Assests/AssetsList";
 import { styles } from "styles/components/assests";
 import QRicon from "components/Icons/QRicon";
 import QRiconBox from "components/Assests/QRiconBox";
-
-const columns: GridColDef[] = [
-  {
-    field: "id",
-    headerName: "Sr",
-    minWidth: 50,
-    hide: false,
-  },
-  {
-    field: "assetsName",
-    headerName: "Name",
-    width: 200,
-    minWidth: 150,
-    maxWidth: 200,
-    hide: false,
-  },
-  {
-    field: "category",
-    headerName: "Category",
-    width: 200,
-    minWidth: 150,
-    maxWidth: 200,
-    hide: false,
-  },
-  {
-    field: "subCategory",
-    headerName: "Sub-Category",
-    width: 200,
-    minWidth: 150,
-    maxWidth: 200,
-    hide: false,
-  },
-
-  {
-    field: "description",
-    headerName: "Description",
-    width: 300,
-    minWidth: 150,
-    maxWidth: 300,
-    hide: false,
-  },
-  {
-    field: "printBarcode_QRCode",
-    renderCell:()=><QRiconBox />,
-    // onCellClick:()=>,
-    headerName: "Print Barcode/QR Code",
-    width: 200,
-    minWidth: 150,
-    maxWidth: 200,
-    hide: false,
-    align:"center"
-  },
-];
-
-const row = [
-  {
-    id: 1,
-    assetsName: "Office Chair",
-    category: "Furniture",
-    subCategory: "Chair",
-    description: "New chair with good quality",
-    printBarcode_QRCode:<QRicon />
-
-  },
-  {
-    id: 2,
-    assetsName: "Office Chair",
-    category: "Furniture",
-    subCategory: "Chair",
-    description: "New chair with good quality",
-    printBarcode_QRCode:<QRicon/>
-  },
-  {
-    id: 3,
-    assetsName: "Office Chair",
-    category: "Furniture",
-    subCategory: "Chair",
-    description: "New chair with good quality",
-    printBarcode_QRCode:<QRicon/>
-  },
-  {
-    id: 4,
-    assetsName: "Office Chair",
-    category: "Furniture",
-    subCategory: "Chair",
-    description: "New chair with good quality",
-    printBarcode_QRCode:<QRicon/>
-  },
-  {
-    id: 5,
-    assetsName: "Fan",
-    category: "Furniture",
-    subCategory: "Chair",
-    description: "New chair with good quality",
-    printBarcode_QRCode:<QRicon/>
-  },
-  {
-    id: 6,
-    assetsName: "Office Chair",
-    category: "Furniture",
-    subCategory: "Chair",
-    description: "New chair with good quality",
-    printBarcode_QRCode:<QRicon/>
-  },
-];
-
-let PageSize = 5;
+import AssetsModel from "components/Assests/AssetsModel";
+import QrCodeIcon from '@mui/icons-material/QrCode';
 
 const Assets = () => {
   // const dispatch = useAppDispatch();
+  const HandleQr = (assets: any, index: any) => {
+    console.log("qr click values", assets);
+    setOpen(true);
+    setQrData(assets);   
+  };
+  
+  const columns: GridColDef[] = [
+    {
+      field: "id",
+      headerName: "Sr",
+      minWidth: 50,
+      hide: false,
+    },
+    {
+      field: "assetsName",
+      headerName: "Name",
+      width: 200,
+      minWidth: 150,
+      maxWidth: 200,
+      hide: false,
+    },
+    {
+      field: "category",
+      headerName: "Category",
+      width: 200,
+      minWidth: 150,
+      maxWidth: 200,
+      hide: false,
+    },
+    {
+      field: "subCategory",
+      headerName: "Sub-Category",
+      width: 200,
+      minWidth: 150,
+      maxWidth: 200,
+      hide: false,
+    },
+  
+    {
+      field: "description",
+      headerName: "Description",
+      width: 300,
+      minWidth: 150,
+      maxWidth: 300,
+      hide: false,
+    },
+    {
+      field: "printBarcode_QRCode",
+      // renderCell:(params)=><QRiconBox/>,
+      headerName: "Print Barcode/QR Code",
+      width: 200,
+      minWidth: 150,
+      maxWidth: 200,
+      hide: false,
+      align:"center"
+    },
+  ];
+  
+  
+  const row = [
+    {
+      id: 1,
+      assetsName: "Office Chair",
+      category: "Furniture",
+      subCategory: "Chair",
+      description: "New chair with good quality",
+      printBarcode_QRCode:<QRiconBox/>
+
+    },
+    {
+      id: 2,
+      assetsName: "laptop",
+      category: "Furniture",
+      subCategory: "Chair",
+      description: "New chair with good quality",
+      printBarcode_QRCode:"icon"
+    
+    },
+    {
+      id: 3,
+      assetsName: "charger",
+      category: "Furniture",
+      subCategory: "Chair",
+      description: "New chair with good quality",
+      printBarcode_QRCode:"icon"
+    },
+    {
+      id: 4,
+      assetsName: "Office Chair",
+      category: "Furniture",
+      subCategory: "Chair",
+      description: "New chair with good quality",
+      printBarcode_QRCode:"icon"
+    },
+    {
+      id: 5,
+      assetsName: "Fan",
+      category: "Furniture",
+      subCategory: "Chair",
+      description: "New chair with good quality",
+      printBarcode_QRCode:"icon"
+    },
+    {
+      id: 6,
+      assetsName: "Office Chair",
+      category: "Furniture",
+      subCategory: "Chair",
+      description: "New chair with good quality",
+      printBarcode_QRCode:"icon"
+    },
+  ];
+  
+  let PageSize = 5;
 
   const [designView, setDesignView] = useState("list");
   const [currentPage, setCurrentPage] = useState(1);
@@ -132,6 +140,10 @@ const Assets = () => {
   const [searchText, setSearchText] = useState("");
   const [currentData, setCurrentData] = useState<any>([]);
   const openDropDown = Boolean(anchorEl);
+  const [open, setOpen] = React.useState(false);
+  const handleClose = () => setOpen(false);
+  const [qrData, setQrData] = useState<any>({});
+
 
   // const partnersStore = useAppSelector((state) => state.partners);
   // const { isLoadingRequest, partners } = partnersStore;
@@ -157,8 +169,9 @@ const Assets = () => {
   const handleAssetsEditClick = (assets: any, index: any) => {
     navigate("/assets/edit", {
       state: { assets },
-    });
+    });  
   };
+
   const handleAssetsAddClick = () => {
     navigate("/assets/add");
   };
@@ -211,7 +224,8 @@ const Assets = () => {
     }
   };
   
-
+ 
+// console.log("data",qrData)
   return (
     <Box sx={{ display: "flex", flexDirection: "column" }}>
       {/* <Loader isLoading={isLoadingRequest} /> */}
@@ -265,6 +279,8 @@ const Assets = () => {
           <AssetsList
             // handlePartnerAddClick={handlePartnerAddClick}
             // rows={currentData}
+            open={open}
+             handleClose={handleClose}
             showColumns={showColumns?.length >= 0 ? showColumns : []}
             rows={
               currentData !== undefined && currentData?.length >= 0
@@ -274,6 +290,9 @@ const Assets = () => {
           />
         ) : (
           <AssestsCard
+          open={open}
+          // handleClose={handleClose}
+          HandleQr={HandleQr}
             Assets={currentData}
             handleAssetsEditClick={handleAssetsEditClick}
             handleAssetsAddClick={handleAssetsAddClick}
@@ -281,6 +300,11 @@ const Assets = () => {
         )}
       </Box>
       {row?.length > 0 && <Paginations handlePageChange={handlePageChange} />} 
+      <AssetsModel
+        open={open}
+        handleClose={handleClose}
+        newData={qrData?.assetsName}
+      />
     </Box>
   );
 };
