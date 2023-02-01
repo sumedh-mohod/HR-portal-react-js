@@ -42,6 +42,7 @@ const AddCompany = () => {
       value: "",
     },
   ]);
+
   const {
     handleBlur,
     handleChange,
@@ -118,25 +119,24 @@ const AddCompany = () => {
     console.log("new Taxes", newTaxes);
     setTaxes(newTaxes);
   };
+
   console.log("taxes", taxes);
+
   const handleChangeTaxName = (event: any, index: number) => {
-    // setFieldValue(`taxes.${index}.name`, event.target.value);
-    // setTaxes(() => {
-    //   return [
-    //     ...taxes,
-    //     { [`taxes.${index}.name`]: event.target.value }
-    //   ]
-    // })
+    let changedName = event.target.value;
+    let newTaxes = [...taxes];
+    newTaxes[index].name = changedName;
+    setTaxes(newTaxes);
   };
 
   const handleChangeTaxValue = (event: any, index: number) => {
-    // setFieldValue(`taxes.${index}.value`, event.target.value);
-    // setTaxes([...taxes, {
-    //   value: event.target.value
-    // }]);
-    // console.log("event", event.target.value);
+    let changedValue = event.target.value;
+    let newTaxes = [...taxes];
+    newTaxes[index].value = changedValue;
+    setTaxes(newTaxes);
   };
-  console.log("values", values);
+
+  console.log("taxes", taxes);
 
   const handleAddAddress = () => {
     const newAddresses = [
