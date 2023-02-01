@@ -87,11 +87,17 @@ const AddCompany = () => {
 
   // cancle butn click
   const handleCancle = () => {
-    const isEmpty = Object.values(values).every((x) => x === null || x === "");
+    const isEmpty = Object.values(values).every(
+      (x) => x === null || x === "" || x.length === 1
+    );
 
-    console.log("isEmpty", isEmpty);
+    const checkArrays =
+      values.address.length === 1 &&
+      Object.values(values.address[0]).every((x) => x === null || x === "") &&
+      taxes.length === 1 &&
+      Object.values(taxes[0]).every((x) => x === null || x === "");
 
-    if (isEmpty) {
+    if (isEmpty && checkArrays) {
       navigate(-1);
     } else {
       setConfimationModal(true);
@@ -115,12 +121,9 @@ const AddCompany = () => {
         value: "",
       },
     ];
-    // setFieldValue("taxes", newTaxes);
-    console.log("new Taxes", newTaxes);
+
     setTaxes(newTaxes);
   };
-
-  console.log("taxes", taxes);
 
   const handleChangeTaxName = (event: any, index: number) => {
     let changedName = event.target.value;
@@ -135,8 +138,6 @@ const AddCompany = () => {
     newTaxes[index].value = changedValue;
     setTaxes(newTaxes);
   };
-
-  console.log("taxes", taxes);
 
   const handleAddAddress = () => {
     const newAddresses = [
