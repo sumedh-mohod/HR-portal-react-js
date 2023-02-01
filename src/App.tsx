@@ -14,6 +14,7 @@ import Employees from "screens/Employee/Employee";
 import Projects from "screens/Project/Projects";
 import Partners from "screens/Partner/Partners";
 import Vendors from "screens/Vendor/Vendors";
+import Assets from "screens/Assests/Assests";
 
 import CompanyOperations from "screens/Company/Operations";
 import EmployeeAddEdit from "screens/Employee/EmployeeAddEdit";
@@ -29,6 +30,8 @@ import ProtectedRoute, {
   ProtectedRouteProps,
   LoggedInUserProps,
 } from "./ProtectedRoute";
+import AssestsAddEdit from "screens/Assests/AssestsAddEdit";
+
 
 const App = () => {
   const storeResponse: any = useAppSelector(
@@ -75,7 +78,25 @@ const App = () => {
               />
             }
           />
-
+      {/* Assets */}
+      <Route
+            path="/assets"
+            element={
+              <ProtectedRoute
+                {...defaultProtectedRouteProps}
+                outlet={<Assets />}
+              />
+            }
+          />
+          <Route
+            path="/assets/:opration"
+            element={
+              <ProtectedRoute
+                {...defaultProtectedRouteProps}
+                outlet={<AssestsAddEdit />}
+              />
+            }
+          />
           {/* Partners */}
           <Route
             path="/partners"
