@@ -46,7 +46,7 @@ const HolidayCard = () => {
       ],
       id: "",
     },
-    // validationSchema: addHolidayValidator,
+    validationSchema: addHolidayValidator,
     onSubmit: (values) => {
       console.log("value", values);
     },
@@ -151,6 +151,9 @@ const HolidayCard = () => {
                       alignItems: "center",
                       mr: 3,
                       cursor: "pointer",
+                    }}
+                    onClick={() => {
+                      handleSubmitHoliday(index);
                     }}
                   >
                     <Button

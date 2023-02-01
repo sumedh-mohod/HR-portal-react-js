@@ -82,7 +82,7 @@ const AddCompany = () => {
   });
 
   const handleSubmitTaxes = (index: number) => {
-    console.log("submit taxes");
+    console.log("submit taxes", taxes);
   };
 
   // cancle butn click
@@ -496,8 +496,6 @@ const AddCompany = () => {
                           disableUnderline: true,
                           style: { ...globalStyles.textField },
                         }}
-                      // error={touched.abbr && errors.abbr ? true : false}
-                      // helperText={touched.abbr && errors.abbr}
                       />
                     </FormControl>
                   </Grid>
@@ -520,8 +518,8 @@ const AddCompany = () => {
                           handleChangeCountry(event, index);
                         }}
                         onBlur={handleBlur}
-                        // error={touched.country && errors.country ? true : false}
-                        // helperText={touched.country && errors.country}
+                        // error={touched?.address?.country && errors.country ? true : false}
+                        // helperText={touched?.address?.country && errors.country}
                         InputProps={{
                           disableUnderline: true,
                           style: { ...globalStyles.textField },
