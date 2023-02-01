@@ -42,7 +42,7 @@ export const styles = {
 
   taxRightClickIconBox: {
     sx: {
-      width: "48px",
+      width: "50px",
       height: "48px",
       borderRadius: "5px",
       backgroundColor: "#0FBD35",
@@ -55,7 +55,7 @@ export const styles = {
   },
   taxCloseClickIconBox: {
     sx: {
-      width: "48px",
+      width: "50px",
       height: "48px",
       borderRadius: "5px",
       backgroundColor: "#D82A2A",

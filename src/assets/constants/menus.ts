@@ -68,7 +68,7 @@ export const Menus: any = [
       {
         id: 1,
         name: "Master",
-        route: "#",
+        route: "/assets",
       },
     ],
   },
