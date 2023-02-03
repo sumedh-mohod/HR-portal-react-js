@@ -6,7 +6,6 @@ import { globalStyles } from "styles/global";
 import Stepper from '@mui/material/Stepper';
 import Step from '@mui/material/Step';
 import StepLabel from '@mui/material/StepLabel';
-import StepContent from '@mui/material/StepContent';
 
 const AssetsDetails = () => {
     const [activeStep, setActiveStep] = React.useState(0);
@@ -15,13 +14,13 @@ const AssetsDetails = () => {
     const handleReset = () => { setActiveStep(0); };
     const steps = [
         {
-            label: "Assigned to Nikhil -",
+            label: "Assigned to Nikhil -  2 October, 2023",
         },
         {
-            label: "Assigned to Sarang -",
+            label: "Assigned to Sarang -  2 October, 2022",
         },
         {
-            label: "Assigned to Chetan -",
+            label: "Assigned to Chetan -  2 October, 2021",
 
         },
     ];
@@ -80,84 +79,17 @@ const AssetsDetails = () => {
                 </Typography>
             </Box>
             {/* steper carad++++++++++++++++++++++++++ */}
-            <Card sx={{ mt: 3, mb: 3, p: 5 }}>
+            <Card {...styles.stepperCard}>
                 {/* steper code start+++++++++++++++++++  */}
-
                 <Stepper activeStep={activeStep} orientation="vertical">
                     {steps.map((step, index) => (
-                        <Step key={step.label} sx={{
-
-                            '& .MuiStepLabel-root': {
-                                color: '#515151',
-                                fontFamily: 'Montserrat',
-                                fontSize: "13px"
-                                // circle color (ACTIVE)
-                            },
-                            '& .Mui-active': {
-                                color: '#F58634',
-                                fontSize: "13px",
-                                fontFamily: 'Montserrat',// circle color (ACTIVE)
-                            },
-
-                            '& .MuiStepLabel-root  .MuiStepIcon-text': {
-                                display: "none",// for hide 123 no in circle
-                            },
-                            '&  .Mui-completed  .MuiStepIcon-text': {
-                                display: "none!important",// for hide 123 no in circle
-                            },
-                            '&	.MuiStepIcon-root': {
-                                color: " #D9D9D9!important",
-                                fontSize: "13px",
-                                marginLeft: "5px"
-
-                            },
-                            '& .Mui-completed .MuiStepIcon-root  .MuiSvgIcon-root   ': {
-
-                                background: "#F58634!important",
-                                borderRadius: "50%"
-                            },
-                            '&  .Mui-completed': {
-                                color: '#F58634 !important',
-                                fontFamily: 'Montserrat !important',
-                                fontSize: "13px !important",// circle color (COMPLETED)
-                            },
-                            '& .Mui-active.MuiStepLabel-alternativeLabel':
-                            {
-                                color: '#515151',
-                                fontFamily: 'Montserrat',
-                                fontSize: "13px",
-                                marginLeft: "5px"// Just text label (ACTIVE)
-                            },
-                            '& .MuiStepLabel-label':
-                            {
-                                color: '#515151!important',
-                                fontFamily: 'Montserrat',
-                                fontSize: "13px",
-                                marginLeft: "5px" // Just text label (ACTIVE)
-                            },
-
-                            '& 	.Mui-active.MuiStepLabel-label':
-                            {
-                                color: '#515151!important',
-                                fontFamily: 'Montserrat',
-                                fontSize: "13px", marginLeft: "5px"// Just text label (ACTIVE)
-                            },
-
-                        }}>
+                        <Step key={step.label} {...styles.stepper} >
                             <StepLabel sx={{ color: "black" }} onClick={handleNext}>
                                 {step.label}
                             </StepLabel>
                         </Step>
                     ))}
                 </Stepper>
-                {/* {activeStep === steps.length && (
-                    <Card square elevation={0} sx={{ p: 3 }}>
-                        <Typography>All steps completed - you&apos;re finished</Typography>
-                        <Button onClick={handleReset} sx={{ mt: 1, mr: 1 }}>
-                            Reset
-                        </Button>
-                    </Card>
-                )} */}
                 {/* steper code end+++++++++++++++++++  */}
             </Card>
         </Box >
