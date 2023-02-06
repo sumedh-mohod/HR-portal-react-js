@@ -21,13 +21,13 @@ const Data: any = [
     id: 1,
     mainIcon: <PdfIcon width={60} height={55} />,
     subIcon: <PdfIcon width={30} height={25} />,
-    File_name: "Certificate 01.PDF",
+    File_name: "abc.PDF",
   },
   {
     id: 2,
     mainIcon: <WordIcon width={60} height={55} />,
     subIcon: <WordIcon width={30} height={25} />,
-    File_name: "Certificate 02.PDF",
+    File_name: "kkkk.PDF",
   },
 ];
 let PageSize = 5;
@@ -102,10 +102,11 @@ const OrganizationlData = () => {
     const SearchText = event.target.value;
     setSearchText(SearchText);
 
-    if (SearchText.length > 0) {
-      const newFilter = Data.filter((value: any) =>
-        value.file_name.toLowerCase().includes(SearchText.toLowerCase())
+    if (SearchText?.length > 0) {
+      const newFilter = Data?.filter((value: any) =>
+        value.File_name?.toLowerCase()?.includes(SearchText?.toLowerCase())
       );
+      console.log("newFilter", newFilter);
       setCurrentData(newFilter);
     } else {
       const firstPageIndex = (currentPage - 1) * PageSize;
@@ -192,7 +193,7 @@ const OrganizationlData = () => {
           <OrganizationalCard
             handleCardData={handleCardData}
             organasationlData={currentData}
-            // handleViewOpen={handleViewOpen}
+          // handleViewOpen={handleViewOpen}
           />
         </TabPanel>
         <TabPanel value={value} index={1}>

@@ -78,8 +78,8 @@ const Employee = () => {
   useEffect(() => {
     dispatch(getEmployees())
       .unwrap()
-      .then((response: any) => {})
-      .catch((error: any) => {});
+      .then((response: any) => { })
+      .catch((error: any) => { });
   }, []);
 
   useEffect(() => {
@@ -135,6 +135,7 @@ const Employee = () => {
       const newFilter = employees.filter((value: any) =>
         value.employee_name.toLowerCase().includes(SearchText.toLowerCase())
       );
+      console.log("newFilter", newFilter);
       setCurrentData(newFilter);
     } else {
       const firstPageIndex = (currentPage - 1) * PageSize;
