@@ -3,8 +3,6 @@ import { useNavigate } from "react-router-dom";
 import { GridColDef } from "@mui/x-data-grid";
 import { Box, Typography, Button } from "@mui/material";
 import AddIcon from "@mui/icons-material/Add";
-import PartnersCard from "components/Partner/PartnersCard";
-import PartnersList from "components/Partner/PartnersList";
 import CustomizationButtons from "components/HigherOrder/CustomizationButtons";
 import Paginations from "components/HigherOrder/Paginations";
 import Search from "components/HigherOrder/Search";
@@ -57,14 +55,15 @@ const columns: GridColDef[] = [
   },
   {
     field: "printBarcode_QRCode",
-    renderCell:()=><QRiconBox />,
-    // onCellClick:()=>,
+    renderCell: (params) => {
+      return <QRiconBox />;
+    },
     headerName: "Print Barcode/QR Code",
     width: 200,
     minWidth: 150,
     maxWidth: 200,
     hide: false,
-    align:"center"
+    align: "center",
   },
 ];
 
@@ -75,8 +74,6 @@ const row = [
     category: "Furniture",
     subCategory: "Chair",
     description: "New chair with good quality",
-    printBarcode_QRCode:<QRicon />
-
   },
   {
     id: 2,
@@ -84,7 +81,6 @@ const row = [
     category: "Furniture",
     subCategory: "Chair",
     description: "New chair with good quality",
-    printBarcode_QRCode:<QRicon/>
   },
   {
     id: 3,
@@ -92,7 +88,6 @@ const row = [
     category: "Furniture",
     subCategory: "Chair",
     description: "New chair with good quality",
-    printBarcode_QRCode:<QRicon/>
   },
   {
     id: 4,
@@ -100,7 +95,6 @@ const row = [
     category: "Furniture",
     subCategory: "Chair",
     description: "New chair with good quality",
-    printBarcode_QRCode:<QRicon/>
   },
   {
     id: 5,
@@ -108,7 +102,6 @@ const row = [
     category: "Furniture",
     subCategory: "Chair",
     description: "New chair with good quality",
-    printBarcode_QRCode:<QRicon/>
   },
   {
     id: 6,
@@ -116,7 +109,6 @@ const row = [
     category: "Furniture",
     subCategory: "Chair",
     description: "New chair with good quality",
-    printBarcode_QRCode:<QRicon/>
   },
 ];
 
@@ -210,7 +202,6 @@ const Assets = () => {
       setCurrentData(DataSliced);
     }
   };
-  
 
   return (
     <Box sx={{ display: "flex", flexDirection: "column" }}>
@@ -280,7 +271,7 @@ const Assets = () => {
           />
         )}
       </Box>
-      {row?.length > 0 && <Paginations handlePageChange={handlePageChange} />} 
+      {row?.length > 0 && <Paginations handlePageChange={handlePageChange} />}
     </Box>
   );
 };

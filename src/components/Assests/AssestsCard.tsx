@@ -16,7 +16,7 @@ const AssestsCard = ({
   const navigate = useNavigate();
   const HandleQr = (assets: any, index: any) => {
     console.log("qr click values", assets);
-    navigate("/assests")
+    navigate("/assets")
   };
   return (
     <Box>
