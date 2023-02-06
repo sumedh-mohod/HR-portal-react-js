@@ -15,6 +15,7 @@ import { useAppDispatch } from "store/hooks";
 import { addEmployee } from "store/reducers/employee/employees";
 import { globalStyles } from "styles/global";
 import { styles } from "styles/components/addEmployee";
+import { addEmployeeValidator } from "utils/validations/auth";
 
 const AddEmployee = () => {
   const navigate = useNavigate();
@@ -38,7 +39,7 @@ const AddEmployee = () => {
       designation: "",
       emailId: "",
     },
-    // validationSchema: addEmployeeValidator,
+    validationSchema: addEmployeeValidator,
     onSubmit: (values) => {
       console.log("values of add employee", values);
       dispatch(addEmployee(values))
@@ -46,7 +47,7 @@ const AddEmployee = () => {
         .then((response: any) => {
           console.log("response from addEmployee file", response);
         })
-        .catch((error: any) => {});
+        .catch((error: any) => { });
     },
   });
   const inputRef: any = useRef(null);
@@ -101,7 +102,7 @@ const AddEmployee = () => {
             <Grid item xs={12} md={6} lg={3}>
               <FormControl fullWidth>
                 <FormLabel id="logo" {...styles.textFieldLabel}>
-                  Upload Logo*
+                  Upload Logo
                 </FormLabel>
                 <input
                   name="logo"
@@ -116,8 +117,6 @@ const AddEmployee = () => {
                   value={values.logo}
                   onChange={handleFileChange}
                   onBlur={handleBlur}
-                  error={touched.logo && errors.logo ? true : false}
-                  helperText={touched.logo && errors.logo}
                   {...styles.logoTextfield}
                   InputProps={{
                     style: { ...globalStyles.textField },
@@ -139,7 +138,7 @@ const AddEmployee = () => {
             {/* Display name */}
             <Grid item xs={12} md={6} lg={3}>
               <FormControl fullWidth>
-                <FormLabel id="displayName" {...styles.textFieldLabel}>
+                <FormLabel id="DisplayName" {...styles.textFieldLabel}>
                   Display Name*
                 </FormLabel>
                 <TextField
