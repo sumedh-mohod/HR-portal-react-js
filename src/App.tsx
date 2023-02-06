@@ -30,7 +30,7 @@ import ProtectedRoute, {
   ProtectedRouteProps,
   LoggedInUserProps,
 } from "./ProtectedRoute";
-import AssestsAddEdit from "screens/Assests/AssestsAddEdit";
+import AssestsAddEdit from "screens/Assests/Operations";
 
 
 const App = () => {
@@ -42,8 +42,8 @@ const App = () => {
     isAuthenticated: sessionStorage.getItem("access_token")
       ? true
       : false || storeResponse?.user?.token
-      ? true
-      : false,
+        ? true
+        : false,
     authenticationPath: "/",
   };
 
@@ -78,8 +78,8 @@ const App = () => {
               />
             }
           />
-      {/* Assets */}
-      <Route
+          {/* Assets */}
+          <Route
             path="/assets"
             element={
               <ProtectedRoute

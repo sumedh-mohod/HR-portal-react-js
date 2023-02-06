@@ -6,12 +6,18 @@ import { globalStyles } from "styles/global";
 import Stepper from '@mui/material/Stepper';
 import Step from '@mui/material/Step';
 import StepLabel from '@mui/material/StepLabel';
+import { useNavigate } from "react-router-dom";
 
 const AssetsDetails = () => {
+    const navigate = useNavigate();
     const [activeStep, setActiveStep] = React.useState(0);
     const handleNext = () => { setActiveStep((prevActiveStep) => prevActiveStep + 1); };
     const handleBack = () => { setActiveStep((prevActiveStep) => prevActiveStep - 1); };
     const handleReset = () => { setActiveStep(0); };
+
+    const handleAssetsEdit = () => {
+        navigate("/assets/edit");
+    };
     const steps = [
         {
             label: "Assigned to Nikhil -  2 October, 2023",
@@ -37,6 +43,7 @@ const AssetsDetails = () => {
                         variant="contained"
                         startIcon={<EditIcon />}
                         {...styles.editBtn}
+                        onClick={handleAssetsEdit}
                     >
                         Edit
                     </Button>
