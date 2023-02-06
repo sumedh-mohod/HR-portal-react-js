@@ -1,6 +1,10 @@
 import * as React from "react"
 
-const QRicon = (props:any) => (
+
+const QRicon = (props:any) => {
+
+
+  return(
   <svg
   width={14}
   height={10}
@@ -15,5 +19,6 @@ const QRicon = (props:any) => (
     />
   </svg>
 )
+  }
 
 export default QRicon

@@ -1,17 +1,22 @@
 import React from "react";
 import { Grid, Typography, Paper, Box, Card } from "@mui/material";
-import { styles } from "styles/components/assests";
+import { styles } from "styles/components/assets";
 import QRicon from "components/Icons/QRicon";
 import { useNavigate } from "react-router-dom";
 
-const AssestsCard = ({
+const AssetsCard = ({
   Assets,
   handleAssetsDetailsClick,
   handleAssetsAddClick,
+  // HandleQr
+
+
 }: {
   Assets: any;
   handleAssetsDetailsClick: any;
   handleAssetsAddClick: any;
+  HandleQr:any
+
 }) => {
   const navigate = useNavigate();
   const HandleQr = (assets: any, index: any) => {
@@ -25,7 +30,6 @@ const AssestsCard = ({
           <Grid item xs={12} md={3} lg={3}>
             <Card
               elevation={3}
-
               {...styles.assetsCard}
               key={index}
             >
@@ -73,4 +77,4 @@ const AssestsCard = ({
   );
 };
 
-export default AssestsCard;
+export default AssetsCard;

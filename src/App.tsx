@@ -14,7 +14,7 @@ import Employees from "screens/Employee/Employee";
 import Projects from "screens/Project/Projects";
 import Partners from "screens/Partner/Partners";
 import Vendors from "screens/Vendor/Vendors";
-import Assets from "screens/Assests/Assests";
+import Assets from "screens/Assets/Assets";
 
 import CompanyOperations from "screens/Company/Operations";
 import EmployeeAddEdit from "screens/Employee/EmployeeAddEdit";
@@ -30,7 +30,7 @@ import ProtectedRoute, {
   ProtectedRouteProps,
   LoggedInUserProps,
 } from "./ProtectedRoute";
-import AssestsAddEdit from "screens/Assests/Operations";
+import AssetsAddEdit from "screens/Assets/Operations";
 
 
 const App = () => {
@@ -93,7 +93,7 @@ const App = () => {
             element={
               <ProtectedRoute
                 {...defaultProtectedRouteProps}
-                outlet={<AssestsAddEdit />}
+                outlet={<AssetsAddEdit />}
               />
             }
           />
