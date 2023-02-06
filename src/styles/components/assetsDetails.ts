@@ -96,6 +96,26 @@ export const styles = {
         fontSize: "13px",
         marginLeft: "5px", // Just text label (ACTIVE)
       },
+      "& .MuiSvgIcon-root": {
+        background: "#F58634",
+        borderRadius: "50%",
+        border: "none",
+      },
+      "& .MuiStepConnector-line": {
+        // height: "40px !important",
+        marginTop: "-11px !important",
+        marginBottom: "-11px !important",
+        color: "red",
+        backgroundColor: "red !important",
+        height: "70px",
+      },
+      "& .MuiStep-vertical": {
+        height: "40px !important",
+        marginTop: "-11px !important",
+        marginBottom: "-11px !important",
+        color: "red",
+        backgroundColor: "red !important",
+      },
     },
   },
 };

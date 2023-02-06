@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Box, Button, Grid, Typography, Card } from "@mui/material";
+import { styled } from '@mui/material/styles';
 import EditIcon from "components/Icons/EditIcon";
 import { styles } from "styles/components/assetsDetails";
 import { globalStyles } from "styles/global";
@@ -7,17 +8,10 @@ import Stepper from '@mui/material/Stepper';
 import Step from '@mui/material/Step';
 import StepLabel from '@mui/material/StepLabel';
 import { useNavigate } from "react-router-dom";
+import StepConnector, { stepConnectorClasses } from '@mui/material/StepConnector';
 
 const AssetsDetails = () => {
-    const navigate = useNavigate();
-    const [activeStep, setActiveStep] = React.useState(0);
-    const handleNext = () => { setActiveStep((prevActiveStep) => prevActiveStep + 1); };
-    const handleBack = () => { setActiveStep((prevActiveStep) => prevActiveStep - 1); };
-    const handleReset = () => { setActiveStep(0); };
 
-    const handleAssetsEdit = () => {
-        navigate("/assets/edit");
-    };
     const steps = [
         {
             label: "Assigned to Nikhil -  2 October, 2023",
@@ -29,7 +23,27 @@ const AssetsDetails = () => {
             label: "Assigned to Chetan -  2 October, 2021",
 
         },
+        {
+            label: "Assigned to Chetan -  2 October, 2020",
+
+        },
     ];
+
+    const ColorlibConnector = styled(StepConnector)(({ theme }) => ({
+        [`& .${stepConnectorClasses.line}`]: {
+            height: "40px !important",
+            marginTop: "-11px !important",
+            marginBottom: "-11px !important",
+        },
+    }));
+
+    const navigate = useNavigate();
+    const [activeStep, setActiveStep] = useState(1);
+
+    const handleAssetsEdit = () => {
+        navigate("/assets/edit");
+    };
+
     return (
         <Box>
             {/* titel box++++++++++++++++++++++++++++++++++++++++++++++ */}
@@ -88,10 +102,10 @@ const AssetsDetails = () => {
             {/* steper carad++++++++++++++++++++++++++ */}
             <Card {...styles.stepperCard}>
                 {/* steper code start+++++++++++++++++++  */}
-                <Stepper activeStep={activeStep} orientation="vertical">
+                <Stepper activeStep={activeStep} orientation="vertical" connector={<ColorlibConnector />}>
                     {steps.map((step, index) => (
                         <Step key={step.label} {...styles.stepper} >
-                            <StepLabel sx={{ color: "black" }} onClick={handleNext}>
+                            <StepLabel sx={{ color: "black" }}>
                                 {step.label}
                             </StepLabel>
                         </Step>
