@@ -146,8 +146,8 @@ const Assets = () => {
     setCurrentData(DataSliced);
   }, [currentPage]);
 
-  const handleAssetsEditClick = (assets: any, index: any) => {
-    navigate("/assets/edit", {
+  const handleAssetsDetailsClick = (assets: any, index: any) => {
+    navigate("/assets/details", {
       state: { assets },
     });
   };
@@ -266,7 +266,7 @@ const Assets = () => {
         ) : (
           <AssestsCard
             Assets={currentData}
-            handleAssetsEditClick={handleAssetsEditClick}
+            handleAssetsDetailsClick={handleAssetsDetailsClick}
             handleAssetsAddClick={handleAssetsAddClick}
           />
         )}

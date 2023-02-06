@@ -60,15 +60,20 @@ export const Menus: any = [
   },
   {
     id: 3,
-    name: "Assets",
+    name: "Asset",
     icon: Assets,
     route: "assets",
     active: false,
     submenu: [
       {
         id: 1,
-        name: "Master",
+        name: "Assets",
         route: "/assets",
+      },
+      {
+        id: 2,
+        name: "Assets Master",
+        route: "/assets/assetsmaster",
       },
     ],
   },
