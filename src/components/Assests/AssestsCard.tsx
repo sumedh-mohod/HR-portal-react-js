@@ -9,7 +9,7 @@ const AssestsCard = ({
  
   handleAssetsEditClick,
   handleAssetsAddClick,
-  HandleQr
+  // HandleQr
 
 
 }: {
@@ -21,6 +21,10 @@ const AssestsCard = ({
 
 }) => {
   const navigate = useNavigate();
+  // const HandleQr = (assets: any, index: any) => {
+  //   console.log("qr click values", assets);
+  //   navigate("/assets")
+  // };
   return (
     <Box>
       <Grid container spacing={2} sx={{ mt: 1 }}>

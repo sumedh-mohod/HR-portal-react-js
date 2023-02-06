@@ -3,8 +3,6 @@ import { useNavigate } from "react-router-dom";
 import { GridColDef } from "@mui/x-data-grid";
 import { Box, Typography, Button } from "@mui/material";
 import AddIcon from "@mui/icons-material/Add";
-import PartnersCard from "components/Partner/PartnersCard";
-import PartnersList from "components/Partner/PartnersList";
 import CustomizationButtons from "components/HigherOrder/CustomizationButtons";
 import Paginations from "components/HigherOrder/Paginations";
 import Search from "components/HigherOrder/Search";
@@ -14,8 +12,112 @@ import AssetsList from "components/Assests/AssetsList";
 import { styles } from "styles/components/assests";
 import QRicon from "components/Icons/QRicon";
 import QRiconBox from "components/Assests/QRiconBox";
+<<<<<<< HEAD
 import AssetsModel from "components/Assests/AssetsModel";
 import QrCodeIcon from '@mui/icons-material/QrCode';
+=======
+
+const columns: GridColDef[] = [
+  {
+    field: "id",
+    headerName: "Sr",
+    minWidth: 50,
+    hide: false,
+  },
+  {
+    field: "assetsName",
+    headerName: "Name",
+    width: 200,
+    minWidth: 150,
+    maxWidth: 200,
+    hide: false,
+  },
+  {
+    field: "category",
+    headerName: "Category",
+    width: 200,
+    minWidth: 150,
+    maxWidth: 200,
+    hide: false,
+  },
+  {
+    field: "subCategory",
+    headerName: "Sub-Category",
+    width: 200,
+    minWidth: 150,
+    maxWidth: 200,
+    hide: false,
+  },
+
+  {
+    field: "description",
+    headerName: "Description",
+    width: 300,
+    minWidth: 150,
+    maxWidth: 300,
+    hide: false,
+  },
+  {
+    field: "printBarcode_QRCode",
+    renderCell: (params) => {
+      return <QRiconBox />;
+    },
+    headerName: "Print Barcode/QR Code",
+    width: 200,
+    minWidth: 150,
+    maxWidth: 200,
+    hide: false,
+    align: "center",
+  },
+];
+
+const row = [
+  {
+    id: 1,
+    assetsName: "Office Chair",
+    category: "Furniture",
+    subCategory: "Chair",
+    description: "New chair with good quality",
+  },
+  {
+    id: 2,
+    assetsName: "Office Chair",
+    category: "Furniture",
+    subCategory: "Chair",
+    description: "New chair with good quality",
+  },
+  {
+    id: 3,
+    assetsName: "Office Chair",
+    category: "Furniture",
+    subCategory: "Chair",
+    description: "New chair with good quality",
+  },
+  {
+    id: 4,
+    assetsName: "Office Chair",
+    category: "Furniture",
+    subCategory: "Chair",
+    description: "New chair with good quality",
+  },
+  {
+    id: 5,
+    assetsName: "Fan",
+    category: "Furniture",
+    subCategory: "Chair",
+    description: "New chair with good quality",
+  },
+  {
+    id: 6,
+    assetsName: "Office Chair",
+    category: "Furniture",
+    subCategory: "Chair",
+    description: "New chair with good quality",
+  },
+];
+
+let PageSize = 5;
+>>>>>>> c2b318868f199d751b016c515cda46f38fbcc22c
 
 const Assets = () => {
   // const dispatch = useAppDispatch();
