@@ -3,7 +3,7 @@ import { Modal, Box, Divider, Typography, Button } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
 import { styles } from "styles/components/assests";
 import QRCode from "react-qr-code";
-import useSWR from "swr";
+// import useSWR from "swr";
 const AssetsModel = ({
   handleClose,
   open,
@@ -13,10 +13,10 @@ const AssetsModel = ({
   open: any;
   newData: any;
 }) => {
-  const { data, error } = useSWR("/api/user", fetch);
+  // const { data, error } = useSWR("/api/user", fetch);
 
-  if (error) return <div>failed to load</div>;
-  if (!data) return <div>loading...</div>;
+  // if (error) return <div>failed to load</div>;
+  // if (!data) return <div>loading...</div>;
 
   return (
     <Box>
