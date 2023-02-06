@@ -1,16 +1,7 @@
-import { useState } from "react";
 import { DataGrid } from "@mui/x-data-grid";
 import { Grid, Box, Card } from "@mui/material";
 
-const AssetsList = ({ showColumns, rows ,open,handleClose}: { showColumns: any; rows: any;open:any,handleClose:any }) => {
-  const [finalClickInfo, setFinalClickInfo] = useState([]);
-
-  const handleOnCellClick = (params:any) => {
-    setFinalClickInfo(params);
-  };
-  const HandleQr = (rowData: any) => {
-    console.log("row click values", rowData);
-  };
+const AssetsList = ({ showColumns, rows}: { showColumns: any; rows: any }) => {
   return (
     <Card sx={{ marginTop: "35px", p: 0 }}>
       <Grid container width="1">
@@ -34,8 +25,6 @@ const AssetsList = ({ showColumns, rows ,open,handleClose}: { showColumns: any; 
             disableColumnMenu={true}
             disableColumnFilter={true}
             disableColumnSelector={true}
-            // onRowClick={(rowData) => HandleQr(rowData.row)}
-            // onCellClick={handleOnCellClick}
           />
         </Grid>
       </Grid>

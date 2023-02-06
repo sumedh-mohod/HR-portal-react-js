@@ -38,10 +38,12 @@ export const styles = {
   assetsDescriptionBox2: {
     sx: {
       borderTop: "1px solid #C5C7CD",
-      paddingTop: "11px",
       display: "flex",
       flexDirection: "row",
       justifyContent: "space-between",
+      padding:0,
+      paddingTop: "11px",
+      alignItems:"center"
     },
   },
   assetsDescription: {
@@ -82,6 +84,7 @@ export const styles = {
       alignItem: "conter",
       width: "max-content",
       cursor: "pointer",
+   
     },
   },
   // model

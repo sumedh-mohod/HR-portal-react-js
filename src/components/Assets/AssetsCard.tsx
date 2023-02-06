@@ -1,28 +1,20 @@
 import React from "react";
 import { Grid, Typography, Paper, Box, Card } from "@mui/material";
 import { styles } from "styles/components/assets";
-import QRicon from "components/Icons/QRicon";
 import { useNavigate } from "react-router-dom";
+import QRiconBox from "./QRiconBox";
 
 const AssetsCard = ({
   Assets,
   handleAssetsDetailsClick,
   handleAssetsAddClick,
-  // HandleQr
-
-
 }: {
   Assets: any;
   handleAssetsDetailsClick: any;
   handleAssetsAddClick: any;
-  HandleQr:any
 
 }) => {
   const navigate = useNavigate();
-  const HandleQr = (assets: any, index: any) => {
-    console.log("qr click values", assets);
-    navigate("/assets")
-  };
   return (
     <Box>
       <Grid container spacing={2} sx={{ mt: 1 }}>
@@ -62,12 +54,9 @@ const AssetsCard = ({
                 <Typography {...styles.assetsDescription}>
                   Print Barcode/QR Code
                 </Typography>
-                <Box
-                  {...styles.QRiconBox}
-                  onClick={() => HandleQr(asset, index)}
-                >
-                  <QRicon />
-                </Box>
+                <Box>
+              <QRiconBox  index={asset}/>
+              </Box>
               </Box>
             </Card>
           </Grid>

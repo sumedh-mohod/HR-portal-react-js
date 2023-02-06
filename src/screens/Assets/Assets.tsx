@@ -12,17 +12,9 @@ import AssetsList from "components/Assets/AssetsList";
 import { styles } from "styles/components/assets";
 import QRicon from "components/Icons/QRicon";
 import QRiconBox from "components/Assets/QRiconBox";
-import AssetsModel from "components/Assets/AssetsModel"
-
+import AssetsModel from "components/Assets/AssetsModel";
 
 const Assets = () => {
-  // const dispatch = useAppDispatch();
-  const HandleQr = (assets: any, index: any) => {
-    console.log("qr click values", assets);
-    setOpen(true);
-    setQrData(assets);   
-  };
-  
   const columns: GridColDef[] = [
     {
       field: "id",
@@ -54,7 +46,7 @@ const Assets = () => {
       maxWidth: 200,
       hide: false,
     },
-  
+
     {
       field: "description",
       headerName: "Description",
@@ -65,17 +57,18 @@ const Assets = () => {
     },
     {
       field: "printBarcode_QRCode",
-      // renderCell:(params)=><QRiconBox/>,
+      renderCell: (params) => {
+        return <QRiconBox data={params.row} />;
+      },
       headerName: "Print Barcode/QR Code",
       width: 200,
       minWidth: 150,
       maxWidth: 200,
       hide: false,
-      align:"center"
+      align: "center",
     },
   ];
-  
-  
+
   const row = [
     {
       id: 1,
@@ -83,8 +76,6 @@ const Assets = () => {
       category: "Furniture",
       subCategory: "Chair",
       description: "New chair with good quality",
-      printBarcode_QRCode:<QRiconBox/>
-
     },
     {
       id: 2,
@@ -92,8 +83,6 @@ const Assets = () => {
       category: "Furniture",
       subCategory: "Chair",
       description: "New chair with good quality",
-      printBarcode_QRCode:"icon"
-    
     },
     {
       id: 3,
@@ -101,7 +90,6 @@ const Assets = () => {
       category: "Furniture",
       subCategory: "Chair",
       description: "New chair with good quality",
-      printBarcode_QRCode:"icon"
     },
     {
       id: 4,
@@ -109,7 +97,6 @@ const Assets = () => {
       category: "Furniture",
       subCategory: "Chair",
       description: "New chair with good quality",
-      printBarcode_QRCode:"icon"
     },
     {
       id: 5,
@@ -117,7 +104,6 @@ const Assets = () => {
       category: "Furniture",
       subCategory: "Chair",
       description: "New chair with good quality",
-      printBarcode_QRCode:"icon"
     },
     {
       id: 6,
@@ -125,10 +111,9 @@ const Assets = () => {
       category: "Furniture",
       subCategory: "Chair",
       description: "New chair with good quality",
-      printBarcode_QRCode:"icon"
     },
   ];
-  
+
   let PageSize = 5;
 
   const [designView, setDesignView] = useState("list");
@@ -138,24 +123,8 @@ const Assets = () => {
   const [searchText, setSearchText] = useState("");
   const [currentData, setCurrentData] = useState<any>([]);
   const openDropDown = Boolean(anchorEl);
-  const [open, setOpen] = React.useState(false);
-  const handleClose = () => setOpen(false);
-  const [qrData, setQrData] = useState<any>({});
-
-
-  // const partnersStore = useAppSelector((state) => state.partners);
-  // const { isLoadingRequest, partners } = partnersStore;
-  // console.log("partners data from partner.tsx", partners);
 
   const navigate = useNavigate();
-
-  // useEffect(() => {
-  //   dispatch(getPartners())
-  //     .unwrap()
-  //     .then((response: any) => {})
-  //     .catch((error: any) => {});
-  // }, [dispatch]);
-
   useEffect(() => {
     const firstPageIndex = (currentPage - 1) * PageSize;
     const lastPageIndex = firstPageIndex + PageSize;
@@ -167,7 +136,7 @@ const Assets = () => {
   const handleAssetsDetailsClick = (assets: any, index: any) => {
     navigate("/assets/details", {
       state: { assets },
-    });  
+    });
   };
 
   const handleAssetsAddClick = () => {
@@ -221,9 +190,8 @@ const Assets = () => {
       setCurrentData(DataSliced);
     }
   };
-  
- 
-// console.log("data",qrData)
+
+  // console.log("data",qrData)
   return (
     <Box sx={{ display: "flex", flexDirection: "column" }}>
       {/* <Loader isLoading={isLoadingRequest} /> */}
@@ -274,11 +242,7 @@ const Assets = () => {
       </Box>
       <Box sx={{ flexGrow: 1 }}>
         {designView === "list" ? (
-          <AssetsList
-            // handlePartnerAddClick={handlePartnerAddClick}
-            // rows={currentData}
-            open={open}
-             handleClose={handleClose}
+          <AssetsList          
             showColumns={showColumns?.length >= 0 ? showColumns : []}
             rows={
               currentData !== undefined && currentData?.length >= 0
@@ -288,21 +252,13 @@ const Assets = () => {
           />
         ) : (
           <AssetsCard
-          // open={open}
-          // handleClose={handleClose}
-          HandleQr={HandleQr}
             Assets={currentData}
             handleAssetsDetailsClick={handleAssetsDetailsClick}
             handleAssetsAddClick={handleAssetsAddClick}
           />
         )}
       </Box>
-      {row?.length > 0 && <Paginations handlePageChange={handlePageChange} />} 
-      <AssetsModel
-        open={open}
-        handleClose={handleClose}
-        newData={qrData?.assetsName}
-      />
+      {row?.length > 0 && <Paginations handlePageChange={handlePageChange} />}
     </Box>
   );
 };
