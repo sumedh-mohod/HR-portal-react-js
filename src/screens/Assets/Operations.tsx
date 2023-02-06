@@ -2,8 +2,9 @@ import React from "react";
 import { useParams, useLocation } from "react-router-dom";
 import AddAssets from "components/Assets/AddAssets";
 import AssetsDetails from "components/Assets/AssetsDetails";
-import AssetsMaster from "components/Assets/AssetsMaster";
 import AssetsEdit from "components/Assets/AssetsEdit";
+import AssetsMastersList from "./AssetsMasters";
+import AssetsMaster from "components/Assets/AssetsMaster";
 import Inventory from "./Inventory";
 
 const AssestsAddEdit = () => {
@@ -20,6 +21,8 @@ const AssestsAddEdit = () => {
     case "details":
       return <AssetsDetails />;
     case "assetsmaster":
+      return <AssetsMastersList />;
+    case "assetsmasteradd":
       return <AssetsMaster />;
       case "inventory":
       return <Inventory />;
