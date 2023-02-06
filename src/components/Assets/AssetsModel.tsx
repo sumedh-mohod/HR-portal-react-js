@@ -1,7 +1,6 @@
 import React from "react";
-import { Modal, Box, Divider, Typography, Button } from "@mui/material";
-import CloseIcon from "@mui/icons-material/Close";
-import { styles } from "styles/components/assests";
+import { Modal, Box,Typography, Button } from "@mui/material";
+import { styles } from "styles/components/assets";
 import QRCode from "react-qr-code";
 // import useSWR from "swr";
 const AssetsModel = ({

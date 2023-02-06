@@ -1,6 +1,6 @@
 import React from "react";
 import { Box } from "@mui/material";
-import { styles } from "styles/components/assests";
+import { styles } from "styles/components/assets";
 import QRicon from "components/Icons/QRicon";
 
 const QRiconBox = (props:any) => {

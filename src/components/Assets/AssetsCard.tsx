@@ -1,10 +1,10 @@
 import React from "react";
 import { Grid, Typography, Paper, Box, Card } from "@mui/material";
-import { styles } from "styles/components/assests";
+import { styles } from "styles/components/assets";
 import QRicon from "components/Icons/QRicon";
 import { useNavigate } from "react-router-dom";
 
-const AssestsCard = ({
+const AssetsCard = ({
   Assets,
   handleAssetsDetailsClick,
   handleAssetsAddClick,
@@ -77,4 +77,4 @@ const AssestsCard = ({
   );
 };
 
-export default AssestsCard;
+export default AssetsCard;
