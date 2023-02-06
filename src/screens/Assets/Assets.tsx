@@ -242,7 +242,8 @@ const Assets = () => {
       </Box>
       <Box sx={{ flexGrow: 1 }}>
         {designView === "list" ? (
-          <AssetsList          
+          <AssetsList
+          
             showColumns={showColumns?.length >= 0 ? showColumns : []}
             rows={
               currentData !== undefined && currentData?.length >= 0

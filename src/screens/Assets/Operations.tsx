@@ -4,6 +4,7 @@ import AddAssets from "components/Assets/AddAssets";
 import AssetsDetails from "components/Assets/AssetsDetails";
 import AssetsMaster from "components/Assets/AssetsMaster";
 import AssetsEdit from "components/Assets/AssetsEdit";
+import Inventory from "./Inventory";
 
 const AssestsAddEdit = () => {
   let params = useParams();
@@ -20,6 +21,9 @@ const AssestsAddEdit = () => {
       return <AssetsDetails />;
     case "assetsmaster":
       return <AssetsMaster />;
+      case "inventory":
+      return <Inventory />;
+
     default:
       return null;
   }
