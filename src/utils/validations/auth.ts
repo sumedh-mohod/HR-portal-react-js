@@ -19,6 +19,7 @@ export const editCompanyValidator = Yup.object().shape({
   // selectDate:Yup.date().required("Please Select a valid date "),
 });
 
+// add company validator
 export const addCompanyValidator = Yup.object().shape({
   company: Yup.string().required("Please enter a valid company"),
   abbr: Yup.string().required("Please enter a valid abbr"),
@@ -26,6 +27,7 @@ export const addCompanyValidator = Yup.object().shape({
     "Please enter a valid default currency"
   ),
   domain: Yup.string().required("Please enter a valid domain"),
+  country: Yup.string().required("Please Select a valid country"),
 });
 
 // add partner validation
@@ -52,15 +54,24 @@ export const addVendorValidator = Yup.object().shape({
   country: Yup.string().required("Please Select a valid country"),
 });
 
+// add vendor employee
+export const addEmployeeValidator = Yup.object().shape({
+  DisplayName: Yup.string().required("Please enter a valid vendor name"),
+});
+
 // add holiday card validation
 
 export const addHolidayValidator = Yup.object().shape({
   selectDate: Yup.date().required("Please Select a valid date "),
 });
 
-// add assets validation
-export const addAssetsValidator = Yup.object().shape({
-  name: Yup.string().required("Please enter a valid name"),
+// assets master add category validation
+export const addCategoryValidator = Yup.object().shape({
   categoryName: Yup.string().required("Please Select a valid Category Name"),
-  subCategoryName: Yup.string().required("Please Select a valid Sub Category Name"),
+});
+
+// assets master add sub category validation
+export const addSubCategoryValidator = Yup.object().shape({
+  subCategoryName: Yup.string().required("Please enter a valid Sub Category Name"),
+  categoryName: Yup.string().required("Please Select a valid Category Name"),
 });

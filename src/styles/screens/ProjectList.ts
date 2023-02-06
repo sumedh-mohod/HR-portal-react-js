@@ -10,7 +10,7 @@ export const styles = {
   },
   projectCard: {
     sx: {
-      p: 5,
+      p: 3,
       pt: 1,
       pb: 1,
       fontSize: "16px",
@@ -41,8 +41,22 @@ export const styles = {
       fontFamily: "Montserrat",
       fontStyle: "normal",
       fontWeight: 500,
-      fontSize: "14px",
-      lineHeight: "18px",
+      fontSize: "12px",
+      lineHeight: "20px",
+    },
+  },
+  projectDescriptionTitle: {
+    sx: {
+      fontFamily: "Montserrat",
+      fontStyle: "normal",
+      fontWeight: 100,
+      fontSize: "12px",
+      lineHeight: "20px",
+    },
+  },
+  projectDescriptionTitleBox: {
+    sx: {
+      display: "flex",
     },
   },
   addProjectCard: {

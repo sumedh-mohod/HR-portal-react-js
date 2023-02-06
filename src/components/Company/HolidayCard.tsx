@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { useFormik } from "formik";
 import {
   Box,
@@ -20,6 +20,13 @@ import { globalStyles } from "styles/global";
 let PageSize = 5;
 
 const HolidayCard = () => {
+  const [holidays, setHolidays] = useState([
+    {
+      holidayName: "",
+      selectDate: "",
+    },
+  ],);
+
   const {
     handleBlur,
     handleChange,
@@ -47,42 +54,62 @@ const HolidayCard = () => {
 
   const handleAddHoliday = () => {
     const newHoliday = [
-      ...values.holiday,
+      ...holidays,
       {
-        holidayname: "",
+        holidayName: "",
         selectDate: "",
       },
     ];
-    setFieldValue("holiday", newHoliday);
+    setHolidays(newHoliday);
   };
 
   const handleRemoveHoliday = (index: number) => {
-    const newHoliday = [...values.holiday];
+    const newHoliday = [...holidays];
     newHoliday.splice(index, 1);
-    setFieldValue("holiday", newHoliday);
+    setHolidays(newHoliday);
   };
 
-  const handleSubmitHoliday = (index: number) => {};
+  const handleChangeHolidayName = (event: any, index: number) => {
+    let changedName = event.target.value;
+    let newHoliday = [...holidays];
+    newHoliday[index].holidayName = changedName;
+    setHolidays(newHoliday);
+  };
+
+  const handleChangeSelectDate = (event: any, index: number) => {
+    let changedDate = event.target.value;
+    let newHoliday = [...holidays];
+    newHoliday[index].selectDate = changedDate;
+    setHolidays(newHoliday);
+  };
+
+  const handleSubmitHoliday = (index: number) => {
+    console.log("holidays data", holidays);
+  };
 
   return (
     <Box>
       <Card sx={{ mt: 3, mb: 3, p: 5 }}>
-        <form>
+        <form onSubmit={handleSubmit}>
           <Grid container columnSpacing={3} rowGap={3}>
-            {values.holiday.map((holiday, index) => (
+            {holidays.map((holiday, index: any) => (
               <>
                 <Grid item xs={12} md={6} lg={3}>
                   <FormControl fullWidth>
                     <FormLabel
-                      id="holidayname"
+                      id="holidayName"
                       {...globalStyles.textFieldLabel}
                     >
                       Holiday Name
                     </FormLabel>
                     <TextField
-                      name="holidayname"
+                      name="holidayName"
                       variant="filled"
                       size="small"
+                      value={(holidays && holidays[index].holidayName) || ""}
+                      onChange={(event) => {
+                        handleChangeHolidayName(event, index);
+                      }}
                       InputProps={{
                         disableUnderline: true,
                         style: { ...globalStyles.textField },
@@ -100,8 +127,10 @@ const HolidayCard = () => {
                       name="selectDate"
                       variant="filled"
                       size="small"
-                      // value={values.holiday.selectDate}
-                      onChange={handleChange}
+                      value={(holidays && holidays[index].selectDate) || ""}
+                      onChange={(event) => {
+                        handleChangeSelectDate(event, index);
+                      }}
                       onBlur={handleBlur}
                       InputProps={{
                         disableUnderline: true,
@@ -123,8 +152,16 @@ const HolidayCard = () => {
                       mr: 3,
                       cursor: "pointer",
                     }}
+                    onClick={() => {
+                      handleSubmitHoliday(index);
+                    }}
                   >
-                    <SaveTickIcon />
+                    <Button
+                      sx={{ width: "100%", height: "100%" }}
+                      type="submit"
+                    >
+                      <SaveTickIcon />
+                    </Button>
                   </Box>
                   <Box
                     sx={{
@@ -144,7 +181,7 @@ const HolidayCard = () => {
                     <DeleteIcon fill={"white"} />
                   </Box>
                   <Box>
-                    {values.holiday.length - 1 === index ? (
+                    {holidays.length - 1 === index ? (
                       <Button {...styles.addButton} onClick={handleAddHoliday}>
                         <AddIcon fontSize="small" {...styles.addIcon} />
                         <Typography sx={{ fontSize: "small" }}>Add</Typography>
