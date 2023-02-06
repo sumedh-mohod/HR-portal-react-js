@@ -12,10 +12,7 @@ import AssetsList from "components/Assests/AssetsList";
 import { styles } from "styles/components/assests";
 import QRicon from "components/Icons/QRicon";
 import QRiconBox from "components/Assests/QRiconBox";
-<<<<<<< HEAD
 import AssetsModel from "components/Assests/AssetsModel";
-import QrCodeIcon from '@mui/icons-material/QrCode';
-=======
 
 const columns: GridColDef[] = [
   {
@@ -117,7 +114,6 @@ const row = [
 ];
 
 let PageSize = 5;
->>>>>>> c2b318868f199d751b016c515cda46f38fbcc22c
 
 const Assets = () => {
   // const dispatch = useAppDispatch();
@@ -392,7 +388,7 @@ const Assets = () => {
           />
         ) : (
           <AssestsCard
-          open={open}
+          // open={open}
           // handleClose={handleClose}
           HandleQr={HandleQr}
             Assets={currentData}
