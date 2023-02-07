@@ -185,13 +185,10 @@ const Assets = () => {
     } else {
       const firstPageIndex = (currentPage - 1) * PageSize;
       const lastPageIndex = firstPageIndex + PageSize;
-
       const DataSliced = row?.slice(firstPageIndex, lastPageIndex);
       setCurrentData(DataSliced);
     }
   };
-
-  // console.log("data",qrData)
   return (
     <Box sx={{ display: "flex", flexDirection: "column" }}>
       {/* <Loader isLoading={isLoadingRequest} /> */}
@@ -232,8 +229,7 @@ const Assets = () => {
             anchorEl={anchorEl}
             showColumns={showColumns}
           />
-
-          <Search
+         <Search
             searchText={searchText}
             handleSearchChange={handleSearchChange}
             placeholder={"Assets..."}

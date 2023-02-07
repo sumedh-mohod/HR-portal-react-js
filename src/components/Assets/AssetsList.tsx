@@ -1,7 +1,22 @@
+import { useState } from "react";
 import { DataGrid } from "@mui/x-data-grid";
 import { Grid, Box, Card } from "@mui/material";
+import { useNavigate } from "react-router-dom";
 
 const AssetsList = ({ showColumns, rows}: { showColumns: any; rows: any }) => {
+  const navigate = useNavigate();
+  const [rowData, setRowData] = useState(null);
+  const handleOnRowClick = (params:any) => {
+    setRowData(params);
+    console.log("params",params.row)
+    navigate("/assets/details", {
+      state: {params},
+    });
+  };
+  console.log(
+    "rowData",rowData  
+  )
+
   return (
     <Card sx={{ marginTop: "35px", p: 0 }}>
       <Grid container width="1">
@@ -25,6 +40,8 @@ const AssetsList = ({ showColumns, rows}: { showColumns: any; rows: any }) => {
             disableColumnMenu={true}
             disableColumnFilter={true}
             disableColumnSelector={true}
+            // onCellClick={handleOnCellClick}
+            onRowClick={handleOnRowClick}
           />
         </Grid>
       </Grid>

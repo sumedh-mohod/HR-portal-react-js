@@ -55,7 +55,7 @@ const AssetsCard = ({
                   Print Barcode/QR Code
                 </Typography>
                 <Box>
-              <QRiconBox  index={asset}/>
+              <QRiconBox  data={asset}/>
               </Box>
               </Box>
             </Card>
