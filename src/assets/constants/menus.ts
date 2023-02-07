@@ -19,26 +19,21 @@ export const Menus: any = [
     submenu: [
       {
         id: 1,
-        name: "Companies",
-        route: "/companies",
-      },
-      {
-        id: 2,
         name: "Holiday",
         route: "/companies/holiday",
       },
       {
-        id: 3,
+        id: 2,
         name: "Leave Policy",
         route: "/companies/leavepolicy",
       },
       {
-        id: 4,
+        id: 3,
         name: "Masters",
         route: "/companies/master",
       },
       {
-        id: 5,
+        id: 4,
         name: "Organisational Data",
         route: "/companies/organisationaldata",
       },
@@ -60,18 +55,13 @@ export const Menus: any = [
   },
   {
     id: 3,
-    name: "Asset",
+    name: "Assets",
     icon: Assets,
-    route: "assets",
+    route: "/assets",
     active: false,
     submenu: [
       {
         id: 1,
-        name: "Assets",
-        route: "/assets",
-      },
-      {
-        id: 2,
         name: "Assets Master",
         route: "/assets/assetsmaster",
       },
