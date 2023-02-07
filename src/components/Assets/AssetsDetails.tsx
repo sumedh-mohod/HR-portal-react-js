@@ -4,9 +4,7 @@ import { styled } from "@mui/material/styles";
 import EditIcon from "components/Icons/EditIcon";
 import { styles } from "styles/components/assetsDetails";
 import { globalStyles } from "styles/global";
-import Stepper from "@mui/material/Stepper";
-import Step from "@mui/material/Step";
-import StepLabel from "@mui/material/StepLabel";
+import {Stepper,Step,StepLabel}from "@mui/material";
 import { useNavigate, useLocation } from "react-router-dom";
 import StepConnector, {
   stepConnectorClasses,
