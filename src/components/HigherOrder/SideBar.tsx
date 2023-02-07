@@ -107,7 +107,7 @@ const SideBar = ({ open, setOpen }: any) => {
         ? { ...value, active: !value.active }
         : { ...value, active: false }
     );
-    // navigate(`${item.route}`);
+    navigate(`${item.route}`);
     setSideBarMenus([...filerted]);
   };
 
