@@ -14,6 +14,8 @@ import {
 import { styles } from "styles/components/addPartner";
 import { globalStyles } from "styles/global";
 import { useNavigate } from "react-router-dom";
+import DeleteIcon from "components/Icons/DeleteIcon";
+import { flexbox } from "@mui/system";
 const AddAssets = () => {
   const navigate = useNavigate();
   const {
@@ -49,13 +51,23 @@ const AddAssets = () => {
       <Typography {...globalStyles.moduleTitle} variant="h5">
         Add Product
       </Typography>
-      <Box>
+      <Box> 
+      <Button
+          {...styles.parentBoxDeleteButton}
+          variant="contained"
+          onClick={handleCancle}
+        >
+          <Box sx={{mr:1,mt:1,p:0}}>
+        <DeleteIcon fill={"white"}/>
+        </Box>
+          Delete
+        </Button>
         <Button
           {...styles.parentBoxCancleButton}
           variant="contained"
           onClick={handleCancle}
         >
-          Cancle
+          Cancel
         </Button>
         <Button
           {...styles.parentBoxSaveButton}

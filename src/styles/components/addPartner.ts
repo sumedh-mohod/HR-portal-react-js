@@ -6,12 +6,24 @@ export const styles = {
       mt: 2,
     },
   },
+  parentBoxDeleteButton: {
+    sx: {
+      backgroundColor: "#D82A2A",
+      borderRadius: "5px",
+      marginRight: "10px",
+      paddingX:"10px",
+      paddingY:"2px",
+      textTransform:"inherit"
+    },
+  },
   parentBoxCancleButton: {
     sx: {
       backgroundColor: "#FFFFFF",
       color: "black",
       borderRadius: "5px",
       marginRight: "10px",
+      marginLeft: "10px",
+      textTransform:"inherit"
     },
   },
   parentBoxSaveButton: {
@@ -19,6 +31,7 @@ export const styles = {
       backgroundColor: "#F58634",
       borderRadius: "5px",
       marginLeft: "10px",
+      textTransform:"inherit"
     },
   },
 
