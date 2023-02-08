@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { GridColDef } from "@mui/x-data-grid";
-import { Box, Typography, Button } from "@mui/material";
+import { Box, Typography, Button, IconButton } from "@mui/material";
 import { globalStyles } from "styles/global";
 import Search from "components/HigherOrder/Search";
 import AddIcon from "@mui/icons-material/Add";
+import MoreVertIcon from '@mui/icons-material/MoreVert';
 import { styles } from "styles/screens/AssetsMastersList";
 import { useNavigate } from "react-router";
 import QRiconBox from "components/Assets/QRiconBox";
@@ -165,6 +166,13 @@ const AssetsMasters = () => {
                     >
                         Add
                     </Button>
+                    <IconButton
+                        aria-label="more"
+                        id="long-button"
+                        {...styles.iconBtn}
+                    >
+                        <MoreVertIcon />
+                    </IconButton>
                     <Search
                         searchText={searchText}
                         handleSearchChange={handleSearchChange}

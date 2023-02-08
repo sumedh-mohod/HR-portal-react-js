@@ -16,6 +16,14 @@ export const styles = {
       cursor: "pointer",
       fontSize: "14px",
       textTransform: "inherit",
+      height: "40px",
+    },
+  },
+  iconBtn: {
+    sx: {
+      border: "1px solid #C5C7CD",
+      borderRadius: "5px",
+      height: "40px",
     },
   },
   projectCard: {
