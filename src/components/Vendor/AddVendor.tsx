@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useFormik } from "formik";
 import { addVendorValidator } from "utils/validations/auth";
@@ -13,8 +13,8 @@ import {
   MenuItem,
   Card,
 } from "@mui/material";
-import CheckIcon from "@mui/icons-material/Check";
-import CloseIcon from "@mui/icons-material/Close";
+import SaveTickIcon from "components/Icons/SaveTickIcon";
+import DeleteIcon from "components/Icons/DeleteIcon";
 import AddIcon from "@mui/icons-material/Add";
 import { useAppDispatch } from "store/hooks";
 import { addVendor } from "store/reducers/vendors/vendors";
@@ -24,6 +24,20 @@ import { styles } from "styles/components/addVendor";
 const AddVendor = () => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
+  const [pointsofContactOrangebits, setPointsofContactOrangebits] = useState([
+    {
+      name: "",
+      email_id: "",
+      contact: "",
+    },
+  ]);
+  const [pointsofContactVendors, setPointsofContactVendors] = useState([
+    {
+      vendors_name: "",
+      vendors_email_id: "",
+      vendors_contact: "",
+    },
+  ]);
   const {
     handleBlur,
     handleChange,
@@ -45,20 +59,6 @@ const AddVendor = () => {
       postalCode: "",
       vendorOnbaordDate: "",
       taxId: "",
-      pointsofContactOrangebits: [
-        {
-          name: "",
-          email_id: "",
-          contact: "",
-        },
-      ],
-      pointsofContactVendors: [
-        {
-          vendors_name: "",
-          vendors_email_id: "",
-          vendors_contact: "",
-        },
-      ],
     },
     validationSchema: addVendorValidator,
     onSubmit: (values) => {
@@ -68,84 +68,88 @@ const AddVendor = () => {
         .then((response: any) => {
           console.log("response from add vendor file", response);
         })
-        .catch((error: any) => {});
+        .catch((error: any) => { });
     },
   });
 
-  const handleAddPointsofContactOrangebits = () => {
+  //  Points of contacts orangebits functions
+  const handleSubmitPointsofContactOrangebits = (index: number) => {
+    console.log("submit pointsofContactOrangebits", pointsofContactOrangebits);
+  };
+  const handleAddPointsofContactOrangebits = (index: any) => {
     const newpointsofContactOrangebits = [
-      ...values.pointsofContactOrangebits,
+      ...pointsofContactOrangebits,
       {
         name: "",
         email_id: "",
         contact: "",
       },
     ];
-    setFieldValue("pointsofContactOrangebits", newpointsofContactOrangebits);
+    setPointsofContactOrangebits(newpointsofContactOrangebits);
   };
-  const handleAddPointsofContactVendors = () => {
-    console.log("points of contact partners");
+  const handleChangeOrangebitsName = (event: any, index: number) => {
+    let changedName = event.target.value;
+    let newPointsofContactOrangebits = [...pointsofContactOrangebits];
+    newPointsofContactOrangebits[index].name = changedName;
+    setPointsofContactOrangebits(newPointsofContactOrangebits);
+  };
+  const handleChangeOrangebitsEmail = (event: any, index: number) => {
+    let changedEmail_id = event.target.value;
+    let newPointsofContactOrangebits = [...pointsofContactOrangebits];
+    newPointsofContactOrangebits[index].email_id = changedEmail_id;
+    setPointsofContactOrangebits(newPointsofContactOrangebits);
+  };
+  const handleChangeOrangebitsContact = (event: any, index: number) => {
+    let changedContact = event.target.value;
+    let newPointsofContactOrangebits = [...pointsofContactOrangebits];
+    newPointsofContactOrangebits[index].contact = changedContact;
+    setPointsofContactOrangebits(newPointsofContactOrangebits);
+  };
+  const handleRemoveOrangebits = (index: number) => {
+    console.log("delet orangebits");
+    const newPointsofContactOrangebits = [...pointsofContactOrangebits];
+    newPointsofContactOrangebits.splice(index, 1);
+    setPointsofContactOrangebits(newPointsofContactOrangebits);
+  };
+
+  //  Points of contacts Vendors functions
+  const handleSubmitVendors = (index: number) => {
+    console.log("submit pointsofContactVendors", pointsofContactVendors);
+  }
+  const handleAddPointsofContactVendors = (index: any) => {
     const newPointsofContactVendors = [
-      ...values.pointsofContactVendors,
+      ...pointsofContactVendors,
       {
         vendors_name: "",
         vendors_email_id: "",
         vendors_contact: "",
       },
     ];
-    setFieldValue("pointsofContactVendors", newPointsofContactVendors);
+    setPointsofContactVendors(newPointsofContactVendors);
   };
-
-  const handleChangeOrangebitsName = (event: any, index: number) => {
-    setFieldValue(
-      `pointsofContactOrangebits.${index}.name`,
-      event.target.value
-    );
-  };
-  const handleChangeOrangebitsEmail = (event: any, index: number) => {
-    setFieldValue(
-      `pointsofContactOrangebits.${index}.email_id`,
-      event.target.value
-    );
-  };
-  const handleChangeOrangebitsContact = (event: any, index: number) => {
-    setFieldValue(
-      `pointsofContactOrangebits.${index}.contact`,
-      event.target.value
-    );
-  };
-
   const handleChangeVendorsName = (event: any, index: number) => {
-    setFieldValue(
-      `pointsofContactVendors.${index}.vendors_name`,
-      event.target.value
-    );
+    let changedName = event.target.value;
+    let newPointsofContactVendors = [...pointsofContactVendors];
+    newPointsofContactVendors[index].vendors_name = changedName;
+    setPointsofContactVendors(newPointsofContactVendors);
   };
   const handleChangeVendorsEmail = (event: any, index: number) => {
-    setFieldValue(
-      `pointsofContactVendors.${index}.vendors_email_id`,
-      event.target.value
-    );
+    let changedEmail_id = event.target.value;
+    let newPointsofContactVendors = [...pointsofContactVendors];
+    newPointsofContactVendors[index].vendors_email_id = changedEmail_id;
+    setPointsofContactVendors(newPointsofContactVendors);
   };
   const handleChangeVendorsContact = (event: any, index: number) => {
-    setFieldValue(
-      `pointsofContactVendors.${index}.vendors_contact`,
-      event.target.value
-    );
+    let changedContact = event.target.value;
+    let newPointsofContactVendors = [...pointsofContactVendors];
+    newPointsofContactVendors[index].vendors_contact = changedContact;
+    setPointsofContactVendors(newPointsofContactVendors);
   };
-
-  const handleRemoveOrangebits = (index: number) => {
-    console.log("delet orangebits");
-    const newPointsofContactOrangebits = [...values.pointsofContactOrangebits];
-    newPointsofContactOrangebits.splice(index, 1);
-    setFieldValue("pointsofContactOrangebits", newPointsofContactOrangebits);
-  };
-
   const handleRemoveVendors = (index: number) => {
-    console.log("delet vendors");
-    const newPointsofContactVendors = [...values.pointsofContactVendors];
+    console.log("delet orangebits");
+    const newPointsofContactVendors = [...pointsofContactVendors];
     newPointsofContactVendors.splice(index, 1);
-    setFieldValue("pointsofContactVendors", newPointsofContactVendors);
+    setPointsofContactVendors(newPointsofContactVendors);
   };
 
   const inputRef: any = useRef(null);
@@ -399,9 +403,9 @@ const AddVendor = () => {
                     disableUnderline: true,
                     style: { ...globalStyles.textField },
                   }}
-                  //   onBlur={handleBlur}
-                  //   error={touched.postalCode && errors.postalCode ? true : false}
-                  //   helperText={touched.postalCode && errors.postalCode}
+                //   onBlur={handleBlur}
+                //   error={touched.postalCode && errors.postalCode ? true : false}
+                //   helperText={touched.postalCode && errors.postalCode}
                 />
               </FormControl>
             </Grid>
@@ -459,9 +463,9 @@ const AddVendor = () => {
         </Typography>
       </Box>
       <Card {...styles.card}>
-        {values.pointsofContactOrangebits.map((address, index) => (
+        {pointsofContactOrangebits.map((address, index) => (
           <>
-            <Grid container columnSpacing={3} rowGap={3}>
+            <Grid container columnSpacing={3} rowGap={3} sx={{ mb: 3 }}>
               {/* name */}
               <Grid item xs={12} md={6} lg={3}>
                 <FormControl fullWidth>
@@ -478,8 +482,8 @@ const AddVendor = () => {
                       style: { ...globalStyles.textField },
                     }}
                     value={
-                      (values.pointsofContactOrangebits &&
-                        values.pointsofContactOrangebits[index].name) ||
+                      (pointsofContactOrangebits &&
+                        pointsofContactOrangebits[index].name) ||
                       ""
                     }
                     onChange={(event) => {
@@ -505,8 +509,8 @@ const AddVendor = () => {
                       style: { ...globalStyles.textField },
                     }}
                     value={
-                      (values.pointsofContactOrangebits &&
-                        values.pointsofContactOrangebits[index].email_id) ||
+                      (pointsofContactOrangebits &&
+                        pointsofContactOrangebits[index].email_id) ||
                       ""
                     }
                     onChange={(event) => {
@@ -532,8 +536,8 @@ const AddVendor = () => {
                       style: { ...globalStyles.textField },
                     }}
                     value={
-                      (values.pointsofContactOrangebits &&
-                        values.pointsofContactOrangebits[index].contact) ||
+                      (pointsofContactOrangebits &&
+                        pointsofContactOrangebits[index].contact) ||
                       ""
                     }
                     onChange={(event) => {
@@ -543,22 +547,33 @@ const AddVendor = () => {
                 </FormControl>
               </Grid>
               {/* buttons add or remove */}
-              <Grid item xs={12} md={6} lg={3}>
-                <Box sx={{ display: "flex", justifyContent: "baseline" }}>
-                  <CheckIcon {...styles.checkIcon} />
-                  <CloseIcon
-                    {...styles.closeIcon}
-                    onClick={() => {
-                      handleRemoveOrangebits(index);
-                    }}
-                  />
-                  {values.pointsofContactOrangebits.length - 1 === index ? (
+              <Grid item xs={12} md={6} lg={3} {...styles.gridItem} >
+                <Box
+                  {...styles.RightClickIconBox}
+                  onClick={() => {
+                    handleSubmitPointsofContactOrangebits(index)
+                  }}
+                >
+                  <SaveTickIcon />
+                </Box>
+                <Box
+                  {...styles.CloseClickIconBox}
+                  onClick={() => {
+                    handleRemoveOrangebits(index);
+                  }}
+                >
+                  <DeleteIcon fill={"white"} />
+                </Box>
+                <Box>
+                  {pointsofContactOrangebits.length - 1 === index ? (
                     <Button
                       {...styles.addButton}
                       onClick={handleAddPointsofContactOrangebits}
                     >
                       <AddIcon fontSize="small" {...styles.addIcon} />
-                      <Typography sx={{ fontSize: "small" }}>Add</Typography>
+                      <Typography sx={{ textTransform: "none" }}>
+                        Add
+                      </Typography>
                     </Button>
                   ) : null}
                 </Box>
@@ -575,9 +590,9 @@ const AddVendor = () => {
         </Typography>
       </Box>
       <Card {...styles.card}>
-        {values.pointsofContactVendors.map((address, index) => (
+        {pointsofContactVendors.map((address, index) => (
           <>
-            <Grid container columnSpacing={3} rowGap={3}>
+            <Grid container columnSpacing={3} rowGap={3} sx={{ mb: 3 }}>
               {/* name */}
               <Grid item xs={12} md={6} lg={3}>
                 <FormControl fullWidth>
@@ -594,8 +609,8 @@ const AddVendor = () => {
                       style: { ...globalStyles.textField },
                     }}
                     value={
-                      (values.pointsofContactVendors &&
-                        values.pointsofContactVendors[index].vendors_name) ||
+                      (pointsofContactVendors &&
+                        pointsofContactVendors[index].vendors_name) ||
                       ""
                     }
                     onChange={(event) => {
@@ -621,8 +636,8 @@ const AddVendor = () => {
                       style: { ...globalStyles.textField },
                     }}
                     value={
-                      (values.pointsofContactVendors &&
-                        values.pointsofContactVendors[index]
+                      (pointsofContactVendors &&
+                        pointsofContactVendors[index]
                           .vendors_email_id) ||
                       ""
                     }
@@ -648,8 +663,8 @@ const AddVendor = () => {
                       style: { ...globalStyles.textField },
                     }}
                     value={
-                      (values.pointsofContactVendors &&
-                        values.pointsofContactVendors[index].vendors_contact) ||
+                      (pointsofContactVendors &&
+                        pointsofContactVendors[index].vendors_contact) ||
                       ""
                     }
                     onChange={(event) => {
@@ -659,22 +674,33 @@ const AddVendor = () => {
                 </FormControl>
               </Grid>
               {/* buttons add or remove */}
-              <Grid item xs={12} md={6} lg={3}>
-                <Box sx={{ display: "flex", justifyContent: "baseline" }}>
-                  <CheckIcon {...styles.checkIcon} />
-                  <CloseIcon
-                    {...styles.closeIcon}
-                    onClick={() => {
-                      handleRemoveVendors(index);
-                    }}
-                  />
-                  {values.pointsofContactVendors.length - 1 === index ? (
+              <Grid item xs={12} md={6} lg={3} {...styles.gridItem}>
+                <Box
+                  {...styles.RightClickIconBox}
+                  onClick={() => {
+                    handleSubmitVendors(index);
+                  }}
+                >
+                  <SaveTickIcon />
+                </Box>
+                <Box
+                  {...styles.CloseClickIconBox}
+                  onClick={() => {
+                    handleRemoveVendors(index);
+                  }}
+                >
+                  <DeleteIcon fill={"white"} />
+                </Box>
+                <Box>
+                  {pointsofContactVendors.length - 1 === index ? (
                     <Button
                       {...styles.addButton}
                       onClick={handleAddPointsofContactVendors}
                     >
                       <AddIcon fontSize="small" {...styles.addIcon} />
-                      <Typography sx={{ fontSize: "small" }}>Add</Typography>
+                      <Typography sx={{ textTransform: "none" }}>
+                        Add
+                      </Typography>
                     </Button>
                   ) : null}
                 </Box>
