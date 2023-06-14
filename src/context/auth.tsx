@@ -10,6 +10,7 @@ interface AppContextInterface {
 const context: AppContextInterface = {
   isAuthenticated: false,
   userDetails: {},
+  
   loginToContext: () => {},
   logoutFromContext: () => {},
 };

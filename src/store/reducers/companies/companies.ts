@@ -16,7 +16,7 @@ export const addCompany = createAsyncThunk(
     } catch (error) {
       return rejectWithValue("Something went wrong");
     }
-    //returned a response to reducer
+    //returned a response to reducer    
   }
 );
 
@@ -49,7 +49,8 @@ export const getCompanies = createAsyncThunk(
       const response = await axiosClient.get(RestfulUrls.Get_Companies);
       console.log("response of get companies", response);
       return response.data;
-    } catch (error) {
+    } 
+    catch (error) {
       return rejectWithValue("Something went wrong");
     }
   }

@@ -7,3 +7,4 @@ export const useAppDispatch = () => useDispatch<AppDispatch>();
 
 // Hook for useSelector to be used throughout the app
 export const useAppSelector: TypedUseSelectorHook<RootState> = useSelector;
+  

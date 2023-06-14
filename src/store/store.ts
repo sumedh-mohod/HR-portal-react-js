@@ -13,7 +13,7 @@ export const store = configureStore({
   reducer: {
     //storename and redicers name
     authentication: authentication,
-    companies: companies,
+    companies: companies, 
     partners: partners,
     projects: projects,
     employees: employees,
